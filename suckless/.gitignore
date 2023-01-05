@@ -109,4 +109,5 @@ tabbed/tabbed
 9base/urlencode/urlencode
 9base/wc/wc
 9base/yacc/yacc
-tabbed/xembed dmenu/stest
+tabbed/xembed
+dmenu/stest
