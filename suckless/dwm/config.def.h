@@ -5,7 +5,7 @@
 
 static const char term[]		= "st";
 static const char fileman[]		= "lfub";
-static const char browser[]		= "firefox";
+static const char browser[]		= "surf";
 static const char muspley[]		= "cmus";
 static const char rssread[]		= "newsboat";
 
@@ -100,7 +100,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 
 static const char *dmenucmd[]	= {
 	"dmenu_run", "-p", "run:", "-m", dmenumon,
-		"-fn", dmenufont, "-bw", "0", "-nb", normal_bg, "-nf", normal_fg,
+		"-fn", dmenufont, "-nb", normal_bg, "-nf", normal_fg,
 		"-sb", focus_bg, "-sf", focus_fg,
 	NULL
 };
@@ -125,7 +125,7 @@ static const char *bidicmd[]	= { bdterm, NULL};
 static const char *filecmd[]	= { term, "-t", fileman, fileman, NULL};
 static const char *newsboat[]	= { term, "-t", "Newsboat", rssread, NULL};
 static const char *muscmd[]	= { "bash", "-c", SCRIPTSPATH"cmus-tmux.sh", NULL};
-static const char *wwwcmd[]	= { browser, NULL};
+static const char *wwwcmd[]	= { "tabbed", "-c", "-k", browser, "-e", NULL};
 /* change brightness */
 static const char *brightu[]	= { "brightnessctl", "s", "+5\%", NULL};
 static const char *brightd[]	= { "brightnessctl", "s", "5\%-", NULL};
