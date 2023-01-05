@@ -11,7 +11,7 @@ static const Bool foreground    = True;
 static       Bool urgentswitch  = False;
 
 /* colors */
-#include "colors/orange.h"
+#include "colors/solid/orange.h"
 
 /*
  * Where to place a new tab when it is opened. When npisrelative is True,
