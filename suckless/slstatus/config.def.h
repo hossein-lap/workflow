@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* Macros for shortcut */
-#define SRCPATH "~/.local/dev/hossein-lap/scripts"
+#define SRCPATH "~/.local/dev/hossein-lap/workflow/scripts"
 
 /* interval between updates (in ms) */
 const unsigned int interval = 1000;

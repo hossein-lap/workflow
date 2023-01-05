@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* vars */
-#define SCRIPTSPATH "~/.local/dev/hossein-lap/scripts/"
+#define SCRIPTSPATH "~/.local/dev/hossein-lap/workflow/scripts/"
 
 static const char term[]		= "st";
 static const char fileman[]		= "lfub";
