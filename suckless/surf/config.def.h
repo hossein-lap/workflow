@@ -66,9 +66,8 @@ static int winsize[] = { 800, 600 };
 static WebKitFindOptions findopts = WEBKIT_FIND_OPTIONS_CASE_INSENSITIVE |
                                     WEBKIT_FIND_OPTIONS_WRAP_AROUND;
 
-#define PROMPT_GO   "Go:"
-#define PROMPT_FIND "Find:"
-#define PROMPT_BOOK "Bookmarks:"
+#define PROMPT_GO   "url:"
+#define PROMPT_FIND "find:"
 
 /* SETPROP(readprop, setprop, prompt)*/
 #define SETPROP(r, s, p) { \
@@ -166,7 +165,7 @@ static SiteSpecific certs[] = {
 static Key keys[] = {
         /* modifier              keyval          function    arg */
         { MODKEY,                GDK_KEY_g,      spawn,      URLPROP("_SURF_URI", "_SURF_GO", PROMPT_GO) },
-        { MODKEY,                GDK_KEY_b,      spawn,      URLPROP("_SURF_URI", "_SURF_GO", PROMPT_BOOK) },
+        { MODKEY,                GDK_KEY_b,      spawn,      URLPROP("_SURF_URI", "_SURF_GO", PROMPT_GO) },
         { MODKEY,                GDK_KEY_f,      spawn,      SETPROP("_SURF_FIND", "_SURF_FIND", PROMPT_FIND) },
         { MODKEY,                GDK_KEY_slash,  spawn,      SETPROP("_SURF_FIND", "_SURF_FIND", PROMPT_FIND) },
         { MODKEY,                GDK_KEY_m,      spawn,      BM_ADD("_SURF_URI") },
@@ -230,3 +229,5 @@ static Button buttons[] = {
         { OnAny,        0,              9,      clicknavigate,  { .i = +1 },    1 },
         { OnMedia,      MODKEY,         1,      clickexternplayer, { 0 },       1 },
 };
+
+#define HOMEPAGE "https://duckduckgo.com/"
