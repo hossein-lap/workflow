@@ -1,0 +1,271 @@
+commit 040a7b6a217debf57b4f8e0a189afad8f9b21bf2
+Author: Lerrrtaste <lerrrta...@protonmail.com>
+Date:   Mon Jul 18 12:59:57 2022 +0200
+
+
+    [dwm][patch][quitprompt] add new patch to confirm quit or restart with dmenu
+
+diff --git a/dwm.suckless.org/patches/quitprompt/alwaysontop-6.2.diff 
+b/dwm.suckless.org/patches/quitprompt/alwaysontop-6.2.diff
+new file mode 100644
+index 00000000..6a4f72e9
+--- /dev/null
++++ b/dwm.suckless.org/patches/quitprompt/alwaysontop-6.2.diff
+@@ -0,0 +1,110 @@
++From 9cd160c4ba9c345c24644a7da77cc4f04fc93c4e Mon Sep 17 00:00:00 2001
++From: Rob Pilling <robpill...@gmail.com>
++Date: Mon, 27 Jul 2020 20:11:08 +0100
++Subject: [PATCH] alwaysontop
++
++---
++ config.def.h |  1 +
++ dwm.c        | 45 +++++++++++++++++++++++++++++++++++++++++++--
++ 2 files changed, 44 insertions(+), 2 deletions(-)
++
++diff --git a/config.def.h b/config.def.h
++index 1c0b587..c3c7edd 100644
++--- a/config.def.h
+++++ b/config.def.h
++@@ -78,6 +78,7 @@ static Key keys[] = {
++       { MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
++       { MODKEY,                       XK_space,  setlayout,      {0} },
++       { MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
+++      { MODKEY|ShiftMask,             XK_space,  togglealwaysontop, {0} },
++       { MODKEY,                       XK_0,      view,           {.ui = ~0 } 
+},
++       { MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } 
+},
++       { MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
++diff --git a/dwm.c b/dwm.c
++index 4465af1..8d54b26 100644
++--- a/dwm.c
+++++ b/dwm.c
++@@ -92,7 +92,7 @@ struct Client {
++       int basew, baseh, incw, inch, maxw, maxh, minw, minh;
++       int bw, oldbw;
++       unsigned int tags;
++-      int isfixed, isfloating, isurgent, neverfocus, oldstate, isfullscreen;
+++      int isfixed, iscentered, isfloating, isalwaysontop, isurgent, neverfocus, oldstate, isfullscreen;
++       Client *next;
++       Client *snext;
++       Monitor *mon;
++@@ -211,6 +211,7 @@ static void tagmon(const Arg *arg);
++ static void tile(Monitor *);
++ static void togglebar(const Arg *arg);
++ static void togglefloating(const Arg *arg);
+++static void togglealwaysontop(const Arg *arg);
++ static void toggletag(const Arg *arg);
++ static void toggleview(const Arg *arg);
++ static void unfocus(Client *c, int setfocus);
++@@ -732,8 +733,11 @@ drawbar(Monitor *m)
++               if (m->sel) {
++                       drw_setscheme(drw, scheme[m == selmon ? SchemeSel : SchemeNorm]);
++                       drw_text(drw, x, 0, w, bh, lrpad / 2, m->sel->name, 0);
++-                      if (m->sel->isfloating)
+++                      if (m->sel->isfloating) {
++                               drw_rect(drw, x + boxs, boxs, boxw, boxw, m->sel->isfixed, 0);
+++                              if (m->sel->isalwaysontop)
+++                                      drw_rect(drw, x + boxs, bh - boxw, boxw, boxw, 0, 0);
+++                      }
++               } else {
++                       drw_setscheme(drw, scheme[SchemeNorm]);
++                       drw_rect(drw, x, 0, w, bh, 1, 1);
++@@ -1356,6 +1360,17 @@ restack(Monitor *m)
++               return;
++       if (m->sel->isfloating || !m->lt[m->sellt]->arrange)
++               XRaiseWindow(dpy, m->sel->win);
+++
+++      /* raise the aot window */
+++      for(Monitor *m_search = mons; m_search; m_search = m_search->next){
+++              for(c = m_search->clients; c; c = c->next){
+++                      if(c->isalwaysontop){
+++                              XRaiseWindow(dpy, c->win);
+++                              break;
+++                      }
+++              }
+++      }
+++
++       if (m->lt[m->sellt]->arrange) {
++               wc.stack_mode = Below;
++               wc.sibling = m->barwin;
++@@ -1716,6 +1731,32 @@ togglefloating(const Arg *arg)
++       if (selmon->sel->isfloating)
++               resize(selmon->sel, selmon->sel->x, selmon->sel->y,
++                       selmon->sel->w, selmon->sel->h, 0);
+++      else
+++              selmon->sel->isalwaysontop = 0; /* disabled, turn this off too 
+*/
+++      arrange(selmon);
+++}
+++
+++void
+++togglealwaysontop(const Arg *arg)
+++{
+++      if (!selmon->sel)
+++              return;
+++      if (selmon->sel->isfullscreen)
+++              return;
+++
+++      if(selmon->sel->isalwaysontop){
+++              selmon->sel->isalwaysontop = 0;
+++      }else{
+++              /* disable others */
+++              for(Monitor *m = mons; m; m = m->next)
+++                      for(Client *c = m->clients; c; c = c->next)
+++                              c->isalwaysontop = 0;
+++
+++              /* turn on, make it float too */
+++              selmon->sel->isfloating = 1;
+++              selmon->sel->isalwaysontop = 1;
+++      }
+++
++       arrange(selmon);
++ }
++ 
++-- 
++2.31.1
++
+diff --git 
+a/dwm.suckless.org/patches/quitprompt/dwm-quitprompt-20220718-6613d9f.diff 
+b/dwm.suckless.org/patches/quitprompt/dwm-quitprompt-20220718-6613d9f.diff
+new file mode 100644
+index 00000000..0ffbc36c
+--- /dev/null
++++ b/dwm.suckless.org/patches/quitprompt/dwm-quitprompt-20220718-6613d9f.diff
+@@ -0,0 +1,92 @@
++From eb558048819ed916b272765e64e1ea795a85740e Mon Sep 17 00:00:00 2001
++From: Lerrrtaste <lerrrta...@protonmail.com>
++Date: Mon, 18 Jul 2022 12:22:39 +0200
++Subject: [PATCH] This Patch replaces the default quit behavior with an dmenu
++ prompt. Possible selections are (Quit DWM?) "yes", "no" and "restart". The
++ additional confirmation can save your work from accidentally hitting the quit
++ key by requiring two additional keystrokes (y/yes and RET). Additionally it
++ allows for restarting / reloading dwm without ending the xsession and closing
++ all open x windows. To abort press ESC or n/no and RET.
++
++---
++ config.def.h |  2 +-
++ dwm.c        | 30 ++++++++++++++++++++++++++++++
++ 2 files changed, 31 insertions(+), 1 deletion(-)
++
++diff --git a/config.def.h b/config.def.h
++index a2ac963..9e3b394 100644
++--- a/config.def.h
+++++ b/config.def.h
++@@ -94,7 +94,7 @@ static Key keys[] = {
++       TAGKEYS(                        XK_7,                      6)
++       TAGKEYS(                        XK_8,                      7)
++       TAGKEYS(                        XK_9,                      8)
++-      { MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+++      { MODKEY|ShiftMask,             XK_q,      quitprompt,           {0} },
++ };
++ 
++ /* button definitions */
++diff --git a/dwm.c b/dwm.c
++index 7c0f978..3761ba4 100644
++--- a/dwm.c
+++++ b/dwm.c
++@@ -188,6 +188,7 @@ static Client *nexttiled(Client *c);
++ static void pop(Client *c);
++ static void propertynotify(XEvent *e);
++ static void quit(const Arg *arg);
+++static void quitprompt(const Arg *arg);
++ static Monitor *recttomon(int x, int y, int w, int h);
++ static void resize(Client *c, int x, int y, int w, int h, int interact);
++ static void resizeclient(Client *c, int x, int y, int w, int h);
++@@ -262,6 +263,7 @@ static void (*handler[LASTEvent]) (XEvent *) = {
++ };
++ static Atom wmatom[WMLast], netatom[NetLast];
++ static int running = 1;
+++static int restart = 1;
++ static Cur *cursor[CurLast];
++ static Clr **scheme;
++ static Display *dpy;
++@@ -1258,6 +1260,31 @@ quit(const Arg *arg)
++       running = 0;
++ }
++ 
+++void
+++quitprompt(const Arg *arg)
+++{
+++      FILE *pp = popen("echo -e \"no
+restart
+yes\" | dmenu -i -sb red -p \"Quit DWM?\"", "r");
+++      if(pp != NULL) {
+++              char buf[1024];
+++              if (fgets(buf, sizeof(buf), pp) == NULL) {
+++                      fprintf(stderr, "Quitprompt: Error reading pipe!
+");
+++                      return;
+++              }
+++              if (strcmp(buf, "yes
+") == 0) {
+++                      pclose(pp);
+++                      restart = 0;
+++                      quit(NULL);
+++              } else if (strcmp(buf, "restart
+") == 0) {
+++                      pclose(pp);
+++                      restart = 1;
+++                      quit(NULL);
+++              } else if (strcmp(buf, "no
+") == 0) {
+++                      pclose(pp);
+++                      return;
+++              }
+++      }
+++}
+++
++ Monitor *
++ recttomon(int x, int y, int w, int h)
++ {
++@@ -2155,5 +2182,8 @@ main(int argc, char *argv[])
++       run();
++       cleanup();
++       XCloseDisplay(dpy);
+++      if (restart == 1) {
+++              execlp("dwm", "dwm", NULL);
+++      }
++       return EXIT_SUCCESS;
++ }
++-- 
++2.36.0
++
+diff --git a/dwm.suckless.org/patches/quitprompt/index.md 
+b/dwm.suckless.org/patches/quitprompt/index.md
+new file mode 100644
+index 00000000..e042f8c5
+--- /dev/null
++++ b/dwm.suckless.org/patches/quitprompt/index.md
+@@ -0,0 +1,28 @@
++quitprompt
++===========
++
++Description
++-----------
++This patch replaces the default quit behavior with a dmenu prompt.
++Options are "yes", "no" and "restart".
++
++![](quitprompt.png)
++
++The additional confirmation can protect unsaved work from accidentally hitting 
+the quit key by requiring two additional keystrokes (y/yes and RET).
++
++Additionally, it allows for restarting / reloading dwm without ending the 
+xsession and closing all x windows.
++To abort, press ESC or n/no and RET.
++
++Download
++--------
++* [dwm-quitprompt-20220718-6613d9f.diff](dwm-quitprompt-20220718-6613d9f.diff)
++
++Configuration
++---------------------
++This patch replaces the default quit keybinding in `config.def.h` to 
+quitprompt.
++
++       { MODKEY|ShiftMask, XK_q, quitprompt, {0} },
++
++Author
++------
++* Laurenz Foglia - <lerrrta...@protonmail.com>

@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <time.h>
 
-#include "../slstatus.h"
 #include "../util.h"
 
 #if defined(CLOCK_BOOTTIME)
@@ -15,14 +14,14 @@
 #endif
 
 const char *
-uptime(const char *unused)
+uptime(void)
 {
 	char warn_buf[256];
 	uintmax_t h, m;
 	struct timespec uptime;
 
 	if (clock_gettime(UPTIME_FLAG, &uptime) < 0) {
-		snprintf(warn_buf, sizeof(warn_buf), "clock_gettime %d", UPTIME_FLAG);
+		snprintf(warn_buf, 256, "clock_gettime %d", UPTIME_FLAG);
 		warn(warn_buf);
 		return NULL;
 	}

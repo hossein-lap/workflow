@@ -1,0 +1,52 @@
+commit 73a6020865607018f6442317e7f94fb5d54a7016
+Author: luquinha.virus <lucas.mior@tutamail.com>
+Date:   Wed Aug 19 00:24:54 2020 -0300
+
+    change alpha with keyboard shortcut C-F11/C-F12
+
+diff --git a/config.h b/config.h
+index 47ed4d5..b49a405 100644
+--- a/config.h
++++ b/config.h
+@@ -267,6 +267,8 @@ static Shortcut shortcuts[] = {
+ 	{ MODKEY,               XK_Down,        kscrolldown,    {.i =  1} },
+ 	{ MODKEY,               XK_u,           kscrollup,      {.i = -1} },
+ 	{ MODKEY,               XK_d,           kscrolldown,    {.i = -1} },
++	{ ControlMask,          XK_F11,         changealpha,    {.f = -0.05} },
++	{ ControlMask,          XK_F12,         changealpha,    {.f = +0.05} },
+ 	{ TERMMOD,              XK_Up,          zoom,           {.f = +1} },
+ 	{ TERMMOD,              XK_Down,        zoom,           {.f = -1} },
+ 	{ TERMMOD,              XK_K,           zoom,           {.f = +1} },
+diff --git a/x.c b/x.c
+index d2ed474..652f3cc 100644
+--- a/x.c
++++ b/x.c
+@@ -68,6 +68,7 @@ static void clipcopy(const Arg *);
+ static void clippaste(const Arg *);
+ static void numlock(const Arg *);
+ static void selpaste(const Arg *);
++static void changealpha(const Arg *);
+ static void zoom(const Arg *);
+ static void zoomabs(const Arg *);
+ static void zoomreset(const Arg *);
+@@ -303,6 +304,20 @@ numlock(const Arg *dummy)
+ 	win.mode ^= MODE_NUMLOCK;
+ }
+ 
++void
++changealpha(const Arg *arg)
++{
++    if((alpha > 0 && arg->f < 0) || (alpha < 1 && arg->f > 0))
++        alpha += arg->f;
++    if(alpha < 0)
++        alpha = 0;
++    if(alpha > 1)
++        alpha = 1;
++
++    xloadcols();
++    redraw();
++}
++
+ void
+ zoom(const Arg *arg)
+ {

@@ -1,24 +1,40 @@
 dmenu - dynamic menu
 ====================
+
 dmenu is an efficient dynamic menu for X.
 
+### Requirements
 
-Requirements
-------------
-In order to build dmenu you need the Xlib header files.
+In order to build dmenu you need the `Xlib` header files.
 
 
-Installation
-------------
-Edit config.mk to match your local setup (dmenu is installed into
-the /usr/local namespace by default).
+### Installation
+
+Edit config.mk to match your local setup
+(dmenu is installed into the /usr/local namespace by default).
 
 Afterwards enter the following command to build and install dmenu
 (if necessary as root):
 
     make clean install
 
+### Running dmenu
 
-Running dmenu
--------------
 See the man page for details.
+
+### Applied patches
+
+- grid
+    - gridnav
+- center
+- password
+- numbers
+- border
+
+### Screenshot
+
+![220904-223222](shots/220904-223222.png)
+
+![220904-223252](shots/220904-223252.png)
+
+![220904-223304](shots/220904-223304.png)

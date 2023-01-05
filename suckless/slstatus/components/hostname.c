@@ -2,11 +2,10 @@
 #include <stdio.h>
 #include <unistd.h>
 
-#include "../slstatus.h"
 #include "../util.h"
 
 const char *
-hostname(const char *unused)
+hostname(void)
 {
 	if (gethostname(buf, sizeof(buf)) < 0) {
 		warn("gethostbyname:");

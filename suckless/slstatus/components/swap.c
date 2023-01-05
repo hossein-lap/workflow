@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../slstatus.h"
 #include "../util.h"
 
 #if defined(__linux__)
@@ -25,9 +24,11 @@
 		char *line = NULL;
 
 		/* get number of fields we want to extract */
-		for (i = 0, left = 0; i < LEN(ent); i++)
-			if (ent[i].var)
+		for (i = 0, left = 0; i < LEN(ent); i++) {
+			if (ent[i].var) {
 				left++;
+			}
+		}
 
 		if (!(fp = fopen("/proc/meminfo", "r"))) {
 			warn("fopen '/proc/meminfo':");
@@ -57,45 +58,49 @@
 	}
 
 	const char *
-	swap_free(const char *unused)
+	swap_free(void)
 	{
 		long free;
 
-		if (get_swap_info(NULL, &free, NULL))
+		if (get_swap_info(NULL, &free, NULL)) {
 			return NULL;
+		}
 
 		return fmt_human(free * 1024, 1024);
 	}
 
 	const char *
-	swap_perc(const char *unused)
+	swap_perc(void)
 	{
 		long total, free, cached;
 
-		if (get_swap_info(&total, &free, &cached) || total == 0)
+		if (get_swap_info(&total, &free, &cached) || total == 0) {
 			return NULL;
+		}
 
 		return bprintf("%d", 100 * (total - free - cached) / total);
 	}
 
 	const char *
-	swap_total(const char *unused)
+	swap_total(void)
 	{
 		long total;
 
-		if (get_swap_info(&total, NULL, NULL))
+		if (get_swap_info(&total, NULL, NULL)) {
 			return NULL;
+		}
 
 		return fmt_human(total * 1024, 1024);
 	}
 
 	const char *
-	swap_used(const char *unused)
+	swap_used(void)
 	{
 		long total, free, cached;
 
-		if (get_swap_info(&total, &free, &cached))
+		if (get_swap_info(&total, &free, &cached)) {
 			return NULL;
+		}
 
 		return fmt_human((total - free - cached) * 1024, 1024);
 	}
@@ -142,69 +147,74 @@
 	}
 
 	const char *
-	swap_free(const char *unused)
+	swap_free(void)
 	{
 		int total, used;
 
-		if (getstats(&total, &used))
+		if (getstats(&total, &used)) {
 			return NULL;
+		}
 
 		return fmt_human((total - used) * 1024, 1024);
 	}
 
 	const char *
-	swap_perc(const char *unused)
+	swap_perc(void)
 	{
 		int total, used;
 
-		if (getstats(&total, &used))
+		if (getstats(&total, &used)) {
 			return NULL;
+		}
 
-		if (total == 0)
+		if (total == 0) {
 			return NULL;
+		}
 
 		return bprintf("%d", 100 * used / total);
 	}
 
 	const char *
-	swap_total(const char *unused)
+	swap_total(void)
 	{
 		int total, used;
 
-		if (getstats(&total, &used))
+		if (getstats(&total, &used)) {
 			return NULL;
+		}
 
 		return fmt_human(total * 1024, 1024);
 	}
 
 	const char *
-	swap_used(const char *unused)
+	swap_used(void)
 	{
 		int total, used;
 
-		if (getstats(&total, &used))
+		if (getstats(&total, &used)) {
 			return NULL;
+		}
 
 		return fmt_human(used * 1024, 1024);
 	}
 #elif defined(__FreeBSD__)
-	#include <fcntl.h>
-	#include <kvm.h>
 	#include <stdlib.h>
 	#include <sys/types.h>
+	#include <fcntl.h>
 	#include <unistd.h>
+	#include <kvm.h>
 
 	static int getswapinfo(struct kvm_swap *swap_info, size_t size)
 	{
 		kvm_t *kd;
 
 		kd = kvm_openfiles(NULL, "/dev/null", NULL, 0, NULL);
-		if (kd == NULL) {
+		if(kd == NULL) {
 			warn("kvm_openfiles '/dev/null':");
 			return 0;
 		}
 
-		if (kvm_getswapinfo(kd, swap_info, size, 0 /* Unused flags */) < 0) {
+		if(kvm_getswapinfo(kd, swap_info, size, 0 /* Unused flags */) == -1) {
 			warn("kvm_getswapinfo:");
 			kvm_close(kd);
 			return 0;
@@ -215,12 +225,12 @@
 	}
 
 	const char *
-	swap_free(const char *unused)
+	swap_free(void)
 	{
 		struct kvm_swap swap_info[1];
 		long used, total;
 
-		if (!getswapinfo(swap_info, 1))
+		if(!getswapinfo(swap_info, 1))
 			return NULL;
 
 		total = swap_info[0].ksw_total;
@@ -230,12 +240,12 @@
 	}
 
 	const char *
-	swap_perc(const char *unused)
+	swap_perc(void)
 	{
 		struct kvm_swap swap_info[1];
 		long used, total;
 
-		if (!getswapinfo(swap_info, 1))
+		if(!getswapinfo(swap_info, 1))
 			return NULL;
 
 		total = swap_info[0].ksw_total;
@@ -245,12 +255,12 @@
 	}
 
 	const char *
-	swap_total(const char *unused)
+	swap_total(void)
 	{
 		struct kvm_swap swap_info[1];
 		long total;
 
-		if (!getswapinfo(swap_info, 1))
+		if(!getswapinfo(swap_info, 1))
 			return NULL;
 
 		total = swap_info[0].ksw_total;
@@ -259,12 +269,12 @@
 	}
 
 	const char *
-	swap_used(const char *unused)
+	swap_used(void)
 	{
 		struct kvm_swap swap_info[1];
 		long used;
 
-		if (!getswapinfo(swap_info, 1))
+		if(!getswapinfo(swap_info, 1))
 			return NULL;
 
 		used = swap_info[0].ksw_used;

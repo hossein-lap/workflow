@@ -1,0 +1,82 @@
+From 38914e7a39b12ba1001b5464e6d96d1d15e73634 Mon Sep 17 00:00:00 2001
+From: Hiltjo Posthuma <hiltjo@codemadness.org>
+Date: Fri, 17 Jun 2016 15:33:50 +0200
+Subject: [PATCH] incremental mode: dmenu outputs text each time a key is
+ pressed.
+
+---
+ config.def.h | 1 +
+ dmenu.1      | 4 ++++
+ dmenu.c      | 8 +++++++-
+ 3 files changed, 12 insertions(+), 1 deletion(-)
+
+diff --git a/config.def.h b/config.def.h
+index dcffd38..994f3a5 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -2,6 +2,7 @@
+ /* Default settings; can be overriden by command line. */
+ 
+ static int topbar = 1;                      /* -b  option; if 0, dmenu appears at bottom     */
++static int incremental = 0;                 /* -r  option; if 1, outputs text each time a key is pressed */
+ /* -fn option overrides fonts[0]; default X11 font or font set */
+ static const char *fonts[] = {
+ 	"monospace:size=10"
+diff --git a/dmenu.1 b/dmenu.1
+index d3ab805..e5bf42f 100644
+--- a/dmenu.1
++++ b/dmenu.1
+@@ -18,6 +18,7 @@ dmenu \- dynamic menu
+ .IR color ]
+ .RB [ \-nf
+ .IR color ]
++.RB [ \-r ]
+ .RB [ \-sb
+ .IR color ]
+ .RB [ \-sf
+@@ -58,6 +59,9 @@ from 0.
+ .BI \-p " prompt"
+ defines the prompt to be displayed to the left of the input field.
+ .TP
++.B \-r
++dmenu outputs text each time a key is pressed.
++.TP
+ .BI \-fn " font"
+ defines the font or font set used.
+ .TP
+diff --git a/dmenu.c b/dmenu.c
+index e0c2f80..7f1be56 100644
+--- a/dmenu.c
++++ b/dmenu.c
+@@ -447,6 +447,10 @@ keypress(XKeyEvent *ev)
+ 		match();
+ 		break;
+ 	}
++	if (incremental) {
++		puts(text);
++		fflush(stdout);
++	}
+ 	drawmenu();
+ }
+ 
+@@ -611,7 +615,7 @@ static void
+ usage(void)
+ {
+ 	fputs("usage: dmenu [-b] [-f] [-i] [-l lines] [-p prompt] [-fn font] [-m monitor]\n"
+-	      "             [-nb color] [-nf color] [-sb color] [-sf color] [-v]\n", stderr);
++	      "             [-nb color] [-nf color] [-r] [-sb color] [-sf color] [-v]\n", stderr);
+ 	exit(1);
+ }
+ 
+@@ -629,6 +633,8 @@ main(int argc, char *argv[])
+ 			topbar = 0;
+ 		else if (!strcmp(argv[i], "-f"))   /* grabs keyboard before reading stdin */
+ 			fast = 1;
++		else if (!strcmp(argv[i], "-r"))   /* incremental */
++			incremental = 1;
+ 		else if (!strcmp(argv[i], "-i")) { /* case-insensitive item matching */
+ 			fstrncmp = strncasecmp;
+ 			fstrstr = cistrstr;
+-- 
+2.8.3
+

@@ -4,17 +4,16 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-#include "../slstatus.h"
 #include "../util.h"
 
 const char *
-gid(const char *unused)
+gid(void)
 {
 	return bprintf("%d", getgid());
 }
 
 const char *
-username(const char *unused)
+username(void)
 {
 	struct passwd *pw;
 
@@ -27,7 +26,7 @@ username(const char *unused)
 }
 
 const char *
-uid(const char *unused)
+uid(void)
 {
 	return bprintf("%d", geteuid());
 }

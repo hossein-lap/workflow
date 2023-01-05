@@ -5,7 +5,6 @@
 #include <X11/XKBlib.h>
 #include <X11/Xlib.h>
 
-#include "../slstatus.h"
 #include "../util.h"
 
 static int
@@ -15,9 +14,11 @@ valid_layout_or_variant(char *sym)
 	/* invalid symbols from xkb rules config */
 	static const char *invalid[] = { "evdev", "inet", "pc", "base" };
 
-	for (i = 0; i < LEN(invalid); i++)
-		if (!strncmp(sym, invalid[i], strlen(invalid[i])))
+	for (i = 0; i < LEN(invalid); i++) {
+		if (!strncmp(sym, invalid[i], strlen(invalid[i]))) {
 			return 0;
+		}
+	}
 
 	return 1;
 }
@@ -45,13 +46,12 @@ get_layout(char *syms, int grp_num)
 }
 
 const char *
-keymap(const char *unused)
+keymap(void)
 {
 	Display *dpy;
 	XkbDescRec *desc;
 	XkbStateRec state;
-	char *symbols;
-	const char *layout;
+	char *symbols, *layout;
 
 	layout = NULL;
 
@@ -75,12 +75,13 @@ keymap(const char *unused)
 		warn("XGetAtomName: Failed to get atom name");
 		goto end;
 	}
-	layout = bprintf("%s", get_layout(symbols, state.group));
+	layout = (char *)bprintf("%s", get_layout(symbols, state.group));
 	XFree(symbols);
 end:
 	XkbFreeKeyboard(desc, XkbSymbolsNameMask, 1);
-	if (XCloseDisplay(dpy))
+	if (XCloseDisplay(dpy)) {
 		warn("XCloseDisplay: Failed to close display");
+	}
 
 	return layout;
 }
