@@ -17,10 +17,10 @@ static Parameter defconfig[ParameterLast] = {
 	/* parameter                    Arg value       priority */
 	[AccessMicrophone]    =       { { .i = 0 },     },
 	[AccessWebcam]        =       { { .i = 0 },     },
-	[Certificate]         =       { { .i = 0 },     },
+	[Certificate]         =       { { .i = 1 },     },
 	[CaretBrowsing]       =       { { .i = 0 },     },
 	[CookiePolicies]      =       { { .v = "@Aa" }, },
-	[DarkMode]            =       { { .i = 0 },     },
+	[DarkMode]            =       { { .i = 1 },     },
 	[DefaultCharset]      =       { { .v = "UTF-8" }, },
 	[DiskCache]           =       { { .i = 1 },     },
 	[DNSPrefetch]         =       { { .i = 0 },     },
@@ -38,20 +38,20 @@ static Parameter defconfig[ParameterLast] = {
 	[MediaManualPlay]     =       { { .i = 1 },     },
 	[PreferredLanguages]  =       { { .v = (char *[]){ NULL } }, },
 	[ProxyIgnoreHosts]    =       { { .v = (char *[]){ "*.ir" } }, },
-//	[ProxyMode]           =       { { .i = NoProxy }, },
-	[ProxyMode]           =       { { .i = CustomProxy }, },
+	[ProxyMode]           =       { { .i = NoProxy }, },
+//	[ProxyMode]           =       { { .i = CustomProxy }, },
 	[ProxyUrl]            =       { { .v = (char *) "http://127.0.0.1:1090" }, },
 	[RunInFullscreen]     =       { { .i = 0 },     },
 	[ScrollBars]          =       { { .i = 1 },     },
 	[ShowIndicators]      =       { { .i = 1 },     },
 	[SiteQuirks]          =       { { .i = 1 },     },
-	[SmoothScrolling]     =       { { .i = 0 },     },
-	[SpellChecking]       =       { { .i = 0 },     },
+	[SmoothScrolling]     =       { { .i = 1 },     },
+	[SpellChecking]       =       { { .i = 1 },     },
 	[SpellLanguages]      =       { { .v = ((char *[]){ "en_US", NULL }) }, },
 	[StrictTLS]           =       { { .i = 1 },     },
 	[Style]               =       { { .i = 1 },     },
 	[WebGL]               =       { { .i = 0 },     },
-	[ZoomLevel]           =       { { .f = 1.0 },   },
+	[ZoomLevel]           =       { { .f = 1.5 },   },
 };
 
 static UriParameters uriparams[] = {
@@ -75,7 +75,7 @@ static WebKitFindOptions findopts = WEBKIT_FIND_OPTIONS_CASE_INSENSITIVE |
              "prop=\"$(printf '%b' \"$(xprop -id $1 "r" " \
              "| sed -e 's/^"r"(UTF8_STRING) = \"\\(.*\\)\"/\\1/' " \
              "      -e 's/\\\\\\(.\\)/\\1/g')\" " \
-             "| dmenu -l 5 -g 2 -bw 0 -p '"p"' -w $1)\" " \
+             "| dmenu -p '"p"' -w $1)\" " \
              "&& xprop -id $1 -f "s" 8u -set "s" \"$prop\"", \
              "surf-setprop", winid, NULL \
         } \
