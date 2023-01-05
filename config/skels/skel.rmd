@@ -1,0 +1,87 @@
+---
+# Preambles {{{
+header-includes:
+    - \usepackage[utf8]{inputenc}
+    - \usepackage[T1]{fontenc}
+    - \usepackage{setspace}
+    - \onehalfspacing
+    - \usepackage{fontspec}
+    #- \setmainfont{Liberation Serif}
+    - \setmainfont{Source Serif Pro}
+    - \setmonofont{Source Code Pro}
+    - \setsansfont{Source Sans Pro}
+    #- \usepackage{xepersian}
+    #- \settextfont{Yas}
+    #- \setlatintextfont{FreeSerif}
+    #- \let\textormath=\TextOrMath
+
+#dir: rtl
+output:
+    pdf_document:
+        latex_engine: xelatex
+        toc: false
+        number_sections: true
+        fig_caption: true
+        keep_tex: true
+        highlight: monochrome
+    ## colorschemes -> tango, kate, monochrome, haddock
+    #word_document:
+        #toc: false
+    html_document:
+        toc: true
+        toc_float:
+            collapsed: true
+            smooth_scroll: true
+        highlight: tango
+        theme: lumen
+        ## theme: lumen, darkly[zenburn]
+
+title: "**Title**"
+subtitle: "Subtitle"
+author: "**Author**"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+# }}}
+---
+<!-- Configs {{{ -->
+```{r setup, include=FALSE}
+library(knitr)
+
+knitr::knit_engines$set(
+    lua = function(options) {
+        code <- paste(options$code, collapse = '\n')
+        out <- system2(
+            'lua', c('-e', shQuote(code)),
+            stdout = TRUE
+        )
+        knitr::engine_output(options, code, out)
+    },
+    julia = function(options) {
+        code <- paste(options$code, collapse = '\n')
+        out <- system2(
+            'julia', c('-e', shQuote(code)),
+            stdout = TRUE
+        )
+        knitr::engine_output(options, code, out)
+    }
+)
+
+knitr::opts_chunk$set(engine.path = list(
+	lua = '/usr/bin/lua',
+	julia = '/usr/bin/julia'
+))
+
+knitr::opts_chunk$set(
+    comment = '## ',
+    message = FALSE,
+    warning = FALSE,
+    results = 'markup',
+    background = '#000000',
+    attr.source = '.numberLines'
+)
+knitr::opts_knit$set(
+    progress = FALSE,
+    verbose = FALSE
+)
+```
+<!-- }}} -->
+

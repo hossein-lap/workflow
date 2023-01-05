@@ -1,0 +1,103 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{main}
+\RequirePackage{titlesec,framed,fancyvrb,hyperref}
+
+%% link colors
+\hypersetup{
+	colorlinks=true,
+	linkcolor={blue!55!black},
+	citecolor={red!65!black},
+	urlcolor={green!35!black},
+}
+
+%% custom section
+\titleformat{\section}
+	{\LARGE \bfseries}
+	{\thesection}
+	{.03\linewidth}
+	{}%
+	[{\titlerule[0pt]}]
+%% custom subsection
+\titleformat{\subsection}
+	{\Large \bfseries}
+	{\thesubsection}
+	{.03\linewidth}
+	{}%
+	[{\titlerule[0pt]}]
+%% custom subsubsection
+\titleformat{\subsubsection}
+	{\large \bfseries}
+	{\thesubsubsection}
+	{.03\linewidth}
+	{}%
+	[{\titlerule[0pt]}]
+
+%% headings position
+\titlespacing{\section}{0mm}{5mm}{5mm}
+\titlespacing{\subsection}{0mm}{5mm}{5mm}
+\titlespacing{\subsubsection}{0pt}{5mm}{5mm}
+
+%% every h1 at a new page
+%\let\oldsection\section
+%\renewcommand\section{\newpage\oldsection}
+
+%%% default fonts:
+%\setmainfont{Libertinus Serif}
+%%\setmainfont{Go}
+%%\setmainfont{Source Serif Pro}
+%% math
+%\setmathfont{Libertinus Serif}
+%% sans
+%\setsansfont{Ubuntu}
+%%\setsansfont{Source Sans Pro}
+%%\setsansfont{Libertinus Sans}
+%% mono
+%\setmonofont{Go Mono}
+\setmonofont{Source Code Pro Medium}
+%%\setmonofont{DejaVu Sans Mono}
+%%\setmonofont{Liberation Mono}
+%%\setmonofont{Fira Mono Medium}
+%%\setmonofont{Inconsolata}
+
+%%% add line number to code-blocks
+%\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},numbers=left,frame=leftline}
+%%\DefineVerbatimEnvironment{verbatim}{Verbatim}{numbers=left,frame=leftline}
+
+%%% define shaded env
+%%\ifcsname Shaded\endcsname
+%\ifdefined\Shaded
+%	\renewenvironment{Shaded}%
+%		{\begin{quotation}}
+%		{\end{quotation}}
+%\else
+%	\newenvironment{Shaded}%
+%		{\begin{quotation}}
+%		{\end{quotation}}
+%\fi
+
+%\ifcsname foo\endcsname
+%	\message{\string\foo\space is defined}%
+%\else
+%	\message{no command \string\foo}%
+%\fi
+
+%%% quotation
+%%\renewenvironment{quote}%
+%%	{\begin{center}\begin{tabular}{|p{.8\textwidth}}\sffamily}%
+%%	{\end{tabular}\end{center}}
+%\renewenvironment{quote}%
+%	{\begin{quotation}\noindent\sffamily\itshape}%
+%	{\end{quotation}}
+
+%%%% Simple verbatim
+%\let\oldverbatim=\verbatim
+%\let\oldendverbatim=\endverbatim
+%\renewenvironment{verbatim}%
+%	{\begin{quotation}\oldverbatim\noindent}%
+%	{\oldendverbatim\end{quotation}}
+
+%%% Paragraph indentation
+\setlength{\parindent}{15pt}
+%\setlength\parindent{\defaultparindent}
+\linespread{1.2}
+

@@ -1,0 +1,266 @@
+\documentclass[12pt,a4paper]{article}
+
+% Using Packages {{{
+\usepackage[margin=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{enumitem,amssymb}
+\usepackage{multicol}
+\usepackage{listings}
+\usepackage{titlesec}
+\usepackage{titling}
+\usepackage{hyperref}
+\usepackage{setspace}
+%\usepackage{scrlayer-scrpage}
+\usepackage{fancyhdr}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{tipa}
+% }}}
+% Preambles {{{
+% Color Definition {{{
+\definecolor{backcolour}{rgb}{0.95,0.95,0.95}
+%% some commented ones {{{
+%\definecolor{commentsColor}{rgb}{0.497495, 0.497587, 0.497464}
+%\definecolor{codegreen}{rgb}{0,0.6,0}
+%\definecolor{mygray}{gray}{0.5}
+%\definecolor{codepurple}{rgb}{0.58,0,0.82}
+%\definecolor{armygreen}{rgb}{0.29, 0.33, 0.13}
+%\definecolor{keywordsColor}{rgb}{0.000000, 0.000000, 0.635294}
+%\definecolor{stringColor}{rgb}{0.558215, 0.000000, 0.135316}
+%\definecolor{alizarin}{rgb}{0.82, 0.1, 0.26}
+%\definecolor{frenchbeige}{rgb}{0.65, 0.48, 0.36}
+%\definecolor{beaver}{rgb}{0.62, 0.51, 0.44}
+%%
+%%%\definecolor{bostonuniversityred}{rgb}{0.8, 0.0, 0.0}
+%%%\definecolor{lavenderpurple}{rgb}{0.59, 0.48, 0.71}
+%%%\definecolor{lavenderfloral}{rgb}{0.71, 0.49, 0.86}
+%%%\definecolor{goldmetallic}{rgb}{0.83, 0.69, 0.22}
+%%
+%%%\definecolor{onyx}{rgb}{0.66, 0.66, 0.66}
+%%%\definecolor{grullo}{rgb}{0.66, 0.6, 0.53}
+%% }}}
+% }}}
+% Font Families {{{
+% Ubuntu {{{
+\newfontfamily\Ubfam{UbuntuMono}[
+Path			=   /home/hos/.fonts/ubuntu/,
+Extension	   =   .ttf,
+UprightFont	 =   *-R,
+BoldFont		=   *-B,
+ItalicFont	  =   *-RI,
+BoldItalicFont  =   *-BI,
+%SmallCapsFont   =   *-C,
+%SlantedFont	 =   *-Th,
+%BoldSlantedFont =   *-,
+]
+% }}}
+% Modern Computer {{{
+\newfontfamily\Cmu{cmun}[
+Path			=   /home/hos/.fonts/cmu/Code/,
+Extension	   =   .ttf,
+UprightFont	 =   *tt,
+BoldFont		=   *tb,
+ItalicFont	  =   *it,
+BoldItalicFont  =   *tx,
+%SmallCapsFont   =   *tt,
+%SlantedFont	 =   *-Th,
+%BoldSlantedFont =   *-,
+]
+% }}}
+%% Neuton {{{
+%\newfontfamily\Neu{Neuton}[
+%Path			=   /home/hos/.fonts/neuton/,
+%Extension	   =   .ttf,
+%UprightFont	 =   *-Regular,
+%BoldFont		=   *-Bold,
+%ItalicFont	  =   *-Italic,
+%%BoldItalicFont  =   *-BoldItalic,
+%SmallCapsFont   =   *Cursive-Regular,
+%%SlantedFont	 =   *-Th,
+%%BoldSlantedFont =   *-,
+%]
+%% }}}
+%\setmainfont{FreeSerif}
+%\setsansfont{FreeSans}
+%\setmonofont{FreeMono}
+
+%\setmainfont{Spectral}
+%\setmainfont{IBM Plex Serif}
+%\setmainfont{Avrile Serif}
+
+\setmainfont{Source Serif Pro}
+\setsansfont{Source Sans Pro}
+\setmonofont{Source Code Pro}
+
+%\setmainfont{Liberation Serif}
+%\setsansfont{Liberation Sans}
+%\setmonofont{Liberation Mono}
+
+%\setmainfont{CMU Serif}
+%\setsansfont{CMU Sans Serif}
+%\setmonofont{CMU Typewritter}
+
+%\setmonofont{UbuntuMono-Regular}
+%\setmonofont{UbuntuMono-Regular}
+% }}}
+% Global Code:Block Formatting {{{
+\lstset{frame=tb,
+  language=c,
+  showstringspaces=false,
+  columns=flexible,
+  numbers=left,
+   xleftmargin=.03\textwidth,
+  xrightmargin=.03\textwidth,
+%
+  basicstyle={\ttfamily\footnotesize},
+  commentstyle={\itshape},
+  emphstyle={\underline},
+  stringstyle={\bfseries\normalsize\Cmu},
+  numberstyle={\ttfamily\scriptsize\color{black!50!white}},
+%
+  rulecolor=\color{black!50!white},
+%
+%  keywordstyle={\color{codepurple}},
+%  commentstyle={\color{frenchbeige}},
+%  stringstyle={\color{alizarin}},
+%  keywordstyle={\color{codepurple}},
+%  ndkeywordstyle={\ttfamily\color{keywordsColor}},
+%  emph={ls},
+%  emphstyle={\color{red}},
+%  backgroundcolor=\color{white!96!black},
+%  ndkeywordstyle={\underline},
+  morekeywords={True, False,},
+  emph={unsigned, int, char, void, float, bool, FILE},
+%  emphstyle={\color{red}},
+  breaklines=true,
+  breakatwhitespace=false,
+  numbersep=3mm,
+  frame=leftline,
+%  frame=left top right bottom,
+%  caption=\code{e.g.},
+%  frame=shadowbox,
+%  frame=none,
+%
+  aboveskip=5mm,
+  belowskip=2mm,
+  captionpos=t,
+  tabsize=8
+}
+% end code block formatting }}}
+
+% Formatting {{{
+% Section {{{
+\titleformat{\part}{\huge\bfseries}{}{1em}{}
+
+\titleformat{\section} {\LARGE\bfseries}{}{0em}{}[{\titlerule[0pt]}]
+\titlespacing{\section}{0pt}{5mm}{7mm}
+
+\titleformat{\subsection} {\Large\bfseries}{}{0em}{}[{\titlerule[0pt]}]
+\titlespacing{\subsection}{0pt}{5mm}{3mm}
+
+\titleformat{\subsubsection} {\large\bfseries}{}{0em}{}
+\titlespacing{\subsubsection}{0pt}{7pt}{7pt}
+
+% }}}
+%%\setlength{\parindent}{0mm}
+%%\setlength{\headheight}{13pt}
+\onehalfspacing
+% Page Header/Footer {{{ 
+\pagestyle{fancy}
+%\fancyhf{}
+%\fancyhead[L]{\rightmark}
+%\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\sectionmark}[1]{%
+\markboth{\thesection\quad #1}{}}
+\fancyhead[R]{\theauthor}
+\fancyhead[C]{\bfseries German}
+\fancyhead[L]{\leftmark}
+\fancyfoot[L]{\rightmark}
+\fancyfoot[C]{}
+\fancyfoot[R]{(\thepage)}
+
+%\pagestyle{scrheadings}
+%\clearpairofpagestyles
+%%\ohead{\rightmark}
+%\lohead{\thesection}
+%\rehead{\thesubsection}
+%%\cfoot[\pagemark]{\pagemark}
+% }}}
+% }}}
+% Links color {{{
+\hypersetup{
+	colorlinks=true,
+	linkcolor={blue!70!black},
+	urlcolor={blue!70!green},
+    citecolor={red!75!yellow},
+	pdftitle={ncurses},
+}
+% }}}
+
+%% Persian font {{{
+%\usepackage{xepersian}
+%\settextfont{Yas}
+%\ExplSyntaxOn \cs_set_eq:NN \etex_iffontchar:D \tex_iffontchar:D \ExplSyntaxOff
+%
+%\defpersianfont\nast{IranNastaliq}
+%\defpersianfont\titre{XB Titre}
+%\defpersianfont\khali{XB Kayhan Sayeh}
+%\defpersianfont\yekan{XM Yekan}
+%% }}}
+
+% }}}
+% Macros {{{
+% in-line code {{{
+\newcommand{\code}[1]{%
+	\colorbox{backcolour}{\texttt{\footnotesize #1}}%
+}
+% }}}
+%% centered text box {{{
+%\newcommand{\header}[1] {
+%	\begin{center}
+%		\fbox{\textsc{#1}} \\
+%	\end{center}
+%}
+%% }}}
+%% Figures {{{
+%\newcommand{\picin}[3]{%
+%	\begin{figure}[h]
+%	\begin{center}
+%		\includegraphics[width=#3\textwidth]{#1}
+%	\end{center}
+%		\caption{#2}
+%	\end{figure}
+%}
+%% }}}
+%% vocabulary {{{
+%\newcommand\voct[4]{%
+%	#2 & #1 & #3 & #4 \\
+%}
+%% }}}
+% }}}
+% Title {{{
+\title{\bfseries TITLE}
+\author{TUTHOR}
+\date{DATE}
+% }}}
+
+\begin{document}
+
+% Body {{{
+% Beginning {{{
+\pagenumbering{roman}
+
+\maketitle
+\vfill\newpage
+
+\tableofcontents
+\vfill\newpage
+
+\pagenumbering{arabic}
+% }}}
+% }}}
+
+\end{document}

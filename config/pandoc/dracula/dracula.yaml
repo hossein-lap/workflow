@@ -1,0 +1,18 @@
+metadata:
+  keywords:
+    - 'Dracula theme'
+
+listings: false
+pdf-engine: xelatex
+highlight-style: /home/hos/.config/pandoc/highlight/dracula.theme
+
+variables:
+  geometry:  margin=1in
+  linkcolor: draculapink
+  filecolor: draculagreen
+  citecolor: draculapurple
+  urlcolor:  draculacyan
+  toccolor:  draculaorange
+  header-includes:
+    - \usepackage{/home/hos/.config/pandoc/dracula/theme}
+    - \usepackage{/home/hos/.config/pandoc/dracula/main}

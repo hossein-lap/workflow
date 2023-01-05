@@ -1,0 +1,76 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{main}
+\RequirePackage{fontspec,fancyvrb,titlesec,framed}
+
+\pagecolor{solarizedbg}
+\color{solarizedfg}
+
+%% custom section
+\titleformat{\section}
+	{\LARGE \bfseries}
+	{}
+    {.03\linewidth}
+	{}[{\titlerule[0pt]}]
+%% custom subsection
+\titleformat{\subsection}
+    {\Large \bfseries}
+	{}
+    {.03\linewidth}
+	{}[{\titlerule[0pt]}]
+%% custom subsubsection
+\titleformat{\subsubsection}
+    {\large \bfseries}
+	{}
+    {.03\linewidth}
+	{}[{\titlerule[0pt]}]
+
+%% headings position
+\titlespacing{\section}{0mm}{5mm}{5mm}
+\titlespacing{\subsection}{0mm}{5mm}{5mm}
+\titlespacing{\subsubsection}{0pt}{5mm}{5mm}
+
+%% every h1 at a new page
+%\let\oldsection\section
+%\renewcommand\section{\newpage\oldsection}
+
+%% default fonts:
+\setmainfont{Libertinus Serif}
+\setmathfont{Libertinus Sans}
+\setsansfont{Fira Sans}
+\setmonofont{Fira Mono Regular}
+%\setmonofont{Inconsolata}
+
+%\setmonofont{Ubuntu Mono}
+%\setmonofont{DejaVu Sans Mono}
+%\setmonofont{Inconsolata Nerd Font}
+%\setmonofont{Source Code Variable}
+%\setmonofont{Sometype Mono Medium}
+%\setmonofont{Fira Code}
+%\setmonofont{Courier Prime Code}
+%\setmainfont{Source Serif Pro}
+%\setmainfont{Linux Libertine}
+
+%% quotation
+\renewenvironment{quote}{%
+    \begin{center}\begin{tabular}{p{.9\textwidth}}%
+    \sffamily%
+} {\end{tabular}\end{center}}
+
+%% add line number to code-blocks
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},numbers=left}
+
+%% define shaded env
+%\ifcsname Shaded\endcsname
+\ifdefined\Shaded
+    \renewenvironment{Shaded}%
+        {\begin{quotation}\begin{snugshade}}
+        {\end{snugshade}\end{quotation}}
+\else
+    \newenvironment{Shaded}%
+        {\begin{quotation}\begin{snugshade}}
+        {\end{snugshade}\end{quotation}}
+\fi
+
+%{\begin{leftbar}\begin{quotation}\sffamily\itshape}%
+%{\end{quotation}\end{leftbar}}
+\linespread{1.2}

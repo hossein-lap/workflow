@@ -1,0 +1,16 @@
+metadata:
+  keywords:
+    - 'English Document (monochrome)'
+
+verbosity: WARNING # INFO
+top-level-division: section # part, chapter
+toc: false
+number-sections: false
+
+pdf-engine: xelatex
+highlight-style: /home/hos/.config/pandoc/highlight/monochrome.theme
+
+variables:
+  geometry: margin=1.5cm
+  header-includes:
+    - \usepackage{/home/hos/.config/pandoc/monochrome/main}

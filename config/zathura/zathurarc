@@ -1,0 +1,38 @@
+set window-title-basename "true"
+set selection-clipboard "clipboard"
+set statusbar-h-padding 0
+set statusbar-v-padding 0
+set page-padding 4
+
+## Font
+#set font "Vazir UI 15"
+#set font "Vazir Code Hack Extra Height 15"
+set font "Monospace 16"
+
+## Automatically adjust the document to full width
+#set adjust-open width
+
+## Set the title to the filename
+#set window-title-basename true
+
+## Larger scoll steps with j/k
+#set scroll-step 50
+
+## Adjusting the document
+#map [normal] E adjust_window best-fit
+#map [fullscreen] E adjust_window best-fit
+#map [normal] e adjust_window width
+#map [fullscreen] e adjust_window width
+
+## Toggling the inverted colours
+map <C-i> recolor
+
+#
+# Startup options
+#
+set adjust-open width
+set recolor false
+
+# theme
+
+#include theme/embark

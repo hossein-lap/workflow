@@ -1,0 +1,159 @@
+#!/bin/bash
+#  _  _ ___
+# | || | __|   H
+# | __ | _|    A
+# |_||_|___|   P
+#
+## bash settings
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+# pervent to end a session by once 'C-d' [twice will do]
+export IGNOREEOF=1
+
+## bat as manpager
+#export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+#export MANPAGER='sh -c "col -b | vim -c \'set ft=man nomod nolist ignorecase\' -"'
+#export MANPAGER='vim -c "%! col -b" -c "set ft=man nomod nolist ignorecase" -'
+#export MANPAGER="vim -c 'colorscheme 256_noir' -c '%! col -b' -c 'set ft=man nomod nolist ignorecase nonu' -"
+#export MANPAGER="vim -MRn -U ~/.vim/man.vim -"
+#export MANPAGER="nvim -u ~/.vim/manpager.vim -"
+
+# History {{{
+# When shell exist, append to the history file instead of overwriting it
+shopt -s histappend
+# After each command, append to the history file and reread it
+shopt -s checkwinsize
+# ignore repeated commands (one command repeatedly)
+HISTCONTROL=ignoreboth
+# history size
+HISTSIZE=4096
+HISTFILESIZE=4096
+# multiple history file for each session
+if [[ ! -d $HOME/.config/bash/history ]]; then
+	mkdir $HOME/.config/bash/history
+fi
+export HISTFILE="$HOME/.config/bash/history/` date '+%y%m%d'`"
+# }}}
+# Source files {{{
+sourceit () {
+	if [[ -f "$1" ]]; then
+		source "$1"
+	fi
+}
+
+sourceit "$HOME/.bash_aliases"
+sourceit "$HOME/.aliases.bash"
+sourceit "$HOME/.aliases.sh"
+sourceit "$HOME/.config/bash/aliases.sh"
+unset sourceit
+# }}}
+# path variable {{{
+appendpath() {
+	if [[ -d "$1" ]]; then
+		PATH="${PATH}:${1}"
+	fi
+}
+
+appendpath "$HOME/bin"
+appendpath "$HOME/.bin"
+appendpath "$HOME/.local/bin"
+appendpath "$HOME/.config/emacs/bin"
+appendpath "$HOME/.emacs.d/bin"
+appendpath "$HOME/.local/cargo/bin"
+appendpath "$HOME/.yarn/bin"
+appendpath "$HOME/.local/golang/bin"
+appendpath "/home/hos/.local/dev/hossein-lap/workflow/scripts"
+appendpath "$HOME/.local/bin/texlive/2022/bin/x86_64-linux"
+unset appendpath
+# }}}
+# Terminal-specific shell prompt {{{
+# ›» αΣϑ →  ➡ ➜ ●
+case "$TERM" in
+linux)
+	PS1="[\u@\h \W]\[\033[01;00m\]\$ "
+	  ;;
+xterm|vt100)
+	PS1='$ \[\033[00m\]'
+	  ;;
+tmux*color|screen*color*)
+	PS1="\[\033[01;34m\]» \[\033[01;32m\]\W \[\033[00m\]"
+	  ;;
+st*color)
+	PS1="\[\033[01;32m\]$ \[\033[01;35m\]\W \[\033[00m\]"
+#	PS1="\[\033[01;32m\]\u@\h:\[\033[01;35m\]\W\[\033[00m\]\$ "
+	  ;;
+xterm*color)
+	PS1="\[\033[01;32m\]➜ \[\033[01;35m\]\W \[\033[00m\]"
+	  ;;
+alacritty)
+#	PS1="\[\033[01;32m\]› \[\033[01;35m\]\W \[\033[00m\]"
+	PS1="[\u@\h:\W]\[\033[01;00m\]\$ "
+	  ;;
+screen|termite)
+	PS1="[\u@\h:\W]\[\033[01;00m\]\$ "
+	  ;;
+*)
+	PS1="\[\033[01;32m\]\$ \[\033[01;35m\]\W \[\033[00m\]"
+	  ;;
+esac
+# }}}
+
+# Global Variables {{{
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CONFIG_HOME="$HOME/.config"
+
+## gpg-agent
+export GPG_TTY=$(tty)
+
+## text editor
+export EDITOR=nvim
+export VISUAL=nvim
+
+## md persentation tool
+export MDP_LIST_OPEN1='   '
+export MDP_LIST_OPEN2='   '
+export MDP_LIST_OPEN3='   '
+export MDP_LIST_HEAD1=' ● '
+export MDP_LIST_HEAD2=' ○ '
+export MDP_LIST_HEAD3=' • '
+
+## texdoc
+export PDFVIEWER_texdoc='zathura'
+
+## Proxy
+export all_proxy=socks5://127.0.0.1:8080
+export http_proxy=http://127.0.0.1:1090
+export https_proxy=http://127.0.0.1:1090
+
+## Go Path
+export GOPATH="${HOME}/.local/golang"
+
+### bat colorscheme
+##"Solarized (dark)" "gruvbox-dark"
+##"Nord" "Dracula"
+#export BAT_THEME="Solarized (light)"
+
+## locale/timezone settings
+#export TZ="Tehran"
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+# }}}
+# Functions {{{
+
+# }}}
+# Startup {{{
+## tux-fetch
+#bash ~/.local/dev/hossein-lap/scripts/start-say.sh
+#start-say.sh
+## sysfetch
+#echo | sysfetch.sh
+## date-figlet
+#echo
+#date '+%H : %M : %S' \
+#	| sed 's/^/  /' \
+#	| figlet # -f small # | lolcat
+#echo
+# jcal script
+date-startup.sh
+# }}}

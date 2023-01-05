@@ -1,0 +1,29 @@
+#---blog---
+https://lukesmith.xyz/index.xml	"~(blog) Luke Smith"	"blog"
+
+#---tools---
+https://newsboat.org/news.atom	"~(tools) Newsboat"	"tools"
+https://neovim.io/news.xml		"~(tools) Neovim"	"tools"
+http://suckless.org/atom.xml	"~(tools) Suckless"	"tools"
+https://ctan.org/ctan-ann/atom	"~(TeX) CTAN"	"TeX" "tools"
+
+#---games---
+https://xonotic.org/index.xml	"~(game) Xonotic"	"game"
+
+#---distros---
+# news
+https://archlinux.org/feeds/news/		"~(news) Arch-Linux"	"news" "distro"
+https://voidlinux.org/atom.xml			"~(news) Void-Linux"	"news" "distro"
+https://www.debian.org/News/news		"~(news) Debian"		"news" "distro"
+https://blog.linuxmint.com/?feed=rss2	"~(news) Linux Mint"	"distro"
+
+# updates
+https://archlinux.org/feeds/packages/								"~(packages) Arch-Linux"	"packages" "distro"
+https://github.com/void-linux/void-packages/commits/master.atom		"~(packages) Void-Linux"	"packages" "distro"
+#https://github.com/void-linux/xbps/commits/master.atom	"~(xbps) Void-Linux xbps changes"	"distro"
+
+#---desktops---
+https://mate-desktop.org/rss.xml	"~(desktop) MATE"	"desktop"
+
+#---programming---
+https://www.lua.org/news.rss	"~(programming) Lua"	"programming"

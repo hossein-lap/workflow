@@ -1,0 +1,17 @@
+metadata:
+  keywords:
+    - 'Solarized (Dark) theme'
+
+pdf-engine: xelatex
+highlight-style: /home/hos/.config/pandoc/highlight/solarized-dark.theme
+
+variables:
+  geometry:  margin=1in
+  linkcolor: solarizedpink
+  filecolor: solarizedgreen
+  citecolor: solarizedpurple
+  urlcolor:  solarizedcyan
+  toccolor:  solarizedorange
+  header-includes:
+    - \usepackage{/home/hos/.config/pandoc/solarized/theme}
+    - \usepackage{/home/hos/.config/pandoc/solarized/main}

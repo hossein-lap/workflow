@@ -1,0 +1,132 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{main}
+\RequirePackage{fontspec,fancyvrb,titlesec,framed}
+
+%\usepackage{listings}
+%\usepackage{tikz}
+%\usepackage[most]{tcolorbox}
+
+%% no box env {{{
+%\newtcolorbox{bbox}{
+%	%title={\centering \color{black}{\textsf{Example} }},
+%	boxrule=1pt,
+%	arc = 0.5mm,
+%	%sharp corners = downhill,
+%	enlarge top by=3mm,
+%	minipage boxed title*=-15cm,
+%	beamer,
+%	enhanced,
+%	center,
+%	%attach boxed title to top center={yshift=-2.5mm},
+%	attach boxed title to top left={yshift=-2mm, xshift=1cm},
+%	colback  = draculacl,
+%	colframe = black!90!white,
+%	colbacktitle = white,
+%}
+%% }}}
+%% listings {{{
+%\lstset{
+%%	language=python,
+%	showstringspaces=false,
+%	columns=flexible,
+%	basicstyle={\ttfamily\small},
+%	numbers=left,
+%	xleftmargin=.03\textwidth,
+%	xrightmargin=.03\textwidth,
+%	keywordstyle={\bfseries\color{draculapink}},
+%	ndkeywordstyle={\bfseries\color{draculacyan}},
+%    emphstyle={\itshape\color{draculagreen}},
+%	stringstyle={\color{draculayellow}},
+%	commentstyle={\color{draculacomment}},
+%	numberstyle={\ttfamily\scriptsize\color{white!60!black}},
+%	rulecolor=\color{black!50!white},
+%    backgroundcolor = \color{draculacb},
+%	breaklines=true,
+%	breakatwhitespace=false,
+%	numbersep=3mm,
+%	frame=leftline,
+%%	frame=none,
+%%	frame=left top right bottom,
+%	aboveskip=2mm,
+%	belowskip=2mm,
+%%%	escapechar=\`,
+%	captionpos=t,
+%	tabsize=4
+%}
+%% }}}
+
+%% custom section
+\titleformat{\section}
+	{\LARGE \bfseries}
+	{}
+    {.03\linewidth}
+	{}[{\titlerule[0pt]}]
+%% custom subsection
+\titleformat{\subsection}
+    {\Large \bfseries}
+	{}
+    {.03\linewidth}
+	{}[{\titlerule[0pt]}]
+%% custom subsubsection
+\titleformat{\subsubsection}
+    {\large \bfseries}
+	{}
+    {.03\linewidth}
+	{}[{\titlerule[0pt]}]
+
+%% headings position
+\titlespacing{\section}{0mm}{5mm}{5mm}
+\titlespacing{\subsection}{0mm}{5mm}{5mm}
+\titlespacing{\subsubsection}{0pt}{5mm}{5mm}
+
+%% every h1 at a new page
+%\let\oldsection\section
+%\renewcommand\section{\newpage\oldsection}
+
+%% default fonts:
+\setmainfont{Libertinus Serif}
+\setmathfont{Libertinus Sans}
+\setmonofont{Fira Mono Regular}
+\setsansfont{Source Sans Pro}
+%\setmonofont{Inconsolata}
+
+%\setmonofont{Ubuntu Mono}
+%\setmonofont{DejaVu Sans Mono}
+%\setmonofont{Inconsolata Nerd Font}
+%\setmonofont{Source Code Variable}
+%\setmonofont{Sometype Mono Medium}
+%\setmonofont{Fira Code}
+%\setmonofont{Courier Prime Code}
+%\setmainfont{Source Serif Pro}
+%\setmainfont{Linux Libertine}
+
+%% add line number to code-blocks
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},numbers=left}
+
+%%% define shaded env
+%%\ifcsname Shaded\endcsname
+%\ifdefined\Shaded
+%    \renewenvironment{Shaded}%
+%        {\begin{quotation}\begin{snugshade}}
+%        {\end{snugshade}\end{quotation}}
+%\else
+%    \newenvironment{Shaded}%
+%        {\begin{quotation}\begin{snugshade}}
+%        {\end{snugshade}\end{quotation}}
+%\fi
+
+%\let\oldverbatim=\verbatim
+%\let\oldendverbatim=\endverbatim
+%\renewenvironment{verbatim}%
+%    {\begin{bbox}\oldverbatim}%
+%    {\oldendverbatim\end{bbox}}
+
+%%% quotation
+%\renewenvironment{quote}{%
+%    \begin{center}\begin{tabular}{|p{.9\textwidth}}%
+%    \sffamily\itshape%
+%} {\end{tabular}\end{center}}
+
+%{\begin{leftbar}\begin{quotation}\sffamily\itshape}%
+%{\end{quotation}\end{leftbar}}
+\linespread{1.3}

@@ -1,0 +1,21 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{main}
+\RequirePackage{fontspec,fancyvrb,framed,xcolor}
+
+%% default fonts:
+\setmainfont{Libertinus Serif}
+\setmathfont{Libertinus Sans}
+\setsansfont{Source Sans Pro}
+\setmonofont{Fira Mono}
+%\setmonofont{Inconsolata}
+
+%% add line number to code-blocks
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},numbers=left}
+
+%% quotation
+\renewenvironment{quote}{%
+    \begin{center}\begin{tabular}{|p{.9\textwidth}}%
+    \sffamily\itshape%
+} {\end{tabular}\end{center}}
+
+\definecolor{UBCblue}{rgb}{0.04706, 0.13725, 0.26667} % UBC Blue (primary)

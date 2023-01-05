@@ -1,0 +1,96 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{main}
+\RequirePackage{titlesec,fancyvrb,framed,hyperref,xepersian}
+
+%% link colors
+\hypersetup{
+    colorlinks=true,
+    linkcolor={blue!55!black},
+    citecolor={red!65!black},
+    urlcolor={green!35!black},
+}
+
+%% custom section
+\titleformat{\section}
+    {\LARGE \secfont \bfseries}
+    {\thesection.}
+    {.03\linewidth}
+    {}%
+    [{\titlerule[0pt]}]
+%% custom subsection
+\titleformat{\subsection}
+    {\Large \secfont \bfseries}
+    {\thesubsection.}
+    {.03\linewidth}
+    {}%
+    [{\titlerule[0pt]}]
+%% custom subsubsection
+\titleformat{\subsubsection}
+    {\large \secfont \bfseries}
+    {\thesubsubsection.}
+    {.03\linewidth}
+    {}%
+    [{\titlerule[0pt]}]
+
+%% headings position
+\titlespacing{\section}{0mm}{5mm}{5mm}
+\titlespacing{\subsection}{0mm}{5mm}{5mm}
+\titlespacing{\subsubsection}{0pt}{5mm}{5mm}
+
+%% every h1 at a new page
+%\let\oldsection\section
+%\renewcommand\section{\newpage\oldsection}
+
+%% default fonts:
+\setmainfont{Libertinus Serif}
+\setmathfont{Libertinus Sans}
+\setsansfont{Fira Sans}
+\setmonofont{Fira Mono}
+
+%% Persian fonts
+\settextfont{HMXKayhan}
+\setdigitfont{HMXKayhan}
+%%% Special type
+%\defpersianfont\ksayeh{HMXKayhanSayeh}
+%\defpersianfont\nast{IranNastaliq}
+%\defpersianfont\titr{HMXTitr}
+%%% Serif type
+%\defpersianfont\yas{Yas}
+%\defpersianfont\persianmodern{Persian Modern}
+%\defpersianfont\naskh{Noto Naskh Arabic}
+%%% Sans-serif type
+%\defpersianfont\yekan{XM Yekan}
+
+\defpersianfont\secfont{HMXKayhan}
+\defpersianfont\qfont{Vazir}
+
+\setlatintextfont{Libertinus Serif}
+\setlatinsansfont{Fira Sans}
+\setlatinmonofont{Fira Mono}
+%\setlatinmonofont{Inconsolata}
+
+%% add line number to code-blocks
+%\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},numbers=left}
+%\DefineVerbatimEnvironment{Verb}{Verbatim}{numbers=left}
+
+%\ifcsname Shaded\endcsname
+\ifdefined\Shaded
+    \renewenvironment{Shaded}%
+        {\begin{quotation}\begin{latin}\begin{snugshade}}%
+        {\end{snugshade}\end{latin}\end{quotation}}
+\else
+    \newenvironment{Shaded}%
+        {\begin{quotation}\begin{latin}\begin{snugshade}}%
+        {\end{snugshade}\end{latin}\end{quotation}}
+\fi
+
+%% quotation
+\renewenvironment{quote}%
+    {\begin{center}\begin{tabular}{p{.8\textwidth}}\qfont}%
+    {\end{tabular}\end{center}}
+
+%% Simple verbatim
+\makeatletter
+\def\@xobeysp{\mbox{}\space}
+\def\verbatim@font{\latin\normalfont\ttfamily}
+\makeatother

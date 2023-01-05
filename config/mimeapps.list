@@ -1,0 +1,35 @@
+[Added Associations]
+audio/mpeg=org.xfce.Parole.desktop;
+video/x-matroska=org.xfce.Parole.desktop;
+video/mp4=org.xfce.Parole.desktop;
+video/webm=org.xfce.Parole.desktop;
+x-scheme-handler/tg=userapp-Telegram Desktop-UDXRT1.desktop;
+x-scheme-handler/http=userapp-Firefox-X9QXT1.desktop;
+x-scheme-handler/https=userapp-Firefox-X9QXT1.desktop;
+x-scheme-handler/chrome=userapp-Firefox-X9QXT1.desktop;
+text/html=userapp-Firefox-X9QXT1.desktop;
+application/x-extension-htm=userapp-Firefox-X9QXT1.desktop;
+application/x-extension-html=userapp-Firefox-X9QXT1.desktop;
+application/x-extension-shtml=userapp-Firefox-X9QXT1.desktop;
+application/xhtml+xml=userapp-Firefox-X9QXT1.desktop;
+application/x-extension-xhtml=userapp-Firefox-X9QXT1.desktop;
+application/x-extension-xht=userapp-Firefox-X9QXT1.desktop;
+image/png=nsxiv.desktop;
+application/zip=xarchiver.desktop;
+image/jpeg=nsxiv.desktop;
+
+[Default Applications]
+x-scheme-handler/tg=userapp-Telegram Desktop-UDXRT1.desktop
+x-scheme-handler/http=userapp-Firefox-X9QXT1.desktop
+x-scheme-handler/https=userapp-Firefox-X9QXT1.desktop
+x-scheme-handler/chrome=userapp-Firefox-X9QXT1.desktop
+text/html=userapp-Firefox-X9QXT1.desktop
+application/x-extension-htm=userapp-Firefox-X9QXT1.desktop
+application/x-extension-html=userapp-Firefox-X9QXT1.desktop
+application/x-extension-shtml=userapp-Firefox-X9QXT1.desktop
+application/xhtml+xml=userapp-Firefox-X9QXT1.desktop
+application/x-extension-xhtml=userapp-Firefox-X9QXT1.desktop
+application/x-extension-xht=userapp-Firefox-X9QXT1.desktop
+image/png=nsxiv.desktop
+application/zip=xarchiver.desktop
+image/jpeg=nsxiv.desktop

@@ -1,0 +1,81 @@
+#!/bin/bash
+## These things are run when an Openbox X Session is started.
+## You may place a similar script in $HOME/.config/openbox/autostart
+## to run user-specific things.
+##
+## You can set picom to use either xrender or glx
+## Change if issues
+#autorandr horizontal
+
+#picom -b --config ~/.config/picom.conf &
+xcompmgr &
+
+## start ArcoLinux Welcome  App
+#dex $HOME/.config/autostart/arcolinux-welcome-app.desktop
+
+## Set background image
+#xwallpaper --zoom ~/Pictures/backgrounds/manjaro-wallpapers-18.0/default-adapta-lockscreen.jpg &
+#xwallpaper --zoom ~/Pictures/backgrounds/wallpapers-2018/sunset-3095689.jpg &
+#xwallpaper --zoom ~/Pictures/Resplash/egK73XCwN8I_Full.jpg &
+#xwallpaper --zoom ~/Pictures/backgrounds/wallpapers-2018/abstract-1780241.jpg &
+xwallpaper --zoom ~/pic/backgrounds/wallpapers-2018/tree-736875.jpg &
+#xwallpaper --zoom ~/Pictures/backgrounds/wallpapers-2018/abstract-1779631.jpg &
+
+tint2 &
+#polybar &
+
+##(am-conky-session --autostart) &
+#conky-toggle &
+
+## bluetooth
+#(blueberry-tray) &
+
+# install xcape - press super to get menu
+#xcape -e 'Super_L=Super_L|space'
+
+#on laptops without seperate numeric keyboard put hashtag in front
+#numlockx &
+
+## GNOME PolicyKit authentication
+#/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+## Desktop notification
+dunst &
+
+## Volume control for systray
+#(volumeicon) &
+
+## Keyboard layout
+setxkbmap -layout us,ir -option "grp:alt_caps_toggle" &
+
+## Keypress speen/dely
+xset r rate 300 50 &
+
+## Turn off/on System Beep
+#xset b off &
+
+## Enable power management
+#xfce4-power-manager &
+
+## Clipboard Manager
+#(xfce4-clipman) &
+
+## XFCE4 Settings
+#xfsettingsd &
+
+#(nm-applet) &
+
+#(plank) &
+
+#discord &
+
+#insync start &
+
+#dropbox &
+#
+## keyboard layout and dely
+$HOME/.local/bin/xrate.sh &
+
+(pulseaudio) &
+
+emacs --daemon &
