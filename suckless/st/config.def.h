@@ -5,10 +5,10 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Fira Code:pixelsize=21:antialias=true:autohint=true";
+static char *font = "Fira Code:pixelsize=22:antialias=true:autohint=true";
 /* Spare fonts */
 static char *font2[] = {
-	"SauceCodePro Nerd Font:pixelsize=21:antialias=true:autohint=true",
+	"SauceCodePro Nerd Font:pixelsize=22:antialias=true:autohint=true",
 //	"Ubuntu Mono:pixelsize=20:antialias=true:autohint=true",
 };
 
