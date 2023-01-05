@@ -1,4 +1,3 @@
-
 static const char* normfgcolor   = "#b58900";
 static const char* normbgcolor   = "#002b36";
 
