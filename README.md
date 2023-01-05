@@ -2,35 +2,34 @@
 
 Configs and tools which I use everyday.
 
-- Window manager: `dwm`
-- Dynamic menu: `dmenu`
-- Presentation tool: `sent`
-- Screen locker: `slock`
-- Status bar: `slstatus`
-- Terminal emulator: `st`
-- Web browser: `surf`
-- Tab support: `tabbed`
-- Text editor: `(neo)vim`
-- Text editor: `emacs`
-- Document reader: `zathura`
-- Image viewer: `(n)sxiv`
-- Shell: `bash`
-- cat alternative: `bat`
-- ls alternative: `exa`
-- render markdown: `glow`
-- Document converter: `pandoc`
-- Document preparation  | `LaTeX`
-- Typesetting system: `groff`
-- File manager: `lf`
-- File manager: `ranger`
-- File manager: `vifm`
-- IRC client: `weechat`
-- RSS feed reader: `newsboat`
-- Multiplexer: `tmux`
-- Notification daemon: `dunst`
-- System monitor: `btop`
-- Screenshot tool: `scrot`
-- Screen recorder: `ffmpeg`
-- Video/Audio editor: `ffmpeg`
-- Image editor: `imagemagick`
-- Wallpaper manager: `xwallpaper`
+- window manager: [dwm]()
+- dynamic menu: [dmenu]()
+- presentation tool: [sent]()
+- screen locker: [slock]()
+- status bar: [slstatus]()
+- terminal emulator: [st]()
+- web browser: [surf]()
+- tab support: [tabbed]()
+- text editor: [(neo)vim]()
+- document reader: [zathura]()
+- image viewer: [(n)sxiv]()
+- shell: [bash]()
+- cat alternative: [bat]()
+- ls alternative: [exa]()
+- render markdown: [glow]()
+- document converter: [pandoc]()
+- document preparation: [LaTeX]()
+- typesetting system: [groff]()
+- file manager: [lf]()
+- file manager: [ranger]()
+- file manager: [vifm]()
+- IRC client: [weechat]()
+- RSS reader: [newsboat]()
+- multiplexer: [tmux]()
+- notification daemon: [dunst]()
+- system monitor: [btop]()
+- screenshot tool: [scrot]()
+- screen recorder: [ffmpeg]()
+- video/Audio editor: [ffmpeg]()
+- image editor: [imagemagick]()
+- wallpaper manager: [xwallpaper]()
