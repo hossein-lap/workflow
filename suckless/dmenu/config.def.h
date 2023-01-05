@@ -10,9 +10,9 @@ static int centered = 0;                    /* -c option; centers dmenu on scree
 static int min_width = 500;                    /* minimum width when centered */
 /* -fn option overrides fonts[0]; default X11 font or font set */
 static const char *fonts[] = {
-//	"Ubuntu Mono:size=15"
+	"Ubuntu Mono:size=15"
 //	"Fira Mono:size=12"
-	"Fira Code:size=14"
+//	"Fira Code:size=14"
 };
 /* colorscheme */
 #include "colors/fg/orange.h"
@@ -22,7 +22,6 @@ static const char *colors[SchemeLast][2] = {
 	[SchemeNorm] =  { normal_fg,   normal_bg  },
 	[SchemeSel]  =  { focus_fg,    focus_bg   },
 	[SchemeOut]  =  { sel_fg,      sel_bg     },
-
 };
 
 static const char *prompt      = NULL;      /* -p  option; prompt to the left of input field */
