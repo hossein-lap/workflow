@@ -5,92 +5,8 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Fira Code:pixelsize=22:antialias=true:autohint=true";
-/* Spare fonts */
-static char *font2[] = {
-	"SauceCodePro Nerd Font:pixelsize=22:antialias=true:autohint=true",
-//	"Ubuntu Mono:pixelsize=20:antialias=true:autohint=true",
-};
-
-static int borderpx = 4;
-
-/* default opacity */
-float alpha = 1.00;
-
-/* define colorscheme[s] */
-typedef struct {
-	const char* const colors[258]; /* terminal colors */
-	unsigned int fg;               /* foreground */
-	unsigned int bg;               /* background */
-	unsigned int cs;               /* cursor */
-	unsigned int rcs;              /* reverse cursor */
-} ColorScheme;
-
-/*
- * Terminal colors (16 first used in escape sequence,
- * 2 last for custom cursor color),
- * foreground, background, cursor, reverse cursor
- */
-
-/* colorschemes  */
-#include "schemes.h"
-
-static const char * const * colorname;
-
-/*
- * available colorschemes:
- *   0. Dracula
- *   1. Solarized-dark
- *   2. Gruvbox-dark
- *   3. Ubuntu
- *   4. Ayu-dark
- *   5. Hos
- *   6. Termite
- *   7. 256_noir
- *   8. Solarized light
- *   9. Default
- */
-
-/* default colorscheme */
-int colorscheme = 6;
-
-/*
- * Default colors (colorname index)
- * foreground, background, cursor, reverse cursor
- */
-unsigned int defaultbg;
-unsigned int defaultfg;
-unsigned int defaultcs;
-static unsigned int defaultrcs;
-
-/*
- * Terminal colors available in `colors/` directory:
- *  - 256_noir         - hybrid-dark
- *  - breeze           - pj
- *  - custom           - tokyodark
- *  - default          - tokyonight
- *  - gruvbox-dark     - vscode
- *  - gruvbox-material - termite
- *  - hos              - solarized-dark
- *  - hybrid-16
- *
- *  before [colorschemes] patch all you need was an #include:
- *  #include "colors/termite.h"
- */
-
-/*
- * Default shape of cursor
- * 2: Block ("█")
- * 4: Underline ("_")
- * 6: Bar ("|")
- * 7: Snowman ("☃")
- */
-static unsigned int cursorshape = 2;
-
-/*
- * thickness of underline and bar cursors
- */
-static unsigned int cursorthickness = 2;
+static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
+static int borderpx = 2;
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -147,16 +63,9 @@ static double maxlatency = 33;
 static unsigned int blinktimeout = 800;
 
 /*
- * 1: render most of the lines/blocks characters without using the font for
- *    perfect alignment between cells (U2500 - U259F except dashes/diagonals).
- *    Bold affects lines thickness if boxdraw_bold is not 0. Italic is ignored.
- * 0: disable (render all U25XX glyphs normally from the font).
+ * thickness of underline and bar cursors
  */
-const int boxdraw = 0;
-const int boxdraw_bold = 0;
-
-/* braille (U28XX):  1: render as adjacent "pixels",  0: use font */
-const int boxdraw_braille = 0;
+static unsigned int cursorthickness = 2;
 
 /*
  * bell volume. It must be a value between -100 and 100. Use 0 for disabling
@@ -184,12 +93,62 @@ char *termname = "st-256color";
  */
 unsigned int tabspaces = 8;
 
+/* Terminal colors (16 first used in escape sequence) */
+static const char *colorname[] = {
+	/* 8 normal colors */
+	"black",
+	"red3",
+	"green3",
+	"yellow3",
+	"blue2",
+	"magenta3",
+	"cyan3",
+	"gray90",
+
+	/* 8 bright colors */
+	"gray50",
+	"red",
+	"green",
+	"yellow",
+	"#5c5cff",
+	"magenta",
+	"cyan",
+	"white",
+
+	[255] = 0,
+
+	/* more colors can be added after 255 to use with DefaultXX */
+	"#cccccc",
+	"#555555",
+	"gray90", /* default foreground colour */
+	"black", /* default background colour */
+};
+
+
+/*
+ * Default colors (colorname index)
+ * foreground, background, cursor, reverse cursor
+ */
+unsigned int defaultfg = 258;
+unsigned int defaultbg = 259;
+unsigned int defaultcs = 256;
+static unsigned int defaultrcs = 257;
+
+/*
+ * Default shape of cursor
+ * 2: Block ("█")
+ * 4: Underline ("_")
+ * 6: Bar ("|")
+ * 7: Snowman ("☃")
+ */
+static unsigned int cursorshape = 2;
+
 /*
  * Default columns and rows numbers
  */
 
-static unsigned int cols = 100; /* default: 80 */
-static unsigned int rows = 30;  /* default: 24 */
+static unsigned int cols = 80;
+static unsigned int rows = 24;
 
 /*
  * Default colour and shape of the mouse cursor
@@ -226,8 +185,7 @@ static MouseShortcut mshortcuts[] = {
 
 /* Internal keyboard shortcuts. */
 #define MODKEY Mod1Mask
-#define TERMMOD Mod4Mask
-//#define TERMMOD (Mod4Mask|ShiftMask)
+#define TERMMOD (ControlMask|ShiftMask)
 
 static Shortcut shortcuts[] = {
 	/* mask                 keysym          function        argument */
@@ -235,31 +193,14 @@ static Shortcut shortcuts[] = {
 	{ ControlMask,          XK_Print,       toggleprinter,  {.i =  0} },
 	{ ShiftMask,            XK_Print,       printscreen,    {.i =  0} },
 	{ XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0} },
-	{ TERMMOD,              XK_equal,       zoom,           {.f = +1} },
-	{ TERMMOD,              XK_minus,       zoom,           {.f = -1} },
-	{ TERMMOD|ControlMask,  XK_equal,       zoomreset,      {.f =  0} },
-	{ TERMMOD,              XK_c,           clipcopy,       {.i =  0} },
-	{ TERMMOD,              XK_v,           clippaste,      {.i =  0} },
-	{ TERMMOD,              XK_y,           selpaste,       {.i =  0} },
+	{ TERMMOD,              XK_Prior,       zoom,           {.f = +1} },
+	{ TERMMOD,              XK_Next,        zoom,           {.f = -1} },
+	{ TERMMOD,              XK_Home,        zoomreset,      {.f =  0} },
+	{ TERMMOD,              XK_C,           clipcopy,       {.i =  0} },
+	{ TERMMOD,              XK_V,           clippaste,      {.i =  0} },
+	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
-	{ ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
-	{ ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
-	{ TERMMOD,              XK_s,           changealpha,    {.f = -0.05} },
-	{ TERMMOD,              XK_a,           changealpha,    {.f = +0.05} },
-	{ TERMMOD,              XK_Return,      newterm,        {.i =  0} },
-	{ TERMMOD,              XK_1,           selectscheme,   {.i =  0} },
-	{ TERMMOD,              XK_2,           selectscheme,   {.i =  1} },
-	{ TERMMOD,              XK_3,           selectscheme,   {.i =  2} },
-	{ TERMMOD,              XK_4,           selectscheme,   {.i =  3} },
-	{ TERMMOD,              XK_5,           selectscheme,   {.i =  4} },
-	{ TERMMOD,              XK_6,           selectscheme,   {.i =  5} },
-	{ TERMMOD,              XK_7,           selectscheme,   {.i =  6} },
-	{ TERMMOD,              XK_8,           selectscheme,   {.i =  7} },
-	{ TERMMOD,              XK_9,           selectscheme,   {.i =  8} },
-	{ TERMMOD,              XK_0,           selectscheme,   {.i =  9} },
-	{ TERMMOD,              XK_grave,       nextscheme,     {.i = +1} },
-	{ TERMMOD|ControlMask,  XK_grave,       nextscheme,     {.i = -1} },
 };
 
 /*

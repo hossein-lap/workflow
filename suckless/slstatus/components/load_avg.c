@@ -2,10 +2,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "../slstatus.h"
 #include "../util.h"
 
 const char *
-load_avg(void)
+load_avg(const char *unused)
 {
 	double avgs[3];
 

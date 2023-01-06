@@ -1,6 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 #include <stddef.h>
 
+#include "../slstatus.h"
 #include "../util.h"
 
 
@@ -12,9 +13,8 @@
 	{
 		uintmax_t temp;
 
-		if (pscanf(file, "%ju", &temp) != 1) {
+		if (pscanf(file, "%ju", &temp) != 1)
 			return NULL;
-		}
 
 		return bprintf("%ju", temp / 1000);
 	}
@@ -52,6 +52,8 @@
 	#include <stdlib.h>
 	#include <sys/sysctl.h>
 
+	#define ACPI_TEMP "hw.acpi.thermal.%s.temperature"
+
 	const char *
 	temp(const char *zone)
 	{
@@ -60,8 +62,8 @@
 		size_t len;
 
 		len = sizeof(temp);
-		snprintf(buf, sizeof(buf), "hw.acpi.thermal.%s.temperature", zone);
-		if (sysctlbyname(buf, &temp, &len, NULL, 0) == -1
+		snprintf(buf, sizeof(buf), ACPI_TEMP, zone);
+		if (sysctlbyname(buf, &temp, &len, NULL, 0) < 0
 				|| !len)
 			return NULL;
 

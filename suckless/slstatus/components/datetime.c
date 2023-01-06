@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <time.h>
 
+#include "../slstatus.h"
 #include "../util.h"
 
 const char *

@@ -7,6 +7,7 @@ include config.mk
 REQ = util
 COM =\
 	components/battery\
+	components/cat\
 	components/cpu\
 	components/datetime\
 	components/disk\
@@ -21,7 +22,6 @@ COM =\
 	components/num_files\
 	components/ram\
 	components/run_command\
-	components/separator\
 	components/swap\
 	components/temperature\
 	components/uptime\
@@ -31,7 +31,7 @@ COM =\
 
 all: slstatus
 
-$(COM:=.o): config.mk $(REQ:=.h)
+$(COM:=.o): config.mk $(REQ:=.h) slstatus.h
 slstatus.o: slstatus.c slstatus.h arg.h config.h config.mk $(REQ:=.h)
 
 .c.o:
@@ -66,7 +66,3 @@ install: all
 uninstall:
 	rm -f "$(DESTDIR)$(PREFIX)/bin/slstatus"
 	rm -f "$(DESTDIR)$(MANPREFIX)/man1/slstatus.1"
-
-force:
-	rm -f config.h
-	make

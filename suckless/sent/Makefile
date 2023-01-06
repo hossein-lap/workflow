@@ -58,7 +58,3 @@ uninstall:
 	@rm -f ${DESTDIR}${PREFIX}/bin/sent
 
 .PHONY: all options clean dist install uninstall cscope
-
-force:
-	rm -f config.h
-	make

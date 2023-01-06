@@ -6,6 +6,7 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
+#include "../slstatus.h"
 #include "../util.h"
 
 #define RSSI_TO_PERC(rssi) \
@@ -17,6 +18,8 @@
 	#include <limits.h>
 	#include <linux/wireless.h>
 
+	#define NET_OPERSTATE "/sys/class/net/%s/operstate"
+
 	const char *
 	wifi_perc(const char *interface)
 	{
@@ -27,37 +30,32 @@
 		char status[5];
 		FILE *fp;
 
-		if (esnprintf(path, sizeof(path), "/sys/class/net/%s/operstate",
-		              interface) < 0) {
+		if (esnprintf(path, sizeof(path), NET_OPERSTATE, interface) < 0)
 			return NULL;
-		}
 		if (!(fp = fopen(path, "r"))) {
 			warn("fopen '%s':", path);
 			return NULL;
 		}
 		p = fgets(status, 5, fp);
 		fclose(fp);
-		if (!p || strcmp(status, "up\n") != 0) {
+		if (!p || strcmp(status, "up\n") != 0)
 			return NULL;
-		}
 
 		if (!(fp = fopen("/proc/net/wireless", "r"))) {
 			warn("fopen '/proc/net/wireless':");
 			return NULL;
 		}
 
-		for (i = 0; i < 3; i++) {
+		for (i = 0; i < 3; i++)
 			if (!(p = fgets(buf, sizeof(buf) - 1, fp)))
 				break;
-		}
-		fclose(fp);
-		if (i < 2 || !p) {
-			return NULL;
-		}
 
-		if (!(datastart = strstr(buf, interface))) {
+		fclose(fp);
+		if (i < 2 || !p)
 			return NULL;
-		}
+
+		if (!(datastart = strstr(buf, interface)))
+			return NULL;
 
 		datastart = (datastart+(strlen(interface)+1));
 		sscanf(datastart + 1, " %*d   %d  %*d  %*d\t\t  %*d\t   "
@@ -77,9 +75,8 @@
 		memset(&wreq, 0, sizeof(struct iwreq));
 		wreq.u.essid.length = IW_ESSID_MAX_SIZE+1;
 		if (esnprintf(wreq.ifr_name, sizeof(wreq.ifr_name), "%s",
-		              interface) < 0) {
+		              interface) < 0)
 			return NULL;
-		}
 
 		if ((sockfd = socket(AF_INET, SOCK_DGRAM, 0)) < 0) {
 			warn("socket 'AF_INET':");
@@ -94,9 +91,8 @@
 
 		close(sockfd);
 
-		if (!strcmp(id, "")) {
+		if (!strcmp(id, ""))
 			return NULL;
-		}
 
 		return id;
 	}
@@ -152,11 +148,11 @@
 		int q;
 
 		if (load_ieee80211_nodereq(interface, &nr)) {
-			if (nr.nr_max_rssi) {
+			if (nr.nr_max_rssi)
 				q = IEEE80211_NODEREQ_RSSI(&nr);
-			} else {
+			else
 				q = RSSI_TO_PERC(nr.nr_rssi);
-			}
+
 			return bprintf("%d", q);
 		}
 
@@ -168,9 +164,8 @@
 	{
 		struct ieee80211_nodereq nr;
 
-		if (load_ieee80211_nodereq(interface, &nr)) {
+		if (load_ieee80211_nodereq(interface, &nr))
 			return bprintf("%s", nr.nr_nwid);
-		}
 
 		return NULL;
 	}
@@ -256,7 +251,7 @@
 		fmt = NULL;
 		len = sizeof(ssid);
 		memset(&ssid, 0, len);
-		if (load_ieee80211req(sockfd, interface, &ssid, IEEE80211_IOC_SSID, &len )) {
+		if (load_ieee80211req(sockfd, interface, &ssid, IEEE80211_IOC_SSID, &len)) {
 			if (len < sizeof(ssid))
 				len += 1;
 			else

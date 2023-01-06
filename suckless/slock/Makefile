@@ -36,7 +36,7 @@ dist: clean
 	@echo creating dist tarball
 	@mkdir -p slock-${VERSION}
 	@cp -R LICENSE Makefile README slock.1 config.mk \
-		${SRC} explicit_bzero.c config.def.h arg.h util.h slock-${VERSION}
+		${SRC} config.def.h arg.h util.h slock-${VERSION}
 	@tar -cf slock-${VERSION}.tar slock-${VERSION}
 	@gzip slock-${VERSION}.tar
 	@rm -rf slock-${VERSION}
@@ -59,8 +59,3 @@ uninstall:
 	@rm -f ${DESTDIR}${MANPREFIX}/man1/slock.1
 
 .PHONY: all options clean dist install uninstall
-
-force:
-	rm -f config.h
-	make
-	rm -f *.{rej,orig}

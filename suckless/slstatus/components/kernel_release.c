@@ -1,11 +1,12 @@
 /* See LICENSE file for copyright and license details. */
-#include <sys/utsname.h>
 #include <stdio.h>
+#include <sys/utsname.h>
 
+#include "../slstatus.h"
 #include "../util.h"
 
 const char *
-kernel_release(void)
+kernel_release(const char *unused)
 {
 	struct utsname udata;
 

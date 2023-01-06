@@ -62,7 +62,3 @@ uninstall:
 		$(DESTDIR)$(MANPREFIX)/man1/stest.1
 
 .PHONY: all options clean dist install uninstall
-
-force:
-	rm -f config.h
-	make

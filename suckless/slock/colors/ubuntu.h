@@ -1,7 +1,5 @@
 static const char *colorname[NUMCOLS] = {
-	[BACKGROUND]	= "#300a24",   /* after initialization */
-	[INIT]		= "#ff7700",   /* after initialization */
-	[INPUT]		= "#22aaff",   /* during input */
+	[INIT]	= "#300a24",   /* after initialization */
+	[INPUT]		= "#ff7700",   /* after initialization */
 	[FAILED]	= "#ff2222",   /* wrong password */
-	[CAPS]		= "#aaff22",   /* CapsLock on */
 };

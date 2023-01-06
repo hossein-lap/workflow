@@ -26,16 +26,16 @@ static HbFontMatch *hbfontcache = NULL;
  * FEATURE('c', 'a', 'l', 't'), FEATURE('d', 'l', 'i', 'g')
  */
 hb_feature_t features[] = {
-			FEATURE('c', 'v', '0', '1'), FEATURE('c', 'v', '0', '2'),
-			FEATURE('c', 'v', '2', '5'), FEATURE('c', 'v', '2', '6'),
-//			FEATURE('c', 'v', '1', '4'), FEATURE('c', 'v', '1', '6'),
-			FEATURE('c', 'v', '3', '0'),
-			FEATURE('c', 'v', '3', '2'),
-// $ ->-||-
-			//FEATURE('s', 's', '0', '1'),
-			FEATURE('s', 's', '0', '2'),
-			FEATURE('s', 's', '0', '3'), FEATURE('s', 's', '0', '5'),
-			FEATURE('s', 's', '0', '7'), FEATURE('s', 's', '0', '9'),
+//			FEATURE('c', 'v', '0', '1'), FEATURE('c', 'v', '0', '2'),
+//			FEATURE('c', 'v', '2', '5'), FEATURE('c', 'v', '2', '6'),
+////			FEATURE('c', 'v', '1', '4'), FEATURE('c', 'v', '1', '6'),
+//			FEATURE('c', 'v', '3', '0'),
+//			FEATURE('c', 'v', '3', '2'),
+//// $ ->-||-
+//			//FEATURE('s', 's', '0', '1'),
+//			FEATURE('s', 's', '0', '2'),
+//			FEATURE('s', 's', '0', '3'), FEATURE('s', 's', '0', '5'),
+//			FEATURE('s', 's', '0', '7'), FEATURE('s', 's', '0', '9'),
 };
 
 void
