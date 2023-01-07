@@ -67,6 +67,7 @@ with `#` will be ignored. A `\` at the beginning of the line escapes `@` and
 - options
 - progress bar
 - toggle scheme
+- pdf
 
 ### Development
 

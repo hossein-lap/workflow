@@ -2,9 +2,6 @@
 
 static char *fontfallbacks[] = {
 	"Libertinus Serif",
-	"dejavu sans",
-	"roboto",
-	"ubuntu",
 };
 #define NUMFONTSCALES 42
 #define FONTSZ(x) ((int)(10.0 * powf(1.1288, (x)))) /* x in [0, NUMFONTSCALES-1] */
@@ -14,9 +11,12 @@ static char *fontfallbacks[] = {
 
 static const float linespacing = 1.4;
 
+/* height of the presentation progress bar */
+static const int progressheight = 10;
+
 /* how much screen estate is to be used at max for the content */
-static const float usablewidth = 0.75;
-static const float usableheight = 0.75;
+static const float usablewidth = 0.9;
+static const float usableheight = 0.9;
 
 static Mousekey mshortcuts[] = {
 	/* button         function        argument */
@@ -46,6 +46,8 @@ static Shortcut shortcuts[] = {
 	{ XK_n,           advance,        {.i = +1} },
 	{ XK_p,           advance,        {.i = -1} },
 	{ XK_r,           reload,         {0} },
+	{ XK_i,           togglescm,      {0} },
+	{ XK_g,           pdf,            {0} },
 };
 
 static Filter filters[] = {

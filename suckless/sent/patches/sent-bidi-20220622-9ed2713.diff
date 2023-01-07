@@ -1,0 +1,108 @@
+From 9ed271353ddeadd66e6550aa79065b601b3d6cf4 Mon Sep 17 00:00:00 2001
+From: Mahdi Mirzade <me@mahdi.pw>
+Date: Wed, 22 Jun 2022 02:55:13 +0430
+Subject: [PATCH] Added support for RTL languages (Farsi, Arabic and Hebrew
+ using the FriBiDi library) to sent
+
+---
+ config.mk | 13 ++++++++-----
+ sent.c    | 28 ++++++++++++++++++++++++++--
+ 2 files changed, 34 insertions(+), 7 deletions(-)
+
+diff --git a/config.mk b/config.mk
+index d61c554..8e74aee 100644
+--- a/config.mk
++++ b/config.mk
+@@ -10,14 +10,17 @@ MANPREFIX = ${PREFIX}/share/man
+ X11INC = /usr/X11R6/include
+ X11LIB = /usr/X11R6/lib
+ 
++BDINC = /usr/include/fribidi
++BDLIBS = -lfribidi
++
+ # includes and libs
+-INCS = -I. -I/usr/include -I/usr/include/freetype2 -I${X11INC}
+-LIBS = -L/usr/lib -lc -lm -L${X11LIB} -lXft -lfontconfig -lX11
++INCS = -I. -I/usr/include -I/usr/include/freetype2 -I${X11INC} -I$(BDINC)
++LIBS = -L/usr/lib -lc -lm -L${X11LIB} -lXft -lfontconfig -lX11 $(BDLIBS)
+ # OpenBSD (uncomment)
+-#INCS = -I. -I${X11INC} -I${X11INC}/freetype2
++#INCS = -I. -I${X11INC} -I${X11INC}/freetype2 -I$(BDINC)
+ # FreeBSD (uncomment)
+-#INCS = -I. -I/usr/local/include -I/usr/local/include/freetype2 -I${X11INC}
+-#LIBS = -L/usr/local/lib -lc -lm -L${X11LIB} -lXft -lfontconfig -lX11
++#INCS = -I. -I/usr/local/include -I/usr/local/include/freetype2 -I${X11INC} -I/usr/local/include/fribidi
++#LIBS = -L/usr/local/lib -lc -lm -L${X11LIB} -lXft -lfontconfig -lX11 $(BDLIBS)
+ 
+ # flags
+ CPPFLAGS = -DVERSION=\"${VERSION}\" -D_XOPEN_SOURCE=600
+diff --git a/sent.c b/sent.c
+index 9534fca..a03475b 100644
+--- a/sent.c
++++ b/sent.c
+@@ -18,6 +18,7 @@
+ #include <X11/Xlib.h>
+ #include <X11/Xutil.h>
+ #include <X11/Xft/Xft.h>
++#include <fribidi.h>
+ 
+ #include "arg.h"
+ #include "util.h"
+@@ -117,6 +118,7 @@ static void configure(XEvent *);
+ 
+ /* Globals */
+ static const char *fname = NULL;
++static char fribidi_text[BUFSIZ] = "";
+ static Slide *slides = NULL;
+ static int idx = 0;
+ static int slidecount = 0;
+@@ -134,6 +136,26 @@ static void (*handler[LASTEvent])(XEvent *) = {
+ 	[KeyPress] = kpress,
+ };
+ 
++static void
++apply_fribidi(char *str)
++{
++        FriBidiStrIndex len = strlen(str);
++        FriBidiChar logical[BUFSIZ];
++        FriBidiChar visual[BUFSIZ];
++        FriBidiParType base = FRIBIDI_PAR_ON;
++        FriBidiCharSet charset;
++        fribidi_boolean result;
++
++        fribidi_text[0] = 0;
++        if (len>0)
++        {
++                charset = fribidi_parse_charset("UTF-8");
++                len = fribidi_charset_to_unicode(charset, str, len, logical);
++                result = fribidi_log2vis(logical, len, &base, visual, NULL, NULL, NULL);
++                len = fribidi_unicode_to_charset(charset, visual, len, fribidi_text);
++        }
++}
++
+ int
+ filter(int fd, const char *cmd)
+ {
+@@ -528,15 +550,17 @@ xdraw()
+ 
+ 	if (!im) {
+ 		drw_rect(d, 0, 0, xw.w, xw.h, 1, 1);
+-		for (i = 0; i < slides[idx].linecount; i++)
++		for (i = 0; i < slides[idx].linecount; i++) {
++			apply_fribidi(slides[idx].lines[i]);
+ 			drw_text(d,
+ 			         (xw.w - width) / 2,
+ 			         (xw.h - height) / 2 + i * linespacing * d->fonts->h,
+ 			         width,
+ 			         d->fonts->h,
+ 			         0,
+-			         slides[idx].lines[i],
++			         fribidi_text,
+ 			         0);
++		}
+ 		drw_map(d, xw.win, 0, 0, xw.w, xw.h);
+ 	} else {
+ 		if (!(im->state & SCALED))
+-- 
+2.35.2
+
