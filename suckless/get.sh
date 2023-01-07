@@ -8,4 +8,5 @@ git clone https://git.suckless.org/slstatus
 git clone https://git.suckless.org/sent
 git clone https://git.suckless.org/farbfeld
 git clone https://git.suckless.org/tabbed
+git clone https://git.suckless.org/surf
 #git clone https://git.suckless.org/9base
