@@ -112,3 +112,9 @@ tabbed/tabbed
 9base/yacc/yacc
 tabbed/xembed
 dmenu/stest
+farbfeld/ff2jpg
+farbfeld/ff2pam
+farbfeld/ff2png
+farbfeld/ff2ppm
+farbfeld/jpg2ff
+farbfeld/png2ff
