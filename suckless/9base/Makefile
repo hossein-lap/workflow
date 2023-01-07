@@ -83,7 +83,7 @@ uninstall:
 
 dist: clean
 	@mkdir -p 9base-${VERSION}
-	@cp -R Makefile README LICENSE std.mk yacc.mk config.mk ${SUBDIRS} 9base-${VERSION}
+	@cp -R Makefile README.md LICENSE std.mk yacc.mk config.mk ${SUBDIRS} 9base-${VERSION}
 	@tar -cf 9base-${VERSION}.tar 9base-${VERSION}
 	@gzip 9base-${VERSION}.tar
 	@rm -rf 9base-${VERSION}
