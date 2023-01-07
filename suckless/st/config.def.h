@@ -8,6 +8,9 @@
 static char *font = "Source Code Pro:pixelsize=25:antialias=true:autohint=true";
 static int borderpx = 2;
 
+/* colorscheme */
+#include "colors/dracula.h"
+
 /*
  * What program is execed by st depends of these precedence rules:
  * 1: program passed with -e
@@ -92,8 +95,6 @@ char *termname = "st-256color";
  *	stty tabs
  */
 unsigned int tabspaces = 8;
-
-#include "colors/ubuntu.h"
 
 /*
  * Default colors (colorname index)

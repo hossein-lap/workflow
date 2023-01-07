@@ -1,9 +1,9 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const char font[]        = "Ubuntu Mono:size=14";
+static const char font[]        = "Source Code Pro:size=13";
 /* colorscheme */
-#include "colors/solid/orange.h"
+#include "colors/ubuntu.h"
 static const char before[]      = "<";
 static const char after[]       = ">";
 static const char titletrim[]   = "...";

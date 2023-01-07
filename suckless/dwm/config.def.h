@@ -15,11 +15,11 @@ static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Ubuntu Mono:size=15" };
-static const char dmenufont[]       = { "Ubuntu Mono:size=15" };
+static const char *fonts[]          = { "Source Code Pro:size=13" };
+static const char dmenufont[]       = { "Source Code Pro:size=13" };
 
 /* colorschemes */
-#include "colors/bg/orange.h"
+#include "colors/dracula.h"
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm]	= { normal_fg, normal_bg, normal_br },
