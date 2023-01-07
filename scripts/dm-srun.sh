@@ -13,7 +13,7 @@ path="$HOME/.local/dev/hossein-lap/workflow/scripts"
 #patched='-c -bw 2 -g 2 -wm'
 dmenu="dmenu \
 		-i \
-		-l 8 \
+		-l 0 \
 		${patched} \
 		${@} \
 		"

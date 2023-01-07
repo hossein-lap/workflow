@@ -10,7 +10,7 @@ set -e
 #patched='-c -bw 2'
 dmenu="dmenu \
 		-i \
-		-l 20 \
+		-l 0 \
 		${patched} \
 		${@} \
 		"

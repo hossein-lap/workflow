@@ -12,10 +12,10 @@
 #fi
 
 # Variables {{{
-#patched='-c -bw 2 -wm'
+#patched='-c -g 2 -bw 2 -wm'
 dmenu="dmenu \
 		-i \
-		-l 20 \
+		-l 0 \
 		${patched} \
 		${@} \
 		"

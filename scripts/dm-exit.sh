@@ -11,7 +11,7 @@ set -e
 #patched='-c -bw 2 -g 2'
 dmenu="dmenu \
 		-i \
-		-l 3 \
+		-l 0 \
 		${patched} \
 		${@} \
 		"

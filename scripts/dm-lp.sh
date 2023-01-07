@@ -11,7 +11,7 @@ script_name=$(echo $0 | awk -F '/' '{print $NF;}')
 #patched='-c -bw 2'
 dmenu="dmenu \
 		-i \
-		-l 30 \
+		-l 0 \
 		-p "${script_name}" \
 		${patched} \
 		${@} \
