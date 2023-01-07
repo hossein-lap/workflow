@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Ubuntu Mono:pixelsize=27:antialias=true:autohint=true";
+static char *font = "Source Code Pro:pixelsize=25:antialias=true:autohint=true";
 static int borderpx = 2;
 
 /*
@@ -93,7 +93,7 @@ char *termname = "st-256color";
  */
 unsigned int tabspaces = 8;
 
-#include "colors/termite.h"
+#include "colors/ubuntu.h"
 
 /*
  * Default colors (colorname index)
