@@ -28,7 +28,7 @@ static const char *colors[][3]      = {
 
 /* tagging */
 static const char *tags[] = {
-	"♠", "♠", "♠", "♥", "♥", "♥", "♦", "♦", "♦" 
+	"♠", "♠", "♠", "♥", "♥", "♥", "♣", "♣", "♣" 
 //	"1", "2", "3", "4", "5", "6", "7", "8", "9"
 //	"a", "b", "c", "d", "e", "f", "g", "h", "i"
 };
@@ -38,11 +38,12 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,        NULL,       0,            1,           -1 },
-	{ "st",       NULL,  "Terminal",       0,            1,           -1 },
-	{ "sxiv",     NULL,        NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,        NULL,       1 << 8,       0,           -1 },
+	/* class       instance    title       tags mask     isfloating   monitor */
+	{ "Gimp",      NULL,        NULL,       0,            1,           -1 },
+	{ "st",        NULL,  "Terminal",       0,            1,           -1 },
+	{ "sxiv",      NULL,        NULL,       0,            1,           -1 },
+	{ "Firefox",   NULL,        NULL,       1 << 2,       0,           -1 },
+	{ "Telegram",  NULL,        NULL,       1 << 8,       0,           -1 },
 };
 
 /* layout(s) */
@@ -71,10 +72,15 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[]	= {
+	"dmenu_run", "-p", "run", "-m", dmenumon,
+		"-fn", dmenufont, "-nb", normal_bg, "-nf", normal_fg,
+		"-sb", focus_bg, "-sf", focus_fg,
+	NULL
+};
 static const char *termcmd[]  = { "st", NULL };
 /* hos custom {{{ */
-static const char *tabbdcmd[]	= { "tabbed", "-c", "-r", "2", "st", "-w", "''", NULL };
+static const char *tabbdcmd[]	= { "tabbed", "-c", "-k", "-r", "2", "st", "-w", "''", NULL };
 static const char *floatcmd[]	= { term, "-t", "Terminal", NULL};
 static const char *takenote[]	= { "st", "-t", "Terminal", "bash", "-c", SCRIPTSPATH"note-take.sh", NULL};
 static const char *bidicmd[]	= { bdterm, NULL};
@@ -98,7 +104,6 @@ static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	/* hos custom {{{ */
 	{ MODKEY|ShiftMask,		XK_t,		spawn,		{.v = tabbdcmd	} },
-	{ MODKEY|ShiftMask,		XK_Return,	spawn,		{.v = termcmd	} },
 	{ MODKEY,			XK_x,		spawn,		{.v = floatcmd	} },
 	{ MODKEY|ControlMask,		XK_t,		spawn,		{.v = bidicmd	} },
 	{ 0,				XK_Print,	spawn,		{.v = dmshot	} },
@@ -117,7 +122,6 @@ static const Key keys[] = {
 	{ MODKEY,			XK_Up,		spawn,		{.v = brightu	} },
 	{ MODKEY,			XK_Down,	spawn,		{.v = brightd	} },
 	/* }}}*/
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },

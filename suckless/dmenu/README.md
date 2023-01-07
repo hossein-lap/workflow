@@ -24,12 +24,7 @@ See the man page for details.
 
 ### Applied patches
 
-- grid
-    - gridnav
-- center
-- password
-- numbers
-- border
+none
 
 ### Screenshot
 

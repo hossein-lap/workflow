@@ -44,7 +44,7 @@ clean:
 dist:
 	rm -rf "farbfeld-$(VERSION)"
 	mkdir -p "farbfeld-$(VERSION)"
-	cp -R FORMAT LICENSE Makefile README config.mk $(SCR) \
+	cp -R FORMAT LICENSE Makefile README.md config.mk $(SCR) \
 	      $(HDR) $(BIN:=.c) $(REQ:=.c) $(REQ:=.h) \
 	      $(MAN1) $(MAN5) "farbfeld-$(VERSION)"
 	tar -cf - "farbfeld-$(VERSION)" | gzip -c > "farbfeld-$(VERSION).tar.gz"

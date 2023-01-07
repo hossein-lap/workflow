@@ -44,12 +44,13 @@ slstatus: slstatus.o $(COM:=.o) $(REQ:=.o)
 	$(CC) -o $@ $(LDFLAGS) $(COM:=.o) $(REQ:=.o) slstatus.o $(LDLIBS)
 
 clean:
+	rm -f config.h
 	rm -f slstatus slstatus.o $(COM:=.o) $(REQ:=.o)
 
 dist:
 	rm -rf "slstatus-$(VERSION)"
 	mkdir -p "slstatus-$(VERSION)/components"
-	cp -R LICENSE Makefile README config.mk config.def.h \
+	cp -R LICENSE Makefile README.md config.mk config.def.h \
 	      arg.h slstatus.c $(COM:=.c) $(REQ:=.c) $(REQ:=.h) \
 	      slstatus.1 "slstatus-$(VERSION)"
 	tar -cf - "slstatus-$(VERSION)" | gzip -c > "slstatus-$(VERSION).tar.gz"

@@ -7,7 +7,7 @@
 const unsigned int interval = 1000;
 
 /* text to show if no value can be retrieved */
-static const char unknown_str[] = "♣";
+static const char unknown_str[] = "♦";
 
 /* maximum output string length */
 #define MAXLEN 2048
@@ -68,39 +68,16 @@ static const char unknown_str[] = "♣";
  */
 static const struct arg args[] = {
 	/* function format          argument */
-	{ separator,	"%s",		" "			},
-	{ run_command,	"%s",	"bash "SRCPATH"/sls-ffmpeg.sh"	},
-	{ separator,	"%s",		" "			},
-	{ separator,	"%s",		"b:"			},
-//	{ battery_perc,	"%s",		"BAT1"			},
-	{ run_command,	"%s",	"bash "SRCPATH"/sls-battery.sh"	},
-
-	{ separator,	"%s",		" "			},
-	{ separator,	"%s",		"c:"			},
-	{ cpu_perc,	"%s"					},
-
-	{ separator,	"%s",		" "			},
-	{ separator,	"%s",		"m:"			},
-	{ ram_perc,	"%s"					},
-
-	{ separator,	"%s",		" "			},
-	{ separator,	"%s",		"w:"			},
-	{ wifi_perc,	"%s,",		"wlp45s0"		},
-	{ wifi_perc,	"%s",		"wlan0"			},
-
-	{ separator,	"%s",		" "			},
-	{ separator,	"%s",		"p:"			},
+	{ run_command,	" %s",	"bash "SRCPATH"/sls-ffmpeg.sh"	},
+//	{ battery_perc,	" %s",		"BAT1"			},
+	{ run_command,	" %s",	"bash "SRCPATH"/sls-battery.sh"	},
+	{ cpu_perc,	" %s"					},
+	{ ram_perc,	" %s"					},
+	{ wifi_perc,	" %s,",		"wlp45s0"		},
+	{ wifi_perc,	"%s,",		"wlan0"			},
 	{ run_command,	"%s",	"bash "SRCPATH"/sls-ping.sh"	},
-
-	{ separator,	"%s",		" "			},
-	{ keymap,	"%s"					},
-	{ separator,	"%s",		" "			},
-
-	{ run_command,	"%s",		"jdate '+%m-%d'"	},
-	{ separator,	"%s",		" "			},
-	{ datetime,	"%s",		"%y-%m-%d"		},
-
-	{ separator,	"%s",		" "			},
-	{ datetime,	"%s",		"%H:%M:%S"			},
-	{ separator,	"%s",		" "			},
+	{ keymap,	" %s"					},
+	{ run_command,	" %s",		"jdate '+%m-%d'"	},
+	{ datetime,	" %s",		"%y-%m-%d"		},
+	{ datetime,	" %s",		"%H:%M:%S"			},
 };

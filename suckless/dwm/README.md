@@ -49,9 +49,7 @@ and (re)compiling the source code.
 
 ### Applied patches
 
-- autostart
-- tilegap
-- bidi
+none
 
 ### Screenshot
 

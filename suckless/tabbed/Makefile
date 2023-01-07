@@ -21,7 +21,7 @@ OBJ = ${SRC:.c=.o}
 BIN = ${OBJ:.o=}
 MAN1 = ${BIN:=.1}
 HDR = arg.h config.def.h
-DOC = LICENSE README
+DOC = LICENSE README.md
 
 all: ${BIN}
 
@@ -37,6 +37,7 @@ config.h:
 	${CC} -o $@ $< ${TABBED_LDFLAGS}
 
 clean:
+	rm -f config.h
 	rm -f ${BIN} ${OBJ} "${NAME}-${VERSION}.tar.gz"
 
 dist: clean
@@ -52,7 +53,7 @@ install: all
 	for f in ${BIN}; do chmod 755 "${DESTDIR}${PREFIX}/bin/$$f"; done
 	# installing doc files.
 	mkdir -p "${DESTDIR}${DOCPREFIX}"
-	cp -f README "${DESTDIR}${DOCPREFIX}"
+	cp -f README.md "${DESTDIR}${DOCPREFIX}"
 	# installing manual pages for general commands: section 1.
 	mkdir -p "${DESTDIR}${MANPREFIX}/man1"
 	for m in ${MAN1}; do sed "s/VERSION/${VERSION}/g" < $$m > "${DESTDIR}${MANPREFIX}/man1/$$m"; done
@@ -61,7 +62,7 @@ uninstall:
 	# removing executable files.
 	for f in ${BIN}; do rm -f "${DESTDIR}${PREFIX}/bin/$$f"; done
 	# removing doc files.
-	rm -f "${DESTDIR}${DOCPREFIX}/README"
+	rm -f "${DESTDIR}${DOCPREFIX}/README.md"
 	# removing manual pages.
 	for m in ${MAN1}; do rm -f "${DESTDIR}${MANPREFIX}/man1/$$m"; done
 	-rmdir "${DESTDIR}${DOCPREFIX}"
