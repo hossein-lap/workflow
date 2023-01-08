@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Untitled article</title>
+</head>
+<body>
+
+<h1 id="batteryarc-widget">Batteryarc widget</h1>
+
+<p><a href="https://github.com/streetturtle/awesome-wm-widgets/labels/batteryarc"><img src="https://img.shields.io/github/issues-raw/streetturtle/awesome-wm-widgets/batteryarc" alt="GitHub issues by-label" /></a></p>
+
+<p>This widget is more informative version of <a href="https://github.com/streetturtle/awesome-wm-widgets/tree/master/battery-widget">battery widget</a>.</p>
+
+<p>Depending of the battery status it could look following ways:</p>
+
+<ul>
+<li><img src="./10_d.png" alt="10_d" /> - less than 15 percent</li>
+<li><img src="./10_c.png" alt="10_c" /> - less than 15 percent, charging</li>
+<li><img src="./20_d.png" alt="20_d" /> - between 15 and 40 percent</li>
+<li><img src="./20_c.png" alt="20_c" /> - between 15 and 40 percent, charging</li>
+<li><img src="./80_d.png" alt="80_d" /> - more than 40 percent</li>
+<li><img src="./80_c.png" alt="80_c" /> - more than 40 percent, charging</li>
+</ul>
+
+<p>If a battery level is low then warning popup will show up:</p>
+
+<p><img src="./warning.png" alt="warning" /></p>
+
+<h2 id="customization">Customization</h2>
+
+<p>It is possible to customize widget by providing a table with all or some of the following config parameters:</p>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>font</code></td>
+<td>Play 6</td>
+<td>Font</td>
+</tr>
+<tr>
+<td><code>arc_thickness</code></td>
+<td>2</td>
+<td>Thickness of the arc</td>
+</tr>
+<tr>
+<td><code>show_current_level</code></td>
+<td>false</td>
+<td>Show current charge level</td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td>18</td>
+<td>Size of the widget</td>
+</tr>
+<tr>
+<td><code>timeout</code></td>
+<td>10</td>
+<td>How often in seconds the widget refreshes</td>
+</tr>
+<tr>
+<td><code>main_color</code></td>
+<td><code>beautiful.fg_color</code></td>
+<td>Color of the text with the current charge level and the arc</td>
+</tr>
+<tr>
+<td><code>bg_color</code></td>
+<td><code>#ffffff11</code></td>
+<td>Color of the charge level background</td>
+</tr>
+<tr>
+<td><code>low_level_color</code></td>
+<td><code>#e53935</code></td>
+<td>Arc color when battery charge is less that 15%</td>
+</tr>
+<tr>
+<td><code>medium_level_color</code></td>
+<td><code>#c0ca33</code></td>
+<td>Arc color when battery charge is between 15% and 40%</td>
+</tr>
+<tr>
+<td><code>charging_color</code></td>
+<td><code>#43a047</code></td>
+<td>Color of the circle inside the arc when charging</td>
+</tr>
+<tr>
+<td><code>warning_msg_title</code></td>
+<td><em>Huston, we have a problem</em></td>
+<td>Title of the warning popup</td>
+</tr>
+<tr>
+<td><code>warning_msg_text</code></td>
+<td><em>Battery is dying</em></td>
+<td>Text of the warning popup</td>
+</tr>
+<tr>
+<td><code>warning_msg_position</code></td>
+<td><code>bottom_right</code></td>
+<td>Position of the warning popup</td>
+</tr>
+<tr>
+<td><code>warning_msg_icon</code></td>
+<td>~&#47;.config&#47;awesome&#47;awesome-wm-widgets&#47;batteryarc-widget&#47;spaceman.jpg</td>
+<td>Icon of the warning popup</td>
+</tr>
+<tr>
+<td><code>enable_battery_warning</code></td>
+<td><code>true</code></td>
+<td>Display low battery warning</td>
+</tr>
+<tr>
+<td><code>show_notification_mode</code></td>
+<td><code>on_hover</code></td>
+<td>How to trigger a notification with the battery status: <code>on_hover</code>, <code>on_click</code> or <code>off</code></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="requirements">Requirements</h2>
+
+<p>This widget requires the <code>acpi</code> command to be available to retrieve battery and
+power information.</p>
+
+<h2 id="installation">Installation</h2>
+
+<p>Clone repo, include widget and use it in <strong>rc.lua</strong>:</p>
+
+<pre><code class="language-lua">local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
+...
+s.mytasklist, -- Middle widget
+    { -- Right widgets
+        layout = wibox.layout.fixed.horizontal,
+        ...
+        --[[default]]
+        batteryarc_widget(),        
+        --[[or customized]]
+        batteryarc_widget({
+            show_current_level = true,
+            arc_thickness = 1,
+        }),
+    }
+    ...
+</code></pre>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<p>In case of any doubts or questions please raise an <a href="https://github.com/streetturtle/awesome-wm-widgets/issues/new">issue</a>.</p>
+</body>
+</html>
