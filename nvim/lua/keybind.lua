@@ -43,34 +43,42 @@ end
 -- }}}
 
 -- Folding {{{
-map('n', '<leader>da', ':mkview<CR>')
-map('n', '<leader>dw', ':loadview<CR>')
+map('n', '<leader>da', ':mkview<CR>',
+		{ desc = "Save folds" })
+map('n', '<leader>dw', ':loadview<CR>',
+		{ desc = "Load folds" })
 -- }}}
 -- back to normal-mode in terminal {{{
-map('t', '<Esc>', '<C-\\><C-n>')
-map('t', '<C-d>', '<C-c><C-c> <space> exit<CR>', {silent = true})
+map('t', '<Esc>', '<C-\\><C-n>',
+		{ desc = "Exit insert mode in Terminal" })
+map('t', '<C-d>', '<C-c><C-c> <space> exit<CR>',
+		{ silent = true, desc = "Exit Terminal" })
 -- }}}
 -- back to normal mode {{{
-map('i', '<C-c>', '<Esc>')
+map('i', '<C-c>', '<Esc>',
+		{ desc = "Exit insert mode" })
 -- }}}
----- netrw toggle {{{
---map('n', '<leader>ff', ':24Lexplore<CR><C-w>w')
----- }}}
 -- NvimTree Toggle {{{
-map('n', '<leader>ff', ':lua nvim_tree_toggle()<CR>', {silent = true})-- }}}
+map('n', '<leader>ff', ':lua nvim_tree_toggle()<CR>',
+		{ silent = true, desc = "Nvim Tree" })
+-- }}}
 -- toggle paste mode {{{
-map('n', '<C-P>', ':set paste! nu! list!<CR>', {silent = true})
---map('n', '<C-P>', ':lua PasteToggle()<CR>')
+map('n', '<C-P>', ':set paste! nu! list!<CR>',
+		{ silent = true, desc = "Enable paste mode, disable decorations" })
 -- }}}
 -- spelling check {{{
-map('n', '<leader>ss',  ':setlocal spell!<CR>', {silent = true})
+map('n', '<leader>ss',  ':set spell!<CR>',
+		{ silent = true, desc = "Enable spell check" })
 -- }}}
 -- go to next/previous buffer {{{
-map('n', '<C-n>',  ':bnext<CR>', {silent = true})
-map('n', '<C-b>',  ':bprevious<CR>', {silent = true})
+map('n', '<C-n>',  ':bnext<CR>',
+		{ silent = true, desc = "Next file in buffer" })
+map('n', '<C-b>',  ':bprevious<CR>',
+		{ silent = true, desc = "Previous file in buffer" })
 -- }}}
 ---- switch tabs {{{
---map('n', '_', ':tabnext<CR>', {silent = true})
+--map('n', '_', ':tabnext<CR>',
+--		{ silent = true, desc = "Next file in tab" })
 ---- }}}
 -- comment lines via - and uncomment via + {{{
 -- comment_leader var definition {{{
@@ -102,19 +110,23 @@ au( [[let b:comment_leader = ';']],
 -- keybinding
 map('', '-',
 	[[:<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>]],
---	[[:s=\v^(\s*)=\1<C-R>=escape(b:comment_leader,'\ ')<CR><CR>:nohlsearch<CR>]]
-	{ silent = true }
+--	[[:s=\v^(\s*)=\1<C-R>=escape(b:comment_leader,'\ ')<CR><CR>:nohlsearch<CR>]],
+	{ silent = true, desc = "Comment line(s)" }
 )
 
 map('', '+',
 	[[:<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>]],
---	[[:s=\v^(\s*)\<C-R>=escape(b:comment_leader,'\= ')<CR>=\1=<CR>:nohlsearch<CR>]]
-	{ silent = true }
+--	[[:s=\v^(\s*)\<C-R>=escape(b:comment_leader,'\= ')<CR>=\1=<CR>:nohlsearch<CR>]],
+	{ silent = true, desc = "Uncomment line(s)" }
 )
 -- }}}
 -- autofill {{{
-map('n', '<leader>af', ':lua AutoFillAll()<CR>', {silent = true})
---map('n', '<leader>af', ':lua AutoFill()<CR>', {silent = true})
---map('n', '<leader>ad', ':lua AutoFillMarkdown()<CR>', {silent = true})
---map('n', '<leader>as', ':lua AutoFillSent()<CR>', {silent = true})
+map('n', '<leader>af', ':lua AutoFillAll()<CR>',
+		{ silent = true, desc = "Toggle autofill [ { ( ' \"" })
+--map('n', '<leader>af', ':lua AutoFill()<CR>',
+--		{ silent = true, desc = "Toggle basic autofill" })
+--map('n', '<leader>ad', ':lua AutoFillMarkdown()<CR>',
+--		{ silent = true, desc = "Toggle markdown autofill" })
+--map('n', '<leader>as', ':lua AutoFillSent()<CR>',
+--		{ silent = true, desc = "Toggle sent autofill" })
 -- }}}
