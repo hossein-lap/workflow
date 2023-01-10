@@ -32,7 +32,7 @@ require('plugins.gitsigns') ---- Treesitter Settings
 --require('plugins.toggleterm') ---- ToggleTerm Settings
 -- }}}
 -- colorscheme {{{
---cmd [[ colorscheme 256_noir ]]
+--cmd [[ colorscheme hybrid_material ]]
 
 --require('plugins.tokyonight')
 --cmd [[ colorscheme tokyonight ]]
@@ -42,7 +42,7 @@ require('plugins.gitsigns') ---- Treesitter Settings
      solarized material nord onedark
 ]]
 
----- colorscheme options
+-- colorscheme options
 vim.g.tokyodark_transparent_background = false
 vim.g.tokyodark_enable_italic_comment = false
 vim.g.tokyodark_enable_italic = false
