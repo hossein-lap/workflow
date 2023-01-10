@@ -1,6 +1,6 @@
 -- helper {{{
 local api = vim.api
-local skelpath = '~/.local/dev/hossein-lap/workflow/config/skels/'
+local skelp = ' ~/.local/dev/hossein-lap/workflow/config/skels/'
 
 -- map() {{{
 local function map(mode, key, command, opts)
@@ -13,16 +13,14 @@ end
 -- }}}
 -- }}}
 
-map('n',	',C',	':-1read ' .. skelpath .. 'skel.c<CR>G')
-map('n',	',cpp',	':-1read ' .. skelpath .. 'skel.cpp<CR>G')
-map('n',	',py',	':-1read ' .. skelpath .. 'skel.py<CR>G')
-map('n',	',lua',	':-1read ' .. skelpath .. 'skel.lua<CR>G')
-map('n',	',sh',	':-1read ' .. skelpath .. 'skel.sh<CR>G')
-map('n',	',mk',	':-1read ' .. skelpath .. 'skel.mk<CR>G')
-map('n',	',ms',	':-1read ' .. skelpath .. 'skel.ms<CR>G')
-map('n',	',tex',	':-1read ' .. skelpath .. 'skel.tex<CR>G')
-map('n',	',rmd',	':-1read ' .. skelpath .. 'skel.rmd<CR>G')
-map('n',	',md',	':-1read ' .. skelpath .. 'skel.md<CR>G')
-map('n',	',htm',	':-1read ' .. skelpath .. 'skel.html<CR>G')
-
-map('n',	',eb',	':read ' .. skelpath .. 'eb.latex<CR>o')
+map('n', ',c', ':-1read'..skelp..'skel.c<CR>G',		{ desc = "C template" })
+map('n', ',C', ':-1read'..skelp..'skel.cpp<CR>G',	{ desc = "C++ template" })
+map('n', ',h', ':-1read'..skelp..'skel.html<CR>G',	{ desc = "HTML template" })
+map('n', ',l', ':-1read'..skelp..'skel.lua<CR>G',	{ desc = "Lua template" })
+map('n', ',m', ':-1read'..skelp..'skel.md<CR>G',	{ desc = "Markdown template" })
+map('n', ',M', ':-1read'..skelp..'skel.mk<CR>G',	{ desc = "Makefile template" })
+map('n', ',g', ':-1read'..skelp..'skel.ms<CR>G',	{ desc = "Groff `ms` template" })
+map('n', ',p', ':-1read'..skelp..'skel.py<CR>G',	{ desc = "Python template" })
+map('n', ',r', ':-1read'..skelp..'skel.rmd<CR>G',	{ desc = "R Markdown template" })
+map('n', ',s', ':-1read'..skelp..'skel.sh<CR>G',	{ desc = "Bash template" })
+map('n', ',t', ':-1read'..skelp..'skel.tex<CR>G',	{ desc = "LaTeX template" })
