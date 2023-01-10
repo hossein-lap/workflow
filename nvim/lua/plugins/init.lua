@@ -30,6 +30,7 @@ return require('packer').startup(function()
 	use "goolord/alpha-nvim"				---- Greeting
 
 	---- colorschemes
+	use 'hossein-lap/vim-256noir'
 	use 'folke/tokyonight.nvim'
 	use 'tiagovla/tokyodark.nvim'
 	use 'Mofiqul/dracula.nvim'
