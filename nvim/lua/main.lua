@@ -5,7 +5,7 @@ local set = vim.opt
 -- set line number
 set.number = true
 -- wrap lines
-set.wrap = true
+set.wrap = false
 -- change dir to the current file's directory
 set.autochdir = true
 
@@ -53,14 +53,19 @@ set.splitbelow = true
 set.splitright = true
 
 -- Spell Check
-set.spelllang='en_us,de'
+set.spelllang = 'en_us'
 
 -- Hidden characters
 set.hidden = true
 set.list = true
 --set.listchars='tab:¦ ,trail:⋅·'
 --set.listchars={tab = '│ ', trail = '⋅', eol = '↵'}
-set.listchars={tab = '› ', trail = ' ', lead = ' ', eol = ' '}
+set.listchars = {
+	tab = '› ',
+	trail = ' ',
+	lead = ' ',
+	eol = ' '
+}
 
 -- Bidi Support
 set.termbidi = true
