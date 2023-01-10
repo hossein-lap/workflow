@@ -20,19 +20,16 @@ end
 -- }}}
 -- split sym {{{
 local function ShowSplitMode()
---	local style = ''
-	if Split_style == 'h' then
+	if Wind_style == 'h' then
 		return 'Hor'
---		style = '--'
-	elseif Split_style == 'v' then
+	elseif Wind_style == 'v' then
 		return 'Ver'
---		style = '|'
+	elseif Wind_style == 'v' then
+		return 'Flo'
 	else
 		return ''
---		style = ''
 	end
---	return '[' .. style .. ']'
---	return Split_style
+--	return '-'
 end
 -- }}}
 -- basename {{{
