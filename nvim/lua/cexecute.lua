@@ -4,25 +4,6 @@ local expand = vim.fn.expand
 local ft = vim.bo.filetype
 local g = vim.g
 
--- term color {{{
-g.terminal_color_0		=	"#3b4252"
-g.terminal_color_1		=	"#bf616a"
-g.terminal_color_2		=	"#a3be8c"
-g.terminal_color_3		=	"#ebcb8b"
-g.terminal_color_4		=	"#81a1c1"
-g.terminal_color_5		=	"#b48ead"
-g.terminal_color_6		=	"#88c0d0"
-g.terminal_color_7		=	"#e5e9f0"
-g.terminal_color_8		=	"#373e4d"
-g.terminal_color_9		=	"#94545d"
-g.terminal_color_10		=	"#809575"
-g.terminal_color_11		=	"#b29e75"
-g.terminal_color_12		=	"#68809a"
-g.terminal_color_13		=	"#8c738c"
-g.terminal_color_14		=	"#6d96a5"
-g.terminal_color_15		=	"#aeb3bb"
--- }}}
-
 -- map() {{{
 local function map(mode, key, command, opts)
 	local options = { noremap = true }
@@ -65,7 +46,7 @@ end
 -- }}}
 -- }}}
 
-Wind_style = 'h'
+Wind_style = 'f'
 
 -- Toggle Wind_style {{{
 function Wind_style_Toggle(i)
@@ -90,6 +71,7 @@ map('n', '<leader>vs3', ":lua Wind_style_Toggle(3)<CR>",
 -- Float Term {{{
 function fTerminal(wrapand)
 	local buf, win
+
 	buf = api.nvim_create_buf(false, true) -- create new emtpy buffer
 
 	api.nvim_buf_set_option(buf, 'bufhidden', 'wipe')
@@ -99,16 +81,44 @@ function fTerminal(wrapand)
 	local height = api.nvim_get_option("lines")
 
 	-- calculate our floating window size
-	local win_height = math.ceil(height * 0.8 - 4)
-	local win_width = math.ceil(width * 0.8)
+	local scale = 0.7
+	local win_height = math.ceil(height * scale - 4)
+	local win_width = math.ceil(width * scale)
 
 	-- and its starting position
-	local row = math.ceil((height - win_height) / 2 - 1)
+	local row = math.ceil((height - win_height) / 2 - 2)
 	local col = math.ceil((width - win_width) / 2)
 
 	-- set some options
 	local opts = {
+		noautocmd = true,
 		style = "minimal",
+		border = {
+--			-- double
+--			{ "╔", 'Normal' },
+--			{ "═", 'Normal' },
+--			{ "╗", 'Normal' },
+--			{ "║", 'Normal' },
+--			{ "╝", 'Normal' },
+--			{ "═", 'Normal' },
+--			{ "╚", 'Normal' },
+--			{ "║", 'Normal' },
+--			-- acii
+--			{ "/", 'Normal' },
+--			{ "-", 'Normal' },
+--			{ "\\", 'Normal' },
+--			{ "|", 'Normal' },
+			-- rounded
+			{ "╭", 'Normal' },
+			{ "─", 'Normal' },
+			{ "╮", 'Normal' },
+			{ "│", 'Normal' },
+			{ "╯", 'Normal' },
+			{ "─", 'Normal' },
+			{ "╰", 'Normal' },
+			{ "│", 'Normal' },
+		},
+--		border = "double",
 		relative = "editor",
 		width = win_width,
 		height = win_height,
@@ -138,7 +148,9 @@ function vhTerminal(wrapand)
 	elseif Wind_style == 'h' then
 		Buffercmd = 'split '
 	else
-		print("ERROR! Wind_style have not a valid value (must be 'h' or 'v')")
+		print("ERROR!")
+		print("** Wind_style is not set to use `vhTerminal()`")
+		print("** try `fTerminal()`")
 		return -1
 	end
 
@@ -155,7 +167,7 @@ end
 -- }}}
 
 function runTerminal(inp)
-	api.nvim_command('set ls=0')
+--	api.nvim_command('set ls=0')
 	if Wind_style == 'f' then
 		fTerminal(inp)
 	else
@@ -163,7 +175,7 @@ function runTerminal(inp)
 	end
 end
 
-au('set ls=2', '*', 'TermLeave')
+--au('set ls=2', '*', 'TermLeave')
 
 -- swtich pandoc configs {{{
 pandoc_list = { 'dracula', 'solarized', 'english', 'monochrome' }
@@ -286,6 +298,10 @@ map('n', '<leader>cc', ':lua runTerminal("make")<CR>',
 ---- Run terminal
 map('n', '<leader>tt', ':lua runTerminal("bash")<CR>',
 		{ silent = true, desc = 'Run intractive `bash` shell' })
+map('n', '<leader>ts', ':lua runTerminal("zsh")<CR>',
+		{ silent = true, desc = 'Run intractive `zsh` shell' })
+map('n', '<leader>td', ':lua runTerminal("dash")<CR>',
+		{ silent = true, desc = 'Run intractive `dash` shell' })
 
 ---- Git commands
 map('n', '<leader>gs', ":lua runTerminal('git status -s')<CR>",
