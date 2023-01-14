@@ -76,9 +76,11 @@ note that I have `,` set to **read some template files located in
 
 ![init-lua](shots/nvim-lua-md-treesitter.png)
 
+![Floating Terminal](shots/floating-term.png)
+
 #### ToDo
 
 - [x] Run and Compile
 - [x] Auto Complete `( { [ " '`
-- [ ] Write every custom plugins modular
+- [x] Write every custom plugins modular
 - [ ] Complete the `README.md` file (in progress)

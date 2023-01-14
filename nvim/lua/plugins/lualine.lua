@@ -24,7 +24,7 @@ local function ShowSplitMode()
 		return 'Hor'
 	elseif Wind_style == 'v' then
 		return 'Ver'
-	elseif Wind_style == 'v' then
+	elseif Wind_style == 'f' then
 		return 'Flo'
 	else
 		return ''
@@ -129,7 +129,8 @@ require('lualine').setup {
 	inactive_sections = {
 		lualine_a = {},
 		lualine_b = {},
-		lualine_c = {'filename'},
+		lualine_c = {'%F'},
+--		lualine_c = {'filename'},
 		lualine_x = {'location'},
 		lualine_y = {},
 		lualine_z = {}
