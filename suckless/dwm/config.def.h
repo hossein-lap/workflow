@@ -5,7 +5,7 @@
 
 static const char term[]		= "st";
 static const char fileman[]		= "lfub";
-static const char browser[]		= "surf";
+static const char browser[]		= "firefox";
 static const char muspley[]		= "cmus";
 static const char rssread[]		= "newsboat";
 static const char bdterm[]		= "lxterminal";
@@ -19,7 +19,7 @@ static const char *fonts[]          = { "Source Code Pro:size=13" };
 static const char dmenufont[]       = { "Source Code Pro:size=13" };
 
 /* colorschemes */
-#include "colors/dracula.h"
+#include "colors/default.h"
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm]	= { normal_fg, normal_bg, normal_br },
@@ -87,7 +87,7 @@ static const char *bidicmd[]	= { bdterm, NULL};
 static const char *filecmd[]	= { term, "-t", fileman, fileman, NULL};
 static const char *newsboat[]	= { term, "-t", "Newsboat", rssread, NULL};
 static const char *muscmd[]	= { "bash", "-c", SCRIPTSPATH"cmus-tmux.sh", NULL};
-static const char *wwwcmd[]	= { "tabbed", "-c", "-k", browser, "-e", NULL};
+static const char *wwwcmd[]	= { browser, NULL};
 /* change brightness */
 static const char *brightu[]	= { "brightnessctl", "s", "+5\%", NULL};
 static const char *brightd[]	= { "brightnessctl", "s", "5\%-", NULL};
