@@ -16,7 +16,7 @@ For generating Images, you need `ImageMagick` package.
 
 ### In Progress
 
-- [Bash](bash)
+- [Bash](bash) ✓
 
 ### TODO
 
