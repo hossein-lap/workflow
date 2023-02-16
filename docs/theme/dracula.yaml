@@ -1,0 +1,30 @@
+metadata:
+    keywords:
+        - 'Dracula theme'
+
+pdf-engine: xelatex
+#headertext: false
+top-level-division: chapter
+highlight-style: ../theme/dracula.theme
+
+variables:
+    linkcolor: draculapink
+    filecolor: draculagreen
+    citecolor: draculapurple
+    urlcolor:  draculacyan
+    toccolor:  draculaorange
+#    geometry:  margin=1in
+    numbersections: false
+    toc: false
+    fontsize:  12pt
+    header-includes:
+        - \usepackage{../theme/main}
+        - \usepackage{../theme/dracula}
+        - \usepackage[margin=1in,headheight=70pt,headsep=0.3in]{geometry}
+        - \pagestyle{fancy}
+        - \fancyhead[L]{}
+        - \fancyhead[C]{}
+        - \fancyhead[R]{}
+        - \fancyfoot[L]{}
+        - \fancyfoot[C]{\thepage}
+        - \fancyfoot[R]{}
