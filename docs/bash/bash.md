@@ -7,7 +7,7 @@ completely POSIX complaint.
 
 ## Variables <!--{{{-->
 
-- ***Define***
+- **Define**
 
 ```bash
 name='PJ'
@@ -15,7 +15,7 @@ age=10
 os=$(uname)
 ```
 
-- ***Use***
+- **Use**
 
 ```bash
 echo $name
@@ -24,13 +24,13 @@ printf '- %s\n' \
         $os
 ```
 
-- ***Execute***
+- **Execute**
 
 ```
 $ bash tmp.sh
 ```
 
-- ***or if it has shebang and execute permission***
+- **or if it has shebang and execute permission**
 
 ```
 $ ./tmp.sh
@@ -40,7 +40,7 @@ PJ
 $_
 ```
 
-- ***Length***
+- **Length**
 
 ```bash
 a='Hello World'
@@ -67,20 +67,20 @@ echo ${#b} # 4
 <!--}}}-->
 ## Input <!--{{{-->
 
-- ***Basic***
+- **Basic**
 
 ```bash
 read input_variable
 echo ${input_variable}
 ```
 
-- ***with prompt message***
+- **with prompt message**
 
 ```bash
 read -p 'are you sure? ' input_variable
 ```
 
-- ***silent input***
+- **silent input**
 
 ```bash
 read -sp 'Input is silent: ' input_variable
@@ -89,7 +89,7 @@ read -sp 'Input is silent: ' input_variable
 <!--}}}-->
 ## Arrays <!--{{{-->
 
-- ***Define***
+- **Define**
 
 ```bash
 files=('f1.txt' 'f2.txt' 'f3.txt')
@@ -99,13 +99,13 @@ echo ${files[@]} # same
 echo ${#files}   # size/length of array
 ```
 
-- ***Add elements***
+- **Add elements**
 
 ```bash
 files+=('f4.txt')
 ```
 
-- ***Remove elements***
+- **Remove elements**
 
 ```bash
 unset files[0]
@@ -126,7 +126,7 @@ unset files[0]
 | `var++` | Increase by 1 |
 | `var--` | Decrease by 1 |
 
-- ***let***
+- **let**
 
 ```bash
 let a=4+5 # 9
@@ -135,13 +135,13 @@ let a++ # 10
 let A-- # 9
 ```
 
-- ***expr***
+- **expr**
 
 ```bash
 var_two=$( expr 4 \* 5 ) # 20
 ```
 
-- ***Double Parentheses***
+- **Double Parentheses**
 
 ```bash
 a=$((3 + 5)) # 8
@@ -192,7 +192,7 @@ b=$(( a + 3 )) # 11
 
 
 
-- ***if***
+- **if**
 
 ```bash
 if [[ `echo $(date +%s) % 5 | bc` -eq 0 ]]; then
@@ -206,7 +206,7 @@ else
 fi
 ```
 
-- ***Nested***
+- **Nested**
 
 ```bash
 if [ 10 -gt 5 ]; then
@@ -217,7 +217,7 @@ if [ 10 -gt 5 ]; then
 fi
 ```
 
-- ***inline***
+- **inline**
 
 ```bash
 [[ ${some_condition} ]] && echo "it's true" || echo 'false'
@@ -225,7 +225,7 @@ fi
 <!--}}}-->
 ## Loops <!--{{{-->
 
-- ***for***
+- **for**
 
 ```bash
 for i in {1..10}
@@ -234,7 +234,7 @@ do
 done
 ```
 
-- ***while***
+- **while**
 
 ```bash
 counter=1
@@ -244,7 +244,7 @@ while [[ ${counter} -le 9 ]]; do
 done
 ```
 
-- ***until***
+- **until**
 
 ```bash
 counter=1
@@ -255,7 +255,7 @@ do
 done
 ```
 
-- ***select***
+- **select**
 
 ```bash
 names='Kyle Cartman Stan Quit'
