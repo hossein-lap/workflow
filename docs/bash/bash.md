@@ -5,6 +5,8 @@ This document contains
 specific commands / syntax which may not be
 completely POSIX complaint.
 
+POSIX complaint shell scripting doc will be ready after this one ;)
+
 ## Variables <!--{{{-->
 
 - **Define**
@@ -30,7 +32,7 @@ printf '- %s\n' \
 $ bash tmp.sh
 ```
 
-or if it has shebang and execute permission
+- or if it has shebang and execute permission
 
 ```
 $ ./tmp.sh
@@ -96,7 +98,7 @@ files=('f1.txt' 'f2.txt' 'f3.txt')
 echo ${files[0]} # the first element
 echo ${files[*]} # all elements
 echo ${files[@]} # same
-echo ${#files}   # size/length of array
+echo ${#files} # size/length of array
 ```
 
 - **Add elements**
