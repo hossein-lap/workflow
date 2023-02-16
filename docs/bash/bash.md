@@ -5,6 +5,8 @@ This document contains
 specific commands / syntax which may not be
 completely POSIX complaint.
 
+POSIX complaint shell scripting doc will be ready after this one ;)
+
 ## Variables <!--{{{-->
 
 - **Define**
@@ -20,8 +22,8 @@ os=$(uname)
 ```bash
 echo $name
 printf '- %s\n' \
-        $age \
-        $os
+		$age \
+		$os
 ```
 
 - **Execute**
@@ -30,7 +32,7 @@ printf '- %s\n' \
 $ bash tmp.sh
 ```
 
-- **or if it has shebang and execute permission**
+- or if it has shebang and execute permission
 
 ```
 $ ./tmp.sh
@@ -64,6 +66,7 @@ echo ${#b} # 4
 | `$HOSTNAME` | The host name of the machine |
 | `$LINENO` | Current line number inside script |
 | `$RANDOM` | Random number |
+
 <!--}}}-->
 ## Input <!--{{{-->
 
@@ -96,7 +99,7 @@ files=('f1.txt' 'f2.txt' 'f3.txt')
 echo ${files[0]} # the first element
 echo ${files[*]} # all elements
 echo ${files[@]} # same
-echo ${#files}   # size/length of array
+echo ${#files} # size/length of array
 ```
 
 - **Add elements**
@@ -190,19 +193,19 @@ b=$(( a + 3 )) # 11
 | `-s`  | Exists and it's not empty |
 
 
+### if <!--{{{-->
 
-
-- **if**
+- **Basic**
 
 ```bash
 if [[ `echo $(date +%s) % 5 | bc` -eq 0 ]]; then
-    echo "It can be devided by 5 without any reminder"
+	echo "It can be devided by 5 without any reminder"
 elif [[ ${second_condition} ]]; then
-    echo "The second is true"
+	echo "The second is true"
 else
-    printf '%s\n' \
-        "Nothing is true" \
-        "Everything is permitted"
+	printf '%s\n' \
+		"Nothing is true" \
+		"Everything is permitted"
 fi
 ```
 
@@ -217,53 +220,188 @@ if [ 10 -gt 5 ]; then
 fi
 ```
 
-- **inline**
+- **In-line**
 
 ```bash
 [[ ${some_condition} ]] && echo "it's true" || echo 'false'
 ```
+
+- **Boolean Operation**
+
+```bash
+if [[ -r $1 ]] && [[ -s $1 ]]; then
+	echo "$1 has read permission and contains some data"
+fi
+```
+
+<!--}}}-->
+### case <!--{{{-->
+
+- **Basic**
+
+```bash
+case $TERM in
+	xterm)
+		PS1="[\u@\h \w]\$ "
+	;;
+	xterm-256colors)
+		PS1="\[\033[01;34m\]\u@\h\[\033[00m\]:\[\033[01;32m\]\W\[\033[00m\]\$ "
+	;;
+	*)
+		PS1='$ '
+	;;
+esac
+```
+
+- **(Un)capitalized**
+
+```bash
+case $1 in
+	-[hH])
+		help
+	;;
+	-[vV])
+		version
+	;;
+	-[yY])
+		choice=true
+	;;
+esac
+```
+<!--}}}-->
+
 <!--}}}-->
 ## Loops <!--{{{-->
 
-- **for**
+- **for** <!--{{{-->
 
 ```bash
 for i in {1..10}
 do
-    echo ${i}
+	echo ${i}
 done
 ```
 
-- **while**
+<!--}}}-->
+- **while** <!--{{{-->
 
 ```bash
 counter=1
 while [[ ${counter} -le 9 ]]; do
-    echo "${counter}"
-    ((counter++))
+	echo "${counter}"
+	((counter++))
 done
 ```
 
-- **until**
+<!--}}}-->
+- **until** <!--{{{-->
 
 ```bash
 counter=1
 until [[ ${counter} -gt 9 ]]
 do
-    echo "${counter}"
-    ((counter++))
+	echo "${counter}"
+	((counter++))
 done
 ```
 
-- **select**
+<!--}}}-->
+- **select** <!--{{{-->
 
 ```bash
 names='Kyle Cartman Stan Quit'
 PS3='Select character: '
 select name in ${names}; do
-	[[ $name == 'Quit' ]] && break
+	if [[ $name == 'Quit' ]]; then
+		break
+	fi
 	echo Hello ${name}
 done
 echo Bye
 ```
+
+<!--}}}-->
+### Controlling Loops: `break` and `continue` <!--{{{-->
+
+- **break**
+
+```bash
+for value in $1/*; do
+	used=$(df $1 | tail -1 | awk '{print $5;}' | sed 's/%//')
+	if [[ ${used} -gt 90 ]]; then
+		echo Low disk space > /dev/stderr
+		break
+	fi
+	cp $value $1/backup/
+done
+```
+<!--}}}-->
+
+<!--}}}-->
+## Functions <!--{{{-->
+
+- **Define**
+
+```bash
+# first
+name() {
+	<commands>
+}
+# second
+function name() {
+	<commands>
+}
+```
+
+- **Call the function**
+
+```bash
+print_something() {
+	echo "Hello World!"
+}
+print_something
+```
+
+- **Passing arguments**
+
+```bash
+say_hello_to() {
+	echo "Hello ${1}!"
+}
+say_hello_to Mars
+```
+
+- ***return* value**
+
+```bash
+return_something() {
+	return ${RANDOM}
+}
+return_something
+echo "The previous function returned $?"
+```
+
+- **Variable scope**
+
+```bash
+the_variable='This is global'
+echo "Outside of function: ${the_variable}"
+change_var() {
+	local the_variable='This is local'
+	echo "Inside of function: ${the_variable}"
+}
+echo "Outside of function: ${the_variable}"
+change_var
+echo "Outside of function: ${the_variable}"
+```
+
+- **Overwriting commands**
+
+```bash
+ls() {
+	command ls -lhgX
+}
+ls
+```
+
 <!--}}}-->
