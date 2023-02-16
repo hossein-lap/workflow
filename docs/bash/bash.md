@@ -372,7 +372,6 @@ say_hello_to Mars
 ```
 
 - ***return* value**
-
 ```bash
 return_something() {
 	return ${RANDOM}
@@ -380,9 +379,7 @@ return_something() {
 return_something
 echo "The previous function returned $?"
 ```
-
 - **Variable scope**
-
 ```bash
 the_variable='This is global'
 echo "Outside of function: ${the_variable}"
@@ -394,14 +391,11 @@ echo "Outside of function: ${the_variable}"
 change_var
 echo "Outside of function: ${the_variable}"
 ```
-
 - **Overwriting commands**
-
 ```bash
 ls() {
 	command ls -lhgX
 }
 ls
 ```
-
 <!--}}}-->
