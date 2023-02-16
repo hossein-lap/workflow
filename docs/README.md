@@ -14,15 +14,18 @@ To be able to build PDF files from Markdown, you need these packages:
 
 For generating Images, you need `ImageMagick` package.
 
+### Finished
+
+- [Bash](bash)
+
 ### In Progress
 
-- [Bash](bash) ✓
+- [Python](python)
 
 ### TODO
 
 - [Lua](lua)
 - [Groff](groff)
-- [Python](python)
 - [Core utilities](coreutils)
 - [C](c)
 - [LaTeX](latex)
