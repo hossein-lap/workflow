@@ -30,7 +30,7 @@ printf '- %s\n' \
 $ bash tmp.sh
 ```
 
-- **or if it has shebang and execute permission**
+or if it has shebang and execute permission
 
 ```
 $ ./tmp.sh
