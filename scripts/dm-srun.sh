@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #   _   _
 #  | | | |
 #  | |_| |
@@ -27,4 +27,4 @@ script=$(printf '%s\n' \
 	| $dmenu -p "${script_name}")
 		#~/.local/bin/dm-*.sh \
 
-bash ${path}/$script "${@}"
+sh ${path}/$script "${@}"

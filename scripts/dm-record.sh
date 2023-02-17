@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #  _  _
 # | || |
 # | __ |
@@ -172,7 +172,7 @@ record_screen () {
 
 	local DemRes=$(xdpyinfo | grep dimensions | awk '{print $2;}')
 
-	if [[ $WithAudio == 'mic' ]]; then
+	if [ $WithAudio == 'mic' ]; then
 		ffmpeg \
 			-f x11grab \
 			-s "${DemRes}" \
@@ -187,7 +187,7 @@ record_screen () {
 			-loglevel quiet -stats \
 			"${Directory}/${BaseName}-${Name}.${extention}"
 
-	elif [[ $WithAudio == 'sys' ]]; then
+	elif [ $WithAudio == 'sys' ]; then
 		local PaDevOut=$(pactl list short sources \
 			| awk '{print $2;}' \
 			| grep output)

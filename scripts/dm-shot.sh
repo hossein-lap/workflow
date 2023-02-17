@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/bin/sh
 #  _  _ ___
 # | || | __|   H
 # | __ | _|    A
 # |_||_|___|   P
 #
 #
-#if [[ -z "$1" ]]; then
+#if [ -z "$1" ]; then
 	#themon=''
 #else
 	#themon="-m $1"

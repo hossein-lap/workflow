@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #  _  _ ___
 # | || | __|	H
 # | __ | _|		A
@@ -58,7 +58,7 @@ function list() {
 # }}}
 # help {{{
 function help() {
-	if [[ $1 == 'g' ]]; then
+	if [ $1 == 'g' ]; then
 		printf '%s\n' \
 			"dmenu usb-device management script" \
 			"" \
@@ -72,7 +72,7 @@ function help() {
 			"l:     List of devices" \
 			"h:     Help" \
 			| $dmenu -p "Help:" > /dev/null
-	elif [[ $1 == 'c' ]]; then
+	elif [ $1 == 'c' ]; then
 		printf '%s\n' \
 			"dmenu usb-device management script" \
 			"" \

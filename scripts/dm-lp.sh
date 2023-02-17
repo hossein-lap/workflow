@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #  _  _ ___
 # | || | __|   H
 # | __ | _|    A
@@ -50,7 +50,7 @@ case ${choice} in
 	Queue)
 		queue=$(lpstat | $dmenu | awk '{print $1;}')
 
-		if [[ ! -z $queue ]]; then
+		if [ ! -z $queue ]; then
 			cancel ${queue} \
 				&& notify "Queue ${queue} Got Canceled" \
 				|| notify "Problem with ${queue}" 2
