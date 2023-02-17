@@ -15,9 +15,10 @@ dmenu="dmenu \
 		"
 script_name=$(echo $0 | awk -F '/' '{print $NF;}')
 #script_name="(Un)Mount/Eject"
+sep="---------------------------------------------------------------------------"
 # }}}
 # send notification {{{
-function notify() {
+notify() {
 	case $2 in
 		1)
 			mode=low
@@ -42,23 +43,42 @@ function notify() {
 # }}}
 
 # check status {{{
-function stat_check() {
+stat_check() {
 	if [ -z "${1}" ]; then
+		exit 0
+	fi
+	if [ "${1}" = "${sep}" ]; then
+		exit 0
+	fi
+	if [ "${1}" = "NAME" ]; then
 		exit 0
 	fi
 }
 # }}}
 # list {{{
-function list() {
+list() {
 	lsblk -o NAME,FSTYPE,LABEL,SIZE,FSSIZE,FSAVAIL,FSUSE%,MOUNTPOINT --ascii \
-		| sed 's/-/- /' \
-		| sed 's/[|`]//g'
+		| sed -e 's/-/ /' \
+			-e 's/[|`]/•/g'
 		#| $dmenu -p 'List:' > /dev/null
 }
 # }}}
 # help {{{
-function help() {
-	if [ $1 == 'g' ]; then
+help() {
+	if [ -z ${DISPLAY} ]; then
+		printf '%s\n' \
+			"dmenu usb-device management script" \
+			"" \
+			"Usage: dm-usb.sh [muel]" \
+			"" \
+			"No args: Interactive menu" \
+			"" \
+			"m:     Mount device" \
+			"u:     Unmount device" \
+			"e:     Eject device" \
+			"l:     List of devices" \
+			"h:     Help"
+	else
 		printf '%s\n' \
 			"dmenu usb-device management script" \
 			"" \
@@ -72,25 +92,12 @@ function help() {
 			"l:     List of devices" \
 			"h:     Help" \
 			| $dmenu -p "Help:" > /dev/null
-	elif [ $1 == 'c' ]; then
-		printf '%s\n' \
-			"dmenu usb-device management script" \
-			"" \
-			"Usage: dm-usb.sh [muel]" \
-			"" \
-			"No args: Interactive menu" \
-			"" \
-			"m:     Mount device" \
-			"u:     Unmount device" \
-			"e:     Eject device" \
-			"l:     List of devices" \
-			"h:     Help"
 	fi
 }
 # }}}
 # mount {{{
 lsblk_output=NAME,FSTYPE,SIZE,LABEL,MOUNTPOINTS
-function mount() {
+mount() {
 	device=$( {
 		lsblk -lm -o ${lsblk_output} -M \
 			| head -1
@@ -105,12 +112,14 @@ function mount() {
 
 	for i in $(printf '%s\n' "${device}" | awk '{print $1};')
 	do
-		mounted=$(udisksctl mount -b "/dev/${i}") && notify "$mounted" || notify "Operation failed"
+		mounted=$(udisksctl mount -b "/dev/${i}") \
+			&& notify "$mounted" \
+			|| notify "Operation failed"
 	done
 }
 # }}}
 # unmount {{{
-function unmount() {
+unmount() {
 	device=$( {
 		lsblk -lm -o ${lsblk_output} -M \
 			| head -1
@@ -125,12 +134,14 @@ function unmount() {
 
 	for i in $(printf '%s\n' "${device}" | awk '{print $1};')
 	do
-		unmounted=$(udisksctl unmount -b "/dev/${i}") && notify "$unmounted" || notify "Operation failed" 3
+		unmounted=$(udisksctl unmount -b "/dev/${i}") \
+			&& notify "$unmounted" \
+			|| notify "Operation failed" 3
 	done
 }
 # }}}
 # eject {{{
-function pwr_off() {
+pwr_off() {
 	device=$( {
 		lsblk -lm -o ${lsblk_output} -M \
 			| head -1
@@ -144,47 +155,75 @@ function pwr_off() {
 
 	for i in $(printf '%s\n' ${device})
 	do
-		power_offed=$(udisksctl power-off -b "/dev/${i}")
-		notify "Device ${i} Ejected"
-			#|| notify "Operation failed"
+		power_offed=$(udisksctl power-off -b "/dev/${i}") \
+			&& notify "${power_offed}" \
+			|| notify "Operation failed"
 	done
 }
 # }}}
+# onair {{{
+onair() {
+	z=$(echo ${1} | grep '^•' | awk '{print $NF;}' | grep '^[0-9]')
+	w=$(echo ${1} | awk '{print $NF;}' | grep '^[0-9]')
+	if [ -z "${w}" ]; then
+		airdo=unmount
+	else
+		if [ -z ${z} ]; then
+			airdo=eject
+		else
+			airdo=mount
+		fi
+	fi
+	
+	x=$(echo ${1} | sed 's/^• //' | awk '{print $1;}')
+	doublecheck=$(printf 'no\nyes' | ${dmenu} -l 0 -p "(${airdo} ${x}) you sure?")
+
+	case ${doublecheck} in
+		yes)
+			case airdo in
+				eject)
+					power_offed=$(udisksctl power-off -b "/dev/${1}") \
+						&& notify "${power_offed}" \
+						|| notify "Operation failed"
+					;;
+				mount)
+					mounted=$(udisksctl mount -b "/dev/${1}") \
+						&& notify "$mounted" \
+						|| notify "Operation failed"
+					;;
+				unmount)
+					unmounted=$(udisksctl unmount -b "/dev/${1}") \
+						&& notify "$unmounted" \
+						|| notify "Operation failed" 3
+					;;
+			esac
+			;;
+		no)
+			interactive
+			;;
+		*)
+			exit 5
+			;;
+	esac
+}
+# }}}
 # interactive {{{
-function interactive() {
+interactive() {
 	i=$( {
 			printf '%s\n' \
 				"Help" "Mount" "Unmount" "Eject"
-#			printf '%s' \
-#				"-----" \
-#				"-----" \
-#				"-----" \
-#				"-----" \
-#				"-----" \
-#				"-----" \
-#				"-----" \
-#				"-----" \
-#				"-----" \
-#				"-----" \
-#				"-----" \
-#				"-----" \
-#				"-----" \
-#				"-----" \
-#				"-----"
-			echo
-			echo
-
+			printf '%s\n' "${sep}"
 			list
 		} | $dmenu -p ${script_name})
 
 	stat_check "$i"
 
 	case $i in
-		Mount) mount ;;
-		Unmount) unmount ;;
-		Eject) pwr_off ;;
-		Help) help g ;;
-		*) exit 1 ;;
+		[Mm]ount) mount ;;
+		[Uu]nmount) unmount ;;
+		[Ee]ject) pwr_off ;;
+		[Hh]elp) help g ;;
+		*) onair "${i}" ;;
 	esac
 }
 # }}}
