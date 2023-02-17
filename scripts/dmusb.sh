@@ -180,19 +180,19 @@ onair() {
 
 	case ${doublecheck} in
 		yes)
-			case airdo in
+			case ${airdo} in
 				eject)
-					power_offed=$(udisksctl power-off -b "/dev/${1}") \
+					power_offed=$(udisksctl power-off -b "/dev/${x}") \
 						&& notify "${power_offed}" \
 						|| notify "Operation failed"
 					;;
 				mount)
-					mounted=$(udisksctl mount -b "/dev/${1}") \
+					mounted=$(udisksctl mount -b "/dev/${x}") \
 						&& notify "$mounted" \
 						|| notify "Operation failed"
 					;;
 				unmount)
-					unmounted=$(udisksctl unmount -b "/dev/${1}") \
+					unmounted=$(udisksctl unmount -b "/dev/${x}") \
 						&& notify "$unmounted" \
 						|| notify "Operation failed" 3
 					;;
