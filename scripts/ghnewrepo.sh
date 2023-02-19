@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #   ____     _
 #  |  _ \   | |
 #  | |_) |  | |
@@ -7,13 +7,13 @@
 #
 set -e
 
-if [[ -z "$1" ]]; then
+if [ -z "$1" ]; then
 cat << _EOF_
 Create new repo on github.com/hossein-lap
 
 You need to specify a name as an argument.
 _EOF_
-elif [[ -d "$1" ]]; then
+elif [ -d "$1" ]; then
 	echo "The repo already exists!"
 else
 	mkdir "$1"

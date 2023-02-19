@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #  _  _
 # | || |
 # | __ |
@@ -8,9 +8,9 @@
 
 pcount=$(ps aux | grep '\<ffmpeg\>' | grep "${HOME}/screen/record" -c)
 
-if [[ "$pcount" -eq 1 ]]; then
+if [ "$pcount" -eq 1 ]; then
 	printf ' [recording]'
-elif [[ "$pcount" -gt 1 ]]; then
+elif [ "$pcount" -gt 1 ]; then
 	printf " [recording(${pcount})]"
 else
 	#dunstify -u normal "simple test is here"

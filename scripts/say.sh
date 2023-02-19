@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/bin/sh
 
 #> cowsay-list.txt
 #
 #for i in `cat cowsay-f.sh`; do
 	#echo This is $i | cowsay -f $i
 	#read -p "Liked $i? " tmpvar
-	#if [[ $tmpvar == 'y' ]]; then
+	#if [ $tmpvar = 'y' ]; then
 		#echo $i >> cowsay-list.txt
 	#fi
 	#clear

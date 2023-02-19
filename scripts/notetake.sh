@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/bin/sh
 set -e
 
 dircheck() {
-	[[ ! -d "${1}" ]] && mkdir -p "${1}"
+	[ ! -d "${1}" ] && mkdir -p "${1}"
 }
 
 ## Markdown {{{

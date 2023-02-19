@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 set -e
 
 # sent notification {{{
@@ -58,7 +58,7 @@ groff_build "$1"
 ## usging R
 #r_build "$1"
 
-if [[ -z $? ]]; then
+if [ -z $? ]; then
 	notify "Note build successfully"
 	exit 0
 fi

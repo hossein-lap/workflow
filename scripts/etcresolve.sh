@@ -4,7 +4,7 @@
 # |_||_|___|   P
 #              
 
-#!/bin/bash
+#!/bin/sh
 
 case $1 in
 s)

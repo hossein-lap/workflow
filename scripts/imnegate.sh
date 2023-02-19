@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #  _  _ ___
 # | || | __|   H
 # | __ | _|    A
@@ -20,7 +20,7 @@ do
 
 	convert $i -channel RGB -negate $i
 
-	if [[ "$?" -eq '0' ]]; then
+	if [ "$?" -eq '0' ]; then
 		echo -e "${GRN}[done]${RST}"
 	else
 		echo -e "${RED}[error]${RST}"

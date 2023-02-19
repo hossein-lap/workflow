@@ -76,5 +76,5 @@ case ${choice} in
 		exit 1
 	;;
 esac
-notify "Screenshot taken."
+notify "Screenshot taken. ${fullpath}"
 # }}}
