@@ -1,0 +1,257 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{main}
+\RequirePackage{titlesec,fontspec,fancyvrb,framed,xcolor,booktabs,ragged2e,ptext}
+
+\usepackage{xepersian}
+
+%% Render <200c> for pandoc before 2.19 relase
+\let\textormath=\TextOrMath
+
+\usefonttheme{serif}
+
+%% custom section
+\titleformat{\section}
+    {\LARGE \secfont \bfseries}
+    {\thesection.}
+    {.03\linewidth}
+    {}%
+    [{\titlerule[0pt]}]
+%% custom subsection
+\titleformat{\subsection}
+    {\Large \secfont \bfseries}
+    {\thesubsection.}
+    {.03\linewidth}
+    {}%
+    [{\titlerule[0pt]}]
+%% custom subsubsection
+\titleformat{\subsubsection}
+    {\large \secfont \bfseries}
+    {\thesubsubsection.}
+    {.03\linewidth}
+    {}%
+    [{\titlerule[0pt]}]
+
+%%% headings position
+%\titlespacing{\section}{0mm}{5mm}{5mm}
+%\titlespacing{\subsection}{0mm}{5mm}{5mm}
+%\titlespacing{\subsubsection}{0pt}{5mm}{5mm}
+%
+%%% every h1 at a new page
+%%\let\oldsection\section
+%%\renewcommand\section{\newpage\oldsection}
+%
+%% default fonts:
+\setlatintextfont{Libertinus Serif}
+%\setlatinmathfont{Libertinus Sans}
+\setlatinsansfont{Source Sans Pro}
+\setlatinmonofont{Fira Mono}
+
+%% add line number to code-blocks
+%\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},numbers=left}
+
+%% quotation
+\renewenvironment{quote}{%
+    \begin{center}\begin{tabular}{|p{.9\textwidth}}%
+    \sffamily\itshape%
+} {\end{tabular}\end{center}}
+
+\definecolor{UBCblue}{rgb}{0.04706, 0.13725, 0.26667} % UBC Blue (primary)
+%{\begin{leftbar}\begin{quotation}\sffamily}%
+%{\end{quotation}\end{leftbar}}
+
+\newcommand\defperfont{Vazir}
+\settextfont[Scale=1.1]{\defperfont}
+\setdigitfont[Scale=1.1]{\defperfont}
+\defpersianfont\secfont{HMFTitr}
+\defpersianfont\qfont{HMFNazli}
+
+\setbeamerfont{frametitle}{series=\secfont}
+\setbeamerfont{blocktitle}{series=\qfont}
+
+\usetheme{Madrid}
+%\usetheme{Copenhagen}
+%\usetheme{Warsaw}
+
+\setbeamertemplate{title page}[default][colsep=-4bp,rounded=true]
+%\setbeamertemplate{blocks}[rounded]
+
+\definecolor{theorange}{HTML}{dd5500}
+\definecolor{thepurple}{HTML}{2d0922}
+\definecolor{thetest}{HTML}{990066}
+
+\usecolortheme[named=thetest]{structure}
+\setbeamercolor*{palette primary}{use=structure,fg=white,bg=theorange}
+\setbeamercolor*{palette quaternary}{fg=white,bg=thepurple}
+
+%\setbeamertemplate{background} 
+%{
+%%    \includegraphics[height=\paperheight]{~/pic/ubuntu/ubuntu-18.04-default-wallpaper-2.jpg}
+%    \includegraphics[width=\paperwidth,height=\paperheight]{/home/hos/.config/pandoc/background/CBEditz.com-1.jpg}
+%%    \includegraphics[height=\paperheight]{ubuntu-g.jpg}
+%}
+
+\linespread{1.5}
+
+% persian fixes {{{
+\setbeamertemplate{enumerate items}[circle]
+%\setbeamertemplate{itemize item}{$\bullet$}
+\setbeamertemplate{itemize subitem}{\tiny$\blacktriangleleft$}
+\setbeamertemplate{itemize subsubitem}{$\ast$}
+
+\apptocmd{\frame}{}{\justifying}{} 
+\addtobeamertemplate{block begin}{}{\justifying}
+\addtobeamertemplate{block example begin}{}{\justifying}
+\addtobeamertemplate{block alerted begin}{}{\justifying}
+
+\makeatletter
+%\expandafter\let\csname beamer@@tmpop@itemize item@default\endcsname\relax
+%\expandafter\let\csname beamer@@tmpop@itemize subitem@default\endcsname\relax
+%\expandafter\let\csname beamer@@tmpop@itemize subsubitem@default\endcsname\relax
+%
+%\defbeamertemplate*{itemize item}{default}{\scriptsize\raise1.25pt\hbox{\donotcoloroutermaths$\blacktriangleleft$}}
+%\defbeamertemplate*{itemize subitem}{default}{\tiny\raise1.5pt\hbox{\donotcoloroutermaths$\blacktriangleleft$}}
+%\defbeamertemplate*{itemize subsubitem}{default}{\tiny\raise1.5pt\hbox{\donotcoloroutermaths$\blacktriangleleft$}}
+
+\bidi@patchcmd{\@listi}{\leftmargin}{\rightmargin}{}{}
+\let\@listI\@listi
+\bidi@patchcmd{\@listii}{\leftmargin}{\rightmargin}{}{}
+\bidi@patchcmd{\@listiii}{\leftmargin}{\rightmargin}{}{}
+\bidi@patchcmd{\beamer@enum@}{\raggedright}{\justifying}{}{}
+\bidi@patchcmd{\@@description}{\raggedright}{\justifying}{}{}
+\bidi@patchcmd{\@@description}{\leftmargin}{\rightmargin}{}{}
+
+\renewcommand{\itemize}[1][]{%
+  \beamer@ifempty{#1}{}{\def\beamer@defaultospec{#1}}%
+  \ifnum \@itemdepth >2\relax\@toodeep\else
+    \advance\@itemdepth\@ne
+    \beamer@computepref\@itemdepth% sets \beameritemnestingprefix
+    \usebeamerfont{itemize/enumerate \beameritemnestingprefix body}%
+    \usebeamercolor[fg]{itemize/enumerate \beameritemnestingprefix body}%
+    \usebeamertemplate{itemize/enumerate \beameritemnestingprefix body begin}%
+    \list
+      {\usebeamertemplate{itemize \beameritemnestingprefix item}}
+      {\def\makelabel##1{%
+          {%
+            \hss\llap{{%
+                \usebeamerfont*{itemize \beameritemnestingprefix item}%
+                \usebeamercolor[fg]{itemize \beameritemnestingprefix item}##1}}%
+          }%
+        }%
+      }
+  \fi%
+  \beamer@cramped%
+ \raggedleft%
+\justifying
+  \beamer@firstlineitemizeunskip%
+}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%اصلاح نوار پایین
+%\makeatletter
+%\setbeamertemplate{footline}
+%{
+%\leavevmode%
+%\hbox{%
+%\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{section in head/foot}%
+%\usebeamerfont{author in head/foot}
+%\insertshortauthor
+%\end{beamercolorbox}%
+%\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{section in head/foot}%
+%\usebeamerfont{title in head/foot}\insertshorttitle
+%\end{beamercolorbox}%
+%\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{section in head/foot}%
+%%\usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+%\insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+%\end{beamercolorbox}}%
+%\vskip0pt%
+%}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%اصلاح فهرست مطالب
+\makeatletter
+\expandafter\let\csname beamer@@tmpop@section in toc@default\endcsname\relax
+\expandafter\let\csname beamer@@tmpop@subsection in toc@default\endcsname\relax
+\expandafter\let\csname beamer@@tmpop@subsubsection in toc@default\endcsname\relax
+\defbeamertemplate*{section in toc}{default}
+{\leavevmode\rightskip=1.5cm\inserttocsection\par}
+\defbeamertemplate*{subsection in toc}{default}
+{\leavevmode\rightskip=1.5em\inserttocsubsection\par}
+
+\defbeamertemplate*{subsubsection in toc}{default}
+{\leavevmode\normalsize\usebeamerfont{subsection in toc}\rightskip=3em%
+  \usebeamerfont{subsubsection in toc}\inserttocsubsubsection\par}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%اصلاح زیرنویس
+\makeatletter
+\bidi@undef\beamer@@tmpop@footnote@default
+
+\defbeamertemplate*{footnote}{default}
+{
+  \parindent 1em\noindent%
+  \raggedleft
+  \hbox to 1.8em{\hfil\insertfootnotemark}\insertfootnotetext\par%
+}
+
+\defbeamertemplate*{LTRfootnote}{default}
+{
+  \parindent 1em\noindent%
+  \raggedright
+  \hbox to 1.8em{\hfil\insertfootnotemark}\latinfont\insertfootnotetext\par%
+}
+\footdir@temp\footdir@ORG@bidi@beamer@framefootnotetext\beamer@framefootnotetext{R}
+\let\@footnotetext=\beamer@framefootnotetext
+\let\@RTLfootnotetext\@footnotetext
+
+\def\@makeLTRfntext#1{%
+  \def\insertfootnotetext{#1}%
+  \def\insertfootnotemark{\@makefnmark}%
+  \usebeamertemplate***{LTRfootnote}}
+
+\newcommand<>\beamer@frameLTRfootnotetext[1]{%
+  \global\setbox\beamer@footins\vbox{\@RTLfalse%
+    \hsize\framewidth
+    \textwidth\hsize
+    \columnwidth\hsize
+    \unvbox\beamer@footins
+    \reset@font\footnotesize
+    \@parboxrestore
+    \protected@edef\@currentlabel
+         {\csname p@footnote\endcsname\@thefnmark}%
+    \color@begingroup
+      \uncover#2{\@makeLTRfntext{%
+        \rule\z@\footnotesep\ignorespaces#1\@finalstrut\strutbox}}%
+    \color@endgroup}}
+
+
+\footdir@temp\footdir@ORG@bidi@beamer@frameLTRfootnotetext\beamer@frameLTRfootnotetext{L}
+\let\@LTRfootnotetext=\beamer@frameLTRfootnotetext
+
+\makeatother
+
+\setbeamertemplate{title graphic}{\vspace*{.3cm}
+  \inserttitlegraphic%
+  \par%
+\vspace*{-1.3cm}
+}
+\setbeamertemplate{title}{
+  \inserttitle%
+  \par%
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamertemplate{blocks}[rounded][shadow=false]
+%\setbeamercolor{block title alerted}{bg=red!30,fg=black}
+%\setbeamercolor{block body alerted}{bg=red!5,fg=black}
+%\setbeamercolor{block title example}{bg=green!30,fg=black}
+%\setbeamercolor{block body example}{bg=green!5,fg=black}
+%\setbeamercolor{block title}{bg=blue!30,fg=black}
+%\setbeamercolor{block body}{bg=blue!5,fg=black}
+
+%% Simple verbatim
+\let\oldverbatim=\verbatim
+\let\oldendverbatim=\endverbatim
+\renewenvironment{verbatim}%
+    {\begin{latin}\oldverbatim\noindent}%
+    {\oldendverbatim \end{latin}}
+
+% }}}

@@ -1,0 +1,36 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{main}
+\RequirePackage{fontspec,fancyvrb,titlesec,framed,xcolor}
+
+%% default fonts:
+\setmainfont{Libertinus Serif}
+%\setmathfont{Libertinus Sans}
+\setsansfont{Source Sans Pro}
+\setmonofont{Fira Mono}
+
+%% add line number to code-blocks
+%\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},numbers=left}
+
+%%% quotation
+%\renewenvironment{quote}{%
+%    \begin{center}\begin{tabular}{|p{.9\textwidth}}%
+%    \sffamily\itshape%
+%} {\end{tabular}\end{center}}
+
+%{\begin{leftbar}\begin{quotation}\sffamily}%
+%{\end{quotation}\end{leftbar}}
+
+%\usetheme{Warsaw}
+%\usetheme{Copenhagen}
+\usetheme{Madrid}
+%\usetheme{Berlin}
+
+\definecolor{theorange}{HTML}{dd5500}
+\definecolor{thepurple}{HTML}{2d0922}
+\definecolor{thetest}{HTML}{990066}
+
+\usecolortheme[named=thetest]{structure}
+\setbeamercolor*{palette primary}{use=structure,fg=white,bg=theorange}
+\setbeamercolor*{palette quaternary}{fg=white,bg=thepurple}
+
+\setbeamerfont{frametitle}{series=\bfseries}

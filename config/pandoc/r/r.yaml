@@ -1,0 +1,39 @@
+metadata:
+  keywords:
+    - 'R Markdown Document'
+
+verbosity: WARNING # INFO
+top-level-division: section # part, chapter
+toc: false
+number-sections: true
+
+pdf-engine: xelatex
+#highlight-style: /home/hos/.config/pandoc/highlight/monochrome.theme
+#highlight-style: /home/hos/.config/pandoc/highlight/solarized-light.theme
+
+variables:
+  geometry: margin=1in
+
+output:
+    pdf_document:
+        latex_engine: xelatex
+        toc: false
+        number_sections: true
+        fig_caption: true
+        keep_tex: true
+#        highlight: monochrome
+        highlight: /home/hos/.config/pandoc/highlight/solarized-light.theme
+    ## colorschemes -> tango, kate, monochrome, haddock
+    #word_document:
+        #toc: false
+    html_document:
+        toc: true
+        toc_float:
+            collapsed: true
+            smooth_scroll: true
+        highlight: /home/hos/.config/pandoc/highlight/solarized-light.theme
+#        highlight: tango
+        theme: lumen
+        ## theme: lumen, darkly[zenburn]
+header-includes:
+  - \usepackage{/home/hos/.config/pandoc/r/main}

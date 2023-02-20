@@ -1,0 +1,52 @@
+metadata:
+  keywords:
+    - 'English Groff Document'
+
+verbosity: WARNING # INFO
+#top-level-division: section # part, chapter
+toc: false
+number-sections: true
+
+pdf-engine: pdfroff
+pdf-engine-opts:
+    - "-U"
+highlight-style: /home/hos/.config/pandoc/highlight/monochrome.theme
+template: /home/hos/.config/pandoc/groff/template.ms
+
+citeproc: true
+standalone: true
+variables:
+    no-tasklist-filter: true
+    papersize: a4
+    # fontfamily: Minion
+    ## Optional heading-fontfam* used by fixes-ms filter; has no effect without
+    ## fontfamily also being set.
+    ## Note that it will also be used in the table of contents!
+    # heading-fontfam: Myriad
+    # heading-fontfam-max-level: 6
+    hyphenate: true
+    text-width: 15c
+    margin-left: 3c
+    margin-top: 2.5c
+    margin-bottom: 2.5c
+    paragraph-spacing: 0.8v
+    # Font size difference between heading levels
+    psincr: 0.12v
+    # Heading level above which point size does not change
+    growps: 4
+    # NOTE: Assumes Icelandic - will need a different defaults file for
+    # other languages
+#    toc-title: "Efnisyfirlit"
+#    abstract-title: "ÚTDRÁTTUR"
+##    icelandic-dates: true  # Affects MONTHx variables in template
+#    indent: 2m
+    fontfamily: T
+    header-includes:
+#        - '.als SN SN-DOT'
+#        - '.als SN-STYLE SN-DOT'
+#        - '.char \[u2610] \f[CR]\[u2610]\f[]'
+#        - '.char \[u2612] \f[CR]\[u2611]\f[]'
+#        - '.char \[u2610] \s[+3]\[sq]\s[0]'
+#        - '.char \[u2612] \[OK]'
+#filters:
+#    - /home/hos/.config/pandoc/groff/image-ms.lua

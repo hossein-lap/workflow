@@ -47,8 +47,8 @@
 %% default fonts:
 \setmainfont{Libertinus Serif}
 \setmathfont{Libertinus Sans}
-\setsansfont{Fira Sans}
-\setmonofont{Fira Mono Regular}
+\setsansfont{Source Sans Pro}
+\setmonofont{Fira Mono}
 
 %% Persian fonts
 %%% Special type
@@ -62,14 +62,16 @@
 %%% Sans-serif type
 %\defpersianfont\yekan{XM Yekan}
 
-\settextfont[Scale=1.1]{HMFNazli}
-\setdigitfont[Scale=1.1]{HMFNazli}
-\defpersianfont\secfont{HMXKayhan}
+% some fonts: HMFNazli HMXKayhan Yas Vazir
+\newcommand\defperfont{Yas}
+\settextfont[Scale=1.1]{\defperfont}
+\setdigitfont[Scale=1.1]{\defperfont}
+\defpersianfont\secfont{\defperfont}
 \defpersianfont\qfont{Vazir}
 
 \setlatintextfont{Libertinus Serif}
-\setlatinsansfont{Fira Sans}
-\setlatinmonofont{Fira Mono Regular}
+\setlatinsansfont{Source Sans Pro}
+\setlatinmonofont{Fira Mono}
 %\setlatinmonofont{Inconsolata}
 
 %% add line number to code-blocks
@@ -91,8 +93,8 @@
 
 %% quotation
 \renewenvironment{quote}%
-	{\begin{quotation}\qfont«\hspace{-0.5mm}}%
-	{\hspace{-0.5mm}»\end{quotation}}
+	{\begin{quotation}\noindent\qfont\hspace{-0.5mm}}%
+	{\hspace{-0.5mm}\end{quotation}}
 %    {\begin{center}\begin{tabular}{|p{.8\textwidth}}\qfont}%
 %    {\end{tabular}\end{center}}
 

@@ -1,0 +1,146 @@
+.\" **** Custom macro definitions *********************************
+.\" * Super/subscript
+.\" (https://lists.gnu.org/archive/html/groff/2012-07/msg00046.html)
+.ds { \v'-0.3m'\\s[\\n[.s]*9u/12u]
+.ds } \s0\v'0.3m'
+.ds < \v'0.3m'\s[\\n[.s]*9u/12u]
+.ds > \s0\v'-0.3m'
+.\" * Horizontal line
+.de HLINE
+.LP
+.ce
+\l'30'
+..
+.\" *** Tasklist symbols (unchecked and crossed box, respecively) ***
+.\".char \[u2610] \f[FSerR]\[u2610]\f[]
+.\".char \[u2612] \f[FSerR]\[u2611]\f[]
+.char \[u2610] \s[+3]\[sq]\s[0]
+.char \[u2612] \[OK]
+$if(highlighting-macros)$
+.\" * Syntax highlighting macros
+$highlighting-macros$
+$endif$
+.\" **** Settings *************************************************
+.\" text width
+.nr LL $if(text-width)$$text-width$$else$16c$endif$
+.nr LLORIG \n[LL]
+.\" left margin (Note: right margin is implicit)
+.nr PO $if(margin-left)$$margin-left$$else$2.5c$endif$
+.nr POORIG \n[PO]
+.\" top margin
+.nr HM $if(margin-top)$$margin-top$$else$2.5c$endif$
+.\" bottom margin
+.nr FM $if(margin-bottom)$$margin-bottom$$else$2.5c$endif$
+.\" header/footer width
+.nr LT \n[LL]
+.\" point size
+.nr PS $if(pointsize)$$pointsize$$else$11p$endif$
+.\" line height
+.nr VS $if(lineheight)$$lineheight$$else$14p$endif$
+.\" font family: A, BM, H, HN, N, P, T, ZCM
+.fam $if(fontfamily)$$fontfamily$$else$P$endif$
+.\" paragraph indent
+.nr PI $if(indent)$$indent$$else$0m$endif$
+.\" interparagraph space
+.nr PD $if(paragraph-spacing)$$paragraph-spacing$$else$0.4v$endif$
+.\" footnote width
+.nr FL \n[LL]
+.\" footnote point size
+.nr FPS (\n[PS] - 2000)
+$if(papersize)$
+.\" paper size
+.ds paper $papersize$
+$endif$
+$if(toc-title)$
+.ds TOC $toc-title$
+$endif$
+$if(abstract-title)$
+.ds ABSTRACT $abstract-title$
+$endif$
+.\" color used for strikeout
+.defcolor strikecolor rgb 0.7 0.7 0.7
+.\" color for links (rgb)
+.\" .ds PDFHREF.COLOUR   0.35 0.00 0.60
+.ds PDFHREF.COLOUR   0 0 0
+.\" border for links (default none)
+.ds PDFHREF.BORDER   0 0 0
+.\" point size difference between heading levels
+.nr PSINCR $if(psincr)$$psincr$$else$2p$endif$
+.\" heading level above which point size no longer changes
+.nr GROWPS $if(growps)$$growps$$else$4$endif$
+.\" comment these out if you want a dot after section numbers:
+.als SN SN-DOT
+.als SN-STYLE SN-DOT
+.\" page numbers in footer, centered
+.ds CH
+.ds CF %
+.\" pdf outline fold level
+.nr PDFOUTLINE.FOLDLEVEL 3
+.\" start out in outline view
+.pdfview /PageMode /UseOutlines
+.\" ***************************************************************
+.\" PDF metadata
+.pdfinfo /Title "$title-meta$"
+.pdfinfo /Author "$author-meta$"
+$if(cover-page)$
+.RP$if(suppress-first-page-header)$ no$endif$
+$if(cover-page-no-date)$
+.ND ""
+$endif$
+$endif$
+.\" Adjusting can be l, r, c, b|n - meaning left, right, center, justified
+$if(adjusting)$
+.ad $adjusting$
+$endif$
+$if(hyphenate)$
+.hy
+$else$
+.nh
+$endif$
+$if(has-inline-math)$
+.EQ
+delim @@
+.EN
+$endif$
+$for(header-includes)$
+$header-includes$
+$endfor$
+$if(title)$
+.TL
+.ps +4
+$title$
+$endif$
+$for(author)$
+.AU
+.ps +2
+$author$
+$endfor$
+$if(date)$
+.AU
+.ps +2
+.sp 0.5
+.ft R
+$date$
+$endif$
+$if(abstract)$
+.AB
+$abstract$
+.AE
+$endif$
+.\" 1 column (use .2C for two column)
+.1C
+$for(include-before)$
+$include-before$
+$endfor$
+$body$
+$if(toc)$
+.\" NOTE: Fix for strange problem with Roman page numbering of previous page,
+.\" but obviously does not work if the TOC takes up more than one page.
+.bp
+.ds CF i
+.TC
+$endif$
+$for(include-after)$
+$include-after$
+$endfor$
+.pdfsync
