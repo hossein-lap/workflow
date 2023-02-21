@@ -67,17 +67,15 @@ static const char unknown_str[] = "♦";
  * wifi_perc           WiFi signal in percent          interface name (wlan0)
  */
 static const struct arg args[] = {
-	/* function format          argument */
-	{ run_command,	" %s",	"bash "SRCPATH"/sls-ffmpeg.sh"	},
-//	{ battery_perc,	" %s",		"BAT1"			},
-	{ run_command,	" %s",	"bash "SRCPATH"/sls-battery.sh"	},
-	{ cpu_perc,	" %s"					},
-	{ ram_perc,	" %s"					},
-	{ wifi_perc,	" %s,",		"wlp45s0"		},
-	{ wifi_perc,	"%s,",		"wlan0"			},
-	{ run_command,	"%s",	"bash "SRCPATH"/sls-ping.sh"	},
-	{ keymap,	" %s"					},
-	{ run_command,	" %s",		"jdate '+%m-%d'"	},
-	{ datetime,	" %s",		"%y-%m-%d"		},
-	{ datetime,	" %s",		"%H:%M:%S"			},
+	/* function	 format		argument			*/
+	{ run_command,	" %s",		"sh "SRCPATH"/slsffmpeg.sh"	},
+//	{ battery_perc,	" %s",		"BAT1"			       	},
+	{ run_command,	"%s",		"sh "SRCPATH"/slsbattery.sh"	},
+	{ run_command,	"%s",		"sh "SRCPATH"/slsping.sh"	},
+//	{ run_command,	"%s",		"sh "SRCPATH"/slsfrees.sh"	},
+//	{ cpu_perc,	" c:%s"						},
+//	{ wifi_perc,	" %s,",		"wlp45s0"			},
+//	{ wifi_perc,	"%s,",		"wlan0"				},
+	{ keymap,	" %s"						},
+	{ run_command,	"%s",		"sh "SRCPATH"/slsdate.sh"	},
 };
