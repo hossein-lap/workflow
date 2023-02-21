@@ -3,10 +3,10 @@
 
 static int topbar = 1;                      /* -b  option; if 0, dmenu appears at bottom     */
 static int centered = 0;                    /* -c option; centers dmenu on screen */
-static int min_width = 500;                    /* minimum width when centered */
+static int min_width = 600;                    /* minimum width when centered */
 /* -fn option overrides fonts[0]; default X11 font or font set */
 static const char *fonts[] = {
-	"FiraCode Nerd Font:size=14"
+	"FiraCode Nerd Font:size=15"
 };
 static const char *prompt      = NULL;      /* -p  option; prompt to the left of input field */
 
