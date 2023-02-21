@@ -20,3 +20,4 @@
 config/bash/history/
 config/dwm/log
 config/emacs/eln-cache/
+nohup.out
