@@ -26,6 +26,7 @@ set period 1
 set hiddenfiles ".*"
 set cleaner '~/.config/lf/cleaner'
 set previewer '~/.config/lf/scope'
+#set sortby ext
 
 # cmds/functions
 cmd open ${{
