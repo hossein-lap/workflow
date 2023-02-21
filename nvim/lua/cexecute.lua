@@ -46,7 +46,7 @@ end
 -- }}}
 -- }}}
 
-Wind_style = 'f'
+Wind_style = 'h'
 
 -- Toggle Wind_style {{{
 function Wind_style_Toggle(i)
@@ -60,13 +60,13 @@ function Wind_style_Toggle(i)
 end
 
 map('n', '<leader>vs1', ":lua Wind_style_Toggle(1)<CR>",
-	{ silent = true, desc = "Horizontal Window" })
+	{ silent = true, desc = "term › horizontal split" })
 
 map('n', '<leader>vs2', ":lua Wind_style_Toggle(2)<CR>",
-	{ silent = true, desc = "Vertical Window" })
+	{ silent = true, desc = "term › vertical split" })
 
 map('n', '<leader>vs3', ":lua Wind_style_Toggle(3)<CR>",
-	{ silent = true, desc = "Float Window" })
+	{ silent = true, desc = "term › float Window" })
 -- }}}
 -- Float Term {{{
 function fTerminal(wrapand)
@@ -90,25 +90,34 @@ function fTerminal(wrapand)
 	local col = math.ceil((width - win_width) / 2)
 
 	-- set some options
-	local opts = {
-		noautocmd = true,
-		style = "minimal",
-		border = {
---			-- double
---			{ "╔", 'Normal' },
---			{ "═", 'Normal' },
---			{ "╗", 'Normal' },
---			{ "║", 'Normal' },
---			{ "╝", 'Normal' },
---			{ "═", 'Normal' },
---			{ "╚", 'Normal' },
---			{ "║", 'Normal' },
---			-- acii
---			{ "/", 'Normal' },
---			{ "-", 'Normal' },
---			{ "\\", 'Normal' },
---			{ "|", 'Normal' },
-			-- rounded
+	local borderstyle = {
+		ascii = {
+			{ "/", 'Normal' },
+			{ "-", 'Normal' },
+			{ "\\", 'Normal' },
+			{ "|", 'Normal' },
+		},
+		single = {
+			{ "┌", 'Normal' },
+			{ "─", 'Normal' },
+			{ "┐", 'Normal' },
+			{ "│", 'Normal' },
+			{ "┘", 'Normal' },
+			{ "─", 'Normal' },
+			{ "└", 'Normal' },
+			{ "│", 'Normal' },
+		},
+		double = {
+			{ "╔", 'Normal' },
+			{ "═", 'Normal' },
+			{ "╗", 'Normal' },
+			{ "║", 'Normal' },
+			{ "╝", 'Normal' },
+			{ "═", 'Normal' },
+			{ "╚", 'Normal' },
+			{ "║", 'Normal' },
+		},
+		round = {
 			{ "╭", 'Normal' },
 			{ "─", 'Normal' },
 			{ "╮", 'Normal' },
@@ -118,7 +127,12 @@ function fTerminal(wrapand)
 			{ "╰", 'Normal' },
 			{ "│", 'Normal' },
 		},
---		border = "double",
+	}
+
+	local opts = {
+		noautocmd = true,
+		style = "minimal",
+		border = borderstyle['round'],
 		relative = "editor",
 		width = win_width,
 		height = win_height,
@@ -178,24 +192,47 @@ end
 --au('set ls=2', '*', 'TermLeave')
 
 -- swtich pandoc configs {{{
-pandoc_list = { 'dracula', 'solarized', 'english', 'monochrome' }
-pandoc_defaults = pandoc_list[1]
+	-- article
+	pandoc_article_list = {
+		'dracula', 'solarized', 'english',
+		'monochrome', 'persian'
+	}
 
-function pandoc_switch(list)
-	pandoc_defaults = list
-end
+	pandoc_article_default = pandoc_article_list[1]
+	function pandoc_article_switch(item)
+		pandoc_article_default = pandoc_article_list[item]
+	end
 
-map("n", "<leader>vd1", ":lua pandoc_switch('dracula')<CR>",
-		{ desc = "Pandoc's `dracula` config" })
+	map("n", "<leader>va1", ":lua pandoc_article_switch(1)<CR>",
+			{ desc = "Pandoc › article → —dracula—" })
 
-map("n", "<leader>vd2", ":lua pandoc_switch('solarized')<CR>",
-		{ desc = "Pandoc's `solarized` config" })
+	map("n", "<leader>va2", ":lua pandoc_article_switch(2)<CR>",
+			{ desc = "Pandoc › article —solarized—" })
 
-map("n", "<leader>vd3", ":lua pandoc_switch('english')<CR>",
-		{ desc = "Pandoc's `english` config" })
+	map("n", "<leader>va3", ":lua pandoc_article_switch(3)<CR>",
+			{ desc = "Pandoc › article —english—" })
 
-map("n", "<leader>vd4", ":lua pandoc_switch('monochrome')<CR>",
-		{ desc = "Pandoc's `monochrome` config" })
+	map("n", "<leader>va4", ":lua pandoc_article_switch(4)<CR>",
+			{ desc = "Pandoc › article —monochrome—" })
+
+	map("n", "<leader>va5", ":lua pandoc_article_switch(5)<CR>",
+			{ desc = "Pandoc › article —persian— " })
+
+	-- beamer
+	pandoc_beamer_list = {
+		'english', 'persian'
+	}
+
+	pandoc_beamer_default = pandoc_beamer_list[1]
+	function pandoc_beamer_switch(item)
+		pandoc_beamer_default = pandoc_beamer_list[item]
+	end
+
+	map("n", "<leader>vb1", ":lua pandoc_beamer_switch(1)<CR>",
+			{ desc = "Pandoc › beamer —english— " })
+
+	map("n", "<leader>vb2", ":lua pandoc_beamer_switch(2)<CR>",
+			{ desc = "Pandoc › beamer —persian—" })
 -- }}}
 
 -- Trigger functions
@@ -217,6 +254,7 @@ function TriggerRun(file_type)
 		csh = 'csh ' .. src_name,
 		zsh = 'zsh ' .. src_name,
 		sent = 'sent ' .. src_name,
+		text = 'sent ' .. src_name,
 		markdown = 'pandoc  ' .. pandoc_path .. src_name .. ' -o ' .. out_name .. '.pdf',
 		rmd = [[Rscript -e "rmarkdown::render(input = ']] .. src_name .. [[', output_format = \"md_document\")"]],
 	}
@@ -233,7 +271,7 @@ end
 function TriggerCompile(file_type)
 	local src_name = expand('%')
 	local out_name = expand('%:r')
-	local pandoc_path = ' ~/.config/pandoc/' .. pandoc_defaults .. '/' .. pandoc_defaults .. '.yaml '
+	local pandoc_path = ' ~/.config/pandoc/' .. pandoc_article_default .. '/' .. pandoc_article_default .. '.yaml '
 	local r_cmd_s = [[Rscript -e "rmarkdown::render(input = ']]
 	local r_cmd_e = [[', output_format = \"all\", params = \" ]] .. pandoc_path .. [[ \" )"]]
 
@@ -242,9 +280,11 @@ function TriggerCompile(file_type)
 		cpp = 'g++ -Wall ' .. src_name .. ' -o ' .. out_name,
 		rust = 'rustc ' .. src_name,
 		go = 'go build ' .. src_name,
+		sh = 'sh ' .. src_name,
 		nroff = 'tbl '.. src_name .. ' | groff -mspdf -keGs -Tpdf > ' .. out_name .. '.pdf ',
 		tex = 'xelatex -shell-escape ' .. src_name,
-		sent = 'sent -f LibertinusSerif ' .. src_name,
+		sent = 'sent -i ' .. src_name,
+		text = 'sent -i ' .. src_name,
 		markdown = 'pandoc --defaults ' .. pandoc_path .. src_name .. ' -o ' .. out_name .. '.pdf',
 		rmd = r_cmd_s .. src_name .. r_cmd_e,
 	}
@@ -263,12 +303,13 @@ function TriggerExtra(file_type)
 	local out_name = expand('%:r')
 	local pdf_viewer = 'nohup zathura '
 	local log_handler =  '.pdf & 2>&1 > /dev/null'
-	local pandoc_path = '--defaults ~/.config/pandoc/persian/persian.yaml '
+	local pandoc_path = ' -t beamer -V classoption:aspectratio=169 --defaults ~/.config/pandoc/beamer/' .. pandoc_beamer_default  .. '.yaml '
 
 	local extra = {
 		rmd = pdf_viewer .. out_name .. log_handler,
 		nroff = pdf_viewer .. out_name ..log_handler,
-		sent = 'sent -f SourceSansPro ' .. src_name,
+		sent = "sent -f 'Source Sans Pro' " .. src_name,
+		text = "sent -f 'Source Sans Pro' " .. src_name,
 		markdown = 'pandoc ' .. pandoc_path .. src_name .. ' -o ' .. out_name .. '.pdf'
 	}
 
@@ -281,43 +322,50 @@ function TriggerExtra(file_type)
 end
 -- }}}
 
-RunnerCMD = ':lua TriggerRun(vim.bo.filetype)<CR>'
-CompilerCMD = ':lua TriggerCompile(vim.bo.filetype)<CR>'
-ExtraCMD = ':lua TriggerExtra(vim.bo.filetype)<CR>'
-
 -- Keymaps {{{
 ---- Compile/Run/Extra
-map('n', '<leader>fe', RunnerCMD, { silent = true, desc = 'cmd1: Run file' })
-map('n', '<leader>fw', CompilerCMD, { silent = true, desc = 'cmd2: Compile file' })
-map('n', '<leader>fq', ExtraCMD, { silent = true, desc = 'cmd3: Extra thing' })
+map('n', '<leader>fe',  ':lua TriggerRun(vim.bo.filetype)<CR>',
+	{ silent = true, desc = 'command › Run file' })
+map('n', '<leader>fw',  ':lua TriggerCompile(vim.bo.filetype)<CR>',
+	{ silent = true, desc = 'command › Compile file' })
+map('n', '<leader>fq',  ':lua TriggerExtra(vim.bo.filetype)<CR>',
+	{ silent = true, desc = 'command › Extra thing' })
 
 ---- makefile
 map('n', '<leader>cc', ':lua runTerminal("make")<CR>',
-		{ silent = true, desc = 'Run `make` command' })
+		{ silent = true, desc = 'make › all' })
+map('n', '<leader>cd', ':lua runTerminal("make clean")<CR>',
+		{ silent = true, desc = 'make › clean' })
+map('n', '<leader>cf', ':lua runTerminal("make force")<CR>',
+		{ silent = true, desc = 'make › force' })
+map('n', '<leader>ca', ':lua runTerminal("make full")<CR>',
+		{ silent = true, desc = 'make › full' })
 
 ---- Run terminal
-map('n', '<leader>tt', ':lua runTerminal("bash")<CR>',
-		{ silent = true, desc = 'Run intractive `bash` shell' })
-map('n', '<leader>ts', ':lua runTerminal("zsh")<CR>',
-		{ silent = true, desc = 'Run intractive `zsh` shell' })
+map('n', '<leader>ts', ':lua runTerminal("bash")<CR>',
+		{ silent = true, desc = 'term › bash shell' })
+map('n', '<leader>tt', ':lua runTerminal("zsh")<CR>',
+		{ silent = true, desc = 'term › zsh shell' })
 map('n', '<leader>td', ':lua runTerminal("dash")<CR>',
-		{ silent = true, desc = 'Run intractive `dash` shell' })
+		{ silent = true, desc = 'term › dash shell' })
 
 ---- Git commands
+map('n', '<leader>gi', ":lua runTerminal('git init')<CR>",
+		{ silent = true, desc = "git › initial local repo" })
 map('n', '<leader>gs', ":lua runTerminal('git status -s')<CR>",
-		{ silent = true, desc = "Show current branch's status" })
+		{ silent = true, desc = "git › current branch's status" })
 map('n', '<leader>gl', ":lua runTerminal('git log --oneline --all --graph')<CR>",
-		{ silent = true, desc = "Show git log" })
+		{ silent = true, desc = "git › log" })
 map('n', '<leader>ga', ":lua runTerminal('git add %')<CR>",
-		{ silent = true, desc = "Add current file to stage area" })
+		{ silent = true, desc = "git › add current file to stage area" })
 map('n', '<leader>gd', ":lua runTerminal('git diff %')<CR>",
-		{ silent = true, desc = "Changes of current file" })
+		{ silent = true, desc = "git › diff changes of current file" })
 map('n', '<leader>gt', ":lua runTerminal('git tag')<CR>",
-		{ silent = true, desc = "Tags" })
+		{ silent = true, desc = "git › Tags" })
 map('n', '<leader>gb', ":lua runTerminal('git branch')<CR>",
-		{ silent = true, desc = "Branchs" })
+		{ silent = true, desc = "git › Branchs" })
 map('n', '<leader>gc', ":lua runTerminal('git commit')<CR>",
-		{ silent = true, desc = "Commit the changes" })
+		{ silent = true, desc = "git › Commit the changes" })
 map('n', '<leader>gh', ":lua runTerminal('git show HEAD~1:./%')<CR>",
-		{ silent = true, desc = "Previous version of the current file" })
+		{ silent = true, desc = "git › Previous version of the current file" })
 -- }}}
