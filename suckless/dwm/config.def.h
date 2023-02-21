@@ -15,11 +15,11 @@ static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Source Code Pro:size=13" };
-static const char dmenufont[]       = { "Source Code Pro:size=13" };
+static const char *fonts[]          = { "FiraCode Nerd Font:size=14" };
+static const char dmenufont[]       = { "FiraCode Nerd Font:size=14" };
 
 /* colorschemes */
-#include "colors/default.h"
+#include "colors/dracula.h"
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm]	= { normal_fg, normal_bg, normal_br },
@@ -28,8 +28,9 @@ static const char *colors[][3]      = {
 
 /* tagging */
 static const char *tags[] = {
-	"♠", "♠", "♠", "♥", "♥", "♥", "♣", "♣", "♣" 
-//	"1", "2", "3", "4", "5", "6", "7", "8", "9"
+//	"", "", "", "", "磊", "ﳲ", "", "", ""
+//	"♠", "♠", "♠", "♥", "♥", "♥", "♣", "♣", "♣" 
+	"1", "2", "3", "4", "5", "6", "7", "8", "9"
 //	"a", "b", "c", "d", "e", "f", "g", "h", "i"
 };
 
@@ -81,28 +82,31 @@ static const char *dmenucmd[]	= {
 static const char *termcmd[]  = { "st", NULL };
 /* hos custom {{{ */
 static const char *tabbdcmd[]	= { "tabbed", "-c", "-k", "-r", "2", "st", "-w", "''", NULL };
-static const char *floatcmd[]	= { term, "-t", "Terminal", NULL};
-static const char *takenote[]	= { "st", "-t", "Terminal", "bash", "-c", SCRIPTSPATH"note-take.sh", NULL};
+//static const char *takenote[]	= { "st", "-t", "Terminal", "sh", "-c", SCRIPTSPATH"notetake.sh", NULL};
 static const char *bidicmd[]	= { bdterm, NULL};
 static const char *filecmd[]	= { term, "-t", fileman, fileman, NULL};
 static const char *newsboat[]	= { term, "-t", "Newsboat", rssread, NULL};
-static const char *muscmd[]	= { "bash", "-c", SCRIPTSPATH"cmus-tmux.sh", NULL};
+static const char *muscmd[]	= { "sh", "-c", SCRIPTSPATH"cmustmux.sh", NULL};
 static const char *wwwcmd[]	= { browser, NULL};
 /* change brightness */
 static const char *brightu[]	= { "brightnessctl", "s", "+5\%", NULL};
 static const char *brightd[]	= { "brightnessctl", "s", "5\%-", NULL};
-static const char *dmshot[]	= { "bash", "-c", SCRIPTSPATH"dm-shot.sh", NULL};
-static const char *dmkill[]	= { "bash", "-c", SCRIPTSPATH"dm-kill.sh", NULL};
-static const char *dmsrun[]	= { "bash", "-c", SCRIPTSPATH"dm-srun.sh", NULL};
-static const char *dmusbd[]	= { "bash", "-c", SCRIPTSPATH"dm-usb.sh",  NULL};
+static const char *takenote[]	= { "sh", "-c", SCRIPTSPATH"mdtodo.sh",  NULL};
+static const char *floatcmd[]	= { "sh", "-c", SCRIPTSPATH"dmstexec.sh", NULL};
+static const char *dmshot[]	= { "sh", "-c", SCRIPTSPATH"dmshot.sh", NULL};
+static const char *dmkill[]	= { "sh", "-c", SCRIPTSPATH"dmkill.sh", NULL};
+static const char *dmsrun[]	= { "sh", "-c", SCRIPTSPATH"dmsrun.sh", NULL};
+static const char *dmusbd[]	= { "sh", "-c", SCRIPTSPATH"dmusb.sh",  NULL};
+static const char *dmchar[]	= { "sh", "-c", SCRIPTSPATH"dmchar.sh",  NULL};
 static const char *scrn_lock[]	= { "slock", NULL};
 static const char *emclient[]	= { "emacsclient", "-c", "-a", "emacs", NULL};
-static const char *sysbtop[]	= { term, "-t", "Terminal", "btop", NULL};
+static const char *sysbtop[]	= { term, "btop", NULL};
 /* }}}*/
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	/* hos custom {{{ */
+	{ MODKEY|ShiftMask,		XK_Return,	spawn,		{.v = termcmd	} },
 	{ MODKEY|ShiftMask,		XK_t,		spawn,		{.v = tabbdcmd	} },
 	{ MODKEY,			XK_x,		spawn,		{.v = floatcmd	} },
 	{ MODKEY|ControlMask,		XK_t,		spawn,		{.v = bidicmd	} },
@@ -110,6 +114,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_k,		spawn,		{.v = dmkill	} },
 	{ MODKEY,			XK_r,		spawn,		{.v = dmsrun	} },
 	{ MODKEY|ShiftMask,		XK_d,		spawn,		{.v = dmusbd	} },
+	{ MODKEY|ShiftMask,		XK_a,		spawn,		{.v = dmchar	} },
 	{ MODKEY|ShiftMask,		XK_l,		spawn,		{.v = scrn_lock	} },
 	{ MODKEY|ShiftMask,		XK_f,		spawn,		{.v = filecmd	} },
 	{ MODKEY|ShiftMask,		XK_b,		spawn,		{.v = wwwcmd	} },
@@ -122,7 +127,6 @@ static const Key keys[] = {
 	{ MODKEY,			XK_Up,		spawn,		{.v = brightu	} },
 	{ MODKEY,			XK_Down,	spawn,		{.v = brightd	} },
 	/* }}}*/
-	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
