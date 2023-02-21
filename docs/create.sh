@@ -15,9 +15,9 @@
 #
 	#if [[ ! -f "$i/Makefile" ]]; then
 		#echo "$i/Makefile"
-		#cp -v lua/Makefile $i/
-		##sed -i "s/Lua/$j/" $i/Makefile
-		##sed -i "s/lua/$i/" $i/Makefile
+		#cp -v bash/Makefile $i/
+		##sed -i "s/Bash/$j/" $i/Makefile
+		##sed -i "s/bash/$i/" $i/Makefile
 	#fi
 #done
 
@@ -29,10 +29,10 @@ fi
 
 if [[ ! -f "$1/Makefile" ]]; then
 	echo -n 'cp: copied file '
-	cp -v lua/Makefile "$1/Makefile"
+	cp -v bash/Makefile "$1/Makefile"
 	j=$(echo $1 | sed -e 's/\b\(.\)/\u\1/')
-	sed -i "s/Lua/$j/" $1/Makefile
-	sed -i "s/lua/$1/" $1/Makefile
+	sed -i "s/Bash/$j/" $1/Makefile
+	sed -i "s/bash/$1/" $1/Makefile
 	echo "# $j" > $1/$1.md
 	cd $1
 	echo -n 'ln: linked file '
