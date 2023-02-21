@@ -51,24 +51,24 @@ map('n', '<leader>dw', ':loadview<CR>',
 -- back to normal-mode in terminal {{{
 map('t', '<Esc>', '<C-\\><C-n>',
 		{ desc = "Exit insert mode in Terminal" })
-map('t', '<C-d>', '<C-c><C-c> <space> exit<CR>',
-		{ silent = true, desc = "Exit Terminal" })
+--map('t', '<C-d>', '<C-c><C-c> <space> exit<CR>',
+--		{ silent = true, desc = "Exit Terminal" })
 -- }}}
 -- back to normal mode {{{
 map('i', '<C-c>', '<Esc>',
 		{ desc = "Exit insert mode" })
 -- }}}
 -- NvimTree Toggle {{{
-map('n', '<leader>ff', ':lua nvim_tree_toggle()<CR>',
-		{ silent = true, desc = "Nvim Tree" })
+map('n', '<leader>qf', ':lua nvim_tree_toggle()<CR>',
+		{ silent = true, desc = "Toggle › nvim tree" })
 -- }}}
 -- toggle paste mode {{{
 map('n', '<C-P>', ':set paste! nu! list!<CR>',
-		{ silent = true, desc = "Enable paste mode, disable decorations" })
+		{ silent = true, desc = "Toggle › paste mode, disable decorations" })
 -- }}}
 -- spelling check {{{
 map('n', '<leader>ss',  ':set spell!<CR>',
-		{ silent = true, desc = "Enable spell check" })
+		{ silent = true, desc = "Toggle › spell check" })
 -- }}}
 -- go to next/previous buffer {{{
 map('n', '<C-n>',  ':bnext<CR>',
