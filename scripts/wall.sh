@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/bin/sh
 
 help() {
 cat << EOF
@@ -9,7 +9,7 @@ EOF
 notif_send() {
 	script_name=$(echo $0 | awk -F '/' '{print $NF;}')
 	if [ $? -eq 0 ]; then
-		notify-send -u normal -a $script_name -i background "$1"
+		notify-send -u normal -a ${script_name} -i background "${1}" "${2}"
 	fi
 }
 
@@ -19,7 +19,7 @@ shuf_wall() {
 	cp -f "$thewall" ~/pic/.wall
 	ww="$(echo "$thewall" | awk -F '/' '{print $NF;}')"
 	if [ $? -eq 0 ]; then
-		notif_send "Wallpaper changed: $ww"
+		notif_send "Wallpaper changed" "${ww}"
 		exit 0
 	else
 		exit 1
@@ -31,7 +31,7 @@ set_wall() {
 	cp -f "$1" ~/pic/.wall
 	ww="$(echo $1 | awk -F '/' '{print $NF;}')"
 	if [ $? -eq 0 ]; then
-		notif_send "Wallpaper changed: $ww"
+		notif_send "Wallpaper changed" "${ww}"
 		exit 0
 	else
 		exit 1
@@ -42,7 +42,7 @@ choose_wall() {
 	wall="$(nsxiv -ro ~/pic/wall)"
 	set_wall "$wall"
 	if [ $? -eq 0 ]; then
-		notif_send "Wallpaper changed: $ww"
+		notif_send "Wallpaper changed" "${ww}"
 		exit 0
 	else
 		exit 1
