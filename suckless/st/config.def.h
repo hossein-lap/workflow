@@ -25,6 +25,10 @@ static int borderpx = 2;
  *    • ubuntu.h            • vscode.h
  */
 #include "colors/dracula.h"
+ 
+/* bg opacity */
+float alpha = 0.98;
+
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -182,6 +186,8 @@ static Shortcut shortcuts[] = {
 	{ MODKEY,               XK_equal,       zoom,           {.f = +1} },
 	{ MODKEY,               XK_minus,       zoom,           {.f = -1} },
 	{ MODKEY|ControlMask,   XK_equal,       zoomreset,      {.f =  0} },
+	{ MODKEY,               XK_s,           changealpha,    {.f = -0.01} },
+	{ MODKEY,               XK_a,           changealpha,    {.f = +0.01} },
 	{ MODKEY,               XK_c,           clipcopy,       {.i =  0} },
 	{ MODKEY,               XK_v,           clippaste,      {.i =  0} },
 	{ MODKEY,               XK_y,           selpaste,       {.i =  0} },
