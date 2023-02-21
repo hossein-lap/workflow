@@ -6,7 +6,7 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 local lspconfig = require('lspconfig')
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-local servers = { 'clangd', 'texlab', 'pyright', 'sumneko_lua', 'bashls', 'gopls'}
+local servers = { 'clangd', 'texlab', 'pyright', 'lua_ls', 'bashls', 'gopls'}
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup {
 --		on_attach = my_custom_on_attach,
@@ -49,6 +49,35 @@ if not present then
 	return
 end
 
+--   פּ ﯟ   some other good icons
+local kind_icons = {
+	Text = "",
+	Method = "",
+	Function = "",
+	Constructor = "",
+	Field = "",
+	Variable = "v",
+	Class = "",
+	Interface = "",
+	Module = "",
+	Property = "",
+	Unit = "",
+	Value = "",
+	Enum = "",
+	Keyword = "",
+	Snippet = "",
+	Color = "",
+	File = "",
+	Reference = "",
+	Folder = "",
+	EnumMember = "",
+	Constant = "",
+	Struct = "",
+	Event = "",
+	Operator = "",
+	TypeParameter = "",
+}
+
 local options = {
 	window = {
 		completion = {
@@ -65,9 +94,21 @@ local options = {
 		end,
 	},
 	formatting = {
-		format = function(_, vim_item)
---			local icons = require("nvchad_ui.icons").lspkind
---			vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
+--		format = function(_, vim_item)
+----			local icons = require("nvchad_ui.icons").lspkind
+----			vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
+--			return vim_item
+		format = function(entry, vim_item)
+			-- Kind icons
+			vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
+			-- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
+			 	-- This concatonates the icons with the name of the item kind
+			vim_item.menu = ({
+				nvim_lsp = "[lsp]",
+				luasnip = "[snippet]",
+				buffer = "[buffer]",
+				path = "[path]",
+			})[entry.source.name]
 			return vim_item
 		end,
 	},
