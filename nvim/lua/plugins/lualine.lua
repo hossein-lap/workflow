@@ -21,11 +21,11 @@ end
 -- split sym {{{
 local function ShowSplitMode()
 	if Wind_style == 'h' then
-		return 'Hor'
+		return ''
 	elseif Wind_style == 'v' then
-		return 'Ver'
+		return ''
 	elseif Wind_style == 'f' then
-		return 'Flo'
+		return ''
 	else
 		return ''
 	end
@@ -63,7 +63,7 @@ local function vimlogo()
 	return ''
 end
 local function buftext()
-	return 'buf'
+	return 'B'
 end
 -- }}}
 -- filetype {{{
@@ -105,16 +105,16 @@ require('lualine').setup {
 --		         
 --		»   «   ›   ‹
 --		      
---		   ●    
+--		   ●    
 --		
 		disabled_filetypes = {},
 		always_divide_middle = true,
-		globalstatus = false,
+		globalstatus = true,
 	},
 	sections = {
 		lualine_a = {
 --			'mode',
-			{ 'mode', fmt = function(str) return str:sub(1,3) end },
+			{ 'mode', fmt = function(str) return str:sub(1,1) end },
 		},
 		lualine_b = {{'branch', icon = ''}},
 		lualine_c = {basename, '%f %m'},
@@ -123,8 +123,7 @@ require('lualine').setup {
 --			currfiletype,
 			{ 'filetype', colored = false, icon_only = false, icon = { align = 'left' }, },
 		},
-		lualine_z = {'progress'
-		}
+		lualine_z = { 'progress' }
 	},
 	inactive_sections = {
 		lualine_a = {},
@@ -141,10 +140,10 @@ require('lualine').setup {
 			{
 				'buffers',
 				show_filename_only = true,   -- Shows shortened relative path when set to false.
-				hide_filename_extension = true,   -- Hide filename extension when set to true.
+				hide_filename_extension = false,   -- Hide filename extension when set to true.
 				show_modified_status = true, -- Shows indicator when the buffer is modified.
 
-				mode = 2, -- 0: Shows buffer name
+				mode = 4, -- 0: Shows buffer name
 --							 1: Shows buffer index
 --							 2: Shows buffer name + buffer index
 --							 3: Shows buffer number
@@ -155,8 +154,9 @@ require('lualine').setup {
 --					the value of `max_length` dynamically.
 				symbols = {
 					modified = ' ●', -- Text to show when the buffer is modified
-					alternate_file = '', -- Text to show to identify the alternate file
+					alternate_file = '-', -- Text to show to identify the alternate file
 					directory =  '', -- Text to show when the buffer is a directory
+					--  
 				},
 			}
 		},
