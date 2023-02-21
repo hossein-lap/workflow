@@ -212,7 +212,7 @@ fi
 - **Nested**
 
 ```bash
-if [ 10 -gt 5 ]; then
+if [[ 10 -gt 5 ]]; then
 	echo True
 	if (( 10 % 2 == 0 )); then
 		echo and Even
