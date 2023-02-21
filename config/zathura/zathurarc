@@ -35,4 +35,4 @@ set recolor false
 
 # theme
 
-#include theme/embark
+include theme/dracula
