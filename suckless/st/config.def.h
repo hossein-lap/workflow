@@ -5,8 +5,8 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-//static char *font = "Fira Code:pixelsize=25:antialias=true:autohint=true";
-static char *font = "Fira Code:pixelsize=29:antialias=true:autohint=true";
+static char *font = "Fira Code:pixelsize=24:antialias=true:autohint=true";
+//static char *font = "Fira Code:pixelsize=29:antialias=true:autohint=true";
 //static char *font = "Fira Code:pixelsize=26:antialias=true:autohint=true";
 static int borderpx = 2;
 
@@ -27,7 +27,7 @@ static int borderpx = 2;
 #include "colors/dracula.h"
  
 /* bg opacity */
-float alpha = 0.98;
+float alpha = 0.97;
 
 
 /*
