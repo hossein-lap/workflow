@@ -59,6 +59,7 @@
 %\setsansfont{Ubuntu}
 
 %% Monospace font
+%\setmonofont{Fira Mono Medium}
 \setmonofont{Fira Mono}
 %\setmonofont{Ubuntu Mono}
 %\setmonofont{Source Code Pro}
@@ -100,31 +101,23 @@
 %	{\begin{center}\begin{tabular}{p{.99\textwidth}}\sffamily}%
 %	{\end{tabular}\end{center}}
 
-%% Add gap to shaded env
-\renewenvironment{Shaded}%
-	{\begin{center}\begin{quotation}\begin{snugshade}}
-	{\end{snugshade}\end{quotation}\end{center}}
-%	{\begin{center}\begin{tabular}{p{.8\textwidth}}\begin{snugshade}}
-%	{\end{snugshade}\end{tabular}\end{center}}
+%%% Add gap to shaded env
+%\renewenvironment{Shaded}%
+%	{\begin{center}\begin{quotation}\begin{snugshade}}
+%	{\end{snugshade}\end{quotation}\end{center}}
+%%	{\begin{center}\begin{tabular}{p{.8\textwidth}}\begin{snugshade}}
+%%	{\end{snugshade}\end{tabular}\end{center}}
 
-%%%\ifcsname Shaded\endcsname
-%\ifdefined\Shaded
-%	\renewenvironment{Shaded}{%
-%			\begin{tabular}{p{.99\textwidth}}
-%				\begin{snugshade}
-%		}	{%
-%				\end{snugshade}
-%			\end{tabular}
-%		}
-%\else
-%	\newenvironment{Shaded}{%
-%			\begin{tabular}{p{.99\textwidth}}
-%				\begin{snugshade}
-%		}	{%
-%				\end{snugshade}
-%			\end{tabular}
-%		}
-%\fi
+%%\ifcsname Shaded\endcsname
+\ifdefined\Shaded
+	\renewenvironment{Shaded}
+		{\begin{center}\begin{quotation}\begin{snugshade}}
+		{\end{snugshade}\end{quotation}\end{center}}
+\else
+	\newenvironment{Shaded}
+		{\begin{center}\begin{quotation}\begin{snugshade}}
+		{\end{snugshade}\end{quotation}\end{center}}
+\fi
 
 %%% Add gap in verbatim
 \let\oldverbatim=\verbatim
