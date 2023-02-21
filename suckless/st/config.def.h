@@ -5,10 +5,25 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Source Code Pro:pixelsize=25:antialias=true:autohint=true";
+//static char *font = "Fira Code:pixelsize=25:antialias=true:autohint=true";
+static char *font = "Fira Code:pixelsize=29:antialias=true:autohint=true";
+//static char *font = "Fira Code:pixelsize=26:antialias=true:autohint=true";
 static int borderpx = 2;
 
 /* colorscheme */
+/*
+ * scheme list:
+ *    • 256_noir.h          • ayu-dark.h
+ *    • breeze.h            • custom.h
+ *    • default.h           • dracula.h
+ *    • gruvbox-dark.h      • gruvbox-material.h
+ *    • hos.h               • hybrid-16.h
+ *    • hybrid-dark.h       • nord.h
+ *    • pj.h                • solarized-dark.h
+ *    • solarized-light.h   • termite.h
+ *    • tokyodark.h         • tokyonight.h
+ *    • ubuntu.h            • vscode.h
+ */
 #include "colors/dracula.h"
 
 /*
@@ -37,7 +52,7 @@ static float chscale = 1.0;
  *
  * More advanced example: L" `'\"()[]{}"
  */
-wchar_t *worddelimiters = L" ";
+wchar_t *worddelimiters = L" `'\"()[]{}";
 
 /* selection timeouts (in milliseconds) */
 static unsigned int doubleclicktimeout = 300;
@@ -68,7 +83,16 @@ static unsigned int blinktimeout = 800;
 /*
  * thickness of underline and bar cursors
  */
-static unsigned int cursorthickness = 2;
+static unsigned int cursorthickness = 4;
+
+/*
+ * Default shape of cursor
+ * 2: Block ("█")
+ * 4: Underline ("_")
+ * 6: Bar ("|")
+ * 7: Snowman ("☃")
+ */
+static unsigned int cursorshape = 2;
 
 /*
  * bell volume. It must be a value between -100 and 100. Use 0 for disabling
@@ -104,15 +128,6 @@ unsigned int defaultbg = 256;
 unsigned int defaultfg = 257;
 unsigned int defaultcs = 258;
 static unsigned int defaultrcs = 259;
-
-/*
- * Default shape of cursor
- * 2: Block ("█")
- * 4: Underline ("_")
- * 6: Bar ("|")
- * 7: Snowman ("☃")
- */
-static unsigned int cursorshape = 2;
 
 /*
  * Default columns and rows numbers
