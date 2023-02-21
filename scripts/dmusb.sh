@@ -6,7 +6,7 @@
 #
 
 # Variables {{{
-#patched='-c -bw 2'
+patched='-c -bw 2'
 dmenu="dmenu \
 		-i \
 		-l 35 \
