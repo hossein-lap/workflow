@@ -7,7 +7,7 @@ static char *fontfallbacks[] = {
 #define FONTSZ(x) ((int)(10.0 * powf(1.1288, (x)))) /* x in [0, NUMFONTSCALES-1] */
 
 /* colorscheme */
-#include "colors/ubuntu.h"
+#include "colors/dracula.h"
 
 static const float linespacing = 1.4;
 
