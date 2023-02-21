@@ -2,9 +2,9 @@
 https://lukesmith.xyz/index.xml	"~(blog) Luke Smith"	"blog"
 
 #---tools---
-https://newsboat.org/news.atom	"~(tools) Newsboat"	"tools"
-https://neovim.io/news.xml		"~(tools) Neovim"	"tools"
-http://suckless.org/atom.xml	"~(tools) Suckless"	"tools"
+https://newsboat.org/news.atom	"~(tools) newsboat"	"tools"
+https://neovim.io/news.xml		"~(tools) neovim"	"tools"
+http://suckless.org/atom.xml	"~(tools) suckless"	"tools"
 https://ctan.org/ctan-ann/atom	"~(TeX) CTAN"	"TeX" "tools"
 
 #---games---
