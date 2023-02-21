@@ -4,7 +4,7 @@ Some cheatsheet or guidelines which I may need to look at them some day ^^' .
 
 *The structure of files in this repo may change entirely*.
 
-### Build The Files
+## Build The Files
 
 To be able to build PDF files from Markdown, you need these packages:
 
@@ -14,15 +14,15 @@ To be able to build PDF files from Markdown, you need these packages:
 
 For generating Images, you need `ImageMagick` package.
 
-### Finished
+## Finished
 
 - [Bash](bash)
 
-### In Progress
+## In Progress
 
 - [Python](python)
 
-### TODO
+## TODO
 
 - [Lua](lua)
 - [Groff](groff)
