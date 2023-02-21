@@ -9,10 +9,10 @@
 pcount=$(ps aux | grep '\<ffmpeg\>' | grep "${HOME}/screen/record" -c)
 
 if [ "$pcount" -eq 1 ]; then
-	printf ' [recording]'
+	printf '[recording]'
 elif [ "$pcount" -gt 1 ]; then
-	printf " [recording(${pcount})]"
+	printf "[recording(${pcount})]"
 else
-	#dunstify -u normal "simple test is here"
+	#notify-send -u normal "simple test is here"
 	printf ""
 fi
