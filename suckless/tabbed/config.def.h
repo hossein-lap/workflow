@@ -8,7 +8,7 @@ static const char before[]      = "<";
 static const char after[]       = ">";
 static const char titletrim[]   = "...";
 static const int  tabwidth      = 200;
-static const Bool foreground    = False;
+static const Bool foreground    = True;
 static       Bool urgentswitch  = False;
 
 /*
@@ -17,7 +17,7 @@ static       Bool urgentswitch  = False;
  * is False, then newposition is an absolute position.
  */
 static int  newposition   = 1;
-static Bool npisrelative  = True;
+static Bool npisrelative  = False;
 
 #define SETPROP(p) { \
         .v = (char *[]){ "/bin/sh", "-c", \
