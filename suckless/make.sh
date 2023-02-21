@@ -2,6 +2,8 @@
 
 case $1 in
 	clean)
+		rm -fv $(find . -iname '*.orig')
+		rm -fv $(find . -iname '*.rej')
 		for i in $(find . -maxdepth 1 -type d \
 			| grep -v '9base\|patch' \
 			| sed -e 's/^\.//' -e 's/^\///')
