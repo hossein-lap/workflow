@@ -30,10 +30,10 @@ HISTCONTROL=ignoreboth
 HISTSIZE=4096
 HISTFILESIZE=4096
 # multiple history file for each session
-if [[ ! -d $HOME/.config/bash/history ]]; then
-	mkdir $HOME/.config/bash/history
+if [[ ! -d $HOME/.config/shell/history ]]; then
+	mkdir -p $HOME/.config/shell/history
 fi
-export HISTFILE="$HOME/.config/bash/history/` date '+%y%m%d'`"
+export HISTFILE="$HOME/.config/shell/history/bash"
 # }}}
 # Source files {{{
 sourceit () {
@@ -45,7 +45,7 @@ sourceit () {
 sourceit "$HOME/.bash_aliases"
 sourceit "$HOME/.aliases.bash"
 sourceit "$HOME/.aliases.sh"
-sourceit "$HOME/.config/bash/aliases.sh"
+sourceit "$HOME/.config/shell/aliases.sh"
 unset sourceit
 # }}}
 # path variable {{{
@@ -58,11 +58,11 @@ appendpath() {
 appendpath "$HOME/bin"
 appendpath "$HOME/.bin"
 appendpath "$HOME/.local/bin"
+appendpath "$HOME/.local/cargo/bin"
+appendpath "$HOME/.local/golang/bin"
 appendpath "$HOME/.config/emacs/bin"
 appendpath "$HOME/.emacs.d/bin"
-appendpath "$HOME/.local/cargo/bin"
-appendpath "$HOME/.yarn/bin"
-appendpath "$HOME/.local/golang/bin"
+appendpath "$HOME/.local/yarn/bin"
 appendpath "/home/hos/.local/dev/hossein-lap/workflow/scripts"
 appendpath "$HOME/.local/bin/texlive/2022/bin/x86_64-linux"
 unset appendpath
@@ -80,11 +80,11 @@ tmux*color|screen*color*)
 	PS1="\[\033[01;34m\]» \[\033[01;32m\]\W \[\033[00m\]"
 	  ;;
 st*color)
-	PS1="\[\033[01;32m\]$ \[\033[01;35m\]\W \[\033[00m\]"
+	PS1="\[\033[01;32m\]\$ \[\033[01;35m\]\W \[\033[00m\]"
 #	PS1="\[\033[01;32m\]\u@\h:\[\033[01;35m\]\W\[\033[00m\]\$ "
 	  ;;
 xterm*color)
-	PS1="\[\033[01;32m\]➜ \[\033[01;35m\]\W \[\033[00m\]"
+	PS1="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$\[\033[00m\] "
 	  ;;
 alacritty)
 #	PS1="\[\033[01;32m\]› \[\033[01;35m\]\W \[\033[00m\]"
@@ -122,9 +122,9 @@ export MDP_LIST_HEAD3=' • '
 export PDFVIEWER_texdoc='zathura'
 
 ## Proxy
-export all_proxy=socks5://127.0.0.1:8080
-export http_proxy=http://127.0.0.1:1090
-export https_proxy=http://127.0.0.1:1090
+#export all_proxy=socks5://127.0.0.1:8080
+#export http_proxy=http://127.0.0.1:1090
+#export https_proxy=http://127.0.0.1:1090
 
 ## Go Path
 export GOPATH="${HOME}/.local/golang"
@@ -155,5 +155,8 @@ export LANG=en_US.UTF-8
 #	| figlet # -f small # | lolcat
 #echo
 # jcal script
-date-startup.sh
+#date-startup.sh
+# }}}
+# alias {{{
+alias s="source ~/.config/shell/bashrc"
 # }}}

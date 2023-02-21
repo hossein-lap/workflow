@@ -1,4 +1,3 @@
-#!/bin/bash
 #  _  _
 # | || |
 # | __ |
@@ -6,11 +5,18 @@
 #
 
 # emacs client
-em () {
+em() {
 	nohup emacsclient -c -a 'emacs' "$@" 2>&1 > /dev/null &
 }
 
-alias s="source ~/.bashrc"
+# take
+take() {
+	if [ -d "${1}" ]; then
+		cd "${1}"
+	else
+		mkdir -p "${1}" && cd "${1}"
+	fi
+}
 
 #alias sudo="doas"
 

@@ -1,0 +1,68 @@
+#!/bin/zsh
+
+# plugins {{{
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+#source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+#source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# auto correction {{{
+setopt CORRECT
+setopt CORRECT_ALL
+# }}}
+# auto completion {{{
+autoload -Uz compinit && compinit
+# }}}
+# }}}
+# history {{{
+if [[ ! -d $HOME/.config/shell/history ]]; then
+	mkdir -p $HOME/.config/shell/history
+fi
+export HISTFILE="$HOME/.config/shell/history/zsh"
+export HISTSIZE=4096   # the number of items for the internal history list
+export SAVEHIST=1000000   # maximum number of items for the history file
+
+# The meaning of these options can be found in man page of `zshoptions`.
+setopt HIST_IGNORE_ALL_DUPS  # do not put duplicated command into history list
+setopt HIST_SAVE_NO_DUPS  # do not save duplicated command
+setopt HIST_REDUCE_BLANKS  # remove unnecessary blanks
+setopt INC_APPEND_HISTORY_TIME  # append command to history file immediately after execution
+setopt EXTENDED_HISTORY  # record command start time
+# }}}
+# source files {{{
+sourceit () {
+	if [[ -f "$1" ]]; then
+		source "$1"
+	fi
+}
+
+sourceit "${HOME}/.config/shell/aliases.sh"
+unset sourceit
+# }}}
+# path variable {{{
+appendpath() {
+	if [[ -d "$1" ]]; then
+		PATH="${PATH}:${1}"
+	fi
+}
+
+appendpath "$HOME/bin"
+appendpath "$HOME/.bin"
+appendpath "$HOME/.local/bin"
+appendpath "$HOME/.local/cargo/bin"
+appendpath "$HOME/.local/golang/bin"
+appendpath "$HOME/.config/emacs/bin"
+appendpath "$HOME/.emacs.d/bin"
+appendpath "$HOME/.local/yarn/bin"
+appendpath "/home/hos/.local/dev/hossein-lap/workflow/scripts"
+appendpath "$HOME/.local/bin/texlive/2022/bin/x86_64-linux"
+unset appendpath
+# }}}
+# prompt {{{
+#PS1=' %F{yellow}%B○ %F{blue}%B%.%f%b: '
+PS1='%F{green}%B%n%f%b@%m:%b%.%f%b$ '
+#}}}
+# alias {{{
+alias s="source ${HOME}/.config/shell/zshrc"
+# }}}
