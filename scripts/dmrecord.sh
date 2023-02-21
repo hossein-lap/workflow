@@ -7,10 +7,10 @@
 set -e
 
 # Variables {{{
-#patched='-c -bw 2'
+patched='-c -bw 2 -g 1'
 dmenu="dmenu \
 		-i \
-		-l 0 \
+		-l 5 \
 		${patched} \
 		${@} \
 		"
@@ -74,9 +74,9 @@ record_sel_window () {
 		mkdir -p "${Directory}"
 	fi
 
-	local DemRes=($(xdotool selectwindow getwindowgeometry --shell | awk -F '=' '{print $NF;}'))
-	local OutRes=$(xdpyinfo | grep dimensions | awk '{print $2;}')
-	local PaDevOut=$(pactl list short sources | awk '{print $2;}' | grep output)
+	DemRes=$(xdotool selectwindow getwindowgeometry --shell | awk -F '=' '{print $NF;}')
+	OutRes=$(xdpyinfo | grep dimensions | awk '{print $2;}')
+	PaDevOut=$(pactl list short sources | awk '{print $2;}' | grep output)
 
 	xwininfo | {
 	while IFS=: read -r k v; do
@@ -109,10 +109,10 @@ record_act_window () {
 		mkdir -p "${Directory}"
 	fi
 	
-	local DemRes=($(xwininfo -id $(xdotool getactivewindow)))
-	local OutRes=$(xdpyinfo | grep dimensions | awk '{print $2;}')
-	local PaDevOut=$(pactl list short sources | awk '{print $2;}' | grep output)
-	local PaDevIn=$(pactl list short sources | awk '{print $2;}' | grep input)
+	DemRes=$(xwininfo -id $(xdotool getactivewindow))
+	OutRes=$(xdpyinfo | grep dimensions | awk '{print $2;}')
+	PaDevOut=$(pactl list short sources | awk '{print $2;}' | grep output)
+	PaDevIn=$(pactl list short sources | awk '{print $2;}' | grep input)
 	
 	xwininfo -id $(xdotool getactivewindow) | {
 	while IFS=: read -r k v; do
@@ -170,7 +170,7 @@ record_screen () {
 		mkdir -p "${Directory}"
 	fi
 
-	local DemRes=$(xdpyinfo | grep dimensions | awk '{print $2;}')
+	DemRes=$(xdpyinfo | grep dimensions | awk '{print $2;}')
 
 	if [ $WithAudio = 'mic' ]; then
 		ffmpeg \
@@ -188,7 +188,7 @@ record_screen () {
 			"${Directory}/${BaseName}-${Name}.${extention}"
 
 	elif [ $WithAudio = 'sys' ]; then
-		local PaDevOut=$(pactl list short sources \
+		PaDevOut=$(pactl list short sources \
 			| awk '{print $2;}' \
 			| grep output)
 		ffmpeg \
