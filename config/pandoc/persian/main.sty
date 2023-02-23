@@ -99,11 +99,16 @@
 %    {\end{tabular}\end{center}}
 
 %% Simple verbatim
-\let\oldverbatim=\verbatim
-\let\oldendverbatim=\endverbatim
-\renewenvironment{verbatim}%
-    {\begin{quotation}\begin{latin}\oldverbatim\noindent}%
-    {\oldendverbatim \end{latin}\end{quotation}}
+%\let\oldverbatim=\verbatim
+%\let\oldendverbatim=\endverbatim
+%\renewenvironment{verbatim}%
+%    {\begin{quotation}\begin{latin}\oldverbatim\noindent}%
+%    {\oldendverbatim \end{latin}\end{quotation}}
+
+\makeatletter
+\def\@xobeysp{\mbox{}\space}
+\def\verbatim@font{\latin\normalfont\ttfamily}
+\makeatother
 
 %% line-space
 \linespread{1.5}
