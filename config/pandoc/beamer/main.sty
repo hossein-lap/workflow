@@ -2,19 +2,21 @@
 \ProvidesPackage{main}
 \RequirePackage{fontspec,fancyvrb,framed,xcolor}
 
-%% default fonts:
+% default fonts
 \setmainfont{Libertinus Serif}
-\setmathfont{Libertinus Sans}
 \setsansfont{Source Sans Pro}
 \setmonofont{Fira Mono}
 
 %% add line number to code-blocks
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},numbers=left}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
 
-%% quotation
-\renewenvironment{quote}{%
-    \begin{center}\begin{tabular}{|p{.9\textwidth}}%
-    \sffamily\itshape%
-} {\end{tabular}\end{center}}
+%%% quotation
+%\renewenvironment{quote}{%
+%    \begin{center}\begin{tabular}{|p{.9\textwidth}}%
+%    \sffamily\itshape%
+%} {\end{tabular}\end{center}}
 
-\definecolor{UBCblue}{rgb}{0.04706, 0.13725, 0.26667} % UBC Blue (primary)
+%\definecolor{UBCblue}{rgb}{0.04706, 0.13725, 0.26667} % UBC Blue (primary)
+
+%\linespread{1.1}
+

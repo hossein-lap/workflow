@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{main}
+\ProvidesPackage{dark}
 \RequirePackage{fontspec,fancyvrb,titlesec,framed,xcolor}
 
 %% add line number to code-blocks
@@ -16,16 +16,25 @@
 
 %\usetheme{Warsaw}
 \usetheme{Madrid}
+
+%\usecolortheme{whale}
+%\usecolortheme{orchid}
+%\useinnertheme[shadow]{rounded}
+%\useoutertheme{infolines}
+
 %\usetheme{Copenhagen}
 %\usetheme{Berlin}
 %\usetheme{Boadilla}
 
 % theme {{{
+%\useoutertheme{shadow}
+
 % colors {{{
 \definecolor{color_main}{HTML}{ffb86c} % #ffb86c
 
 \definecolor{color_text}{HTML}{f1fa8c} % #f1fa8c
-\definecolor{color_frametitle}{HTML}{3b4048} % #3b4048
+\definecolor{color_frametitle_bg}{HTML}{3b4048} % #3b4048
+\definecolor{color_frametitle_fg}{HTML}{ffffff} % #ffffff
 \definecolor{color_but_right_bg}{HTML}{3b4048} % #3b4048
 \definecolor{color_but_right_fg}{HTML}{ffffff} % #ffffff
 \definecolor{color_but_mid_bg}{HTML}{3e4452} % #3e4452
@@ -57,18 +66,18 @@
 	\setbeamertemplate{itemize item}%
 		{\color{color_items_1}$\bullet$}
 	\setbeamertemplate{itemize subitem}%
-		{\color{color_items_1}$\ast$}
+		{\tiny\color{color_items_1}$\blacktriangleright$}
 	\setbeamertemplate{itemize subsubitem}%
-		{\color{color_items_1}$\circ$}
+		{\color{color_items_1}$\bullet$}
 % }}}
 % colors {{{
 	%% mains
 	\setbeamercolor*{title page}{%
-		fg=white,
+		fg=color_frametitle_fg,
 		bg=structure
 	}
 	\setbeamercolor{frametitle}{%
-		bg=color_frametitle
+		bg=color_frametitle_bg
 	}
 	\setbeamercolor{normal text}{%
 		fg=color_text
@@ -152,3 +161,10 @@
 % }}}
 % }}}
 % }}}
+
+% default fonts
+\setmainfont{Libertinus Serif}
+\setsansfont{Fira Sans}
+\setmonofont{Fira Mono}
+
+%\linespread{1.1}

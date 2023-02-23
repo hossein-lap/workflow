@@ -16,5 +16,4 @@ variables:
 ##    background-image: /home/hos/.config/pandoc/background/Shiny-Black-PPT-Backgrounds.jpg
 ##    background-image: /home/hos/.config/pandoc/background/istockphoto-1171433089-170667a.jpg
     header-includes:
-        - \usepackage{/home/hos/.config/pandoc/beamer/main}
         - \usepackage{/home/hos/.config/pandoc/beamer/dark}

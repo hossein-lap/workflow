@@ -9,53 +9,52 @@
 
 \usefonttheme{serif}
 
-%% custom section
-\titleformat{\section}
-    {\LARGE \secfont \bfseries}
-    {\thesection.}
-    {.03\linewidth}
-    {}%
-    [{\titlerule[0pt]}]
-%% custom subsection
-\titleformat{\subsection}
-    {\Large \secfont \bfseries}
-    {\thesubsection.}
-    {.03\linewidth}
-    {}%
-    [{\titlerule[0pt]}]
-%% custom subsubsection
-\titleformat{\subsubsection}
-    {\large \secfont \bfseries}
-    {\thesubsubsection.}
-    {.03\linewidth}
-    {}%
-    [{\titlerule[0pt]}]
+%%% custom section
+%\titleformat{\section}
+%	{\LARGE \secfont \bfseries}
+%	{\thesection.}
+%	{.03\linewidth}
+%	{}%
+%	[{\titlerule[0pt]}]
+%%% custom subsection
+%\titleformat{\subsection}
+%	{\Large \secfont \bfseries}
+%	{\thesubsection.}
+%	{.03\linewidth}
+%	{}%
+%	[{\titlerule[0pt]}]
+%%% custom subsubsection
+%\titleformat{\subsubsection}
+%	{\large \secfont \bfseries}
+%	{\thesubsubsection.}
+%	{.03\linewidth}
+%	{}%
+%	[{\titlerule[0pt]}]
 
 %%% headings position
 %\titlespacing{\section}{0mm}{5mm}{5mm}
 %\titlespacing{\subsection}{0mm}{5mm}{5mm}
 %\titlespacing{\subsubsection}{0pt}{5mm}{5mm}
-%
+
 %%% every h1 at a new page
 %%\let\oldsection\section
 %%\renewcommand\section{\newpage\oldsection}
-%
+
 %% default fonts:
 \setlatintextfont{Libertinus Serif}
-%\setlatinmathfont{Libertinus Sans}
 \setlatinsansfont{Source Sans Pro}
 \setlatinmonofont{Fira Mono}
 
 %% add line number to code-blocks
 %\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},numbers=left}
 
-%% quotation
-\renewenvironment{quote}{%
-    \begin{center}\begin{tabular}{|p{.9\textwidth}}%
-    \sffamily\itshape%
-} {\end{tabular}\end{center}}
+%%% quotation
+%\renewenvironment{quote}{%
+%	\begin{center}\begin{tabular}{p{.9\textwidth}}%
+%	\sffamily\itshape%
+%} {\end{tabular}\end{center}}
 
-\definecolor{UBCblue}{rgb}{0.04706, 0.13725, 0.26667} % UBC Blue (primary)
+%\definecolor{UBCblue}{rgb}{0.04706, 0.13725, 0.26667} % UBC Blue (primary)
 %{\begin{leftbar}\begin{quotation}\sffamily}%
 %{\end{quotation}\end{leftbar}}
 
@@ -83,14 +82,15 @@
 \setbeamercolor*{palette primary}{use=structure,fg=white,bg=theorange}
 \setbeamercolor*{palette quaternary}{fg=white,bg=thepurple}
 
-%\setbeamertemplate{background} 
-%{
-%%    \includegraphics[height=\paperheight]{~/pic/ubuntu/ubuntu-18.04-default-wallpaper-2.jpg}
-%    \includegraphics[width=\paperwidth,height=\paperheight]{/home/hos/.config/pandoc/background/CBEditz.com-1.jpg}
-%%    \includegraphics[height=\paperheight]{ubuntu-g.jpg}
-%}
+\setbeamertemplate{background} 
+{
+%	\includegraphics[height=\paperheight]{~/pic/ubuntu/ubuntu-18.04-default-wallpaper-2.jpg}
+%	\includegraphics[width=\paperwidth,height=\paperheight]{/home/hos/.config/pandoc/background/Beautiful-Minimalist-Presentation.jpg}
+		\includegraphics[width=\paperwidth,height=\paperheight]{/home/hos/.config/pandoc/background/238367-best-gradient-background-tumblr-1920x1080.jpg}
+%	\includegraphics[height=\paperheight]{ubuntu-g.jpg}
+}
 
-\linespread{1.5}
+%\linespread{1.5}
 
 % persian fixes {{{
 \setbeamertemplate{enumerate items}[circle]
@@ -123,21 +123,21 @@
 \renewcommand{\itemize}[1][]{%
   \beamer@ifempty{#1}{}{\def\beamer@defaultospec{#1}}%
   \ifnum \@itemdepth >2\relax\@toodeep\else
-    \advance\@itemdepth\@ne
-    \beamer@computepref\@itemdepth% sets \beameritemnestingprefix
-    \usebeamerfont{itemize/enumerate \beameritemnestingprefix body}%
-    \usebeamercolor[fg]{itemize/enumerate \beameritemnestingprefix body}%
-    \usebeamertemplate{itemize/enumerate \beameritemnestingprefix body begin}%
-    \list
-      {\usebeamertemplate{itemize \beameritemnestingprefix item}}
-      {\def\makelabel##1{%
-          {%
-            \hss\llap{{%
-                \usebeamerfont*{itemize \beameritemnestingprefix item}%
-                \usebeamercolor[fg]{itemize \beameritemnestingprefix item}##1}}%
-          }%
-        }%
-      }
+	\advance\@itemdepth\@ne
+	\beamer@computepref\@itemdepth% sets \beameritemnestingprefix
+	\usebeamerfont{itemize/enumerate \beameritemnestingprefix body}%
+	\usebeamercolor[fg]{itemize/enumerate \beameritemnestingprefix body}%
+	\usebeamertemplate{itemize/enumerate \beameritemnestingprefix body begin}%
+	\list
+	  {\usebeamertemplate{itemize \beameritemnestingprefix item}}
+	  {\def\makelabel##1{%
+		  {%
+			\hss\llap{{%
+				\usebeamerfont*{itemize \beameritemnestingprefix item}%
+				\usebeamercolor[fg]{itemize \beameritemnestingprefix item}##1}}%
+		  }%
+		}%
+	  }
   \fi%
   \beamer@cramped%
  \raggedleft%
@@ -210,18 +210,18 @@
 
 \newcommand<>\beamer@frameLTRfootnotetext[1]{%
   \global\setbox\beamer@footins\vbox{\@RTLfalse%
-    \hsize\framewidth
-    \textwidth\hsize
-    \columnwidth\hsize
-    \unvbox\beamer@footins
-    \reset@font\footnotesize
-    \@parboxrestore
-    \protected@edef\@currentlabel
-         {\csname p@footnote\endcsname\@thefnmark}%
-    \color@begingroup
-      \uncover#2{\@makeLTRfntext{%
-        \rule\z@\footnotesep\ignorespaces#1\@finalstrut\strutbox}}%
-    \color@endgroup}}
+	\hsize\framewidth
+	\textwidth\hsize
+	\columnwidth\hsize
+	\unvbox\beamer@footins
+	\reset@font\footnotesize
+	\@parboxrestore
+	\protected@edef\@currentlabel
+		 {\csname p@footnote\endcsname\@thefnmark}%
+	\color@begingroup
+	  \uncover#2{\@makeLTRfntext{%
+		\rule\z@\footnotesep\ignorespaces#1\@finalstrut\strutbox}}%
+	\color@endgroup}}
 
 
 \footdir@temp\footdir@ORG@bidi@beamer@frameLTRfootnotetext\beamer@frameLTRfootnotetext{L}
@@ -251,7 +251,7 @@
 \let\oldverbatim=\verbatim
 \let\oldendverbatim=\endverbatim
 \renewenvironment{verbatim}%
-    {\begin{latin}\oldverbatim\noindent}%
-    {\oldendverbatim \end{latin}}
+	{\begin{latin}\oldverbatim\noindent}%
+	{\oldendverbatim \end{latin}}
 
 % }}}
