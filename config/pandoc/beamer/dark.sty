@@ -1,0 +1,154 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{main}
+\RequirePackage{fontspec,fancyvrb,titlesec,framed,xcolor}
+
+%% add line number to code-blocks
+%\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},numbers=left}
+
+%%% quotation
+%\renewenvironment{quote}{%
+%	\begin{center}\begin{tabular}{|p{.9\textwidth}}%
+%	\sffamily\itshape%
+%} {\end{tabular}\end{center}}
+
+%{\begin{leftbar}\begin{quotation}\sffamily}%
+%{\end{quotation}\end{leftbar}}
+
+%\usetheme{Warsaw}
+\usetheme{Madrid}
+%\usetheme{Copenhagen}
+%\usetheme{Berlin}
+%\usetheme{Boadilla}
+
+% theme {{{
+% colors {{{
+\definecolor{color_main}{HTML}{ffb86c} % #ffb86c
+
+\definecolor{color_text}{HTML}{f1fa8c} % #f1fa8c
+\definecolor{color_frametitle}{HTML}{3b4048} % #3b4048
+\definecolor{color_but_right_bg}{HTML}{3b4048} % #3b4048
+\definecolor{color_but_right_fg}{HTML}{ffffff} % #ffffff
+\definecolor{color_but_mid_bg}{HTML}{3e4452} % #3e4452
+\definecolor{color_but_mid_fg}{HTML}{ffffff} % #ffffff
+\definecolor{color_but_left_bg}{HTML}{4b5263} % #4b5263
+\definecolor{color_but_left_fg}{HTML}{ffffff} % #ffffff
+\definecolor{color_quinary}{HTML}{3b4048} % #3b4048
+
+\definecolor{color_block_body_fg}{HTML}{dddddd} % #dddddd
+\definecolor{color_blocks_title_fg}{HTML}{010101} % #010101
+\definecolor{color_block_def_bg}{HTML}{242630} % #21222c
+\definecolor{color_block_def_title_bg}{HTML}{bd93f9} % #bd93f9
+\definecolor{color_example_title_bg}{HTML}{8be9fd} % #8be9fd
+\definecolor{color_alert_title_bg}{HTML}{ff5555} % #ff5555
+
+\definecolor{color_items_1}{HTML}{ff79c6} % #ff79c6
+\definecolor{color_items_2}{HTML}{50fa7b} % #50fa7b
+%\definecolor{blockdeffg}{HTML}{} % #
+% }}}
+% configuration {{{
+\usecolortheme[named=color_main]{structure}
+% style {{{
+	% title
+	\setbeamertemplate{title page}[default][colsep=-4bp,rounded=true]
+	% blocks
+	\setbeamertemplate{blocks}[rounded][shadow=false]
+	% items
+	\setbeamertemplate{enumerate items}[circle]
+	\setbeamertemplate{itemize item}%
+		{\color{color_items_1}$\bullet$}
+	\setbeamertemplate{itemize subitem}%
+		{\color{color_items_1}$\ast$}
+	\setbeamertemplate{itemize subsubitem}%
+		{\color{color_items_1}$\circ$}
+% }}}
+% colors {{{
+	%% mains
+	\setbeamercolor*{title page}{%
+		fg=white,
+		bg=structure
+	}
+	\setbeamercolor{frametitle}{%
+		bg=color_frametitle
+	}
+	\setbeamercolor{normal text}{%
+		fg=color_text
+	}
+	%% palettes
+	\setbeamercolor*{palette primary}{%
+		use=structure,
+		fg=color_but_right_fg,
+		bg=color_but_right_bg
+	}
+	\setbeamercolor*{palette secondary}{%
+		fg=color_but_mid_fg,
+		bg=color_but_mid_bg
+	}
+	\setbeamercolor*{palette tertiary}{%
+		use=structure,
+		fg=color_but_left_fg,
+		bg=color_but_left_bg
+	}
+	\setbeamercolor*{palette quinary}{%
+		use=structure,
+		fg=white,
+		bg=color_quinary
+	}
+	%% blocks
+	\setbeamercolor{block title}{%
+		bg=color_block_def_title_bg,
+		fg=color_blocks_title_fg
+	}
+	\setbeamercolor{block body}{%
+		bg=color_block_def_bg,
+		fg=color_block_body_fg
+	}
+	\setbeamercolor{block title alerted}{%
+		bg=color_alert_title_bg,
+		fg=color_blocks_title_fg
+	}
+	\setbeamercolor{block body alerted}{%
+		bg=color_block_def_bg,
+		fg=color_block_body_fg
+	}
+	\setbeamercolor{block title example}{%
+		bg=color_example_title_bg,
+		fg=color_blocks_title_fg
+	}
+	\setbeamercolor{block body example}{%
+		bg=color_block_def_bg,
+		fg=color_block_body_fg
+	}
+	%% lists
+%	\setbeamercolor{enumerate items}{%
+%		fg=color_items_1
+%	}
+	\setbeamercolor{item projected}{%
+		bg=color_items_1,
+		fg=black
+	}
+	\setbeamercolor{itemize item}{%
+		fg=color_items_2
+	}
+	\setbeamercolor{itemize subitem}{%
+		fg=color_items_2
+	}
+	\setbeamercolor{itemize subsubitem}{%
+		fg=color_items_2
+	}
+% 		}}}
+% fonts {{{
+	% frame
+	\setbeamerfont{frametitle}{series=\bfseries}
+	% blocks
+	\setbeamerfont{block title}{series=\bfseries}
+% }}}
+% background {{{
+	\setbeamertemplate{background} 
+	{
+%		\includegraphics[height=\paperheight]{~/pic/ubuntu/ubuntu-18.04-default-wallpaper-2.jpg}
+		\includegraphics[width=\paperwidth,height=\paperheight]{/home/hos/.config/pandoc/background/manjaro-default-adapta-lockscreen.jpg}
+%		\includegraphics[height=\paperheight]{ubuntu-g.jpg}
+	}
+% }}}
+% }}}
+% }}}

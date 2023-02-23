@@ -1,0 +1,20 @@
+metadata:
+    keywords:
+        - 'Theme for beamer'
+pdf-engine: xelatex
+highlight-style: /home/hos/.config/pandoc/highlight/dracula-beamer.theme
+
+variables:
+#    background-image: /home/hos/.config/pandoc/background/vecteezy_abstract-realistic-dark-blue-stripes-with-golden-lines_9589090.jpg
+#    background-image: /home/hos/.config/pandoc/background/manjaro-default-adapta-lockscreen.jpg
+##    background-image: /home/hos/.config/pandoc/background/wallpaper05.jpg
+##    background-image: /home/hos/.config/pandoc/background/wallpaper14.jpg
+##    background-image: /home/hos/.config/pandoc/background/manjaro-nologo.jpg
+##    background-image: /home/hos/.config/pandoc/background/manjaro-illyria-default-lockscreen-nobrand.jpg
+##    background-image: /home/hos/.config/pandoc/background/manjaro-gnome-lockscreen_1920_1200px.jpg
+##    background-image: /home/hos/.config/pandoc/background/luxury-dark-black-gradient-background-business-elegant-presentation-banner-vector.jpg
+##    background-image: /home/hos/.config/pandoc/background/Shiny-Black-PPT-Backgrounds.jpg
+##    background-image: /home/hos/.config/pandoc/background/istockphoto-1171433089-170667a.jpg
+    header-includes:
+        - \usepackage{/home/hos/.config/pandoc/beamer/main}
+        - \usepackage{/home/hos/.config/pandoc/beamer/dark}
