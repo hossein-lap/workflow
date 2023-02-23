@@ -6,7 +6,8 @@ pdf-engine: xelatex
 highlight-style: /home/hos/.config/pandoc/highlight/solarized-light-beamer.theme
 
 variables:
-#    background-image: /home/hos/.config/pandoc/background/Beautiful-Minimalist-Presentation.jpg
+    background-image: /home/hos/.config/pandoc/background/Beautiful-Minimalist-Presentation.jpg
 #    background-image: /home/hos/.config/pandoc/background/bmpim.jpg
+#    background-image: /home/hos/.config/pandoc/background/238367-best-gradient-background-tumblr-1920x1080.jpg
     header-includes:
         - \usepackage{/home/hos/.config/pandoc/beamer/persian}

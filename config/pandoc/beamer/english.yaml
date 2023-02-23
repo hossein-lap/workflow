@@ -5,7 +5,7 @@ pdf-engine: xelatex
 highlight-style: /home/hos/.config/pandoc/highlight/solarized-light-beamer.theme
 
 variables:
-    background-image: /home/hos/.config/pandoc/background/Beautiful-Minimalist-Presentation.jpg
+#    background-image: /home/hos/.config/pandoc/background/Beautiful-Minimalist-Presentation.jpg
     header-includes:
         - \usepackage{/home/hos/.config/pandoc/beamer/main}
         - \usepackage{/home/hos/.config/pandoc/beamer/english}

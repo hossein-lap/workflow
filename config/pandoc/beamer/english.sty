@@ -5,17 +5,21 @@
 %% add line number to code-blocks
 %\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},numbers=left}
 
-%%% quotation
-%\renewenvironment{quote}{%
-%	\begin{center}\begin{tabular}{|p{.9\textwidth}}%
-%	\sffamily\itshape%
-%} {\end{tabular}\end{center}}
-
-%{\begin{leftbar}\begin{quotation}\sffamily}%
-%{\end{quotation}\end{leftbar}}
-
-%\usetheme{Warsaw}
-\usetheme{Madrid}
+% Warsaw with frame number {{{
+\usetheme{Warsaw}
+\defbeamertemplate*{footline}{shadow theme}
+{%
+  \leavevmode%
+  \hbox{\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm plus1fil,rightskip=.3cm]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\insertframenumber\,/\,\inserttotalframenumber\hfill\insertshortauthor
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertshorttitle%
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+%}}}
+%\usetheme{Madrid}
 
 %\usetheme{Copenhagen}
 %\usetheme{Berlin}
@@ -36,7 +40,8 @@
 \definecolor{color_but_mid_fg}{HTML}{ffffff} % #ffffff
 \definecolor{color_but_left_bg}{HTML}{2C001E} % #2C001E
 \definecolor{color_but_left_fg}{HTML}{ffffff} % #ffffff
-\definecolor{color_quinary}{HTML}{5E2750} % #5E2750
+%\definecolor{color_gradient}{HTML}{5E2750} % #5E2750
+\definecolor{color_gradient}{HTML}{2d0922} % #2d0922
 
 \definecolor{color_block_body_fg}{HTML}{010101} % #010101
 \definecolor{color_blocks_title_fg}{HTML}{ffffff} % #ffffff
@@ -93,10 +98,10 @@
 		fg=color_but_left_fg,
 		bg=color_but_left_bg
 	}
-	\setbeamercolor*{palette quinary}{%
+	\setbeamercolor*{palette quaternary}{%
 		use=structure,
 		fg=white,
-		bg=color_quinary
+		bg=color_gradient
 	}
 	%% blocks
 	\setbeamercolor{block title}{%
@@ -166,3 +171,4 @@
 \setmonofont{Fira Mono}
 
 %\linespread{1.1}
+
