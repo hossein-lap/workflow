@@ -192,7 +192,7 @@ end
 --au('set ls=2', '*', 'TermLeave')
 
 -- swtich pandoc configs {{{
-	-- article
+	-- article {{{
 	pandoc_article_list = {
 		'dracula', 'solarized', 'english',
 		'monochrome', 'persian'
@@ -217,30 +217,34 @@ end
 
 	map("n", "<leader>va5", ":lua pandoc_article_switch(5)<CR>",
 			{ desc = "Pandoc › article —persian— " })
-
-	-- beamer
+	-- }}}
+	-- beamer {{{
 	pandoc_beamer_list = {
-		'english', 'persian'
+		'dark', 'english', 'persian'
 	}
 
-	pandoc_beamer_default = pandoc_beamer_list[1]
+	pandoc_beamer_default = pandoc_beamer_list[2]
 	function pandoc_beamer_switch(item)
 		pandoc_beamer_default = pandoc_beamer_list[item]
 	end
 
 	map("n", "<leader>vb1", ":lua pandoc_beamer_switch(1)<CR>",
-			{ desc = "Pandoc › beamer —english— " })
+			{ desc = "Pandoc › beamer → english — dark (dracula)" })
 
 	map("n", "<leader>vb2", ":lua pandoc_beamer_switch(2)<CR>",
-			{ desc = "Pandoc › beamer —persian—" })
+			{ desc = "Pandoc › beamer → english — light (ubuntu)" })
+
+	map("n", "<leader>vb3", ":lua pandoc_beamer_switch(3)<CR>",
+			{ desc = "Pandoc › beamer → persian — light (ubuntu)" })
+	-- }}}
 -- }}}
 
--- Trigger functions
+-- Trigger functions:
 -- Run {{{
 function TriggerRun(file_type)
 	local src_name = expand('%')
 	local out_name = expand('%:r')
-	local pandoc_path = ' -t ms --highlight ~/.config/pandoc/highlight/monochrome.theme '
+	local pandoc_path = ' -t ms --defaults ~/.config/pandoc/defaults/groff/groff.yaml '
 --	local pandoc_path = ' -t ms --highlight monochrome '
 
 	local runner = {
@@ -271,7 +275,7 @@ end
 function TriggerCompile(file_type)
 	local src_name = expand('%')
 	local out_name = expand('%:r')
-	local pandoc_path = ' ~/.config/pandoc/' .. pandoc_article_default .. '/' .. pandoc_article_default .. '.yaml '
+	local pandoc_path = ' ~/.config/pandoc/defaults/' .. pandoc_article_default .. '/' .. pandoc_article_default .. '.yaml '
 	local r_cmd_s = [[Rscript -e "rmarkdown::render(input = ']]
 	local r_cmd_e = [[', output_format = \"all\", params = \" ]] .. pandoc_path .. [[ \" )"]]
 
@@ -281,7 +285,7 @@ function TriggerCompile(file_type)
 		rust = 'rustc ' .. src_name,
 		go = 'go build ' .. src_name,
 		sh = 'sh ' .. src_name,
-		nroff = 'tbl '.. src_name .. ' | groff -mspdf -keGs -Tpdf > ' .. out_name .. '.pdf ',
+		nroff = 'tbl '.. src_name .. ' | groff -mspdf -keUGs -Tpdf > ' .. out_name .. '.pdf ',
 		tex = 'xelatex -shell-escape ' .. src_name,
 		sent = 'sent -i ' .. src_name,
 		text = 'sent -i ' .. src_name,
@@ -303,7 +307,7 @@ function TriggerExtra(file_type)
 	local out_name = expand('%:r')
 	local pdf_viewer = 'nohup zathura '
 	local log_handler =  '.pdf & 2>&1 > /dev/null'
-	local pandoc_path = ' -t beamer -V classoption:aspectratio=169 --defaults ~/.config/pandoc/beamer/' .. pandoc_beamer_default  .. '.yaml '
+	local pandoc_path = ' -t beamer -V classoption:aspectratio=169 --defaults ~/.config/pandoc/defaults/beamer/' .. pandoc_beamer_default  .. '.yaml '
 
 	local extra = {
 		rmd = pdf_viewer .. out_name .. log_handler,
