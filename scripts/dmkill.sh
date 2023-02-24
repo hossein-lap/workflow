@@ -8,12 +8,12 @@ dmenu="dmenu \
 		${patched} \
 		${@} \
 		"
-prompt="$(echo $0 | awk -F '/' '{print $NF;}')"
+prompt="$(echo ${0} | awk -F '/' '{print $NF;}')"
 #prompt="Kill"
 # }}}
 # sent notification {{{
 notify() {
-	case $2 in
+	case ${2} in
 		1)
 			mode=low
 			;;
@@ -28,15 +28,15 @@ notify() {
 			;;
 	esac
 
-	notify-send -a ${prompt} -i xfce-mount -u $mode "${1}"
+	notify-send -a ${prompt} -i xfce-mount -u ${mode} "${1}"
 }
 # }}}
 
 list=$( \
-	ps --cols 120 axfo pid,%mem,%cpu,user,cmd  k %mem \
+	ps --cols 110 axfo pid,%mem,%cpu,user,cmd  k %mem \
 		| sed 's/  \\_ /  • /' \
 		| sed 's/• -/• /' \
-		| $dmenu -p "${prompt}" \
+		| ${dmenu} -p "${prompt}" \
 		| awk '{print $1;}'
 
 #		| sed 's/  \\_ /  ├─ /' \
@@ -45,7 +45,7 @@ list=$( \
 
 	)
 
-if [ $list -eq 'PID' ] || [ -z $list ]; then
+if [ ${list} = 'PID' ] || [ -z ${list} ]; then
 	notify 'Canceled' 1
 	exit 0
 else
@@ -61,12 +61,12 @@ else
 		notify 'Canceled' 1
 		exit 0
 	else
-		kill="kill -s $thesig"
+		kill="kill -s ${thesig}"
 	fi
 
-	for i in $list
+	for i in ${list}
 	do
-		$kill "$i" \
+		${kill} "${i}" \
 			&& notify "Process [${i}] killed (signal ${thesig})" \
 			|| notify "[${i}] Termination failed" 3
 	done
