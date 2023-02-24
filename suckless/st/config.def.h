@@ -5,9 +5,16 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Fira Code:pixelsize=24:antialias=true:autohint=true";
-//static char *font = "Fira Code:pixelsize=29:antialias=true:autohint=true";
-//static char *font = "Fira Code:pixelsize=26:antialias=true:autohint=true";
+static char *font = "Fira Code:pixelsize=27:antialias=true:autohint=true";
+/* Spare fonts */
+static char *font2[] = {
+	 "FuraCode Nerd Font:pixelsize=29:antialias=true:autohint=true",
+	 "Noto Color Emoji:pixelsize=25:antialias=true:autohint=true",
+	 "JoyPixels:pixelsize=25:antialias=true:autohint=true",
+/*	"Inconsolata for Powerline:pixelsize=12:antialias=true:autohint=true", */
+/*	"Hack Nerd Font Mono:pixelsize=11:antialias=true:autohint=true", */
+};
+
 static int borderpx = 2;
 
 /* colorscheme */
