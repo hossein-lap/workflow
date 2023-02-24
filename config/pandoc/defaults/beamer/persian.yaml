@@ -10,4 +10,6 @@ variables:
 #    background-image: /home/hos/.config/pandoc/background/bmpim.jpg
 #    background-image: /home/hos/.config/pandoc/background/238367-best-gradient-background-tumblr-1920x1080.jpg
     header-includes:
-        - \usepackage{/home/hos/.config/pandoc/beamer/persian}
+        - \usepackage{/home/hos/.config/pandoc/defaults/beamer/persian}
+filters:
+    - /home/hos/.config/pandoc/filters/fa-date.lua

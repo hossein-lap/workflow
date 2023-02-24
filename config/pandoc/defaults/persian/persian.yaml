@@ -15,7 +15,9 @@ variables:
 #  urlcolor:  draculacyan
 #  toccolor:  draculaorange
   header-includes:
-    - \usepackage{/home/hos/.config/pandoc/persian/main}
+    - \usepackage{/home/hos/.config/pandoc/defaults/persian/main}
 #    - \usepackage{/home/hos/.config/pandoc/dracula/theme}
 #    - \pagecolor{draculabg}
 #    - \color{draculafg}
+filters:
+    - /home/hos/.config/pandoc/filters/fa-date.lua

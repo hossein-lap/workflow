@@ -13,4 +13,6 @@ highlight-style: /home/hos/.config/pandoc/highlight/monochrome.theme
 variables:
   geometry: margin=1.5cm
   header-includes:
-    - \usepackage{/home/hos/.config/pandoc/monochrome/main}
+    - \usepackage{/home/hos/.config/pandoc/defaults/monochrome/main}
+filters:
+    - /home/hos/.config/pandoc/filters/en-date.lua

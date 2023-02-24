@@ -13,5 +13,7 @@ variables:
   urlcolor:  solarizedcyan
   toccolor:  solarizedorange
   header-includes:
-    - \usepackage{/home/hos/.config/pandoc/solarized/theme}
-    - \usepackage{/home/hos/.config/pandoc/solarized/main}
+    - \usepackage{/home/hos/.config/pandoc/defaults/solarized/theme}
+    - \usepackage{/home/hos/.config/pandoc/defaults/solarized/main}
+filters:
+    - /home/hos/.config/pandoc/filters/en-date.lua

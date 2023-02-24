@@ -36,4 +36,4 @@ output:
         theme: lumen
         ## theme: lumen, darkly[zenburn]
 header-includes:
-  - \usepackage{/home/hos/.config/pandoc/r/main}
+  - \usepackage{/home/hos/.config/pandoc/defaults/r/main}

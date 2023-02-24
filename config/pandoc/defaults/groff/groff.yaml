@@ -11,7 +11,7 @@ pdf-engine: pdfroff
 pdf-engine-opts:
     - "-U"
 highlight-style: /home/hos/.config/pandoc/highlight/monochrome.theme
-template: /home/hos/.config/pandoc/groff/template.ms
+#template: /home/hos/.config/pandoc/defaults/groff/template.ms
 
 citeproc: true
 standalone: true
@@ -39,14 +39,15 @@ variables:
 #    toc-title: "Efnisyfirlit"
 #    abstract-title: "ÚTDRÁTTUR"
 ##    icelandic-dates: true  # Affects MONTHx variables in template
-#    indent: 2m
-    fontfamily: T
+    indent: 2m
+    fontfamily: T # Serif:{T,BM,N}, Sans:{H,HN,A}, Mono:{C}
     header-includes:
-#        - '.als SN SN-DOT'
-#        - '.als SN-STYLE SN-DOT'
+        - '.als SN SN-DOT'
+        - '.als SN-STYLE SN-DOT'
 #        - '.char \[u2610] \f[CR]\[u2610]\f[]'
 #        - '.char \[u2612] \f[CR]\[u2611]\f[]'
 #        - '.char \[u2610] \s[+3]\[sq]\s[0]'
 #        - '.char \[u2612] \[OK]'
-#filters:
-#    - /home/hos/.config/pandoc/groff/image-ms.lua
+filters:
+    - /home/hos/.config/pandoc/filters/en-date.lua
+    - /home/hos/.config/pandoc/filters/ms-image.lua

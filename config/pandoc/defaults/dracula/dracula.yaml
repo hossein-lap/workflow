@@ -14,5 +14,7 @@ variables:
   urlcolor:  draculacyan
   toccolor:  draculaorange
   header-includes:
-    - \usepackage{/home/hos/.config/pandoc/dracula/theme}
-    - \usepackage{/home/hos/.config/pandoc/dracula/main}
+    - \usepackage{/home/hos/.config/pandoc/defaults/dracula/theme}
+    - \usepackage{/home/hos/.config/pandoc/defaults/dracula/main}
+filters:
+    - /home/hos/.config/pandoc/filters/en-date.lua
