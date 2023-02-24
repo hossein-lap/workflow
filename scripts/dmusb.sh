@@ -176,20 +176,20 @@ onair() {
 	fi
 	
 	x=$(echo ${1} | sed 's/^• //' | awk '{print $1;}')
-	doublecheck=$(printf 'no\nyes' | ${dmenu} -l 0 -p "(${airdo} ${x}) you sure?")
+	doublecheck=$(printf 'no\nyes' | ${dmenu} -l 1 -g 2 -p "(${airdo} ${x}) you sure?")
 
 	case ${doublecheck} in
 		yes)
 			case ${airdo} in
 				eject)
 					power_offed=$(udisksctl power-off -b "/dev/${x}") \
-						&& notify "${power_offed}" \
-						|| notify "Operation failed"
+						&& notify "/dev/${x} ejected" \
+						|| notify "Operation failed" 3
 					;;
 				mount)
 					mounted=$(udisksctl mount -b "/dev/${x}") \
 						&& notify "$mounted" \
-						|| notify "Operation failed"
+						|| notify "Operation failed" 3
 					;;
 				unmount)
 					unmounted=$(udisksctl unmount -b "/dev/${x}") \
