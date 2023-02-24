@@ -204,26 +204,26 @@ end
 	end
 
 	map("n", "<leader>va1", ":lua pandoc_article_switch(1)<CR>",
-			{ desc = "Pandoc › article → —dracula—" })
+			{ desc = "Pandoc › article → dark — dracula" })
 
 	map("n", "<leader>va2", ":lua pandoc_article_switch(2)<CR>",
-			{ desc = "Pandoc › article —solarized—" })
+			{ desc = "Pandoc › article → dark — solarized" })
 
 	map("n", "<leader>va3", ":lua pandoc_article_switch(3)<CR>",
-			{ desc = "Pandoc › article —english—" })
+			{ desc = "Pandoc › article → light — english" })
 
 	map("n", "<leader>va4", ":lua pandoc_article_switch(4)<CR>",
-			{ desc = "Pandoc › article —monochrome—" })
+			{ desc = "Pandoc › article → light — monochrome" })
 
 	map("n", "<leader>va5", ":lua pandoc_article_switch(5)<CR>",
-			{ desc = "Pandoc › article —persian— " })
+			{ desc = "Pandoc › article → light — persian" })
 	-- }}}
 	-- beamer {{{
 	pandoc_beamer_list = {
 		'dark', 'english', 'persian'
 	}
 
-	pandoc_beamer_default = pandoc_beamer_list[2]
+	pandoc_beamer_default = pandoc_beamer_list[1]
 	function pandoc_beamer_switch(item)
 		pandoc_beamer_default = pandoc_beamer_list[item]
 	end
@@ -329,11 +329,11 @@ end
 -- Keymaps {{{
 ---- Compile/Run/Extra
 map('n', '<leader>fe',  ':lua TriggerRun(vim.bo.filetype)<CR>',
-	{ silent = true, desc = 'command › Run file' })
+	{ silent = true, desc = 'command1 › Run file' })
 map('n', '<leader>fw',  ':lua TriggerCompile(vim.bo.filetype)<CR>',
-	{ silent = true, desc = 'command › Compile file' })
+	{ silent = true, desc = 'command2 › Compile file' })
 map('n', '<leader>fq',  ':lua TriggerExtra(vim.bo.filetype)<CR>',
-	{ silent = true, desc = 'command › Extra thing' })
+	{ silent = true, desc = 'command3 › Extra thing' })
 
 ---- makefile
 map('n', '<leader>cc', ':lua runTerminal("make")<CR>',
