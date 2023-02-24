@@ -1,9 +1,10 @@
 #!/bin/sh
 
-c='○'
+c='•'
 
 tmp() {
 cat << EOF
+${SHELL}
 xbps-query -Rs 
 sudo sv restart 
 iwctl station list 
@@ -15,5 +16,6 @@ EOF
 term=st
 sh="bash"
 runner="dmenu -p exec -l 5"
+thecommand=$(tmp | sed "s/^/${c} /" | $runner | sed "s/^${c} //")
 
-$term -t Terminal $sh -c "$(tmp | sed "s/^/${c} /" | $runner | sed "s/^${c} //"); $sh"
+$term -t Terminal $sh -c "echo "${thecommand}"; ${thecommand}; $sh"
