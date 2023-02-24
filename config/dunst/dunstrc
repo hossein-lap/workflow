@@ -91,7 +91,7 @@
 
 	# Defines color of the frame around the notification window.
 #	frame_color = "#121212"
-	frame_color = "#282a36"
+	frame_color = "#3e4452"
 
 
 	# Size of gap to display between notifications - requires a compositor.
