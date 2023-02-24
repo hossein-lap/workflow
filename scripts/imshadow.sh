@@ -1,11 +1,11 @@
 #!/bin/sh
 
-RST='\e[0m'
-BLD='\033[1m'
-YLW='\e[33m'
-BLU='\e[34m'
-GRN='\e[32m'
-RED='\e[31m'
+#RST='\e[0m'
+#BLD='\033[1m'
+#YLW='\e[33m'
+#BLU='\e[34m'
+#GRN='\e[32m'
+#RED='\e[31m'
 
 shadow_border_ts () {
 	if [ -z "$1" ]; then
@@ -21,7 +21,8 @@ shadow_border_ts () {
 		black -shadow 110x10+5+5 \) \
 		+swap -background none \
 		-layers merge +repage \
-		$1
+		$1 \
+		2>/dev/null
 }
 
 for i in "$@"
@@ -36,9 +37,9 @@ do
 
 	shadow_border_ts "$i"
 
-	if [ "$?" -eq '0' ]; then
-		echo -e "${GRN}[done]${RST}"
+	if [ "$?" = '0' ]; then
+		printf "${GRN}✓${RST}\n"
 	else
-		echo -e "${RED}[error]${RST}"
+		printf "${RED}×${RST}\n"
 	fi
 done
