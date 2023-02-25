@@ -46,26 +46,24 @@ end
 -- }}}
 -- }}}
 
-Wind_style = 'h'
+Windstyle = 'horizontal'
 
--- Toggle Wind_style {{{
-function Wind_style_Toggle(i)
-	if i == 1 then
-		Wind_style = 'h'
-	elseif i == 2 then
-		Wind_style = 'v'
-	elseif i == 3 then
-		Wind_style = 'f'
-	end
+-- Toggle Windstyle {{{
+function Windstyle_Toggle(i)
+	Windstyles = {
+		 'horizontal', 'vertical', 'floating'
+	}
+	Windstyle = Windstyles[i]
+	print("term split => style: " .. Windstyle)
 end
 
-map('n', '<leader>vs1', ":lua Wind_style_Toggle(1)<CR>",
+map('n', '<leader>vs1', ":lua Windstyle_Toggle(1)<CR>",
 	{ silent = true, desc = "term › horizontal split" })
 
-map('n', '<leader>vs2', ":lua Wind_style_Toggle(2)<CR>",
+map('n', '<leader>vs2', ":lua Windstyle_Toggle(2)<CR>",
 	{ silent = true, desc = "term › vertical split" })
 
-map('n', '<leader>vs3', ":lua Wind_style_Toggle(3)<CR>",
+map('n', '<leader>vs3', ":lua Windstyle_Toggle(3)<CR>",
 	{ silent = true, desc = "term › float Window" })
 -- }}}
 -- Float Term {{{
@@ -153,17 +151,17 @@ end
 -- }}}
 -- V/H Term {{{
 function vhTerminal(wrapand)
-	if not Wind_style then
-		Wind_style = 'h'
+	if not Windstyle then
+		Windstyle = 'horizontal'
 	end
 
-	if Wind_style == 'v' then
+	if Windstyle == 'vertical' then
 		Buffercmd = 'vs '
-	elseif Wind_style == 'h' then
+	elseif Windstyle == 'horizontal' then
 		Buffercmd = 'split '
 	else
 		print("ERROR!")
-		print("** Wind_style is not set to use `vhTerminal()`")
+		print("** Windstyle is not set to use `vhTerminal()`")
 		print("** try `fTerminal()`")
 		return -1
 	end
@@ -182,60 +180,66 @@ end
 
 function runTerminal(inp)
 --	api.nvim_command('set ls=0')
-	if Wind_style == 'f' then
+	if Windstyle == 'floating' then
 		fTerminal(inp)
 	else
 		vhTerminal(inp)
 	end
+--	-- print the executed command
+--	print('!' .. inp)
 end
 
---au('set ls=2', '*', 'TermLeave')
+--au('set ls=0', '*', 'TermEnter')
+--au('set ls=3', '*', 'TermLeave')
 
 -- swtich pandoc configs {{{
 	-- article {{{
 	pandoc_article_list = {
-		'dracula', 'solarized', 'english',
-		'monochrome', 'persian'
+		'dracula', 'solarized', 'english', 'monochrome',
+		'persian'
 	}
 
 	pandoc_article_default = pandoc_article_list[1]
 	function pandoc_article_switch(item)
 		pandoc_article_default = pandoc_article_list[item]
+		print("pandoc article => style: " .. pandoc_article_default)
 	end
 
 	map("n", "<leader>va1", ":lua pandoc_article_switch(1)<CR>",
-			{ desc = "Pandoc › article → dark — dracula" })
+			{ silent = true, desc = "Pandoc › article → dark — dracula" })
 
 	map("n", "<leader>va2", ":lua pandoc_article_switch(2)<CR>",
-			{ desc = "Pandoc › article → dark — solarized" })
+			{ silent = true, desc = "Pandoc › article → dark — solarized" })
 
 	map("n", "<leader>va3", ":lua pandoc_article_switch(3)<CR>",
-			{ desc = "Pandoc › article → light — english" })
+			{ silent = true, desc = "Pandoc › article → light — english" })
 
 	map("n", "<leader>va4", ":lua pandoc_article_switch(4)<CR>",
-			{ desc = "Pandoc › article → light — monochrome" })
+			{ silent = true, desc = "Pandoc › article → light — monochrome" })
 
 	map("n", "<leader>va5", ":lua pandoc_article_switch(5)<CR>",
-			{ desc = "Pandoc › article → light — persian" })
+			{ silent = true, desc = "Pandoc › article → light — persian" })
 	-- }}}
 	-- beamer {{{
 	pandoc_beamer_list = {
-		'dark', 'english', 'persian'
+		'dark', 'english',
+		'persian'
 	}
 
 	pandoc_beamer_default = pandoc_beamer_list[1]
 	function pandoc_beamer_switch(item)
 		pandoc_beamer_default = pandoc_beamer_list[item]
+		print("pandoc beamer => style: " .. pandoc_beamer_default)
 	end
 
 	map("n", "<leader>vb1", ":lua pandoc_beamer_switch(1)<CR>",
-			{ desc = "Pandoc › beamer → english — dark (dracula)" })
+			{ silent = true, desc = "Pandoc › beamer → english — dark (dracula)" })
 
 	map("n", "<leader>vb2", ":lua pandoc_beamer_switch(2)<CR>",
-			{ desc = "Pandoc › beamer → english — light (ubuntu)" })
+			{ silent = true, desc = "Pandoc › beamer → english — light (ubuntu)" })
 
 	map("n", "<leader>vb3", ":lua pandoc_beamer_switch(3)<CR>",
-			{ desc = "Pandoc › beamer → persian — light (ubuntu)" })
+			{ silent = true, desc = "Pandoc › beamer → persian — light (ubuntu)" })
 	-- }}}
 -- }}}
 
@@ -271,7 +275,7 @@ function TriggerRun(file_type)
 	runTerminal(runner[file_type])
 end
 -- }}}
--- Compile{{{
+-- Compile {{{
 function TriggerCompile(file_type)
 	local src_name = expand('%')
 	local out_name = expand('%:r')
