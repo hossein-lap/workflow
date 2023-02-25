@@ -6,7 +6,7 @@
 "                
 "" add ready-to-use text by .ext
 let g:skelkey=','
-let g:skelpath='~/.local/dev/hossein-lap/workflow/config/skels/'
+let g:skelpath='~/.local/hos/skels/'
 "
 exe "nnoremap" .. g:skelkey .. "make :-1read " .. g:skelpath .. "skel.mk<CR>"
 exe "nnoremap" .. g:skelkey .. "sh   :-1read " .. g:skelpath .. "skel.sh<CR>"
