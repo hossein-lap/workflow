@@ -1,6 +1,6 @@
 -- helper {{{
 local api = vim.api
-local skelp = ' ~/.local/dev/hossein-lap/workflow/config/skels/'
+local skelp = ' ~/.local/hos/skels/'
 
 -- map() {{{
 local function map(mode, key, command, opts)
