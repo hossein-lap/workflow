@@ -1,4 +1,4 @@
-#!/usr/bin/rnv bash
+#!/usr/bin/env bash
 
 # Variables {{{
 [[ -z $1 ]] && bg='#ff7700' || bg="$1"
