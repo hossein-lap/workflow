@@ -9,6 +9,7 @@ xbps-query -Rs
 sudo sv restart 
 iwctl station list 
 pulsemixer
+xprop
 btop
 EOF
 }
@@ -16,6 +17,5 @@ EOF
 term=st
 sh="bash"
 runner="dmenu -p exec -l 5"
-thecommand=$(tmp | sed "s/^/${c} /" | $runner | sed "s/^${c} //")
 
-$term -t Terminal $sh -c "echo "${thecommand}"; ${thecommand}; $sh"
+$term -t Terminal $sh -c "$(tmp | sed "s/^/${c} /" | $runner | sed "s/^${c} //") && $sh"
