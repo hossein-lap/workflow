@@ -18,6 +18,7 @@ export IGNOREEOF=1
 #export MANPAGER="vim -c 'colorscheme 256_noir' -c '%! col -b' -c 'set ft=man nomod nolist ignorecase nonu' -"
 #export MANPAGER="vim -MRn -U ~/.vim/man.vim -"
 #export MANPAGER="nvim -u ~/.vim/manpager.vim -"
+export MANPAGER="nvimpager"
 
 # History {{{
 # When shell exist, append to the history file instead of overwriting it
