@@ -5,7 +5,7 @@ metadata:
 verbosity: WARNING # INFO
 top-level-division: section # part, chapter
 toc: false
-number-sections: false
+number-sections: true
 
 pdf-engine: xelatex
 highlight-style: /home/hos/.config/pandoc/highlight/monochrome.theme
