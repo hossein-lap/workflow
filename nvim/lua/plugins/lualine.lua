@@ -20,16 +20,11 @@ end
 -- }}}
 -- split sym {{{
 local function ShowSplitMode()
-	if Wind_style == 'h' then
-		return ''
-	elseif Wind_style == 'v' then
-		return ''
-	elseif Wind_style == 'f' then
-		return ''
+	if Windstyle then
+		return Windstyle:sub(1,1)
 	else
 		return ''
 	end
---	return '-'
 end
 -- }}}
 -- basename {{{
