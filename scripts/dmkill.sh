@@ -52,6 +52,7 @@ else
 	thesig=$(printf '%s\n' \
 		"15   SIGTERM   Terminate  " \
 		"9    SIGKILL   Kill (Not Safe)" \
+		"1    SIGHUP    Hangup detected" \
 		"2    SIGINT    Interrupt  " \
 		"3    SIGQUIT   Quit       " \
 		| $dmenu -p 'Send signal:' \
