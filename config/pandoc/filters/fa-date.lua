@@ -13,8 +13,10 @@ end
 
 -- set date metadata if it's empty
 function Meta(m)
-	if m.date == nil then
-		m.date = os.capture("jdate '+%e %V %Y'")
-		return m
+	if m.title and m.author then
+		if m.date == nil then
+			m.date = os.capture("jdate '+%e %V %Y'")
+			return m
+		end
 	end
 end
