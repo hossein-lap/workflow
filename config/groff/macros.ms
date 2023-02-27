@@ -40,7 +40,7 @@
 .\" }}}
 .\" codeblock {{{
 .de cb
-.nr ln 1
+.\".nr ln 1
 .sp 1n
 .QS
 .B1
@@ -51,7 +51,7 @@
 .\".in +.1m
 .SM
 .SM
-.nm +0 1 1 -5
+.\".nm +0 1 1 -5
 .LG
 .LG
 ..
@@ -69,7 +69,7 @@
 .\" outputblock {{{
 .de ob
 .QS
-.sp 1n
+.sp .5n
 .ft CW
 .nf
 ..
