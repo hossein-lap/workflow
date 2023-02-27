@@ -5,8 +5,8 @@
     "name": "Solarized dark",
     "revision": 1
   },
-  "background-color": "#073642",
-  "line-number-background-color": "#002b36",
+  "background-color": "#002b36",
+  "line-number-background-color": "#073642",
   "line-number-color": "#839496",
   "text-color": "#cccccc",
   "text-styles": {
