@@ -1,6 +1,31 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{main}
-\RequirePackage{titlesec,fancyvrb,framed,hyperref,xepersian}
+\RequirePackage{}
+
+%% tcolorbox
+
+\usepackage{titlesec,fancyvrb,framed,hyperref,graphicx}
+%\usepackage{tikz}
+%\usepackage[most]{tcolorbox}
+\usepackage{xepersian}
+%% no box env {{{
+%\newtcolorbox{bbox}{
+%	%title={\centering \color{black}{\textsf{Example} }},
+%	boxrule=1pt,
+%	arc = 0.5mm,
+%	%sharp corners = downhill,
+%	enlarge top by=3mm,
+%	minipage boxed title*=-15cm,
+%	beamer,
+%	enhanced,
+%	center,
+%	%attach boxed title to top center={yshift=-2.5mm},
+%	attach boxed title to top left={yshift=-2mm, xshift=1cm},
+%	colback  = black!03!white,
+%	colframe = black!90!white,
+%	colbacktitle = white,
+%}
+%% }}}
 
 %% Render <200c> for pandoc before 2.19 relase
 \let\textormath=\TextOrMath
@@ -111,7 +136,7 @@
 %\makeatother
 
 %% line-space
-\linespread{1.5}
+\linespread{1.3}
 
 %% Paragraph indentation
 \setlength{\parindent}{15pt}

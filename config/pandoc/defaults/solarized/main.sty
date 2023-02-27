@@ -2,6 +2,55 @@
 \ProvidesPackage{main}
 \RequirePackage{fontspec,fancyvrb,titlesec,framed}
 
+% colors {{{
+\definecolor{color_main}{HTML}{ffb86c} % #ffb86c
+
+\definecolor{color_text}{HTML}{f1fa8c} % #f1fa8c
+\definecolor{color_frametitle_bg}{HTML}{3b4048} % #3b4048
+\definecolor{color_frametitle_fg}{HTML}{ffffff} % #ffffff
+\definecolor{color_but_right_bg}{HTML}{3b4048} % #3b4048
+\definecolor{color_but_right_fg}{HTML}{ffffff} % #ffffff
+\definecolor{color_but_mid_bg}{HTML}{3e4452} % #3e4452
+\definecolor{color_but_mid_fg}{HTML}{ffffff} % #ffffff
+\definecolor{color_but_left_bg}{HTML}{4b5263} % #4b5263
+\definecolor{color_but_left_fg}{HTML}{ffffff} % #ffffff
+\definecolor{color_gradient}{HTML}{000000} % #000000
+
+\definecolor{color_block_body_fg}{HTML}{dddddd} % #dddddd
+\definecolor{color_blocks_title_fg}{HTML}{010101} % #010101
+\definecolor{color_block_def_bg}{HTML}{073642} % #21222c
+\definecolor{color_block_def_title_bg}{HTML}{bd93f9} % #bd93f9
+\definecolor{color_example_title_bg}{HTML}{8be9fd} % #8be9fd
+\definecolor{color_alert_title_bg}{HTML}{ff5555} % #ff5555
+
+\definecolor{color_items_1}{HTML}{ff79c6} % #ff79c6
+\definecolor{color_items_2}{HTML}{50fa7b} % #50fa7b
+%\definecolor{blockdeffg}{HTML}{} % #
+% }}}
+
+%\usepackage{listings}
+\usepackage{tikz}
+\usepackage[most]{tcolorbox}
+
+% no box env {{{
+\newtcolorbox{bbox}{
+%	title={\centering \color{black}{\textsf{Example} }},
+	boxrule=1pt,
+	arc = 0.5mm,
+	%sharp corners = downhill,
+	enlarge top by=3mm,
+	minipage boxed title*=-15cm,
+%	beamer,
+	enhanced,
+	center,
+	%attach boxed title to top center={yshift=-2.5mm},
+	attach boxed title to top left={yshift=-2mm, xshift=1cm},
+	colback  = solarizedcl,
+	colframe = black!90!white,
+	colbacktitle = white,
+}
+% }}}
+
 \pagecolor{solarizedbg}
 \color{solarizedfg}
 
@@ -50,26 +99,26 @@
 %\setmainfont{Source Serif Pro}
 %\setmainfont{Linux Libertine}
 
-%% quotation
-\renewenvironment{quote}{%
-    \begin{center}\begin{tabular}{p{.9\textwidth}}%
-    \sffamily%
-} {\end{tabular}\end{center}}
+%%% quotation
+%\renewenvironment{quote}{%
+%    \begin{center}\begin{tabular}{p{.9\textwidth}}%
+%    \sffamily%
+%} {\end{tabular}\end{center}}
 
 %% add line number to code-blocks
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},numbers=left}
+%\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},numbers=left}
 
-%% define shaded env
-%\ifcsname Shaded\endcsname
-\ifdefined\Shaded
-    \renewenvironment{Shaded}%
-        {\begin{quotation}\begin{snugshade}}
-        {\end{snugshade}\end{quotation}}
-\else
-    \newenvironment{Shaded}%
-        {\begin{quotation}\begin{snugshade}}
-        {\end{snugshade}\end{quotation}}
-\fi
+%%% define shaded env
+%%\ifcsname Shaded\endcsname
+%\ifdefined\Shaded
+%    \renewenvironment{Shaded}%
+%        {\begin{quotation}\begin{snugshade}}
+%        {\end{snugshade}\end{quotation}}
+%\else
+%    \newenvironment{Shaded}%
+%        {\begin{quotation}\begin{snugshade}}
+%        {\end{snugshade}\end{quotation}}
+%\fi
 
 %{\begin{leftbar}\begin{quotation}\sffamily\itshape}%
 %{\end{quotation}\end{leftbar}}

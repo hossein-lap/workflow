@@ -1,19 +1,14 @@
--- helper: store output of a command into a varaible
-function os.capture(cmd, raw)
-	local f = assert(io.popen(cmd, 'r'))
-	local s = assert(f:read('*a'))
-	f:close()
-	if raw then return s end
-	s = string.gsub(s, '^%s+', '')
-	s = string.gsub(s, '%s+$', '')
-	s = string.gsub(s, '[\n\r]+', ' ')
-	return s
-end
-
--- just for less typing
-function raw_tex(t)
-	return pandoc.RawBlock('tex', t)
-end
+---- helper: store output of a command into a varaible
+--function os.capture(cmd, raw)
+--	local f = assert(io.popen(cmd, 'r'))
+--	local s = assert(f:read('*a'))
+--	f:close()
+--	if raw then return s end
+--	s = string.gsub(s, '^%s+', '')
+--	s = string.gsub(s, '%s+$', '')
+--	s = string.gsub(s, '[\n\r]+', ' ')
+--	return s
+--end
 
 ---- command parser
 --function cmdparser(ft, cmd)
@@ -29,10 +24,16 @@ end
 --	return out
 --end
 
+-- just for less typing
+function raw_tex(t)
+	return pandoc.RawBlock('tex', t)
+end
+
 -- Wrap code blocks in tcolorbox environments
 function CodeBlock(cb)
 ----	local wrapper = cmdparser(cb.classes, 'ls /tmp/test.*') -- os.capture(cb)
-	print(cb.classes[1], cb.text)
+	print(cb.text)
+	print()
 	cbft = cb.classes[1]
 ----	local temp = string(cb.text)
 --	local wrapper = cmdparser(cbft, cb.text) -- os.capture(cb) -- os.capture(wrapper)
@@ -40,11 +41,11 @@ function CodeBlock(cb)
 --	local output = string.format("\\begin{verbatim}\n%s\n\\end{verbatim}", wrapper)
 	local codeblockbox = {
 		raw_tex '\\begin{quote}',
-		raw_tex '\\begin{tcolorbox}',
+		raw_tex '\\begin{bbox}',
 			cb,
 --		raw_tex '\\tcblower',
 --			raw_tex(output),
-		raw_tex '\\end{tcolorbox}',
+		raw_tex '\\end{bbox}',
 		raw_tex '\\end{quote}',
 	}
 	local codeblock = {

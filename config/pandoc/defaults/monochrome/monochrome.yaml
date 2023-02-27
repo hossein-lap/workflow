@@ -16,3 +16,5 @@ variables:
     - \usepackage{/home/hos/.config/pandoc/defaults/monochrome/main}
 filters:
     - /home/hos/.config/pandoc/filters/en-date.lua
+    - /home/hos/.config/pandoc/filters/tex-codeblock-mc.lua
+#    - /home/hos/.config/pandoc/filters/tangle.lua

@@ -5,9 +5,6 @@ end
 
 -- Wrap code blocks in tcolorbox environments
 function CodeBlock(cb)
-----	local wrapper = cmdparser(cb.classes, 'ls /tmp/test.*') -- os.capture(cb)
---	print(cb.text)
---	print()
 	local codeblock = {
 		raw_tex '\\begin{quote}',
 		raw_tex '\\begin{quote}',

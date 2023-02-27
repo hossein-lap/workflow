@@ -5,6 +5,7 @@ metadata:
 number-sections: false
 pdf-engine: xelatex
 #highlight-style: /home/hos/.config/pandoc/highlight/dracula.theme
+#highlight-style: tango
 highlight-style: /home/hos/.config/pandoc/highlight/solarized-light.theme
 
 variables:
