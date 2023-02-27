@@ -21,3 +21,4 @@ variables:
 #    - \color{draculafg}
 filters:
     - /home/hos/.config/pandoc/filters/fa-date.lua
+    - /home/hos/.config/pandoc/filters/tex-codeblock-fa.lua

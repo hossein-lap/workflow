@@ -75,28 +75,28 @@
 %\setlatinmonofont{Inconsolata}
 
 %% add line number to code-blocks
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},frame=single}
+%\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},frame=single}
 %\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},numbers=left}
 %\DefineVerbatimEnvironment{Verb}{Verbatim}{numbers=left}
 %\DefineVerbatimEnvironment{verbatim}{Verbatim}{numbers=left}
 
-%\ifcsname Shaded\endcsname
-\ifdefined\Shaded
-    \renewenvironment{Shaded}%
-        {\begin{latin}\begin{snugshade}}%
-        {\end{snugshade}\end{latin}}
-\else
-    \newenvironment{Shaded}%
-        {\begin{latin}\begin{snugshade}}%
-        {\end{snugshade}\end{latin}}
-\fi
-
-%% quotation
-\renewenvironment{quote}%
-	{\begin{quotation}\noindent\qfont\hspace{-0.5mm}}%
-	{\hspace{-0.5mm}\end{quotation}}
-%    {\begin{center}\begin{tabular}{|p{.8\textwidth}}\qfont}%
-%    {\end{tabular}\end{center}}
+%%\ifcsname Shaded\endcsname
+%\ifdefined\Shaded
+%    \renewenvironment{Shaded}%
+%        {\begin{latin}\begin{snugshade}}%
+%        {\end{snugshade}\end{latin}}
+%\else
+%    \newenvironment{Shaded}%
+%        {\begin{latin}\begin{snugshade}}%
+%        {\end{snugshade}\end{latin}}
+%\fi
+%
+%%% quotation
+%\renewenvironment{quote}%
+%	{\begin{quotation}\noindent\qfont\hspace{-0.5mm}}%
+%	{\hspace{-0.5mm}\end{quotation}}
+%%    {\begin{center}\begin{tabular}{|p{.8\textwidth}}\qfont}%
+%%    {\end{tabular}\end{center}}
 
 %% Simple verbatim
 %\let\oldverbatim=\verbatim
@@ -105,10 +105,10 @@
 %    {\begin{quotation}\begin{latin}\oldverbatim\noindent}%
 %    {\oldendverbatim \end{latin}\end{quotation}}
 
-\makeatletter
-\def\@xobeysp{\mbox{}\space}
-\def\verbatim@font{\latin\normalfont\ttfamily}
-\makeatother
+%\makeatletter
+%\def\@xobeysp{\mbox{}\space}
+%\def\verbatim@font{\latin\normalfont\ttfamily}
+%\makeatother
 
 %% line-space
 \linespread{1.5}

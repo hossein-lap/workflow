@@ -17,3 +17,4 @@ variables:
     - \usepackage{/home/hos/.config/pandoc/defaults/solarized/main}
 filters:
     - /home/hos/.config/pandoc/filters/en-date.lua
+    - /home/hos/.config/pandoc/filters/tex-codeblock-en.lua
