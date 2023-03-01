@@ -1,0 +1,831 @@
+diff --git a/colors/256_noir.h b/colors/256_noir.h
+new file mode 100644
+index 0000000..46afcb4
+--- /dev/null
++++ b/colors/256_noir.h
+@@ -0,0 +1,27 @@
++/* Colorscheme */
++static const char *colorname[] = {
++	/* 8 normal colors */
++	[0] = "#000000", /* black   */
++	[1] = "#ee0000", /* red     */
++	[4] = "#383833", /* green   */
++	[3] = "#AAABA6", /* yellow  */
++	[2] = "#585855", /* blue    */
++	[5] = "#D6D6D0", /* magenta */
++	[6] = "#7a7a77", /* cyan    */
++	[7] = "#AAABA6", /* white   */
++	/* 8 bright colors */
++	[8]  = "#000000", /* black   */
++	[9]  = "#aa0000", /* red     */
++	[12] = "#383833", /* green   */
++	[11] = "#AAABA6", /* yellow  */
++	[10] = "#585855", /* blue    */
++	[13] = "#D6D6D0", /* magenta */
++	[14] = "#7a7a77", /* cyan    */
++	[15] = "#AAABA6", /* white   */
++	/* more colors can be added after 255 to use with DefaultXX */
++	[255] = 0,
++	[256] = "#000000", /* 256 -> bg */
++	[257] = "#b7bcba", /* 257 -> fg */
++	[258] = "#ff0000", /* 258 -> cursor */
++	[259] = "#000000", /* 259 -> rev cursor*/
++};
+diff --git a/colors/ayu-dark.h b/colors/ayu-dark.h
+new file mode 100644
+index 0000000..0ebf13b
+--- /dev/null
++++ b/colors/ayu-dark.h
+@@ -0,0 +1,27 @@
++/* Colorscheme */
++static const char *colorname[] = {
++	/* 8 normal colors */
++	[0] = "#01060e", /* black   */
++	[1] = "#ea6c73", /* red     */
++	[2] = "#c2d94c", /* green   */
++	[3] = "#f9af4f", /* yellow  */
++	[4] = "#53bdfa", /* blue    */
++	[5] = "#fae994", /* magenta */
++	[6] = "#90e1c6", /* cyan    */
++	[7] = "#c7c7c7", /* white   */
++	/* 8 bright colors */
++	[8]  = "#686868", /* black   */
++	[9]  = "#f07178", /* red     */
++	[10] = "#c2d94c", /* green   */
++	[11] = "#ffb454", /* yellow  */
++	[12] = "#59c2ff", /* blue    */
++	[13] = "#ffee99", /* magenta */
++	[14] = "#95e6cb", /* cyan    */
++	[15] = "#ffffff", /* white   */
++	/* special colors */
++	[255] = 0,
++	[256] = "#0a0e14", /* 256 -> bg */
++	[257] = "#b3b1ad", /* foreground */
++	[258] = "#f32323", /* cursor background */
++	[259] = "#010101", /* cursor foreground */
++};
+diff --git a/colors/breeze.h b/colors/breeze.h
+new file mode 100644
+index 0000000..a926e51
+--- /dev/null
++++ b/colors/breeze.h
+@@ -0,0 +1,27 @@
++/* Colorscheme */
++static const char *colorname[] = {
++	/* 8 normal colors */
++	[0] =  "#232627", /* black   */
++	[1] =  "#ed1515", /* red     */
++	[2] =  "#11d116", /* green   */
++	[3] =  "#f67400", /* yellow  */
++	[4] =  "#1d99f3", /* blue    */
++	[5] =  "#9b59b6", /* magenta */
++	[6] =  "#1abc9c", /* cyan    */
++	[7] =  "#fcfcfc", /* white   */
++	/* 8 bright colors */
++	[8]  =  "#7f8c8d", /* black   */
++	[9]  =  "#c0392b", /* red     */
++	[10] =  "#1cdc9a", /* green   */
++	[11] =  "#fdbc4b", /* yellow  */
++	[12] =  "#3daee9", /* blue    */
++	[13] =  "#8e44ad", /* magenta */
++	[14] =  "#16a085", /* cyan    */
++	[15] =  "#ffffff", /* white   */
++	/* more colors can be added after 255 to use with DefaultXX */
++	[255] = 0,
++	[256] = "#161719", /* 256 -> bg */
++	[257] = "#b7bcba", /* 257 -> fg */
++	[258] = "#ff7700", /* 258 -> cursor */
++	[259] = "#000000", /* 259 -> rev cursor*/
++};
+diff --git a/colors/custom.h b/colors/custom.h
+new file mode 100644
+index 0000000..814bc15
+--- /dev/null
++++ b/colors/custom.h
+@@ -0,0 +1,27 @@
++/* Colorscheme */
++static const char *colorname[] = {
++	/* 8 normal colors */
++	[0] = "#1d1d1d", /* black   */
++	[1] = "#f92655", /* red     */
++	[2] = "#a6e22e", /* green   */
++	[3] = "#fd9717", /* yellow  */
++	[4] = "#4e82aa", /* blue    */
++	[5] = "#8c54de", /* magenta */
++	[6] = "#2aa198", /* cyan    */
++	[7] = "#ccccc6", /* white   */
++	/* 8 bright colors */
++	[8]  = "#75715e", /* black   */
++	[9]  = "#f92633", /* red     */
++	[10] = "#a6e22e", /* green   */
++	[11] = "#f4bf75", /* yellow  */
++	[12] = "#66d9ef", /* blue    */
++	[13] = "#ae81ff", /* magenta */
++	[14] = "#545455", /* cyan    */
++	[15] = "#f9f8f5", /* white   */
++	/* special colors */
++	[255] = 0,
++	[256] = "#000000", /* background */
++	[257] = "#bbbbbb", /* foreground */
++	[258] = "#ff7700", /* cursor background */
++	[259] = "#11121d", /* cursor foreground */
++};
+diff --git a/colors/default.h b/colors/default.h
+new file mode 100644
+index 0000000..d9b6f03
+--- /dev/null
++++ b/colors/default.h
+@@ -0,0 +1,27 @@
++/* Colorscheme */
++static const char *colorname[] = {
++	/* 8 normal colors */
++	[0] = "black",    /* black   */
++	[1] = "red3",     /* red     */
++	[2] = "green3",   /* green   */
++	[3] = "yellow3",  /* yellow  */
++	[4] = "blue2",    /* blue    */
++	[5] = "magenta3", /* magenta */
++	[6] = "cyan3",    /* cyan    */
++	[7] = "gray90",   /* white   */
++	/* 8 bright colors */
++	[8]  = "gray50",  /* black   */
++	[9]  = "red",     /* red     */
++	[10] = "green",   /* green   */
++	[11] = "yellow",  /* yellow  */
++	[12] = "#5c5cff", /* blue    */
++	[13] = "magenta", /* magenta */
++	[14] = "cyan",    /* cyan    */
++	[15] = "white",   /* white   */
++	/* special colors */
++	[255] = 0,
++	[256] = "black", /* 256 -> bg */
++	[257] = "#cccccc", /* foreground */
++	[258] = "red", /* cursor background */
++	[259] = "black", /* cursor foreground */
++};
+diff --git a/colors/dracula.h b/colors/dracula.h
+new file mode 100644
+index 0000000..eabde4b
+--- /dev/null
++++ b/colors/dracula.h
+@@ -0,0 +1,27 @@
++/* Colorscheme */
++static const char *colorname[] = {
++	/* 8 normal colors */
++	[0] = "#21222c", /* black   */
++	[1] = "#ff5555", /* red     */
++	[2] = "#50fa7b", /* green   */
++	[3] = "#fffe91", /* yellow  */
++	[4] = "#9082f7", /* blue    */
++	[5] = "#ff79c6", /* magenta */
++	[6] = "#8be9fd", /* cyan    */
++	[7] = "#bbbbbb", /* white   */
++	/* 8 bright colors */
++	[8]  = "#6272a4", /* black   */
++	[9]  = "#ff6e6e", /* red     */
++	[10] = "#69ff94", /* green   */
++	[11] = "#ffffa5", /* yellow  */
++	[12] = "#d6acff", /* blue    */
++	[13] = "#ff92df", /* magenta */
++	[14] = "#a4ffff", /* cyan    */
++	[15] = "#ffffff", /* white   */
++	/* special colors */
++	[255] = 0,
++	[256] = "#1e1f29", /* background */
++	[257] = "#f8f8f2", /* foreground */
++	[258] = "#ff7700", /* cursor background */
++	[259] = "#000000", /* cursor foreground */
++};
+diff --git a/colors/gruvbox-dark.h b/colors/gruvbox-dark.h
+new file mode 100644
+index 0000000..9003b4c
+--- /dev/null
++++ b/colors/gruvbox-dark.h
+@@ -0,0 +1,28 @@
++/* Colorscheme */
++static const char *colorname[] = {
++	/* 8 normal colors */
++	[0] = "#282828", /* black   */
++	[1] = "#cc241d", /* red     */
++	[2] = "#98971a", /* green   */
++	[3] = "#d79921", /* yellow  */
++	[4] = "#458588", /* blue    */
++	[5] = "#b16286", /* magenta */
++	[6] = "#689d6a", /* cyan    */
++	[7] = "#a89984", /* white   */
++	/* 8 bright colors */
++	[8]  = "#928374", /* black   */
++	[9]  = "#fb4934", /* red     */
++	[10] = "#b8bb26", /* green   */
++	[11] = "#fabd2f", /* yellow  */
++	[12] = "#83a598", /* blue    */
++	[13] = "#d3869b", /* magenta */
++	[14] = "#8ec07c", /* cyan    */
++	[15] = "#ebdbb2", /* white   */
++	/* special colors */
++	/* hard contrast: #1d2021 / normal contrast: #282828 / soft contrast: #32302f */
++	[255] = 0,
++	[256] = "#1d2021", /* background */
++	[257] = "#ebdbb2", /* foreground */
++	[258] = "#ff7700", /* cursor background */
++	[259] = "#000000", /* cursor foreground */
++};
+diff --git a/colors/gruvbox-material.h b/colors/gruvbox-material.h
+new file mode 100644
+index 0000000..81fdb68
+--- /dev/null
++++ b/colors/gruvbox-material.h
+@@ -0,0 +1,28 @@
++/* Colorscheme */
++static const char *colorname[] = {
++	/* Normal */
++	[0] = "#073642",  /*  0: black    */
++	[1] = "#dc322f",  /*  1: red      */
++	[2] = "#b3bf5a",
++	[3] = "#e4b55e",
++	[4] = "#268bd2",  /*  4: blue     */
++	[5] = "#d33682",  /*  5: magenta  */
++	[6] = "#2aa198",  /*  6: cyan     */
++	[7] = "#eee8d5",  /*  7: white    */
++	/* Bright */
++	[8]  = "#002b36",  /*  8: brblack  */
++	[9]  = "#cb4b16",  /*  9: brred    */
++	[10] = "#859900",  /*  2: green    */
++	[11] = "#e58a50",
++	[12] = "#839496",  /* 12: brblue   */
++	[13] = "#6e5079",
++	[14] = "#7fbfb4",
++	[15] = "#5a626a",
++	/* more colors can be added after 255 to use with DefaultXX */
++	[255] = 0,
++	[256] = "#161719", /* 256 -> bg */
++	[257] = "#b7bcba", /* 257 -> fg */
++	//[257] = "#daccc2", /* foreground */
++	[258] = "#ff7700", /* 258 -> cursor */
++	[259] = "#000000", /* 259 -> rev cursor*/
++};
+diff --git a/colors/hos.h b/colors/hos.h
+new file mode 100644
+index 0000000..dc96df2
+--- /dev/null
++++ b/colors/hos.h
+@@ -0,0 +1,28 @@
++/* Colorscheme */
++static const char *colorname[] = {
++	/* 8 normal colors */
++	[0] = "#0A0A0A",
++	[1] = "#EE0000",
++	[2] = "#005f96",
++	[3] = "#0066ff",
++	[4] = "#0034b6",
++	[5] = "#d64601",
++	[6] = "#bb2121",
++	[7] = "#AAABA6",
++	/* 8 bright colors */
++	[8] = "#2E2E2C",
++	[9] = "#8B0000",
++	[10] = "#7013cc",
++	[11] = "#777777",
++	[12] = "#007700",
++	[13] = "#ff8c00",
++	[14] = "#e42121",
++	[15] = "#f53101",
++	/* special colors */
++	[255] = 0,
++	[256] = "#11121d", /* 256 -> bg */
++	[257] = "#ffffff", /* 257 -> fg */
++	[258] = "#ff2200", /* 258 -> cursor */
++	[259] = "#11121d", /* 259 -> rev cursor*/
++};
++
+diff --git a/colors/hybrid-16.h b/colors/hybrid-16.h
+new file mode 100644
+index 0000000..f411b8e
+--- /dev/null
++++ b/colors/hybrid-16.h
+@@ -0,0 +1,27 @@
++/* Colorscheme */
++static const char *colorname[] = {
++	/* Normal */
++	[0] = "#1d1f22",
++	[1] = "#8d2e32",
++	[2] = "#798431",
++	[3] = "#e58a50",
++	[4] = "#4b6b88",
++	[5] = "#6e5079",
++	[6] = "#4d7b74",
++	[7] = "#5a626a",
++	/* Bright */
++	[8]  = "#1d1f22",
++	[9]  = "#8d2e32",
++	[10] = "#798431",
++	[11] = "#e58a50",
++	[12] = "#4b6b88",
++	[13] = "#6e5079",
++	[14] = "#4d7b74",
++	[15] = "#5a626a",
++	/* more colors can be added after 255 to use with DefaultXX */
++	[255] = 0,
++	[256] = "#222222", /* 256 -> bg */
++	[257] = "#b7bcba", /* 257 -> fg */
++	[258] = "#ff7700", /* 258 -> cursor */
++	[259] = "#000000", /* 259 -> rev cursor*/
++};
+diff --git a/colors/hybrid-dark.h b/colors/hybrid-dark.h
+new file mode 100644
+index 0000000..86e6fcb
+--- /dev/null
++++ b/colors/hybrid-dark.h
+@@ -0,0 +1,27 @@
++/* Colorscheme */
++static const char *colorname[] = {
++	/* Normal */
++	[0] = "#2a2e33",
++	[1] = "#b84d51",
++	[2] = "#b3bf5a",
++	[3] = "#e4b55e",
++	[4] = "#6e90b0",
++	[5] = "#a17eac",
++	[6] = "#7fbfb4",
++	[7] = "#b5b9b6",
++	/* Bright */
++	[8]  = "#1d1f22",
++	[9]  = "#8d2e32",
++	[10] = "#798431",
++	[11] = "#e58a50",
++	[12] = "#4b6b88",
++	[13] = "#6e5079",
++	[14] = "#4d7b74",
++	[15] = "#5a626a",
++	/* more colors can be added after 255 to use with DefaultXX */
++	[255] = 0,
++	[256] = "#161719", /* 256 -> bg */
++	[257] = "#b7bcba", /* 257 -> fg */
++	[258] = "#ff7700", /* 258 -> cursor */
++	[259] = "#000000", /* 259 -> rev cursor*/
++};
+diff --git a/colors/nord.h b/colors/nord.h
+new file mode 100644
+index 0000000..2eda68a
+--- /dev/null
++++ b/colors/nord.h
+@@ -0,0 +1,27 @@
++/* Colorscheme */
++static const char *colorname[] = {
++	/* 8 normal colors */
++	[0] = "#3b4252", /* black   */
++	[1] = "#bf616a", /* red     */
++	[2] = "#a3be8c", /* green   */
++	[3] = "#ebcb8b", /* yellow  */
++	[4] = "#81a1c1", /* blue    */
++	[5] = "#b48ead", /* magenta */
++	[6] = "#88c0d0", /* cyan    */
++	[7] = "#e5e9f0", /* white   */
++	/* 8 bright colors */
++	[8]  = "#373e4d", /* black   */
++	[9]  = "#94545d", /* red     */
++	[10] = "#809575", /* green   */
++	[11] = "#b29e75", /* yellow  */
++	[12] = "#68809a", /* blue    */
++	[13] = "#8c738c", /* magenta */
++	[14] = "#6d96a5", /* cyan    */
++	[15] = "#aeb3bb", /* white   */
++	/* special colors */
++	[255] = 0,
++	[256] = "#2e3440", /* 256 -> bg */
++	[257] = "#aeb3bb", /* foreground */
++	[258] = "#f32323", /* cursor background */
++	[259] = "#010101", /* cursor foreground */
++};
+diff --git a/colors/pj.h b/colors/pj.h
+new file mode 100644
+index 0000000..a885d13
+--- /dev/null
++++ b/colors/pj.h
+@@ -0,0 +1,27 @@
++/* Colorscheme */
++static const char *colorname[] = {
++	/* 8 normal colors */
++	[0] = "#1d1d1d", /* black   */
++	[1] = "#f92655", /* red     */
++	[2] = "#a6e22e", /* green   */
++	[3] = "#fd9717", /* yellow  */
++	[4] = "#4e82aa", /* blue    */
++	[5] = "#8c54de", /* magenta */
++	[6] = "#2aa198", /* cyan    */
++	[7] = "#ccccc6", /* white   */
++	/* 8 bright colors */
++	[8]  = "#75715e", /* black   */
++	[9]  = "#f92633", /* red     */
++	[10] = "#a6e22e", /* green   */
++	[11] = "#f4bf75", /* yellow  */
++	[12] = "#66d9ef", /* blue    */
++	[13] = "#ae81ff", /* magenta */
++	[14] = "#545455", /* cyan    */
++	[15] = "#f9f8f5", /* white   */
++	/* special colors */
++	[255] = 0,
++	[256] = "#11121d", /* background */
++	[257] = "#bbbbbb", /* foreground */
++	[258] = "#ff2200", /* cursor background */
++	[259] = "#11121d", /* cursor foreground */
++};
+diff --git a/colors/solarized-dark.h b/colors/solarized-dark.h
+new file mode 100644
+index 0000000..d538a17
+--- /dev/null
++++ b/colors/solarized-dark.h
+@@ -0,0 +1,27 @@
++/* Colorscheme */
++static const char *colorname[] = {
++	/* Normal */
++	[0] = "#073642",  /*  0: black    */
++	[1] = "#dc322f",  /*  1: red      */
++	[2] = "#859900",  /*  2: green    */
++	[3] = "#b58900",  /*  3: yellow   */
++	[4] = "#268bd2",  /*  4: blue     */
++	[5] = "#d33682",  /*  5: magenta  */
++	[6] = "#2aa198",  /*  6: cyan     */
++	[7] = "#eee8d5",  /*  7: white    */
++	/* Bright */
++	[8]  = "#002b36",  /*  8: brblack  */
++	[9]  = "#cb4b16",  /*  9: brred    */
++	[10] = "#586e75",  /* 10: brgreen  */
++	[11] = "#657b83",  /* 11: bryellow */
++	[12] = "#839496",  /* 12: brblue   */
++	[13] = "#6c71c4",  /* 13: brmagenta*/
++	[14] = "#93a1a1",  /* 14: brcyan   */
++	[15] = "#fdf6e3",  /* 15: brwhite  */
++	/* more colors can be added after 255 to use with DefaultXX */
++	[255] = 0,
++	[256] = "#002b36", /* 256 -> bg */
++	[257] = "#cccccc", /* 257 -> fg */
++	[258] = "#cb4b16", /* 258 -> cursor */
++	[259] = "#000000", /* 259 -> rev cursor*/
++};
+diff --git a/colors/solarized-light.h b/colors/solarized-light.h
+new file mode 100644
+index 0000000..5f2e375
+--- /dev/null
++++ b/colors/solarized-light.h
+@@ -0,0 +1,27 @@
++/* Colorscheme */
++static const char *colorname[] = {
++	/* Normal */
++	[0] = "#eee8d5",  /*  7: white    */
++	[1] = "#dc322f",  /*  1: red      */
++	[2] = "#859900",  /*  2: green    */
++	[3] = "#b58900",  /*  3: yellow   */
++	[4] = "#268bd2",  /*  4: blue     */
++	[5] = "#d33682",  /*  5: magenta  */
++	[6] = "#2aa198",  /*  6: cyan     */
++	[7] = "#073642",  /*  0: black    */
++	/* Bright */
++	[8]  = "#fdf6e3", /* black   */
++	[9]  = "#cb4b16", /* red     */
++	[10] = "#93a1a1", /* green   */
++	[11] = "#839496", /* yellow  */
++	[12] = "#657b83", /* blue    */
++	[13] = "#6c71c4", /* magenta */
++	[14] = "#586e75", /* cyan    */
++	[15] = "#002b36", /* white   */
++	/* more colors can be added after 255 to use with DefaultXX */
++	[255] = 0,
++	[256] = "#fafafa", /* 256 -> bg */
++	[257] = "#586e75", /* 257 -> fg */
++	[258] = "#cb4b16", /* 258 -> cursor */
++	[259] = "#000000", /* 259 -> rev cursor*/
++};
+diff --git a/colors/termite.h b/colors/termite.h
+new file mode 100644
+index 0000000..5542511
+--- /dev/null
++++ b/colors/termite.h
+@@ -0,0 +1,29 @@
++/* Colorscheme */
++static const char *colorname[] = {
++	/* 8 normal colors */
++	[0] = "#000000", /* black   */
++	[1] = "#FF0000", /* red     */
++	[2] = "#97D01A", /* green   */
++	[3] = "#FFA800", /* yellow  */
++	[4] = "#16B1FB", /* blue    */
++	[5] = "#FF2491", /* magenta */
++	[6] = "#0FDCB6", /* cyan    */
++	[7] = "#EBEBEB", /* white   */
++	/* 8 br#383838ight colors */
++	[8]  = "#232323", /* black   */
++	[9]  = "#FF0000", /* red     */
++	[10] = "#76B639", /* green   */
++	[11] = "#E1A126", /* yellow  */
++	[12] = "#289CD5", /* blue    */
++	[13] = "#FF2491", /* magenta */
++	[14] = "#0A9B81", /* cyan    */
++	[15] = "#F8F8F8", /* white   */
++	/* special colors */
++	[255] = 0,
++	//[256] = "#171717", /* background */
++	[256] = "#11121d", /* 256 -> bg */
++	[257] = "#f8f8f8", /* foreground */
++	[258] = "#f32323", /* cursor background */
++	//[258] = "#ff7700", /* cursor background */
++	[259] = "#010101", /* cursor foreground */
++};
+diff --git a/colors/tokyodark.h b/colors/tokyodark.h
+new file mode 100644
+index 0000000..e61f07f
+--- /dev/null
++++ b/colors/tokyodark.h
+@@ -0,0 +1,27 @@
++/* Colorscheme */
++static const char *colorname[] = {
++	/* 8 normal colors */
++	[0] = "#06080a", /* black   */
++	[1] = "#ee6d85", /* red     */
++	[2] = "#95c561", /* green   */
++	[3] = "#d7a65f", /* yellow  */
++	[4] = "#7199ee", /* blue    */
++	[5] = "#a485dd", /* magenta */
++	[6] = "#38a89d", /* cyan    */
++	[7] = "#a0a8cd", /* white   */
++	/* 8 bright colors */
++	[8]  = "#06080a", /* black   */
++	[9]  = "#ee6d85", /* red     */
++	[10] = "#95c561", /* green   */
++	[11] = "#d7a65f", /* yellow  */
++	[12] = "#7199ee", /* blue    */
++	[13] = "#a485dd", /* magenta */
++	[14] = "#38a89d", /* cyan    */
++	[15] = "#a0a8cd", /* white   */
++	/* more colors can be added after 255 to use with DefaultXX */
++	[255] = 0,
++	[256] = "#11121d", /* 256 -> bg */
++	[257] = "#a0a8cd", /* 257 -> fg */
++	[258] = "#ff2200", /* 258 -> cursor */
++	[259] = "#11121d", /* 259 -> rev cursor*/
++};
+diff --git a/colors/tokyonight.h b/colors/tokyonight.h
+new file mode 100644
+index 0000000..1478f6d
+--- /dev/null
++++ b/colors/tokyonight.h
+@@ -0,0 +1,27 @@
++/* Colorscheme */
++static const char *colorname[] = {
++	/* 8 normal colors */
++	[0] = "#32344a", /* black   */
++	[1] = "#f7768e", /* red     */
++	[2] = "#9ece6a", /* green   */
++	[3] = "#e0af68", /* yellow  */
++	[4] = "#7aa2f7", /* blue    */
++	[5] = "#ad8ee6", /* magenta */
++	[6] = "#449dab", /* cyan    */
++	[7] = "#787c99", /* white   */
++	/* 8 bright colors */
++	[8]  = "#444b6a", /* black   */
++	[9]  = "#ff7a93", /* red     */
++	[10] = "#b9f27c", /* green   */
++	[11] = "#ff9e64", /* yellow  */
++	[12] = "#7da6ff", /* blue    */
++	[13] = "#bb9af7", /* magenta */
++	[14] = "#0db9d7", /* cyan    */
++	[15] = "#acb0d0", /* white   */
++	/* more colors can be added after 255 to use with DefaultXX */
++	[255] = 0,
++	[256] = "#11121d", /* 256 -> bg */
++	[257] = "#a0a8cd", /* 257 -> fg */
++	[258] = "#ff2200", /* 258 -> cursor */
++	[259] = "#11121d", /* 259 -> rev cursor*/
++};
+diff --git a/colors/ubuntu.h b/colors/ubuntu.h
+new file mode 100644
+index 0000000..1862356
+--- /dev/null
++++ b/colors/ubuntu.h
+@@ -0,0 +1,27 @@
++/* Colorscheme */
++static const char *colorname[] = {
++	/* 8 normal colors */
++	[0] = "#2e3436", /* black   */
++	[1] = "#ef2929", /* red     */
++	[2] = "#8ae234", /* green   */
++	[3] = "#fce94f", /* yellow  */
++	[4] = "#729fcf", /* blue    */
++	[5] = "#ad7fa8", /* magenta */
++	[6] = "#34e2e2", /* cyan    */
++	[7] = "#eeeeec", /* white   */
++	/* 8 bright colors */
++	[8]  = "#555753", /* black   */
++	[9]  = "#cc0000", /* red     */
++	[10] = "#4e9a06", /* green   */
++	[11] = "#c4a000", /* yellow  */
++	[12] = "#3465a4", /* blue    */
++	[13] = "#75507b", /* magenta */
++	[14] = "#06989a", /* cyan    */
++	[15] = "#d3d7cf", /* white   */
++	/* special colors */
++	[255] = 0,
++	[256] = "#2d0922", /* 256 -> bg */
++	[257] = "#eeeeec", /* foreground */
++	[258] = "#fe8b00", /* cursor background */
++	[259] = "#010101", /* cursor foreground */
++};
+diff --git a/colors/vscode.h b/colors/vscode.h
+new file mode 100644
+index 0000000..3f5b0b9
+--- /dev/null
++++ b/colors/vscode.h
+@@ -0,0 +1,27 @@
++/* Colorscheme */
++static const char *colorname[] = {
++	/* 8 normal colors */
++	[0] = "#000000", /* black   */
++	[1] = "#cd3131", /* red     */
++	[2] = "#0dbc79", /* green   */
++	[3] = "#e5e510", /* yellow  */
++	[4] = "#2472c8", /* blue    */
++	[5] = "#bc3fbc", /* magenta */
++	[6] = "#11a8cd", /* cyan    */
++	[7] = "#e5e5e5", /* white   */
++	/* 8 bright colors */
++	[8]  = "#666666", /* black   */
++	[9]  = "#f14c4c", /* red     */
++	[10] = "#50fa7b", /* green   */
++	[11] = "#f1fa8c", /* yellow  */
++	[12] = "#3b8eea", /* blue    */
++	[13] = "#d670d6", /* magenta */
++	[14] = "#29b8db", /* cyan    */
++	[15] = "#e5e5e5", /* white   */
++	/* more colors can be added after 255 to use with DefaultXX */
++	[255] = 0,
++	[256] = "#161719", /* 256 -> bg */
++	[257] = "#b7bcba", /* 257 -> fg */
++	[258] = "#ff7700", /* 258 -> cursor */
++	[259] = "#000000", /* 259 -> rev cursor*/
++};
+diff --git a/config.def.h b/config.def.h
+index 91ab8ca..a45b48e 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -5,9 +5,34 @@
+  *
+  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
+  */
+-static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
++static char *font = "Fira Code:pixelsize=27:antialias=true:autohint=true";
++/* Spare fonts */
++static char *font2[] = {
++	 "FuraCode Nerd Font:pixelsize=29:antialias=true:autohint=true",
++	 "Noto Color Emoji:pixelsize=25:antialias=true:autohint=true",
++	 "JoyPixels:pixelsize=25:antialias=true:autohint=true",
++/*	"Inconsolata for Powerline:pixelsize=12:antialias=true:autohint=true", */
++/*	"Hack Nerd Font Mono:pixelsize=11:antialias=true:autohint=true", */
++};
++
+ static int borderpx = 2;
+ 
++/* colorscheme */
++/*
++ * scheme list:
++ *    • 256_noir.h          • ayu-dark.h
++ *    • breeze.h            • custom.h
++ *    • default.h           • dracula.h
++ *    • gruvbox-dark.h      • gruvbox-material.h
++ *    • hos.h               • hybrid-16.h
++ *    • hybrid-dark.h       • nord.h
++ *    • pj.h                • solarized-dark.h
++ *    • solarized-light.h   • termite.h
++ *    • tokyodark.h         • tokyonight.h
++ *    • ubuntu.h            • vscode.h
++ */
++#include "colors/dracula.h"
++ 
+ /*
+  * What program is execed by st depends of these precedence rules:
+  * 1: program passed with -e
+@@ -34,7 +59,7 @@ static float chscale = 1.0;
+  *
+  * More advanced example: L" `'\"()[]{}"
+  */
+-wchar_t *worddelimiters = L" ";
++wchar_t *worddelimiters = L" `'\"()[]{}";
+ 
+ /* selection timeouts (in milliseconds) */
+ static unsigned int doubleclicktimeout = 300;
+@@ -65,7 +90,16 @@ static unsigned int blinktimeout = 800;
+ /*
+  * thickness of underline and bar cursors
+  */
+-static unsigned int cursorthickness = 2;
++static unsigned int cursorthickness = 4;
++
++/*
++ * Default shape of cursor
++ * 2: Block ("█")
++ * 4: Underline ("_")
++ * 6: Bar ("|")
++ * 7: Snowman ("☃")
++ */
++static unsigned int cursorshape = 2;
+ 
+ /*
+  * bell volume. It must be a value between -100 and 100. Use 0 for disabling
+@@ -93,62 +127,21 @@ char *termname = "st-256color";
+  */
+ unsigned int tabspaces = 8;
+ 
+-/* Terminal colors (16 first used in escape sequence) */
+-static const char *colorname[] = {
+-	/* 8 normal colors */
+-	"black",
+-	"red3",
+-	"green3",
+-	"yellow3",
+-	"blue2",
+-	"magenta3",
+-	"cyan3",
+-	"gray90",
+-
+-	/* 8 bright colors */
+-	"gray50",
+-	"red",
+-	"green",
+-	"yellow",
+-	"#5c5cff",
+-	"magenta",
+-	"cyan",
+-	"white",
+-
+-	[255] = 0,
+-
+-	/* more colors can be added after 255 to use with DefaultXX */
+-	"#cccccc",
+-	"#555555",
+-	"gray90", /* default foreground colour */
+-	"black", /* default background colour */
+-};
+-
+-
+ /*
+  * Default colors (colorname index)
+  * foreground, background, cursor, reverse cursor
+  */
+-unsigned int defaultfg = 258;
+-unsigned int defaultbg = 259;
+-unsigned int defaultcs = 256;
+-static unsigned int defaultrcs = 257;
+-
+-/*
+- * Default shape of cursor
+- * 2: Block ("█")
+- * 4: Underline ("_")
+- * 6: Bar ("|")
+- * 7: Snowman ("☃")
+- */
+-static unsigned int cursorshape = 2;
++unsigned int defaultbg = 256;
++unsigned int defaultfg = 257;
++unsigned int defaultcs = 258;
++static unsigned int defaultrcs = 259;
+ 
+ /*
+  * Default columns and rows numbers
+  */
+ 
+-static unsigned int cols = 80;
+-static unsigned int rows = 24;
++static unsigned int cols = 90;
++static unsigned int rows = 26;
+ 
+ /*
+  * Default colour and shape of the mouse cursor
+@@ -184,7 +177,7 @@ static MouseShortcut mshortcuts[] = {
+ };
+ 
+ /* Internal keyboard shortcuts. */
+-#define MODKEY Mod1Mask
++#define MODKEY Mod4Mask
+ #define TERMMOD (ControlMask|ShiftMask)
+ 
+ static Shortcut shortcuts[] = {
+@@ -193,13 +186,13 @@ static Shortcut shortcuts[] = {
+ 	{ ControlMask,          XK_Print,       toggleprinter,  {.i =  0} },
+ 	{ ShiftMask,            XK_Print,       printscreen,    {.i =  0} },
+ 	{ XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0} },
+-	{ TERMMOD,              XK_Prior,       zoom,           {.f = +1} },
+-	{ TERMMOD,              XK_Next,        zoom,           {.f = -1} },
+-	{ TERMMOD,              XK_Home,        zoomreset,      {.f =  0} },
+-	{ TERMMOD,              XK_C,           clipcopy,       {.i =  0} },
+-	{ TERMMOD,              XK_V,           clippaste,      {.i =  0} },
+-	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
+-	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
++	{ MODKEY,               XK_equal,       zoom,           {.f = +1} },
++	{ MODKEY,               XK_minus,       zoom,           {.f = -1} },
++	{ MODKEY|ControlMask,   XK_equal,       zoomreset,      {.f =  0} },
++	{ MODKEY,               XK_c,           clipcopy,       {.i =  0} },
++	{ MODKEY,               XK_v,           clippaste,      {.i =  0} },
++	{ MODKEY,               XK_y,           selpaste,       {.i =  0} },
++	{ TERMMOD,              XK_c,           selpaste,       {.i =  0} },
+ 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
+ };
+ 

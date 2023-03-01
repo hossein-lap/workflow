@@ -1,0 +1,26 @@
+diff --git a/config.def.h b/config.def.h
+index 60eb376..36385b5 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -1,16 +1,16 @@
+ /* See LICENSE file for copyright and license details. */
+ 
+ static char *fontfallbacks[] = {
+-	"dejavu sans",
+-	"roboto",
+-	"ubuntu",
++	"Libertinus Serif",
++	"Source Serif Pro",
++	"Liberation Serif"
+ };
+ #define NUMFONTSCALES 42
+ #define FONTSZ(x) ((int)(10.0 * powf(1.1288, (x)))) /* x in [0, NUMFONTSCALES-1] */
+ 
+ static const char *colors[] = {
+-	"#000000", /* foreground color */
+-	"#FFFFFF", /* background color */
++	"#FFFFFF", /* foreground color */
++	"#000000", /* background color */
+ };
+ 
+ static const float linespacing = 1.4;

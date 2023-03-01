@@ -1,0 +1,91 @@
+diff --git a/colors/custom.h b/colors/custom.h
+new file mode 100644
+index 0000000..264d681
+--- /dev/null
++++ b/colors/custom.h
+@@ -0,0 +1,5 @@
++static const char *colorname[NUMCOLS] = {
++	[INIT]		= "#000000",   /* after initialization */
++	[INPUT]		= "#ff7700",   /* after initialization */
++	[FAILED]	= "#ff2222",   /* wrong password */
++};
+diff --git a/colors/default.h b/colors/default.h
+new file mode 100644
+index 0000000..369073a
+--- /dev/null
++++ b/colors/default.h
+@@ -0,0 +1,5 @@
++static const char *colorname[NUMCOLS] = {
++	[INIT]	= "black",   /* after initialization */
++	[INPUT]		= "#005577",   /* after initialization */
++	[FAILED]	= "#cc3333",   /* wrong password */
++};
+diff --git a/colors/dracula.h b/colors/dracula.h
+new file mode 100644
+index 0000000..301ae9f
+--- /dev/null
++++ b/colors/dracula.h
+@@ -0,0 +1,13 @@
++//#define ACCENTCOLOR "#ffb86c"
++//#define ACCENTCOLOR "#ff79c6"
++#define ACCENTCOLOR "#bd93f9"
++//#define ACCENTCOLOR "#d6acff"
++//#define ACCENTCOLOR "#50fa7b"
++//#define ACCENTCOLOR "#f1fa8c"
++//#define ACCENTCOLOR "#8be9fd"
++
++static const char *colorname[NUMCOLS] = {
++	[INIT]		= "#1e1f29",   /* after initialization */
++	[INPUT]		= ACCENTCOLOR,   /* after initialization */
++	[FAILED]	= "#ff5555",   /* wrong password */
++};
+diff --git a/colors/solarized-dark.h b/colors/solarized-dark.h
+new file mode 100644
+index 0000000..74ec139
+--- /dev/null
++++ b/colors/solarized-dark.h
+@@ -0,0 +1,12 @@
++//#define ACCENTCOLOR "#b58900"
++#define ACCENTCOLOR "#859900"
++//#define ACCENTCOLOR "#268bd2"
++//#define ACCENTCOLOR "#6c71c4"
++//#define ACCENTCOLOR "#d33682"
++//#define ACCENTCOLOR "#eee8d5"
++
++static const char *colorname[NUMCOLS] = {
++	[INIT]		= "#002b36",   /* after initialization */
++	[INPUT]		= ACCENTCOLOR,   /* after initialization */
++	[FAILED]	= "#dc322f",   /* wrong password */
++};
+diff --git a/colors/ubuntu.h b/colors/ubuntu.h
+new file mode 100644
+index 0000000..3acfafd
+--- /dev/null
++++ b/colors/ubuntu.h
+@@ -0,0 +1,5 @@
++static const char *colorname[NUMCOLS] = {
++	[INIT]		= "#300a24",   /* after initialization */
++	[INPUT]		= "#ff7700",   /* after initialization */
++	[FAILED]	= "#ff2222",   /* wrong password */
++};
+diff --git a/config.def.h b/config.def.h
+index 9855e21..ed5f76f 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -1,12 +1,9 @@
+ /* user and group to drop privileges to */
+-static const char *user  = "nobody";
+-static const char *group = "nogroup";
++static const char *user  = "hos";
++static const char *group = "hos";
+ 
+-static const char *colorname[NUMCOLS] = {
+-	[INIT] =   "black",     /* after initialization */
+-	[INPUT] =  "#005577",   /* during input */
+-	[FAILED] = "#CC3333",   /* wrong password */
+-};
++/* colorscheme */
++#include "colors/dracula.h"
+ 
+ /* treat a cleared input like a wrong password (color) */
+ static const int failonclear = 1;

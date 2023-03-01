@@ -1,0 +1,215 @@
+diff --git a/colors/256_noir.h b/colors/256_noir.h
+new file mode 100644
+index 0000000..4ad6da4
+--- /dev/null
++++ b/colors/256_noir.h
+@@ -0,0 +1,6 @@
++static const char normal_fg[]	= "#f8f8f2";
++static const char normal_bg[]	= "#000000";
++static const char focus_fg[]	= "#000000";
++static const char focus_bg[]	= "#AAABA6";
++static const char sel_fg[]	= "#000000";
++static const char sel_bg[]	= "#f30000";
+diff --git a/colors/default.h b/colors/default.h
+new file mode 100644
+index 0000000..efb3202
+--- /dev/null
++++ b/colors/default.h
+@@ -0,0 +1,6 @@
++static const char normal_fg[] = "#bbbbbb";
++static const char normal_bg[] = "#222222";
++static const char focus_fg[]  = "#eeeeee";
++static const char focus_bg[]  = "#005577";
++static const char sel_fg[]    = "#000000";
++static const char sel_bg[]    = "#00ffff";
+diff --git a/colors/dracula.h b/colors/dracula.h
+new file mode 100644
+index 0000000..7317fe8
+--- /dev/null
++++ b/colors/dracula.h
+@@ -0,0 +1,16 @@
++//#define ACCENTCOLOR "#ffb86c"
++//#define ACCENTCOLOR "#ff79c6"
++//#define ACCENTCOLOR "#bd93f9"
++//#define ACCENTCOLOR "#d6acff"
++//#define ACCENTCOLOR "#50fa7b"
++#define ACCENTCOLOR "#f1fa8c"
++//#define ACCENTCOLOR "#8be9fd"
++//#define ACCENTCOLOR "#44475A"
++//#define ACCENTCOLOR "#282a36"
++
++static const char normal_fg[] = "#f8f8f2";
++static const char normal_bg[] = "#1e1f29";
++static const char focus_fg[]  = "#000000";
++static const char focus_bg[]  = ACCENTCOLOR;
++static const char sel_fg[]    = ACCENTCOLOR;
++static const char sel_bg[]    = "#44475A";
+diff --git a/colors/fg/orange.h b/colors/fg/orange.h
+new file mode 100644
+index 0000000..a392e8d
+--- /dev/null
++++ b/colors/fg/orange.h
+@@ -0,0 +1,6 @@
++static const char normal_fg[]		= "#ffffff";
++static const char normal_bg[]		= "#000000";
++static const char focus_bg[]		= "#FE8B00";
++static const char focus_fg[]		= "#000000";
++static const char sel_fg[]		= "#FE8B00";
++static const char sel_bg[]		= "#000000";
+diff --git a/colors/new-scheme.lua b/colors/new-scheme.lua
+new file mode 100755
+index 0000000..f657dee
+--- /dev/null
++++ b/colors/new-scheme.lua
+@@ -0,0 +1,73 @@
++#!/bin/lua5.4
++--  _  _
++-- | || | github: hossein-lap
++-- | __ | email:  hosteam01@gmail.com
++-- |_||_| matrix: hosaidenpwd:matrix.org
++--
++
++-- help function
++function help()
++	io.stderr:write("Create new colorscheme", "\n\n",
++			"Usage: ", arg[0], " <color-name> <hex-color>", "\n",
++			"\n", "\t",
++			"exmaple: \n\n\t", "$ ", arg[0], " cyan 00ffff \n",
++			"\n", "Run without argument for help page.",
++			"\n")
++end
++
++-- check if has to args to show help message
++if arg[2] == nil then
++	if arg[1] == nil then
++		help()
++		os.exit(-1)
++	else
++		help()
++		os.exit(3)
++	end
++end
++
++-- check for existing scheme
++function file_exists(name)
++	local f = io.open(name, "r")
++	if f ~= nil then
++	   io.close(f)
++	   return true
++	else
++	   return false
++	end
++end
++
++-- variable set
++local color = arg[2]
++
++local normal_fg = [[static const char normal_bg[]		= "#000000";]]
++local normal_bg = [[static const char normal_fg[]		= "#ffffff";]]
++
++local focus_bg = [[static const char focus_bg[]		= "#]] .. color .. [[";]]
++local focus_fg = [[static const char focus_fg[]		= "#000000";]]
++
++local sel_fg = [[static const char sel_fg[]		= "#000000";]]
++local sel_bg = [[static const char sel_bg[]		= "#]] .. color .. [[";]]
++
++---- main
++local fg = 'fg/' .. arg[1] .. '.h'
++
++
++if file_exists(fg) then
++	io.write("Colors exists\n",
++			'\t', fg, '\n', '\t\27[0;3m',
++			'\27[0m\n', "Abroting\n")
++	return 1
++else
++
++	print("Colorscheme created")
++
++	local fg_file = assert(io.open (fg, 'w'))
++		fg_file:write(normal_bg, '\n')
++		fg_file:write(normal_fg, '\n')
++		fg_file:write(focus_bg, '\n')
++		fg_file:write(focus_fg, '\n')
++		fg_file:write(sel_bg, '\n')
++		fg_file:write(sel_fg, '\n')
++	fg_file:close()
++end
+diff --git a/colors/plain.h b/colors/plain.h
+new file mode 100644
+index 0000000..ac0c2a2
+--- /dev/null
++++ b/colors/plain.h
+@@ -0,0 +1,6 @@
++static const char focus_fg[] = "#010101";
++static const char focus_bg[] = "#0097ff";
++static const char normal_fg[]  = "#f8f8fe";
++static const char normal_bg[]  = "#010101";
++static const char sel_fg[]   = "#010101";
++static const char sel_bg[]   = "#f59554";
+diff --git a/colors/solarized-dark.h b/colors/solarized-dark.h
+new file mode 100644
+index 0000000..fc08ab6
+--- /dev/null
++++ b/colors/solarized-dark.h
+@@ -0,0 +1,13 @@
++#define ACCENTCOLOR "#b58900"
++//#define ACCENTCOLOR "#859900"
++//#define ACCENTCOLOR "#268bd2"
++//#define ACCENTCOLOR "#6c71c4"
++//#define ACCENTCOLOR "#d33682"
++//#define ACCENTCOLOR "#eee8d5"
++
++static const char normal_fg[] = "#fdf6e3";
++static const char normal_bg[] = "#002b36";
++static const char focus_fg[]  = "#073642";
++static const char focus_bg[]  = ACCENTCOLOR;
++static const char sel_fg[]    = "#073642";
++static const char sel_bg[]    = "#eee8d5";
+diff --git a/colors/ubuntu.h b/colors/ubuntu.h
+new file mode 100644
+index 0000000..3003638
+--- /dev/null
++++ b/colors/ubuntu.h
+@@ -0,0 +1,6 @@
++static const char normal_fg[] = "#eeeeec";
++static const char normal_bg[] = "#2d0922";
++static const char focus_fg[]  = "#000000";
++static const char focus_bg[]  = "#ff7700";
++static const char sel_fg[]    = "#010101";
++static const char sel_bg[]    = "#E95420";
+diff --git a/config.def.h b/config.def.h
+index 1edb647..88dbbd7 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -4,20 +4,24 @@
+ static int topbar = 1;                      /* -b  option; if 0, dmenu appears at bottom     */
+ /* -fn option overrides fonts[0]; default X11 font or font set */
+ static const char *fonts[] = {
+-	"monospace:size=10"
++	"Fira Code:size=15",
++	"Noto Color Emoji:pixelsize=25:antialias=true:autohint=true",
+ };
+ static const char *prompt      = NULL;      /* -p  option; prompt to the left of input field */
++
++/* colorscheme */
++#include "colors/dracula.h"
+ static const char *colors[SchemeLast][2] = {
+ 	/*     fg         bg       */
+-	[SchemeNorm] = { "#bbbbbb", "#222222" },
+-	[SchemeSel] = { "#eeeeee", "#005577" },
+-	[SchemeOut] = { "#000000", "#00ffff" },
++	[SchemeNorm] =  { normal_fg,   normal_bg  },
++	[SchemeSel]  =  { focus_fg,    focus_bg   },
++	[SchemeOut]  =  { sel_fg,      sel_bg     },
+ };
+-/* -l option; if nonzero, dmenu uses vertical list with given number of lines */
++/* -l and -g options; controls number of lines and columns in grid if > 0 */
+ static unsigned int lines      = 0;
+ 
+ /*
+  * Characters not considered part of a word while deleting words
+  * for example: " /?\"&[]"
+  */
+-static const char worddelimiters[] = " ";
++static const char worddelimiters[] = " /?\"&[]";
