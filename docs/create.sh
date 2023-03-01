@@ -21,13 +21,13 @@
 	#fi
 #done
 
-if [[ ! -d "$1" ]]; then
+if [ ! -d "$1" ]; then
 	mkdir -v "$1"
 else
 	echo 'Directory exists!'
 fi
 
-if [[ ! -f "$1/Makefile" ]]; then
+if [ ! -f "$1/Makefile" ]; then
 	echo -n 'cp: copied file '
 	cp -v bash/Makefile "$1/Makefile"
 	j=$(echo $1 | sed -e 's/\b\(.\)/\u\1/')
