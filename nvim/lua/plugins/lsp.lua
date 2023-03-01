@@ -35,7 +35,7 @@ end
 -- LSP Configs
 require('plugins.conf-lsp.clangd')
 require('plugins.conf-lsp.texlab')
-require('plugins.conf-lsp.sumneko_lua')
+require('plugins.conf-lsp.lua_ls')
 require('plugins.conf-lsp.pyright')
 require('plugins.conf-lsp.bashls')
 require('plugins.conf-lsp.gopls')
