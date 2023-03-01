@@ -21,10 +21,10 @@ static const int smartgaps          = 0;        /* 1 means no outer gap when the
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = {
-	"FiraCode Nerd Font:size=14",
+	"Fira Code:size=14",
 	"Noto Color Emoji:pixelsize=10:antialias=true:autohint=true"
 };
-static const char dmenufont[]       = { "FiraCode Nerd Font:size=14" };
+static const char dmenufont[]       = { "Fira Code:size=14" };
 
 /* colorschemes */
 #include "colors/dracula.h"
