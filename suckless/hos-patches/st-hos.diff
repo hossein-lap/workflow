@@ -664,24 +664,15 @@ index 0000000..3f5b0b9
 +	[259] = "#000000", /* 259 -> rev cursor*/
 +};
 diff --git a/config.def.h b/config.def.h
-index 91ab8ca..a45b48e 100644
+index 91ab8ca..0711a53 100644
 --- a/config.def.h
 +++ b/config.def.h
-@@ -5,9 +5,34 @@
+@@ -5,9 +5,24 @@
   *
   * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
   */
 -static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
 +static char *font = "Fira Code:pixelsize=27:antialias=true:autohint=true";
-+/* Spare fonts */
-+static char *font2[] = {
-+	 "FuraCode Nerd Font:pixelsize=29:antialias=true:autohint=true",
-+	 "Noto Color Emoji:pixelsize=25:antialias=true:autohint=true",
-+	 "JoyPixels:pixelsize=25:antialias=true:autohint=true",
-+/*	"Inconsolata for Powerline:pixelsize=12:antialias=true:autohint=true", */
-+/*	"Hack Nerd Font Mono:pixelsize=11:antialias=true:autohint=true", */
-+};
-+
  static int borderpx = 2;
  
 +/* colorscheme */
@@ -699,11 +690,10 @@ index 91ab8ca..a45b48e 100644
 + *    • ubuntu.h            • vscode.h
 + */
 +#include "colors/dracula.h"
-+ 
  /*
   * What program is execed by st depends of these precedence rules:
   * 1: program passed with -e
-@@ -34,7 +59,7 @@ static float chscale = 1.0;
+@@ -34,7 +49,7 @@ static float chscale = 1.0;
   *
   * More advanced example: L" `'\"()[]{}"
   */
@@ -712,25 +702,16 @@ index 91ab8ca..a45b48e 100644
  
  /* selection timeouts (in milliseconds) */
  static unsigned int doubleclicktimeout = 300;
-@@ -65,7 +90,16 @@ static unsigned int blinktimeout = 800;
+@@ -65,7 +80,7 @@ static unsigned int blinktimeout = 800;
  /*
   * thickness of underline and bar cursors
   */
 -static unsigned int cursorthickness = 2;
 +static unsigned int cursorthickness = 4;
-+
-+/*
-+ * Default shape of cursor
-+ * 2: Block ("█")
-+ * 4: Underline ("_")
-+ * 6: Bar ("|")
-+ * 7: Snowman ("☃")
-+ */
-+static unsigned int cursorshape = 2;
  
  /*
   * bell volume. It must be a value between -100 and 100. Use 0 for disabling
-@@ -93,62 +127,21 @@ char *termname = "st-256color";
+@@ -93,46 +108,14 @@ char *termname = "st-256color";
   */
  unsigned int tabspaces = 8;
  
@@ -774,21 +755,14 @@ index 91ab8ca..a45b48e 100644
 -unsigned int defaultbg = 259;
 -unsigned int defaultcs = 256;
 -static unsigned int defaultrcs = 257;
--
--/*
-- * Default shape of cursor
-- * 2: Block ("█")
-- * 4: Underline ("_")
-- * 6: Bar ("|")
-- * 7: Snowman ("☃")
-- */
--static unsigned int cursorshape = 2;
 +unsigned int defaultbg = 256;
 +unsigned int defaultfg = 257;
 +unsigned int defaultcs = 258;
 +static unsigned int defaultrcs = 259;
  
  /*
+  * Default shape of cursor
+@@ -147,8 +130,8 @@ static unsigned int cursorshape = 2;
   * Default columns and rows numbers
   */
  
@@ -799,7 +773,7 @@ index 91ab8ca..a45b48e 100644
  
  /*
   * Default colour and shape of the mouse cursor
-@@ -184,7 +177,7 @@ static MouseShortcut mshortcuts[] = {
+@@ -184,7 +167,7 @@ static MouseShortcut mshortcuts[] = {
  };
  
  /* Internal keyboard shortcuts. */
@@ -808,7 +782,7 @@ index 91ab8ca..a45b48e 100644
  #define TERMMOD (ControlMask|ShiftMask)
  
  static Shortcut shortcuts[] = {
-@@ -193,13 +186,13 @@ static Shortcut shortcuts[] = {
+@@ -193,13 +176,13 @@ static Shortcut shortcuts[] = {
  	{ ControlMask,          XK_Print,       toggleprinter,  {.i =  0} },
  	{ ShiftMask,            XK_Print,       printscreen,    {.i =  0} },
  	{ XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0} },
@@ -829,3 +803,50 @@ index 91ab8ca..a45b48e 100644
  	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
  };
  
+diff --git a/st.1 b/st.1
+index 39120b4..8e50f65 100644
+--- a/st.1
++++ b/st.1
+@@ -130,11 +130,11 @@ Send a break in the serial line.
+ Break key is obtained in PC keyboards
+ pressing at the same time control and pause.
+ .TP
+-.B Ctrl-Print Screen
++.B Ctrl, Print Screen
+ Toggle if st should print to the
+ .I iofile.
+ .TP
+-.B Shift-Print Screen
++.B Shift, Print Screen
+ Print the full screen to the
+ .I iofile.
+ .TP
+@@ -142,22 +142,22 @@ Print the full screen to the
+ Print the selection to the
+ .I iofile.
+ .TP
+-.B Ctrl-Shift-Page Up
++.B Super, +
+ Increase font size.
+ .TP
+-.B Ctrl-Shift-Page Down
++.B Super, -
+ Decrease font size.
+ .TP
+-.B Ctrl-Shift-Home
++.B Super, Ctrl, =
+ Reset to default font size.
+ .TP
+-.B Ctrl-Shift-y
++.B Super, y
+ Paste from primary selection (middle mouse button).
+ .TP
+-.B Ctrl-Shift-c
++.B Super, c
+ Copy the selected text to the clipboard selection.
+ .TP
+-.B Ctrl-Shift-v
++.B Super, v
+ Paste from the clipboard selection.
+ .SH CUSTOMIZATION
+ .B st

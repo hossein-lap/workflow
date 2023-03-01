@@ -179,10 +179,10 @@ index 0000000..3003638
 +static const char sel_fg[]    = "#010101";
 +static const char sel_bg[]    = "#E95420";
 diff --git a/config.def.h b/config.def.h
-index 1edb647..88dbbd7 100644
+index 1edb647..8744376 100644
 --- a/config.def.h
 +++ b/config.def.h
-@@ -4,20 +4,24 @@
+@@ -4,14 +4,18 @@
  static int topbar = 1;                      /* -b  option; if 0, dmenu appears at bottom     */
  /* -fn option overrides fonts[0]; default X11 font or font set */
  static const char *fonts[] = {
@@ -203,11 +203,9 @@ index 1edb647..88dbbd7 100644
 +	[SchemeSel]  =  { focus_fg,    focus_bg   },
 +	[SchemeOut]  =  { sel_fg,      sel_bg     },
  };
--/* -l option; if nonzero, dmenu uses vertical list with given number of lines */
-+/* -l and -g options; controls number of lines and columns in grid if > 0 */
+ /* -l option; if nonzero, dmenu uses vertical list with given number of lines */
  static unsigned int lines      = 0;
- 
- /*
+@@ -20,4 +24,4 @@ static unsigned int lines      = 0;
   * Characters not considered part of a word while deleting words
   * for example: " /?\"&[]"
   */

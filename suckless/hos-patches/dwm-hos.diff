@@ -539,3 +539,83 @@ index 9efa774..ec612f4 100644
  	{ MODKEY,                       XK_space,  setlayout,      {0} },
  	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
  	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
+diff --git a/dwm.1 b/dwm.1
+index ddc8321..9d1ed7d 100644
+--- a/dwm.1
++++ b/dwm.1
+@@ -142,6 +142,75 @@ Add/remove all windows with nth tag to/from the view.
+ .TP
+ .B Mod1\-Shift\-q
+ Quit dwm.
++.SS Hos custom commands
++.TP
++.B Mod1\-Shift\-t
++Run st inside tabbed(1).
++.TP
++.B Mod1\-Control\-t
++Run lxterminal.
++.TP
++.B Mod1\-x
++Run
++.I dmstexet.sh
++script.
++.TP
++.B Print
++Run
++.I dmshot.sh
++script.
++.TP
++.B Mod1\-r
++Run
++.I dmsrun.sh
++script.
++.TP
++.B Mod1\-Shift\-k
++Run
++.I dmkill.sh
++script.
++.TP
++.B Mod1\-Shift\-d
++Run
++.I dmusb.sh
++script.
++.TP
++.B Mod1\-Shift\-a
++Run
++.I dmchar.sh
++script.
++.TP
++.B Mod1\-Shift\-l
++Run slock(1) screenlock.
++.TP
++.B Mod1\-Shift\-f
++Run filemanager.
++.TP
++.B Mod1\-Shift\-b
++Run browser.
++.TP
++.B Mod1\-Shift\-m
++Run music player.
++.TP
++.B Mod1\-Shift\-n
++Run RSS reader.
++.TP
++.B Mod1\-Control\-Delete
++Run btop inside st.
++.TP
++.B Mod1\-n
++Run note-taking script.
++.TP
++.B Mod1\-e
++Run
++.I emacs
++client.
++.TP
++.B Mod1\-Up
++Brightness 5% up.
++.TP
++.B Mod1\-Down
++Brightness 5% down.
+ .SS Mouse commands
+ .TP
+ .B Mod1\-Button1
