@@ -1,3 +1,4 @@
+--** THIS IS BROKEN **--
 -- helper: store output of a command into a varaible
 function os.capture(cmd, raw)
 	local f = assert(io.popen(cmd, 'r'))
@@ -44,7 +45,7 @@ function CodeBlock(cb)
 --			cb,
 ----		raw_ms '\\end{tcolorbox}',
 --		raw_ms './cb',
-		raw_ms(string.format('.QP\n.cb\n%s\n./cb', cb.text))
+		raw_ms(string.format('.QP\n.cb\n%s\n./cb', string.gsub(cb.text, '\'', '\\\'')))
 	}
 	local codeblock = {
 --		raw_ms(string.format('.QP\n.ft CW\n%s\n.ft P\n', cb.text))
