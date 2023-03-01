@@ -26,42 +26,46 @@
 \setbeamerfont{frametitle}{series=\secfont}
 \setbeamerfont{blocktitle}{series=\qfont}
 
-% Madrid {{{
-\usetheme{Madrid}
-\defbeamertemplate*{footline}{shadow theme}
-{%
-  \leavevmode%
-  \hbox{%
-  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
-    \usebeamerfont{author in head/foot}\insertshortauthor
-  \end{beamercolorbox}%
-  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
-    \usebeamerfont{title in head/foot}\insertshorttitle
-  \end{beamercolorbox}%
-  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,leftskip=2ex,rightskip=2ex,sep=0pt]{date in head/foot}%
-    \usebeamerfont{date in head/foot}\hfill\insertshortdate\hfill\inserttotalframenumber\,/\,\insertframenumber
-  \end{beamercolorbox}}%
-  \vskip0pt%
-}
-% }}}
-%% Copenhagen with frame number {{{
-%\usetheme{Copenhagen}
+%% Madrid {{{
+%\usetheme{Madrid}
 %\defbeamertemplate*{footline}{shadow theme}
 %{%
 %  \leavevmode%
-%  \hbox{\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm plus1fil,rightskip=.3cm]{author in head/foot}%
-%    \usebeamerfont{author in head/foot}\inserttotalframenumber\,/\,\insertframenumber\hfill\insertshortauthor
+%  \hbox{%
+%  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+%    \usebeamerfont{author in head/foot}\insertshortauthor
 %  \end{beamercolorbox}%
-%  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
-%    \usebeamerfont{title in head/foot}\insertshorttitle%
+%  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+%    \usebeamerfont{title in head/foot}\insertshorttitle
+%  \end{beamercolorbox}%
+%  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,leftskip=2ex,rightskip=2ex,sep=0pt]{date in head/foot}%
+%    \usebeamerfont{date in head/foot}\hfill\insertshortdate\hfill\inserttotalframenumber\,/\,\insertframenumber
 %  \end{beamercolorbox}}%
 %  \vskip0pt%
 %}
-%%}}}
+%% }}}
+% Copenhagen with frame number {{{
+\usetheme{Copenhagen}
+\defbeamertemplate*{footline}{shadow theme}
+{%
+  \leavevmode%
+  \hbox{\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm plus1fil,rightskip=.3cm]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\inserttotalframenumber\,/\,\insertframenumber\hfill\insertshortauthor
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertshorttitle%
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+%}}}
 
 \linespread{1.3}
 
 % persian fixes {{{
+% Thanks To Dr. Vafa Khalighi For Fixing This
+% http://qa.parsilatex.com/14100/
+% Note Thet: In newer TeXlive (2022+) there are no need for these
+
 %\setbeamertemplate{enumerate items}[circle]
 %%\setbeamertemplate{itemize item}{$\bullet$}
 %\setbeamertemplate{itemize subitem}{\tiny$\blacktriangleleft$}
