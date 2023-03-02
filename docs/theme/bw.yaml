@@ -22,3 +22,6 @@ variables:
         - \fancyfoot[L]{}
         - \fancyfoot[C]{\thepage}
         - \fancyfoot[R]{}
+filters:
+    - ../theme/filters/tex-codeblock-en.lua
+    - ../theme/filters/tex-quoteblock-en.lua

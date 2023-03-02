@@ -54,7 +54,8 @@
 
 %% Sans font
 %\setsansfont{Libertinus Sans}
-\setsansfont{Source Sans Pro}
+%\setsansfont{Source Sans Pro}
+\setsansfont{Fira Sans}
 %\setsansfont{Libertinus Serif}
 %\setsansfont{Ubuntu}
 
@@ -75,7 +76,7 @@
 \DefineVerbatimEnvironment{Highlighting}%
 	{Verbatim}{%
 		commandchars=\\\{\},%
-		numbers=left,%
+		numbers=none,%
 		frame=none%
 	}
 %	%fontfamily=tt,
@@ -108,25 +109,25 @@
 %%	{\begin{center}\begin{tabular}{p{.8\textwidth}}\begin{snugshade}}
 %%	{\end{snugshade}\end{tabular}\end{center}}
 
-%%\ifcsname Shaded\endcsname
-\ifdefined\Shaded
-	\renewenvironment{Shaded}
-		{\begin{center}\begin{quotation}\begin{snugshade}}
-		{\end{snugshade}\end{quotation}\end{center}}
-\else
-	\newenvironment{Shaded}
-		{\begin{center}\begin{quotation}\begin{snugshade}}
-		{\end{snugshade}\end{quotation}\end{center}}
-\fi
+%%%\ifcsname Shaded\endcsname
+%\ifdefined\Shaded
+%	\renewenvironment{Shaded}
+%		{\begin{center}\begin{quotation}\begin{snugshade}}
+%		{\end{snugshade}\end{quotation}\end{center}}
+%\else
+%	\newenvironment{Shaded}
+%		{\begin{center}\begin{quotation}\begin{snugshade}}
+%		{\end{snugshade}\end{quotation}\end{center}}
+%\fi
 
-%%% Add gap in verbatim
-\let\oldverbatim=\verbatim
-\let\oldendverbatim=\endverbatim
-\renewenvironment{verbatim}%
-	{\begin{quote}\oldverbatim}%
-	{\oldendverbatim\end{quote}}
-%	{\begin{center}\begin{tabular}{p{.95\textwidth}}\oldverbatim}%
-%	{\oldendverbatim\end{tabular}\end{center}}
+%%%% Add gap in verbatim
+%\let\oldverbatim=\verbatim
+%\let\oldendverbatim=\endverbatim
+%\renewenvironment{verbatim}%
+%	{\begin{quote}\oldverbatim}%
+%	{\oldendverbatim\end{quote}}
+%%	{\begin{center}\begin{tabular}{p{.95\textwidth}}\oldverbatim}%
+%%	{\oldendverbatim\end{tabular}\end{center}}
 
 %%% Header line width
 \renewcommand{\headrulewidth}{0.0pt}
