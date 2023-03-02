@@ -3,7 +3,6 @@
 .so /home/hos/.config/groff/macros.ms
 .fam T\" font-family {T:serif, H:sans, C:code},
 .\".\" first Page {{{
-.\".RP no
 .\".TL
 .\"Title
 .\".AU
