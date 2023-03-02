@@ -16,5 +16,6 @@ variables:
   header-includes:
     - \usepackage{/home/hos/.config/pandoc/defaults/english/main}
 filters:
-    - /home/hos/.config/pandoc/filters/en-date.lua
     - /home/hos/.config/pandoc/filters/tex-codeblock-en.lua
+    - /home/hos/.config/pandoc/filters/en-date.lua
+    - /home/hos/.config/pandoc/filters/tex-quoteblock-en.lua

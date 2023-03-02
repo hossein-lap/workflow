@@ -18,3 +18,4 @@ variables:
 filters:
     - /home/hos/.config/pandoc/filters/en-date.lua
     - /home/hos/.config/pandoc/filters/tex-codeblock-en.lua
+    - /home/hos/.config/pandoc/filters/tex-quoteblock-en.lua
