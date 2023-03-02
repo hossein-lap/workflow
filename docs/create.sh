@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/bin/sh
 #  _  _
-# | || | github: hossein-lap
-# | __ | email:  hosteam01@gmail.com
-# |_||_| matrix: hosaidenpwd:matrix.org
+# | || |
+# | __ |
+# |_||_|
 #
 
 #for i in $(exa -D | grep -v 'theme')
