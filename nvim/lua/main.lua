@@ -74,4 +74,5 @@ set.termbidi = true
 set.background = 'dark'
 
 -- Max char line
-set.colorcolumn= '85'
+set.colorcolumn= '66'
+--set.colorcolumn= '85'
