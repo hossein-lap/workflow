@@ -1,9 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{main}
-\RequirePackage{}
-
-%% tcolorbox
-
 \usepackage{titlesec,fancyvrb,framed,hyperref,graphicx}
 %\usepackage{tikz}
 %\usepackage[most]{tcolorbox}
@@ -61,9 +57,9 @@
     [{\titlerule[0pt]}]
 
 %% headings position
-\titlespacing{\section}{0mm}{5mm}{5mm}
-\titlespacing{\subsection}{0mm}{5mm}{5mm}
-\titlespacing{\subsubsection}{0pt}{5mm}{5mm}
+\titlespacing*{\section}{0mm}{5mm}{5mm}
+\titlespacing*{\subsection}{0mm}{5mm}{5mm}
+\titlespacing*{\subsubsection}{0pt}{5mm}{5mm}
 
 %% every h1 at a new page
 %\let\oldsection\section
@@ -88,9 +84,9 @@
 %\defpersianfont\yekan{XM Yekan}
 
 % some fonts: HMFNazli HMXKayhan Yas Vazir
-\newcommand\defperfont{Yas}
-\settextfont[Scale=1.1]{\defperfont}
-\setdigitfont[Scale=1.1]{\defperfont}
+\newcommand\defperfont{HMFNazli}
+\settextfont[Scale=1.0]{\defperfont}
+\setdigitfont[Scale=1.0]{\defperfont}
 \defpersianfont\secfont{\defperfont}
 \defpersianfont\qfont{Vazir}
 
