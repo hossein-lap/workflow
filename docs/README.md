@@ -20,10 +20,11 @@ For generating Images, you need `ImageMagick` package.
 
 ## In Progress
 
-- [Python](python)
+- [Go](go)
 
 ## TODO
 
+- [Python](python)
 - [Lua](lua)
 - [Groff](groff)
 - [Core utilities](coreutils)
