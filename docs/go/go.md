@@ -42,8 +42,7 @@ Go supports single-line or multi-line comments.
 <!--}}}-->
 ## Variables <!--{{{-->
 
-### Types 
-
+### Types
 
 - `int` - stores integers (whole numbers), such as 123 or -123
 - `float32` - stores floating point numbers, with decimals, such as 19.99 or -19.99
@@ -60,7 +59,7 @@ In Go, there are two ways to declare a variable:
     ```go
     var variablename type = value
     ```
-    
+
     > **Note**: You always have to specify either `type` or `value` (or both).
 
 1. With the `:=` sign:
@@ -73,7 +72,7 @@ In Go, there are two ways to declare a variable:
       value (means that the compiler decides the type of the variable, based on
       the value).
 
-    > **Note**: It is not possible to declare a variable using `:=`, without
+    > **Note**: It is not possible to declare a variable using `:=` without
       assigning a value to it.
 
 #### Variable Declaration With Initial Value
@@ -100,7 +99,7 @@ func main() {
     fmt.Println(a)
     fmt.Println(b)
     fmt.Println(c)
-} 
+}
 ```
 
 By running the code, we can see that they already have the default values of
@@ -117,7 +116,7 @@ func main() {
     var student1 string
     student1 = "John"
     fmt.Println(student1)
-} 
+}
 ```
 
 #### Difference Between var and :=
@@ -188,7 +187,6 @@ const PI = 3.14
 
 ### Constant Rules
 
-
 - Constant names follow the same naming rules as variables
 - Constant names are usually written in uppercase letters (for easy
   identification and differentiation from variables)
@@ -228,7 +226,7 @@ Go has three functions to output text:
 
 The `Print()` function prints its arguments with their default format.
 
-- If we want to print the arguments in new lines, we need to use `\n`. 
+- If we want to print the arguments in new lines, we need to use `\n`.
 
 ```go
 var i,j string = "Hello","World"
@@ -263,7 +261,7 @@ var i string = "Hello"
 var j int = 15
 
 fmt.Printf("i has value: %v and type: %T\n", i, i)
-fmt.Printf("j has value: %v and type: %T", j, j) 
+fmt.Printf("j has value: %v and type: %T", j, j)
 ```
 
 <!--}}}-->
@@ -276,7 +274,7 @@ Go offers several formatting verbs that can be used with the `Printf()` function
 The following verbs can be used with all data types:
 
 | **Verb** | **Description** |
-|:---------|:----------------|
+|:--------:|:----------------|
 | `%v`  | Prints the value in the default format |
 | `%#v` | Prints the value in Go-syntax format |
 | `%T`  | Prints the type of the value |
@@ -287,7 +285,7 @@ The following verbs can be used with all data types:
 The following verbs can be used with the integer data type:
 
 | **Verb** | **Description** |
-|:---------|:----------------|
+|:--------:|:----------------|
 | `%b` | Base 2 |
 | `%d` | Base 10 |
 | `%+d` | Base 10 and always show sign |
@@ -305,7 +303,7 @@ The following verbs can be used with the integer data type:
 The following verbs can be used with the string data type:
 
 | **Verb** | **Description** |
-|:---------|:----------------|
+|:--------:|:----------------|
 | `%s` | Prints the value as plain string |
 | `%q` | Prints the value as a double-quoted string |
 | `%8s` | Prints the value as plain string (width 8, right justified) |
@@ -318,7 +316,7 @@ The following verbs can be used with the string data type:
 The following verb can be used with the boolean data type:
 
 | **Verb** | **Description** |
-|:---------|:----------------|
+|:--------:|:----------------|
 | `%t` | Value of the boolean operator in true or false |
 |      | format (same as using `%v`) |
 
@@ -327,7 +325,7 @@ The following verb can be used with the boolean data type:
 The following verbs can be used with the float data type:
 
 | **Verb** | **Description** |
-|:---------|:----------------|
+|:--------:|:----------------|
 | `%e` | Scientific notation with 'e' as exponent |
 | `%f` | Decimal point, no exponent |
 | `%.2f` | Default width, precision 2 |
@@ -354,7 +352,7 @@ only store data of that type. It has three basic data types:
 var a bool = true     // Boolean
 var b int = 5         // Integer
 var c float32 = 3.14  // Floating point number
-var d string = "Hi!"  // String 
+var d string = "Hi!"  // String
 ```
 
 ### Boolean
@@ -468,3 +466,522 @@ txt3 := "World 1"
 ```
 
 <!--}}}-->
+## Arrays <!--{{{-->
+
+Arrays are used to store multiple values of the same type in a single variable,
+instead of declaring separate variables for each value.
+
+### Declare an Array
+
+In Go, there are two ways to declare an array:
+
+1. With the `var` keyword:
+
+    ```go
+    var array_name = [length]datatype{values} // length is defined
+    var array_name = [...]datatype{values} // length is inferred
+    ```
+
+1. With the `:=` sign:
+
+    ```go
+    array_name := [length]datatype{values} // length is defined
+    array_name := [...]datatype{values} // length is inferred
+    ```
+
+> **Note**: The length specifies the number of elements to store in the array.
+> In Go, arrays have a fixed length. The length of the array is either defined
+> by a number or is inferred (means that the compiler decides the length of the
+> array, based on the number of values).
+
+Example:
+
+```go
+var arr1 = [3]int{1, 2, 3}
+var arr1 = [...]int{1, 2, 3}
+arr2 := [5]int{4, 5, 6, 7, 8}
+arr2 := [...]int{4, 5, 6, 7, 8}
+```
+
+### Access Elements of an Array
+
+You can access a specific array element by referring to the index number.
+
+In Go, array indexes start at 0. That means that [0] is the first element, [1]
+is the second element, etc.
+
+```go
+prices := [3]int{10, 20, 30}
+fmt.Println(prices[0])
+fmt.Println(prices[2])
+```
+
+### Change Elements of an Array
+
+You can also change the value of a specific array element by referring to the
+index number.
+
+```go
+prices := [3]int{10, 20, 30}
+prices[2] = 50
+```
+
+### Array Initialization
+
+If an array or one of its elements has not been initialized in the code, it is
+assigned the default value of its type.
+
+> **Tip**: The default value for int is `0` and the default value for string is
+> `""`.
+
+```go
+arr1 := [5]int{} // not initialized
+arr2 := [5]int{1, 2} // partially initialized
+arr3 := [5]int{1, 2, 3, 4, 5} // fully initialized
+```
+
+### Initialize Only Specific Elements
+
+It is possible to initialize only specific elements in an array.
+
+```go
+arr1 := [5]int{1:10, 2:40}
+```
+
+The array above has 5 elements.
+
+- `1:10` means: assign `10` to array index `1` (second element).
+- `2:40` means: assign `40` to array index `2` (third element).
+
+### Find the Length of an Array
+
+The `len()` function is used to find the length of an array:
+
+```go
+arr1 := [4]string{"Volvo", "BMW", "Ford", "Mazda"}
+arr2 := [...]int{1, 2, 3, 4, 5, 6}
+
+fmt.Println(len(arr1))
+fmt.Println(len(arr2))
+```
+
+<!--}}}-->
+## Slices <!--{{{-->
+
+Slices are similar to arrays, but are more powerful and flexible.
+
+Like arrays, slices are also used to store multiple values of the same type in
+a single variable.
+
+However, unlike arrays, the length of a slice can grow and shrink as you see
+fit.
+
+### Create a Slice
+
+In Go, there are several ways to create a slice:
+
+- Using the `[]datatype{values}` format
+- Create a slice from an array
+- Using the `make()` function
+
+#### []datatype{values}
+
+```go
+slice_name := []datatype{values}
+```
+
+A common way of declaring a slice is like this:
+
+```go
+myslice := []int{}
+```
+
+The code above declares an empty slice of 0 length and 0 capacity.
+
+To initialize the slice during declaration, use this:
+
+```go
+myslice := []int{1, 2, 3}
+```
+
+The code above declares a slice of integers of length 3 and also the capacity
+of 3.
+
+In Go, there are two functions that can be used to return the length and
+capacity of a slice:
+
+- **`len()` function** - returns the length of the slice (the number of
+  elements in the slice)
+- **`cap()` function** - returns the capacity of the slice (the number of
+  elements the slice can grow or shrink to)
+
+Example:
+
+```go
+package main
+import ("fmt")
+
+func main() {
+    myslice1 := []int{}
+    fmt.Println(len(myslice1))
+    fmt.Println(cap(myslice1))
+    fmt.Println(myslice1)
+
+    myslice2 := []string{"Go", "Slices", "Are", "Powerful"}
+    fmt.Println(len(myslice2))
+    fmt.Println(cap(myslice2))
+    fmt.Println(myslice2)
+}
+```
+
+Result:
+
+    0
+    0
+    []
+    4
+    4
+    [Go Slices Are Powerful]
+
+In the example above, we see that in the first slice (myslice1), the actual
+elements are not specified, so both the length and capacity of the slice will
+be zero. In the second slice (myslice2), the elements are specified, and both
+length and capacity is equal to the number of actual elements specified.
+
+#### Create a Slice From an Array
+
+You can create a slice by slicing an array:
+
+```go
+var myarray = [length]datatype{values} // An array
+myslice := myarray[start:end] // A slice made from the array
+```
+
+```go
+arr1 := [6]int{10, 11, 12, 13, 14,15}
+myslice := arr1[2:4]
+
+fmt.Printf("myslice = %v\n", myslice)
+fmt.Printf("length = %d\n", len(myslice))
+fmt.Printf("capacity = %d\n", cap(myslice))
+```
+
+Result:
+
+    myslice = [12 13]
+    length = 2
+    capacity = 4
+
+In the example above `myslice` is a slice with length 2. It is made from `arr1`
+which is an array with length 6.
+
+The slice starts from the second element of the array which has value 12. The
+slice can grow to the end of the array. This means that the capacity of the
+slice is 4.
+
+If `myslice` started from element 0, the slice capacity would be 6.
+
+#### Create a Slice With The make() Function
+
+The `make()` function can also be used to create a slice.
+
+```go
+slice_name := make([]type, length, capacity)
+```
+
+> **Note**: If the capacity parameter is not defined, it will be equal to _length_
+
+```go
+package main
+import ("fmt")
+
+func main() {
+    myslice1 := make([]int, 5, 10)
+    fmt.Printf("myslice1 = %v\n", myslice1)
+    fmt.Printf("length = %d\n", len(myslice1))
+    fmt.Printf("capacity = %d\n", cap(myslice1))
+
+    // with omitted capacity
+    myslice2 := make([]int, 5)
+    fmt.Printf("myslice2 = %v\n", myslice2)
+    fmt.Printf("length = %d\n", len(myslice2))
+    fmt.Printf("capacity = %d\n", cap(myslice2))
+}
+```
+
+Result:
+
+    myslice1 = [0 0 0 0 0]
+    length = 5
+    capacity = 10
+    myslice2 = [0 0 0 0 0]
+    length = 5
+    capacity = 5
+
+### Access, Change, Append and Copy Slices
+
+#### Access Elements of a Slice
+
+You can access a specific slice element by referring to the index number.
+
+In Go, indexes start at 0. That means that [0] is the first element, [1] is the
+second element, etc.
+
+```go
+prices := []int{10, 20, 30}
+
+fmt.Println(prices[0])
+fmt.Println(prices[2])
+```
+
+#### Change Elements of a Slice
+
+You can also change a specific slice element by referring to the index number.
+
+```go
+prices := []int{10, 20, 30}
+prices[2] = 50
+```
+
+#### Append Elements To a Slice
+
+You can append elements to the end of a slice using the `append()` function:
+
+```go
+slice_name = append(slice_name, element1, element2, ...)
+```
+
+```go
+myslice1 := []int{1, 2, 3, 4, 5, 6}
+fmt.Printf("myslice1 = %v\n", myslice1)
+fmt.Printf("length = %d\n", len(myslice1))
+fmt.Printf("capacity = %d\n", cap(myslice1))
+
+myslice1 = append(myslice1, 20, 21)
+fmt.Printf("myslice1 = %v\n", myslice1)
+fmt.Printf("length = %d\n", len(myslice1))
+fmt.Printf("capacity = %d\n", cap(myslice1))
+```
+
+#### Append One Slice To Another Slice
+
+To append all the elements of one slice to another slice, use the `append()`
+function:
+
+```go
+slice3 = append(slice1, slice2...)
+```
+
+> **Note**: The '`...`' after _slice2_ is **necessary** when appending the
+> elements of one slice to another.
+
+```go
+myslice1 := []int{1, 2, 3}
+myslice2 := []int{4, 5, 6}
+myslice3 := append(myslice1, myslice2...)
+```
+
+#### Change The Length of a Slice
+
+Unlike arrays, it is possible to change the length of a slice.
+
+```go
+arr1 := [6]int{9, 10, 11, 12, 13, 14} // An array
+myslice1 := arr1[1:5] // Slice array
+fmt.Printf("myslice1 = %v\n", myslice1)
+fmt.Printf("length = %d\n", len(myslice1))
+fmt.Printf("capacity = %d\n", cap(myslice1))
+
+/* Change length by re-slicing the array */
+myslice1 = arr1[1:3]
+fmt.Printf("myslice1 = %v\n", myslice1)
+fmt.Printf("length = %d\n", len(myslice1))
+fmt.Printf("capacity = %d\n", cap(myslice1))
+
+/* Change length by appending items */
+myslice1 = append(myslice1, 20, 21, 22, 23)
+fmt.Printf("myslice1 = %v\n", myslice1)
+fmt.Printf("length = %d\n", len(myslice1))
+fmt.Printf("capacity = %d\n", cap(myslice1))
+```
+
+#### Memory Efficiency
+
+ When using slices, Go loads all the underlying elements into the memory.
+
+If the array is large and you need only a few elements, it is better to copy
+those elements using the `copy()` function.
+
+The `copy()` function creates a new underlying array with only the required
+elements for the slice. This will reduce the memory used for the program.
+
+```go
+copy(dest, src)
+```
+
+The `copy()` function takes in two slices dest and src, and copies data from
+_src_ to _dest_. It returns the number of elements copied.
+
+```go
+numbers := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}
+// Original slice
+fmt.Printf("numbers = %v\n", numbers)
+fmt.Printf("length = %d\n", len(numbers))
+fmt.Printf("capacity = %d\n", cap(numbers))
+
+// Create copy with only needed numbers
+neededNumbers := numbers[:len(numbers)-10]
+numbersCopy := make([]int, len(neededNumbers))
+copy(numbersCopy, neededNumbers)
+
+fmt.Printf("numbersCopy = %v\n", numbersCopy)
+fmt.Printf("length = %d\n", len(numbersCopy))
+fmt.Printf("capacity = %d\n", cap(numbersCopy))
+```
+
+Result:
+
+    numbers = [1 2 3 4 5 6 7 8 9 10 11 12 13 14 15]
+    length = 15
+    capacity = 15
+    numbersCopy = [1 2 3 4 5]
+    length = 5
+    capacity = 5
+
+The capacity of the new slice is now less than the capacity of the original
+slice because the new underlying array is smaller.
+
+<!--}}}-->
+## Operators <!--{{{-->
+
+Operators are used to perform operations on variables and values.
+
+The `+` **operator** adds together two values, like in the example below:
+
+```go
+var a = 15 + 25
+```
+
+Although the `+` operator is often used to add together two values, it can also
+be used to add together a variable and a value, or a variable and another
+variable:
+
+```go
+var (
+    sum1 = 100 + 50 // 150 (100 + 50)
+    sum2 = sum1 + 250 // 400 (150 + 250)
+    sum3 = sum2 + sum2 // 800 (400 + 400)
+)
+```
+
+Go divides the operators into the following groups:
+
+- Arithmetic operators
+- Assignment operators
+- Comparison operators
+- Logical operators
+- Bitwise operators
+
+### Arithmetic Operators
+
+Arithmetic operators are used to perform common mathematical operations.
+
+| **Operator** | **Name** | **Description**                 | **Example**  |
+|:------------:|:---------|:--------------------------------|:------------:|
+| `+`  | Addition       | Adds together two values               | `x + y` |
+| `-`  | Subtraction    | Subtracts one value from another       | `x - y` |
+| `*`  | Multiplication | Multiplies two values                  | `x * y` |
+| `/`  | Division       | Divides one value by another           | `x / y` |
+| `%`  | Modulus        | Returns the division remainder         | `x % y` |
+| `++` | Increment      | Increases the value of a variable by 1 | `x++`   |
+| `--` | Decrement      | Decreases the value of a variable by 1 | `x--`   |
+
+### Assignment Operators
+
+Assignment operators are used to assign values to variables.
+
+In the example below, we use the **assignment** operator (`=`) to assign the
+value **10** to a variable called **x**:
+
+```go
+var x = 10
+```
+
+The **addition assignment** operator (`+=`) adds a value to a variable:
+
+```go
+var x = 10
+x +=5
+```
+
+A list of all assignment operators:
+
+| **Operator** | **Example** | **Same As**  |
+|:------------:|:------------|:-------------|
+|     `=`      |  `x = 5`    | `x = 5`      |
+|     `+=`     |  `x += 3`   | `x = x + 3`  |
+|     `-=`     |  `x -= 3`   | `x = x - 3`  |
+|     `*=`     |  `x *= 3`   | `x = x * 3`  |
+|     `/=`     |  `x /= 3`   | `x = x / 3`  |
+|     `%=`     |  `x %= 3`   | `x = x % 3`  |
+|     `&=`     |  `x &= 3`   | `x = x & 3`  |
+|     `|=`     |  `x |= 3`   | `x = x | 3`  |
+|     `^=`     |  `x ^= 3`   | `x = x ^ 3`  |
+|     `>>=`    |  `x >>= 3`  | `x = x >> 3` |
+|     `<<=`    |  `x <<= 3`  | `x = x << 3` |
+
+### Comparison Operators
+
+Comparison operators are used to compare two values.
+
+> **Note**: The return value of a comparison is either true (`1`) or false
+> (`0`)
+
+In the following example, we use the **greater than** operator (`>`) to find
+out if 5 is greater than 3:
+
+```go
+var x = 5
+var y = 3
+fmt.Println(x > y) // returns 1 (true) because 5 is greater than 3
+```
+
+A list of all comparison operators:
+
+| **Operator** |    **Name**   | **Example** |
+|:------------:|:--------------|:------------|
+| `==` | Equal to                 | `x == y` |
+| `!=` | Not equal                | `x != y` |
+| `>`  | Greater than             | `x > y`  |
+| `<`  | Less than                | `x < y`  |
+| `>=` | Greater than or equal to | `x >= y` |
+| `<=` | Less than or equal to    | `x <= y` |
+
+### Logical Operators
+
+Logical operators are used to determine the logic between variables or values:
+
+| **Operator** | **Name** | **Description** | **Example** |
+|:------------:|:---------|:--------------------------------|:-------------|
+| `&& ` |  Logical `and`  | Returns true if both statements are true | `x < 5 &&  x < 10` |
+| `|| ` |  Logical `or`   | Returns true if one of the statements is true | `x < 5 || x < 4` |
+| `!`   |  Logical `not`  | Reverse the result, returns false if the result is true | `!(x < 5 && x < 10)` |
+
+### Bitwise Operators
+
+Bitwise operators are used on (binary) numbers:
+
+| **Operator** | **Name** | **Description** | **Example** |
+|:------------:|:---------|:--------------------------------|:-------------|
+| `& ` | AND                  | Sets each bit to 1 if both bits are 1           | `x & y` |
+| `|`  | OR                   | Sets each bit to 1 if one of two bits is 1      | `x | y` |
+| ` ^` | XOR                  | Sets each bit to 1 if only one of two bits is 1 | `x ^ b` |
+| `<<` | Zero fill left shift | Shift left by pushing zeros in from the right   | `x << 2` |
+| `>>` | Signed right shift   | Shift right by pushing copies of the leftmost bit in from the left, and let the rightmost bits fall off | `x >> 2` |
+
+<!--}}}-->
+## Conditions
+
+Conditional statements are used to perform different actions based on different conditions.
+
+A condition can be either `true` or `false`.
