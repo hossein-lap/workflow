@@ -980,8 +980,265 @@ Bitwise operators are used on (binary) numbers:
 | `>>` | Signed right shift   | Shift right by pushing copies of the leftmost bit in from the left, and let the rightmost bits fall off | `x >> 2` |
 
 <!--}}}-->
-## Conditions
+## Conditions <!--{{{-->
 
-Conditional statements are used to perform different actions based on different conditions.
+Conditional statements are used to perform different actions based on different
+conditions.
 
 A condition can be either `true` or `false`.
+
+Go supports the usual comparison operators from mathematics:
+
+-   Less than `<`
+-   Less than or equal `<=`
+-   Greater than `>`
+-   Greater than or equal `>=`
+-   Equal to `==`
+-   Not equal to `!=`
+
+Additionally, Go supports the usual logical operators:
+
+- Logical AND `&&`
+- Logical OR  `||`
+- Logical NOT `!`
+
+You can use these operators or their combinations to create conditions for
+different decisions.
+
+| **Example**          |
+|:---------------------|
+| `x > y`              |
+| `x != y`             |
+| `(x > y) && (y > z)` |
+| `(x == y) || z`      |
+
+
+Go has the following conditional statements:
+
+- **`if`** - specify a block of code to be executed, if a specified condition is true
+- **`else`** - specify a block of code to be executed, if the same condition is false
+- **`else if`** - specify a new condition to test, if the first condition is false
+- **`switch`** - specify many alternative blocks of code to be executed
+
+### if Statement
+
+Use the `if` statement to specify a block of Go code to be executed if a
+condition is `true`.
+
+```go
+if condition {
+    /*
+     * code to be executed if condition is true 
+     */
+}
+```
+
+> **Note**: `if` is in lowercase letters. Uppercase letters (If or IF) will
+> generate an error.
+
+```go
+if 20 > 18 {
+    fmt.Println("20 is greater than 18")
+}
+
+x:= 20
+y:= 18
+if x > y {
+    fmt.Println("x is greater than y")
+}
+```
+
+### if else Statement
+
+#### else Statement
+
+Use the `else` statement to specify a block of code to be executed if the
+condition is `false`.
+
+```go
+if condition {
+    // code to be executed if condition is true
+} else {
+    // code to be executed if condition is false
+} 
+```
+
+```go
+time := 20
+if (time < 18) {
+    fmt.Println("Good day.")
+} else {
+    fmt.Println("Good evening.")
+}
+```
+
+> **Note**: The brackets in the `else` statement should be like `} else {`
+
+```go
+if (temperature > 15) {
+    fmt.Println("It is warm out there.")
+} /* this raises an error */
+else {
+    fmt.Println("It is cold out there.")
+}
+```
+
+### else if Statement
+
+Use the `else if` statement to specify a new condition if the first condition
+is `false`.
+
+```go
+if condition1 {
+    /*
+     * code to be executed if condition1 is true
+     */
+} else if condition2 {
+    /*
+     * code to be executed if condition1 is false and
+     * condition2 is true
+     */
+} else {
+    /*
+     * code to be executed if condition1
+     * and condition2 are both false
+     */
+} 
+```
+
+```go
+time := 22
+if time < 10 {
+    fmt.Println("Good morning.")
+} else if time < 20 {
+    fmt.Println("Good day.")
+} else {
+    fmt.Println("Good evening.")
+}
+```
+
+> **Note**: If condition1 and condition2 are BOTH true, only the code for
+> condition1 are executed
+
+### Nested if Statement
+
+You can have `if` statements inside `if` statements, this is called a nested if.
+
+```go
+if condition1 {
+    // code to be executed if condition1 is true
+    if condition2 {
+         /*
+          * code to be executed if both condition1
+          * and condition2 are true
+          */
+    }
+} 
+```
+
+```go
+num := 20
+if num >= 10 {
+    fmt.Println("Num is more than 10.")
+        if num > 15 {
+            fmt.Println("Num is also more than 15.")
+        }
+    } else {
+        fmt.Println("Num is less than 10.")
+}
+```
+
+<!--}}}-->
+## switch Statement <!--{{{-->
+
+Use the `switch` statement to select one of many code blocks to be executed.
+
+The `switch` statement in Go is similar to the ones in C. The difference is
+that it only runs the matched case so it does not need a `break` statement.
+
+### Single-Case switch Syntax
+
+```go
+switch expression {
+case x:
+    // code block
+case y:
+...
+default:
+    // code block
+} 
+```
+
+This is how it works:
+
+- The expression is evaluated once
+- The value of the `switch` expression is compared with the values of each `case`
+- If there is a match, the associated block of code is executed
+- The `default` keyword is optional. It specifies some code to run if there is no `case` match
+
+```go
+day := 3
+switch day {
+case 1:
+    fmt.Println("One")
+case 2:
+    fmt.Println("Two")
+case 3:
+    fmt.Println("Three")
+}
+```
+
+#### default Keyword
+
+The default keyword specifies some code to run if there is no case match:
+
+```go
+day := 4
+switch day {
+case 1:
+    fmt.Println("One")
+case 2:
+    fmt.Println("Two")
+case 3:
+    fmt.Println("Three")
+default:
+    fmt.Println("Not in the [1-3] range")
+}
+```
+
+> **Note**: All the `case` values should have the same type as the `switch`
+> expression. Otherwise, the compiler will raise an error
+
+### Multi-case switch Statement
+
+It is possible to have multiple values for each case in the switch statement:
+
+```go
+switch expression {
+case x,y:
+    // code block if expression is evaluated to x or y
+case v,w:
+    // code block if expression is evaluated to v or w
+case z:
+...
+default:
+    // code block if expression is not found in any cases
+} 
+```
+
+```go
+day := 5
+
+switch day {
+case 1, 3, 5:
+    fmt.Println("Odd weekday")
+case 2, 4:
+    fmt.Println("Even weekday")
+case 6, 7:
+    fmt.Println("Weekend")
+default:
+    fmt.Println("Invalid day of day number")
+}
+```
+
+<!--}}}-->
