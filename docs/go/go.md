@@ -1242,3 +1242,115 @@ default:
 ```
 
 <!--}}}-->
+## Loops <!--{{{-->
+
+### For Loop
+
+The `for` loop loops through a block of code a specified number of times.
+And `for` loop is the only loop available in Go.
+
+Loops are handy if you want to run the same code over and over again, each time
+with a different value.
+
+Each execution of a loop is called an **iteration**.
+
+The `for` loop can take up to three statements:
+
+```go
+for statement1; statement2; statement3 {
+    // code to be executed for each iteration
+} 
+```
+
+- **statement1** - Initializes the loop counter value.
+- **statement2** - Evaluated for each loop iteration. If it evaluates to TRUE,
+  the loop continues. If it evaluates to FALSE, the loop ends.
+- **statement3** - Increases the loop counter value.
+
+> **Note**: These statements don't need to be present as loops arguments.
+> However, they need to be present in the code in some form.
+
+```go
+for i:= 0, i < 5, i++ {
+    fmt.Println(i)
+}
+```
+
+### continue Statement
+
+The `continue` statement is used to skip one or more iterations in the loop. It
+then continues with the next iteration in the loop.
+
+```go
+for i:=0; i < 5; i++ {
+    if i == 3 {
+        continue
+    }
+    fmt.Println(i)
+}
+```
+
+### break Statement
+
+The `break` statement is used to break/terminate the loop execution.
+
+```go
+for i:=0; i < 5; i++ {
+    if i == 3 {
+        break
+    }
+    fmt.Println(i)
+}
+```
+
+> **Note**: `continue` and `break` are usually used with conditions.
+
+### Nested Loops
+
+It is possible to place a loop inside another loop.
+
+Here, the "inner loop" will be executed one time for each iteration of the
+"outer loop":
+
+```go
+for i:= 0, i < 5, i++ {
+    for j:= 0, j < 5, j++ {
+        fmt.Printf("%d\t",i * j)
+    }
+    fmt.Println()
+}
+```
+
+### Range Keyword
+
+The `range` keyword is used to more easily iterate over an array, slice or map.
+It returns both the index and the value.
+
+The `range` keyword is used like this:
+
+```go
+for index, value := array|slice|map {
+    // code to be executed for each iteration
+} 
+```
+
+- This example uses `range` to iterate over an array and print both the indexes
+  and the values at each (`idx` stores the index, `val` stores the value):
+
+```go
+fruits := [3]string{"apple", "orange", "banana"}
+for idx, val := range fruits {
+    fmt.Printf("%v\t%v\n", idx, val)
+}
+```
+
+> **Tip**: To only show the value or the index, you can omit the other output
+> using an underscore (`_`).
+
+<!--}}}-->
+## Functions <!--{{{-->
+
+
+
+
+<!--}}}-->
