@@ -17,14 +17,14 @@ For generating Images, you need `ImageMagick` package.
 ## Finished
 
 - [Bash](bash)
+- [Go](go)
 
 ## In Progress
 
-- [Go](go)
+- [Python](python)
 
 ## TODO
 
-- [Python](python)
 - [Lua](lua)
 - [Groff](groff)
 - [Core utilities](coreutils)
