@@ -56,24 +56,24 @@ In Go, there are two ways to declare a variable:
 
 1. With the `var` keyword:
 
-    ```go
-    var variablename type = value
-    ```
+	```go
+	var variablename type = value
+	```
 
-    > **Note**: You always have to specify either `type` or `value` (or both).
+	> **Note**: You always have to specify either `type` or `value` (or both).
 
 1. With the `:=` sign:
 
-    ```go
-    variablename := value
-    ```
+	```go
+	variablename := value
+	```
 
-    > **Note**: In this case, the type of the variable is **inferred** from the
-      value (means that the compiler decides the type of the variable, based on
-      the value).
+	> **Note**: In this case, the type of the variable is **inferred** from the
+	  value (means that the compiler decides the type of the variable, based on
+	  the value).
 
-    > **Note**: It is not possible to declare a variable using `:=` without
-      assigning a value to it.
+	> **Note**: It is not possible to declare a variable using `:=` without
+	  assigning a value to it.
 
 #### Variable Declaration With Initial Value
 
@@ -93,12 +93,12 @@ package main
 import ("fmt")
 
 func main() {
-    var a string
-    var b int
-    var c bool
-    fmt.Println(a)
-    fmt.Println(b)
-    fmt.Println(c)
+	var a string
+	var b int
+	var c bool
+	fmt.Println(a)
+	fmt.Println(b)
+	fmt.Println(c)
 }
 ```
 
@@ -113,9 +113,9 @@ their respective types:
 
 ```go
 func main() {
-    var student1 string
-    student1 = "John"
-    fmt.Println(student1)
+	var student1 string
+	student1 = "John"
+	fmt.Println(student1)
 }
 ```
 
@@ -150,9 +150,9 @@ greater readability:
 
 ```go
 var (
-    a int
-    b int = 1
-    c string = "hello"
+	a int
+	b int = 1
+	c string = "hello"
 )
 ```
 
@@ -205,9 +205,9 @@ Multiple constants can be grouped together into a block for readability:
 
 ```go
 const (
-    A int = 1
-    B = 3.14
-    C = "Hi!"
+	A int = 1
+	B = 3.14
+	C = "Hi!"
 )
 ```
 
@@ -318,7 +318,7 @@ The following verb can be used with the boolean data type:
 | **Verb** | **Description** |
 |:--------:|:----------------|
 | `%t` | Value of the boolean operator in true or false |
-|      | format (same as using `%v`) |
+|	  | format (same as using `%v`) |
 
 #### Float Formatting Verbs
 
@@ -349,8 +349,8 @@ only store data of that type. It has three basic data types:
 - **string**: represents a string value
 
 ```go
-var a bool = true     // Boolean
-var b int = 5         // Integer
+var a bool = true	 // Boolean
+var b int = 5		 // Integer
 var c float32 = 3.14  // Floating point number
 var d string = "Hi!"  // String
 ```
@@ -477,17 +477,17 @@ In Go, there are two ways to declare an array:
 
 1. With the `var` keyword:
 
-    ```go
-    var array_name = [length]datatype{values} // length is defined
-    var array_name = [...]datatype{values} // length is inferred
-    ```
+	```go
+	var array_name = [length]datatype{values} // length is defined
+	var array_name = [...]datatype{values} // length is inferred
+	```
 
 1. With the `:=` sign:
 
-    ```go
-    array_name := [length]datatype{values} // length is defined
-    array_name := [...]datatype{values} // length is inferred
-    ```
+	```go
+	array_name := [length]datatype{values} // length is defined
+	array_name := [...]datatype{values} // length is inferred
+	```
 
 > **Note**: The length specifies the number of elements to store in the array.
 > In Go, arrays have a fixed length. The length of the array is either defined
@@ -622,26 +622,26 @@ package main
 import ("fmt")
 
 func main() {
-    myslice1 := []int{}
-    fmt.Println(len(myslice1))
-    fmt.Println(cap(myslice1))
-    fmt.Println(myslice1)
+	myslice1 := []int{}
+	fmt.Println(len(myslice1))
+	fmt.Println(cap(myslice1))
+	fmt.Println(myslice1)
 
-    myslice2 := []string{"Go", "Slices", "Are", "Powerful"}
-    fmt.Println(len(myslice2))
-    fmt.Println(cap(myslice2))
-    fmt.Println(myslice2)
+	myslice2 := []string{"Go", "Slices", "Are", "Powerful"}
+	fmt.Println(len(myslice2))
+	fmt.Println(cap(myslice2))
+	fmt.Println(myslice2)
 }
 ```
 
 Result:
 
-    0
-    0
-    []
-    4
-    4
-    [Go Slices Are Powerful]
+	0
+	0
+	[]
+	4
+	4
+	[Go Slices Are Powerful]
 
 In the example above, we see that in the first slice (myslice1), the actual
 elements are not specified, so both the length and capacity of the slice will
@@ -668,9 +668,9 @@ fmt.Printf("capacity = %d\n", cap(myslice))
 
 Result:
 
-    myslice = [12 13]
-    length = 2
-    capacity = 4
+	myslice = [12 13]
+	length = 2
+	capacity = 4
 
 In the example above `myslice` is a slice with length 2. It is made from `arr1`
 which is an array with length 6.
@@ -696,27 +696,27 @@ package main
 import ("fmt")
 
 func main() {
-    myslice1 := make([]int, 5, 10)
-    fmt.Printf("myslice1 = %v\n", myslice1)
-    fmt.Printf("length = %d\n", len(myslice1))
-    fmt.Printf("capacity = %d\n", cap(myslice1))
+	myslice1 := make([]int, 5, 10)
+	fmt.Printf("myslice1 = %v\n", myslice1)
+	fmt.Printf("length = %d\n", len(myslice1))
+	fmt.Printf("capacity = %d\n", cap(myslice1))
 
-    // with omitted capacity
-    myslice2 := make([]int, 5)
-    fmt.Printf("myslice2 = %v\n", myslice2)
-    fmt.Printf("length = %d\n", len(myslice2))
-    fmt.Printf("capacity = %d\n", cap(myslice2))
+	// with omitted capacity
+	myslice2 := make([]int, 5)
+	fmt.Printf("myslice2 = %v\n", myslice2)
+	fmt.Printf("length = %d\n", len(myslice2))
+	fmt.Printf("capacity = %d\n", cap(myslice2))
 }
 ```
 
 Result:
 
-    myslice1 = [0 0 0 0 0]
-    length = 5
-    capacity = 10
-    myslice2 = [0 0 0 0 0]
-    length = 5
-    capacity = 5
+	myslice1 = [0 0 0 0 0]
+	length = 5
+	capacity = 10
+	myslice2 = [0 0 0 0 0]
+	length = 5
+	capacity = 5
 
 ### Access, Change, Append and Copy Slices
 
@@ -841,12 +841,12 @@ fmt.Printf("capacity = %d\n", cap(numbersCopy))
 
 Result:
 
-    numbers = [1 2 3 4 5 6 7 8 9 10 11 12 13 14 15]
-    length = 15
-    capacity = 15
-    numbersCopy = [1 2 3 4 5]
-    length = 5
-    capacity = 5
+	numbers = [1 2 3 4 5 6 7 8 9 10 11 12 13 14 15]
+	length = 15
+	capacity = 15
+	numbersCopy = [1 2 3 4 5]
+	length = 5
+	capacity = 5
 
 The capacity of the new slice is now less than the capacity of the original
 slice because the new underlying array is smaller.
@@ -868,9 +868,9 @@ variable:
 
 ```go
 var (
-    sum1 = 100 + 50 // 150 (100 + 50)
-    sum2 = sum1 + 250 // 400 (150 + 250)
-    sum3 = sum2 + sum2 // 800 (400 + 400)
+	sum1 = 100 + 50 // 150 (100 + 50)
+	sum2 = sum1 + 250 // 400 (150 + 250)
+	sum3 = sum2 + sum2 // 800 (400 + 400)
 )
 ```
 
@@ -886,15 +886,15 @@ Go divides the operators into the following groups:
 
 Arithmetic operators are used to perform common mathematical operations.
 
-| **Operator** | **Name** | **Description**                 | **Example**  |
+| **Operator** | **Name** | **Description**				 | **Example**  |
 |:------------:|:---------|:--------------------------------|:------------:|
-| `+`  | Addition       | Adds together two values               | `x + y` |
-| `-`  | Subtraction    | Subtracts one value from another       | `x - y` |
-| `*`  | Multiplication | Multiplies two values                  | `x * y` |
-| `/`  | Division       | Divides one value by another           | `x / y` |
-| `%`  | Modulus        | Returns the division remainder         | `x % y` |
-| `++` | Increment      | Increases the value of a variable by 1 | `x++`   |
-| `--` | Decrement      | Decreases the value of a variable by 1 | `x--`   |
+| `+`  | Addition	   | Adds together two values			   | `x + y` |
+| `-`  | Subtraction	| Subtracts one value from another	   | `x - y` |
+| `*`  | Multiplication | Multiplies two values				  | `x * y` |
+| `/`  | Division	   | Divides one value by another		   | `x / y` |
+| `%`  | Modulus		| Returns the division remainder		 | `x % y` |
+| `++` | Increment	  | Increases the value of a variable by 1 | `x++`   |
+| `--` | Decrement	  | Decreases the value of a variable by 1 | `x--`   |
 
 ### Assignment Operators
 
@@ -918,17 +918,17 @@ A list of all assignment operators:
 
 | **Operator** | **Example** | **Same As**  |
 |:------------:|:------------|:-------------|
-|     `=`      |  `x = 5`    | `x = 5`      |
-|     `+=`     |  `x += 3`   | `x = x + 3`  |
-|     `-=`     |  `x -= 3`   | `x = x - 3`  |
-|     `*=`     |  `x *= 3`   | `x = x * 3`  |
-|     `/=`     |  `x /= 3`   | `x = x / 3`  |
-|     `%=`     |  `x %= 3`   | `x = x % 3`  |
-|     `&=`     |  `x &= 3`   | `x = x & 3`  |
-|     `|=`     |  `x |= 3`   | `x = x | 3`  |
-|     `^=`     |  `x ^= 3`   | `x = x ^ 3`  |
-|     `>>=`    |  `x >>= 3`  | `x = x >> 3` |
-|     `<<=`    |  `x <<= 3`  | `x = x << 3` |
+|	 `=`	  |  `x = 5`	| `x = 5`	  |
+|	 `+=`	 |  `x += 3`   | `x = x + 3`  |
+|	 `-=`	 |  `x -= 3`   | `x = x - 3`  |
+|	 `*=`	 |  `x *= 3`   | `x = x * 3`  |
+|	 `/=`	 |  `x /= 3`   | `x = x / 3`  |
+|	 `%=`	 |  `x %= 3`   | `x = x % 3`  |
+|	 `&=`	 |  `x &= 3`   | `x = x & 3`  |
+|	 `|=`	 |  `x |= 3`   | `x = x | 3`  |
+|	 `^=`	 |  `x ^= 3`   | `x = x ^ 3`  |
+|	 `>>=`	|  `x >>= 3`  | `x = x >> 3` |
+|	 `<<=`	|  `x <<= 3`  | `x = x << 3` |
 
 ### Comparison Operators
 
@@ -948,14 +948,14 @@ fmt.Println(x > y) // returns 1 (true) because 5 is greater than 3
 
 A list of all comparison operators:
 
-| **Operator** |    **Name**   | **Example** |
+| **Operator** |	**Name**   | **Example** |
 |:------------:|:--------------|:------------|
-| `==` | Equal to                 | `x == y` |
-| `!=` | Not equal                | `x != y` |
-| `>`  | Greater than             | `x > y`  |
-| `<`  | Less than                | `x < y`  |
+| `==` | Equal to				 | `x == y` |
+| `!=` | Not equal				| `x != y` |
+| `>`  | Greater than			 | `x > y`  |
+| `<`  | Less than				| `x < y`  |
 | `>=` | Greater than or equal to | `x >= y` |
-| `<=` | Less than or equal to    | `x <= y` |
+| `<=` | Less than or equal to	| `x <= y` |
 
 ### Logical Operators
 
@@ -973,9 +973,9 @@ Bitwise operators are used on (binary) numbers:
 
 | **Operator** | **Name** | **Description** | **Example** |
 |:------------:|:---------|:--------------------------------|:-------------|
-| `& ` | AND                  | Sets each bit to 1 if both bits are 1           | `x & y` |
-| `|`  | OR                   | Sets each bit to 1 if one of two bits is 1      | `x | y` |
-| ` ^` | XOR                  | Sets each bit to 1 if only one of two bits is 1 | `x ^ b` |
+| `& ` | AND				  | Sets each bit to 1 if both bits are 1		   | `x & y` |
+| `|`  | OR				   | Sets each bit to 1 if one of two bits is 1	  | `x | y` |
+| ` ^` | XOR				  | Sets each bit to 1 if only one of two bits is 1 | `x ^ b` |
 | `<<` | Zero fill left shift | Shift left by pushing zeros in from the right   | `x << 2` |
 | `>>` | Signed right shift   | Shift right by pushing copies of the leftmost bit in from the left, and let the rightmost bits fall off | `x >> 2` |
 
@@ -1005,12 +1005,12 @@ Additionally, Go supports the usual logical operators:
 You can use these operators or their combinations to create conditions for
 different decisions.
 
-| **Example**          |
+| **Example**		  |
 |:---------------------|
-| `x > y`              |
-| `x != y`             |
+| `x > y`			  |
+| `x != y`			 |
 | `(x > y) && (y > z)` |
-| `(x == y) || z`      |
+| `(x == y) || z`	  |
 
 
 Go has the following conditional statements:
@@ -1027,9 +1027,9 @@ condition is `true`.
 
 ```go
 if condition {
-    /*
-     * code to be executed if condition is true 
-     */
+	/*
+	 * code to be executed if condition is true 
+	 */
 }
 ```
 
@@ -1038,13 +1038,13 @@ if condition {
 
 ```go
 if 20 > 18 {
-    fmt.Println("20 is greater than 18")
+	fmt.Println("20 is greater than 18")
 }
 
 x:= 20
 y:= 18
 if x > y {
-    fmt.Println("x is greater than y")
+	fmt.Println("x is greater than y")
 }
 ```
 
@@ -1057,18 +1057,18 @@ condition is `false`.
 
 ```go
 if condition {
-    // code to be executed if condition is true
+	// code to be executed if condition is true
 } else {
-    // code to be executed if condition is false
+	// code to be executed if condition is false
 } 
 ```
 
 ```go
 time := 20
 if (time < 18) {
-    fmt.Println("Good day.")
+	fmt.Println("Good day.")
 } else {
-    fmt.Println("Good evening.")
+	fmt.Println("Good evening.")
 }
 ```
 
@@ -1076,10 +1076,10 @@ if (time < 18) {
 
 ```go
 if (temperature > 15) {
-    fmt.Println("It is warm out there.")
+	fmt.Println("It is warm out there.")
 } /* this raises an error */
 else {
-    fmt.Println("It is cold out there.")
+	fmt.Println("It is cold out there.")
 }
 ```
 
@@ -1090,30 +1090,30 @@ is `false`.
 
 ```go
 if condition1 {
-    /*
-     * code to be executed if condition1 is true
-     */
+	/*
+	 * code to be executed if condition1 is true
+	 */
 } else if condition2 {
-    /*
-     * code to be executed if condition1 is false and
-     * condition2 is true
-     */
+	/*
+	 * code to be executed if condition1 is false and
+	 * condition2 is true
+	 */
 } else {
-    /*
-     * code to be executed if condition1
-     * and condition2 are both false
-     */
+	/*
+	 * code to be executed if condition1
+	 * and condition2 are both false
+	 */
 } 
 ```
 
 ```go
 time := 22
 if time < 10 {
-    fmt.Println("Good morning.")
+	fmt.Println("Good morning.")
 } else if time < 20 {
-    fmt.Println("Good day.")
+	fmt.Println("Good day.")
 } else {
-    fmt.Println("Good evening.")
+	fmt.Println("Good evening.")
 }
 ```
 
@@ -1126,25 +1126,25 @@ You can have `if` statements inside `if` statements, this is called a nested if.
 
 ```go
 if condition1 {
-    // code to be executed if condition1 is true
-    if condition2 {
-         /*
-          * code to be executed if both condition1
-          * and condition2 are true
-          */
-    }
+	// code to be executed if condition1 is true
+	if condition2 {
+		 /*
+		  * code to be executed if both condition1
+		  * and condition2 are true
+		  */
+	}
 } 
 ```
 
 ```go
 num := 20
 if num >= 10 {
-    fmt.Println("Num is more than 10.")
-        if num > 15 {
-            fmt.Println("Num is also more than 15.")
-        }
-    } else {
-        fmt.Println("Num is less than 10.")
+	fmt.Println("Num is more than 10.")
+		if num > 15 {
+			fmt.Println("Num is also more than 15.")
+		}
+	} else {
+		fmt.Println("Num is less than 10.")
 }
 ```
 
@@ -1161,11 +1161,11 @@ that it only runs the matched case so it does not need a `break` statement.
 ```go
 switch expression {
 case x:
-    // code block
+	// code block
 case y:
 ...
 default:
-    // code block
+	// code block
 } 
 ```
 
@@ -1180,11 +1180,11 @@ This is how it works:
 day := 3
 switch day {
 case 1:
-    fmt.Println("One")
+	fmt.Println("One")
 case 2:
-    fmt.Println("Two")
+	fmt.Println("Two")
 case 3:
-    fmt.Println("Three")
+	fmt.Println("Three")
 }
 ```
 
@@ -1196,13 +1196,13 @@ The default keyword specifies some code to run if there is no case match:
 day := 4
 switch day {
 case 1:
-    fmt.Println("One")
+	fmt.Println("One")
 case 2:
-    fmt.Println("Two")
+	fmt.Println("Two")
 case 3:
-    fmt.Println("Three")
+	fmt.Println("Three")
 default:
-    fmt.Println("Not in the [1-3] range")
+	fmt.Println("Not in the [1-3] range")
 }
 ```
 
@@ -1216,13 +1216,13 @@ It is possible to have multiple values for each case in the switch statement:
 ```go
 switch expression {
 case x,y:
-    // code block if expression is evaluated to x or y
+	// code block if expression is evaluated to x or y
 case v,w:
-    // code block if expression is evaluated to v or w
+	// code block if expression is evaluated to v or w
 case z:
 ...
 default:
-    // code block if expression is not found in any cases
+	// code block if expression is not found in any cases
 } 
 ```
 
@@ -1231,13 +1231,13 @@ day := 5
 
 switch day {
 case 1, 3, 5:
-    fmt.Println("Odd weekday")
+	fmt.Println("Odd weekday")
 case 2, 4:
-    fmt.Println("Even weekday")
+	fmt.Println("Even weekday")
 case 6, 7:
-    fmt.Println("Weekend")
+	fmt.Println("Weekend")
 default:
-    fmt.Println("Invalid day of day number")
+	fmt.Println("Invalid day of day number")
 }
 ```
 
@@ -1258,7 +1258,7 @@ The `for` loop can take up to three statements:
 
 ```go
 for statement1; statement2; statement3 {
-    // code to be executed for each iteration
+	// code to be executed for each iteration
 } 
 ```
 
@@ -1272,7 +1272,7 @@ for statement1; statement2; statement3 {
 
 ```go
 for i:= 0, i < 5, i++ {
-    fmt.Println(i)
+	fmt.Println(i)
 }
 ```
 
@@ -1283,10 +1283,10 @@ then continues with the next iteration in the loop.
 
 ```go
 for i:=0; i < 5; i++ {
-    if i == 3 {
-        continue
-    }
-    fmt.Println(i)
+	if i == 3 {
+		continue
+	}
+	fmt.Println(i)
 }
 ```
 
@@ -1296,10 +1296,10 @@ The `break` statement is used to break/terminate the loop execution.
 
 ```go
 for i:=0; i < 5; i++ {
-    if i == 3 {
-        break
-    }
-    fmt.Println(i)
+	if i == 3 {
+		break
+	}
+	fmt.Println(i)
 }
 ```
 
@@ -1314,10 +1314,10 @@ Here, the "inner loop" will be executed one time for each iteration of the
 
 ```go
 for i:= 0, i < 5, i++ {
-    for j:= 0, j < 5, j++ {
-        fmt.Printf("%d\t",i * j)
-    }
-    fmt.Println()
+	for j:= 0, j < 5, j++ {
+		fmt.Printf("%d\t",i * j)
+	}
+	fmt.Println()
 }
 ```
 
@@ -1330,7 +1330,7 @@ The `range` keyword is used like this:
 
 ```go
 for index, value := array|slice|map {
-    // code to be executed for each iteration
+	// code to be executed for each iteration
 } 
 ```
 
@@ -1340,7 +1340,7 @@ for index, value := array|slice|map {
 ```go
 fruits := [3]string{"apple", "orange", "banana"}
 for idx, val := range fruits {
-    fmt.Printf("%v\t%v\n", idx, val)
+	fmt.Printf("%v\t%v\n", idx, val)
 }
 ```
 
@@ -1350,7 +1350,665 @@ for idx, val := range fruits {
 <!--}}}-->
 ## Functions <!--{{{-->
 
+A function is a block of statements that can be used repeatedly in a program.
+A function will not execute automatically when a page loads.
+A function will be executed by a call to the function.
+
+### Create a Function
+
+To create (often referred to as declare) a function, do the following:
+
+- Use the `func` keyword.
+- Specify a name for the function, followed by parentheses ().
+- Finally, add code that defines what the function should do, inside curly braces {}.
+
+```go
+func FunctionName() {
+	// code to be executed
+} 
+```
+
+### Call a Function
+
+Functions are not executed immediately. They are "saved for later use", and
+will be executed when they are called.
+
+In the example below, we create a function named "myMessage()". The opening
+curly brace ( { ) indicates the beginning of the function code, and the closing
+curly brace ( } ) indicates the end of the function. The function outputs "I
+just got executed!". To call the function, just write its name followed by two
+parentheses ():
+
+```go
+func myMessage() {
+	fmt.Println("I just got executed!")
+}
+
+func main() {
+	myMessage() // call the function
+} 
+```
+
+- A function can be called multiple times.
+
+### Naming Rules for Go Functions
 
 
+- A function name must start with a letter
+- A function name can only contain alpha-numeric characters and underscores (`A-z`, `0-9`, and `_` )
+- Function names are case-sensitive
+- A function name cannot contain spaces
+- If the function name consists of multiple words, techniques introduced for multi-word variable naming can be used
+
+> **Tip**: Give the function a name that reflects what the function does!
+
+### Parameters and Arguments
+
+Information can be passed to functions as a parameter. Parameters act as
+variables inside the function.
+
+Parameters and their types are specified after the function name, inside the
+parentheses. You can add as many parameters as you want, just separate them
+with a comma:
+
+```go
+func FunctionName(param1 type, param2 type, param3 type) {
+	// code to be executed
+} 
+```
+
+#### Function With Parameter Example
+
+The following example has a function with one parameter (`fname`) of type
+`string`. When the familyName() function is called, we also pass along a name
+(e.g. Liam), and the name is used inside the function, which outputs several
+different first names, but an equal last name:
+
+```go
+func familyName(fname string) {
+	fmt.Println("Hello", fname, "Refsnes")
+}
+
+func main() {
+	familyName("Liam")
+	familyName("Jenny")
+	familyName("Anja")
+} 
+```
+
+Result:
+
+	Hello Liam Refsnes
+	Hello Jenny Refsnes
+	Hello Anja Refsnes
+
+> **Note**: When a **parameter** is passed to the function, it is called an
+> **argument**. So, from the example above: `fname` is a **parameter**, while
+> `Liam`, `Jenny` and `Anja` are **arguments**.
+
+#### Multiple Parameters
+
+Inside the function, you can add as many parameters as you want:
+
+```go
+func familyName(fname string, age int) {
+	fmt.Println("Hello", age, "year old", fname, "Refsnes")
+}
+```
+
+> **Note**: When you are working with multiple parameters, the function call
+> must have the same number of arguments as there are parameters, and the
+> arguments must be passed in the same order.
+
+### Function Returns
+
+#### Values
+
+If you want the function to return a value, you need to define the data type of
+the return value (such as `int`, `string`, etc), and also use the `return`
+keyword inside the function:
+
+```go
+func FunctionName(param1 type, param2 type) type {
+	// code to be executed
+	return output
+} 
+```
+
+```go
+func myFunction(x int, y int) int {
+	return x + y
+}
+
+func main() {
+	fmt.Println(myFunction(1, 2))
+} 
+```
+
+In Go, you can name the return values of a function.
+
+Here, we name the return value as `result` (of type `int`), and return the
+value with a naked return (means that we use the `return` statement without
+specifying the variable name):
+
+```go
+func myFunction(x int, y int) (result int) {
+	result = x + y
+	return
+}
+
+func main() {
+	fmt.Println(myFunction(1, 2))
+} 
+```
+
+The example above can also be written like this. Here, the return statement
+specifies the variable name:
+
+```go
+func myFunction(x int, y int) (result int) {
+	result = x + y
+	return result
+}
+
+func main() {
+	fmt.Println(myFunction(1, 2))
+} 
+```
+
+#### Store the Return Value in a Variable
+
+You can also store the return value in a variable, like this:
+
+```go
+func myFunction(x int, y int) (result int) {
+	result = x + y
+	return
+}
+
+func main() {
+	total := myFunction(1, 2)
+	fmt.Println(total)
+} 
+```
+
+#### Multiple Return Values
+
+Go functions can also return multiple values.
+
+```go
+func myFunction(x int, y string) (result int, txt1 string) {
+	result = x + x
+	txt1 = y + " World!"
+	return
+}
+
+func main() {
+	fmt.Println(myFunction(5, "Hello"))
+} 
+```
+
+If we (for some reason) do not want to use some of the returned values, we can
+add an underscore (`_`) to omit this value.
+
+```go
+func myFunction(x int, y string) (result int, txt1 string) {
+	result = x + x
+	txt1 = y + " World!"
+	return
+}
+
+func main() {
+	 _, b := myFunction(5, "Hello")
+	fmt.Println(b)
+} 
+```
+
+### Recursion Functions
+
+Go accepts recursion functions. A function is recursive if it calls itself and
+reaches a stop condition.
+
+In the following example, `testcount()` is a function that calls itself. We use
+the `x` variable as the data, which increments with 1 (`x + 1`) every time we
+recurse. The recursion ends when the `x` variable equals to 11 (`x == 11`). 
+
+```go
+package main
+import ("fmt")
+
+func testcount(x int) int {
+	if x == 11 {
+		return 0
+	}
+	fmt.Println(x)
+	return testcount(x + 1)
+}
+
+func main(){
+	testcount(1)
+} 
+```
+
+Recursion is a common mathematical and programming concept. This has the
+benefit of meaning that you can loop through data to reach a result.
+
+The developer should be careful with recursion functions as it can be quite
+easy to slip into writing a function which never terminates, or one that uses
+excess amounts of memory or processor power. However, when written correctly
+recursion can be a very efficient and mathematically-elegant approach to
+programming.
+
+In the following example, `factorial_recursion()` is a function that calls
+itself. We use the `x` variable as the data, which decrements (-1) every time
+we recurse. The recursion ends when the condition is not greater than 0 (i.e.
+when it is 0).
+
+```go
+package main
+import ("fmt")
+
+func factorial_recursion(x float64) (y float64) {
+	if x > 0 {
+		 y = x * factorial_recursion(x-1)
+	} else {
+		 y = 1
+	}
+	return
+}
+
+func main() {
+	fmt.Println(factorial_recursion(4))
+} 
+```
+
+To a new developer it can take some time to work out how exactly this works,
+best way to find out is by testing and modifying it.
+
+<!--}}}-->
+## Struct <!--{{{-->
+
+A struct (short for structure) is used to create a collection of members of
+different data types, into a single variable.
+
+While arrays are used to store multiple values of the same data type into a
+single variable, structs are used to store multiple values of different data
+types into a single variable.
+
+A struct can be useful for grouping data together to create records.
+
+## Declare a Struct
+
+To declare a structure in Go, use the `type` and `struct` keywords:
+
+```go
+type struct_name struct {
+	member1 datatype;
+	member2 datatype;
+	member3 datatype;
+	...
+} 
+```
+
+Here we declare a struct type `Person` with the following members: `name`,
+`age`, `job` and `salary`:
+
+```go
+type Person struct {
+	name string
+	age int
+	job string
+	salary int
+} 
+```
+
+> **Tip**: Notice that the struct members above have different data types.
+> `name` and `job` is of type string, while `age` and `salary` is of type int.
+
+### Access Struct Members
+
+To access any member of a structure, use the dot operator (.) between the
+structure variable name and the structure member:
+
+```go
+type Person struct {
+	name string
+	age int
+	job string
+	salary int
+}
+
+func main() {
+	var pers1 Person
+	var pers2 Person
+	/* Pers1 specification */
+	pers1.name = "Hege"
+	pers1.age = 45
+	pers1.job = "Teacher"
+	pers1.salary = 6000
+	/* Pers2 specification */
+	pers2.name = "Cecilie"
+	pers2.age = 24
+	pers2.job = "Marketing"
+	pers2.salary = 4500
+}
+```
+
+### Pass Struct as Function Arguments
+
+You can also pass a structure as a function argument, like this:
+
+```go
+type Person struct {
+	name string
+	age int
+	job string
+	salary int
+}
+
+func main() {
+	var pers1 Person
+	/* Pers1 specification */
+	pers1.name = "Hege"
+	pers1.age = 45
+	pers1.job = "Teacher"
+	pers1.salary = 6000
+	/* Print Pers1 info by calling a function */
+	printPerson(pers1)
+}
+
+func printPerson(pers Person) {
+	fmt.Println("Name: ", pers.name)
+	fmt.Println("Age: ", pers.age)
+	fmt.Println("Job: ", pers.job)
+	fmt.Println("Salary: ", pers.salary)
+}
+```
+
+<!--}}}-->
+## Maps <!--{{{-->
+
+Maps are used to store data values in `key:value` pairs.
+Each element in a map is a `key:value` pair.
+A map is an unordered and changeable collection that does not allow duplicates.
+
+The length of a map is the number of its elements. You can find it using the `len()` function.
+The default value of a map is nil.
+Maps hold references to an underlying hash table.
+
+Go has multiple ways for creating maps.
+
+### Creating Maps Using `var` and `:=`
+
+```go
+var a = map[KeyType]ValueType{key1:value1, key2:value2,...}
+b := map[KeyType]ValueType{key1:value1, key2:value2,...}
+```
+
+- This example shows how to create maps in Go. Notice the order in the code and in the output
+
+```go
+package main
+import ("fmt")
+
+func main() {
+	var a = map[string]string{"brand": "Ford", "model": "Mustang"}
+	b := map[string]int{"Oslo": 1, "Bergen": 2, "Trondheim": 3}
+
+	fmt.Printf("a\t%v\n", a)
+	fmt.Printf("b\t%v\n", b)
+} 
+```
+
+Result:
+
+
+    a       map[brand:Ford model:Mustang]
+    b       map[Bergen:2 Oslo:1 Trondheim:3]
+
+> **Note**: The order of the map elements defined in the code is different from
+> the way that they are stored. The data are stored in a way to have efficient
+> data retrieval from the map.
+
+### Creating Maps Using Using `make()` Function
+
+```go
+var a = make(map[KeyType]ValueType)
+b := make(map[KeyType]ValueType)
+```
+
+```go
+func main() {
+	var a = make(map[string]string) // The map is empty now
+	a["brand"] = "Ford"
+	a["model"] = "Mustang"
+	a["year"] = "1964"
+
+	b := make(map[string]int)
+	b["Oslo"] = 1
+	b["Bergen"] = 2
+	b["Trondheim"] = 3
+	b["Stavanger"] = 4
+}
+```
+
+### Creating an Empty Map
+
+There are two ways to create an empty map. One is by using the `make()`
+function and the other is by using the following syntax.
+
+```go
+var a map[KeyType]ValueType
+```
+
+> **Note**: The `make()` function is the right way to create an empty map. If
+> you make an empty map in a different way and write to it, it will causes a
+> runtime panic.
+
+```go
+func main() {
+	var a = make(map[string]string)
+	var b map[string]string
+
+	fmt.Println(a == nil)
+	fmt.Println(b == nil)
+} 
+```
+
+Result:
+
+    false
+    true
+
+### Allowed Key Types
+
+The map key can be of any data type for which the equality operator (`==`) is defined. These include:
+
+- Booleans
+- Numbers
+- Strings
+- Arrays
+- Pointers
+- Structs
+- Interfaces (as long as the dynamic type supports equality)
+
+Invalid key types are:
+
+- Slices
+- Maps
+- Functions
+
+These types are invalid because the equality operator (`==`) is not defined for them.
+
+### Allowed Value Types
+
+The map values can be **any** type.
+
+### Accessing Map Elements
+
+You can access map elements by:
+
+```go
+value = map_name[key]
+```
+
+```go
+var a = make(map[string]string)
+a["brand"] = "Ford"
+a["model"] = "Mustang"
+a["year"] = "1964"
+
+fmt.Printf(a["brand"])
+```
+
+### Updating and Adding Map Elements 
+
+Updating or adding an elements are done by:
+
+```go
+map_name[key] = value
+```
+
+```go
+var a = make(map[string]string)
+a["brand"] = "Ford"
+a["model"] = "Mustang"
+a["year"] = "1964"
+
+fmt.Println(a)
+
+a["year"] = "1970" // Updating an element
+a["color"] = "red" // Adding an element
+
+fmt.Println(a)
+```
+
+### Remove Element from Map
+
+Removing elements is done using the `delete()` function.
+
+```go
+delete(map_name, key)
+```
+
+```go
+var a = make(map[string]string)
+a["brand"] = "Ford"
+a["model"] = "Mustang"
+a["year"] = "1964"
+
+fmt.Println(a)
+
+delete(a,"year")
+
+fmt.Println(a)
+```
+
+### Check For Specific Elements in a Map
+
+You can check if a certain key exists in a map using:
+
+```go
+val, ok :=map_name[key]
+```
+
+If you only want to check the existence of a certain key, you can use the blank
+identifier (`_`) in place of val.
+
+```go
+func main() {
+    var a = map[string]string{
+        "brand": "Ford", "model": "Mustang",
+        "year": "1964", "day":"",
+    }
+
+    /* Checking for existing key and its value */
+    val1, ok1 := a["brand"]
+    /* Checking for non-existing key and its value */
+    val2, ok2 := a["color"]
+    /* Checking for existing key and its value */
+    val3, ok3 := a["day"]
+    /* Only checking for existing key and not its value */
+    _, ok4 := a["model"]
+
+    fmt.Println(val1, ok1)
+    fmt.Println(val2, ok2)
+    fmt.Println(val3, ok3)
+    fmt.Println(ok4)
+} 
+```
+
+Result:
+
+    Ford true
+     false
+     true
+    true
+
+### Maps Are References
+
+Maps are references to hash tables.
+
+If two map variables refer to the same hash table, changing the content of one
+variable affect the content of the other.
+
+```go
+package main
+import ("fmt")
+
+func main() {
+    var a = map[string]string{
+        "brand": "Ford", "model": "Mustang",
+        "year": "1964",
+    }
+    b := a
+
+    fmt.Println(a)
+    fmt.Println(b)
+
+    b["year"] = "1970"
+    fmt.Println("After change to b:")
+
+    fmt.Println(a)
+    fmt.Println(b)
+} 
+```
+
+Result:
+
+    map[brand:Ford model:Mustang year:1964]
+    map[brand:Ford model:Mustang year:1964]
+    After change to b:
+    map[brand:Ford model:Mustang year:1970]
+    map[brand:Ford model:Mustang year:1970]
+
+### Iterating Over Maps
+
+You can use `range` to iterate over maps.
+
+> **Note** the order of the elements in the output.
+
+```go
+package main
+import ("fmt")
+
+func main() {
+    a := map[string]int{"one": 1, "two": 2, "three": 3, "four": 4}
+
+    for k, v := range a {
+        fmt.Printf("%v : %v, ", k, v)
+    }
+} 
+```
+
+Result:
+
+    one : 1, two : 2, three : 3, four : 4, 
+
+### Iterate Over Maps in a Specific Order
+
+Maps are unordered data structures. If you need to iterate over a map in a
+specific order, you must have a separate data structure that specifies that
+order.
 
 <!--}}}-->
