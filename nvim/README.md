@@ -74,6 +74,8 @@ note that I have `,` set to **read some template files located in
 
 #### Screenshot
 
+![alpha](shots/nvim.png)
+
 ![init-lua](shots/nvim-lua-md-treesitter.png)
 
 ![Floating Terminal](shots/floating-term.png)
@@ -84,3 +86,5 @@ note that I have `,` set to **read some template files located in
 - [x] Auto Complete `( { [ " '`
 - [x] Write every custom plugins modular
 - [ ] Complete the `README.md` file (in progress)
+
+
