@@ -20,6 +20,53 @@ export IGNOREEOF=1
 #export MANPAGER="nvim -u ~/.vim/manpager.vim -"
 export MANPAGER="nvimpager"
 
+# Global Variables {{{
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CONFIG_HOME="$HOME/.config"
+
+## gpg-agent
+export GPG_TTY=$(tty)
+
+## text editor
+export EDITOR=nvim
+export VISUAL=nvim
+
+## md persentation tool
+export MDP_LIST_OPEN1='   '
+export MDP_LIST_OPEN2='   '
+export MDP_LIST_OPEN3='   '
+export MDP_LIST_HEAD1=' ● '
+export MDP_LIST_HEAD2=' ○ '
+export MDP_LIST_HEAD3=' • '
+
+## texdoc
+export PDFVIEWER_texdoc='zathura'
+
+## Proxy
+#export all_proxy=socks5://127.0.0.1:8080
+#export http_proxy=http://127.0.0.1:1090
+#export https_proxy=http://127.0.0.1:1090
+
+## go Path
+export GOPATH="${XDG_DATA_HOME}/golang"
+export GOMODCACHE="${XDG_CACHE_HOME}/go/mod"
+## rust Path
+export RUSTUP_HOME="${XDG_DATA_HOME}/rustup"
+## cargo path
+export CARGO_HOME="${XDG_DATA_HOME}/cargo"
+## npm path
+export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc "
+
+### bat colorscheme
+##"Solarized (dark)" "gruvbox-dark"
+##"Nord" "Dracula"
+#export BAT_THEME="Solarized (light)"
+
+## locale/timezone settings
+#export TZ="Tehran"
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+# }}}
 # History {{{
 # When shell exist, append to the history file instead of overwriting it
 shopt -s histappend
@@ -58,12 +105,12 @@ appendpath() {
 
 appendpath "$HOME/bin"
 appendpath "$HOME/.bin"
-appendpath "$HOME/.local/bin"
-appendpath "$HOME/.local/cargo/bin"
-appendpath "$HOME/.local/golang/bin"
+appendpath "${HOME}/.local/bin"
+appendpath "${XDG_DATA_HOME}/cargo/bin"
+appendpath "${XDG_DATA_HOME}/golang/bin"
 appendpath "$HOME/.config/emacs/bin"
 appendpath "$HOME/.emacs.d/bin"
-appendpath "$HOME/.local/yarn/bin"
+appendpath "${XDG_DATA_HOME}/yarn/bin"
 appendpath "/home/hos/.local/dev/hossein-lap/workflow/scripts"
 appendpath "$HOME/.local/bin/texlive/2022/bin/x86_64-linux"
 unset appendpath
@@ -100,46 +147,6 @@ screen|termite)
 esac
 # }}}
 
-# Global Variables {{{
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_CONFIG_HOME="$HOME/.config"
-
-## gpg-agent
-export GPG_TTY=$(tty)
-
-## text editor
-export EDITOR=nvim
-export VISUAL=nvim
-
-## md persentation tool
-export MDP_LIST_OPEN1='   '
-export MDP_LIST_OPEN2='   '
-export MDP_LIST_OPEN3='   '
-export MDP_LIST_HEAD1=' ● '
-export MDP_LIST_HEAD2=' ○ '
-export MDP_LIST_HEAD3=' • '
-
-## texdoc
-export PDFVIEWER_texdoc='zathura'
-
-## Proxy
-#export all_proxy=socks5://127.0.0.1:8080
-#export http_proxy=http://127.0.0.1:1090
-#export https_proxy=http://127.0.0.1:1090
-
-## Go Path
-export GOPATH="${HOME}/.local/golang"
-
-### bat colorscheme
-##"Solarized (dark)" "gruvbox-dark"
-##"Nord" "Dracula"
-#export BAT_THEME="Solarized (light)"
-
-## locale/timezone settings
-#export TZ="Tehran"
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-# }}}
 # Functions {{{
 
 # }}}

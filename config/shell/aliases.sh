@@ -101,3 +101,5 @@ alias gost5="$HOME/temp/gost/gost-linux-amd64-3.0.0-beta.5/gost-linux-amd64-3.0.
 #alias gost6="$HOME/temp/gost/gost-linux-amd64-3.0.0-beta.5/gost-linux-amd64-3.0.0-beta.5 -L :8000 -F http2://user:pass@116.203.195.247:25570"
 
 alias ssh-connect="ssh root@195.201.56.167"
+
+alias yarn='yarn --use-yarnrc "${XDG_CONFIG_HOME}/yarn/config"'
