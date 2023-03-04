@@ -30,6 +30,7 @@ require('plugins.nvimtree') ---- NvimTree
 require('plugins.treesitter') ---- Treesitter Settings
 require('plugins.which-key') ---- GitSigns Settings
 require('plugins.gitsigns') ---- Treesitter Settings
+require('plugins.alpha') ---- ToggleTerm Settings
 --require('plugins.toggleterm') ---- ToggleTerm Settings
 -- }}}
 -- colorscheme {{{

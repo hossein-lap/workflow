@@ -24,10 +24,11 @@ return packer.startup(function()
 		use 'hrsh7th/cmp-buffer'		-- buffer source for nvim-cmp
 		use 'hrsh7th/cmp-path'			-- path source for nvim-cmp
 	use 'saadparwaiz1/cmp_luasnip'	-- Snippets source for nvim-cmp
-	use 'L3MON4D3/LuaSnip'			-- Snippets plugin
+	use 'L3MON4D3/LuaSnip'		-- Snippets plugin
 
 	use 'nvim-treesitter/nvim-treesitter'	-- Treesitter [more syntax color]
 	use 'norcalli/nvim-colorizer.lua'		-- Hex color preview
+	use "goolord/alpha-nvim"			---- Greeting
 
 	use 'nvim-lualine/lualine.nvim'			-- status line
 	use 'kyazdani42/nvim-tree.lua'			-- tree file-manager
@@ -37,7 +38,6 @@ return packer.startup(function()
 
 --	use 'onsails/lspkind.nvim'			---- icons in lsp-menu
 --	use "akinsho/toggleterm.nvim"		---- terminal plugin
---	use "goolord/alpha-nvim"			---- Greeting
 
 	---- colorschemes
 	use 'hossein-lap/vim-256noir'
