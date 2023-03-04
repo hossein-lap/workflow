@@ -10,8 +10,8 @@ COLOR = $(TITLE) --defaults $(THEME)/dracula.yaml
 BANDW = $(TITLE) --defaults $(THEME)/bw.yaml
 
 all:
-	$(CC) $(BANDW) $(NAME).md -o $(NAME)-bw.pdf
-#	$(CC) $(COLOR) $(NAME).md -o $(NAME).pdf
+	$(CC) $(COLOR) $(NAME).md -o $(NAME).pdf
+#	$(CC) $(BANDW) $(NAME).md -o $(NAME)-bw.pdf
 #	Rscript -e "rmarkdown::render(input = '$(NAME).rmd', output_format = \"all\")"
 
 full:
