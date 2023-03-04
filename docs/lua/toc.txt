@@ -1,8 +1,0 @@
-- syntax
-- comments
-    - single-line
-    - multi-line
-- variables
-    - declaring
-    - concatenated
-
