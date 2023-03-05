@@ -40,7 +40,7 @@ In Python, variables are created when you assign a value to it:
 
 ```python
 x = 5
-y = "Hello, World!" 
+y = "Hello, World!"
 ```
 
 + Python has no command for declaring a variable.
@@ -89,7 +89,7 @@ To add a multiline comment you could insert a `#` for each line:
 # This is a comment
 # written in
 # more than just one line
-print("Hello, World!") 
+print("Hello, World!")
 ```
 
 Or, not quite as intended, you can use a multiline string.
@@ -104,7 +104,7 @@ This is a comment
 written in
 more than just one line
 """
-print("Hello, World!") 
+print("Hello, World!")
 ```
 
 + As long as the string is not assigned to a variable, Python will read the
@@ -130,7 +130,7 @@ change type after they have been set.
 ```python
 x = 4       # x is of type int
 x = "Sally" # x is now of type str
-print(x) 
+print(x)
 ```
 
 #### Casting
@@ -140,7 +140,7 @@ If you want to specify the data type of a variable, this can be done with castin
 ```python
 x = str(3)    # x will be '3'
 y = int(3)    # y will be 3
-z = float(3)  # z will be 3.0 
+z = float(3)  # z will be 3.0
 ```
 
 #### Get the Type
@@ -151,7 +151,7 @@ You can get the data type of a variable with the `type()` function.
 x = 5
 y = "John"
 print(type(x))
-print(type(y)) 
+print(type(y))
 ```
 
 #### Single or Double Quotes?
@@ -191,7 +191,7 @@ my_var = "John"
 _my_var = "John"
 myVar = "John"
 MYVAR = "John"
-myvar2 = "John" 
+myvar2 = "John"
 ```
 
 > Remember that variable names are case-sensitive
@@ -252,7 +252,7 @@ In the `print()` function, you output multiple variables, separated by a comma:
 x = "Python"
 y = "is"
 z = "awesome"
-print(x, y, z) 
+print(x, y, z)
 ```
 
 You can also use the `+` operator to output multiple variables:
@@ -261,7 +261,7 @@ You can also use the `+` operator to output multiple variables:
 x = "Python "
 y = "is "
 z = "awesome"
-print(x + y + z) 
+print(x + y + z)
 ```
 
 > Notice the space character after `"Python "` and `"is "` without them the
@@ -272,7 +272,7 @@ For numbers, the `+` character works as a mathematical operator:
 ```python
 x = 5
 y = 10
-print(x + y) 
+print(x + y)
 ```
 
 > In the `print()` function, when you try to combine a string and a number with
@@ -300,7 +300,7 @@ x = "awesome"
 def myfunc():
     print("Python is " + x)
 
-myfunc() 
+myfunc()
 ```
 
 If you create a variable with the same name inside a function, this variable
@@ -316,7 +316,7 @@ def myfunc():
 
 myfunc()
 
-print("Python is " + x) 
+print("Python is " + x)
 ```
 
 #### The global Keyword
@@ -334,7 +334,7 @@ def myfunc():
 
 myfunc()
 
-print("Python is " + x) 
+print("Python is " + x)
 ```
 
 Also, use the `global` keyword if you want to change a global variable inside a
@@ -349,7 +349,7 @@ def myfunc():
 
 myfunc()
 
-print("Python is " + x) 
+print("Python is " + x)
 ```
 
 <!--}}}-->
@@ -381,7 +381,7 @@ You can get the data type of any object by using the `type()` function:
 
 ```python
 x = 5
-print(type(x)) 
+print(type(x))
 ```
 
 ### Setting the Data Type
@@ -478,7 +478,7 @@ y = 1.0
 z = -35.59
 print(type(x))
 print(type(y))
-print(type(z)) 
+print(type(z))
 ```
 
 Float can also be scientific numbers with an "e" to indicate the power of 10.
@@ -499,7 +499,7 @@ y = 5j
 z = -5j
 print(type(x))
 print(type(y))
-print(type(z)) 
+print(type(z))
 ```
 
 ### Type Conversion
@@ -522,7 +522,7 @@ print(b)
 print(c)
 print(type(a))
 print(type(b))
-print(type(c)) 
+print(type(c))
 ```
 
 > **Note**: You cannot convert complex numbers into another number type.
@@ -534,7 +534,7 @@ has a built-in module called `random` that can be used to make random numbers:
 
 ```python
 import random
-print(random.randrange(1, 10)) 
+print(random.randrange(1, 10))
 ```
 
 <!--}}}-->
@@ -594,7 +594,7 @@ You can display a string literal with the `print()` function:
 
 ```python
 print("Hello")
-print('Hello') 
+print('Hello')
 ```
 
 ### Assign String to a Variable
@@ -604,7 +604,7 @@ equal sign and the string:
 
 ```python
 a = "Hello"
-print(a) 
+print(a)
 ```
 
 #### Multiline Strings
@@ -616,7 +616,7 @@ a = """Lorem ipsum dolor sit amet,
 consectetur adipiscing elit,
 sed do eiusmod tempor incididunt
 ut labore et dolore magna aliqua."""
-print(a) 
+print(a)
 ```
 
 Or three single quotes.
@@ -636,7 +636,7 @@ Square brackets can be used to access elements of the string.
 
 ```python
 a = "Hello, World!"
-print(a[1]) 
+print(a[1])
 ```
 
 #### Looping Through a String
@@ -646,7 +646,7 @@ a `for` loop.
 
 ```python
 for x in "banana":
-    print(x) 
+    print(x)
 ```
 
 #### String Length
@@ -673,7 +673,7 @@ Use it in an `if` statement:
 ```python
 txt = "The best things in life are free!"
 if "free" in txt:
-    print("Yes, 'free' is present.") 
+    print("Yes, 'free' is present.")
 ```
 
 #### Check if NOT
@@ -683,7 +683,7 @@ use the keyword `not in`.
 
 ```python
 txt = "The best things in life are free!"
-print("expensive" not in txt) 
+print("expensive" not in txt)
 ```
 
 Use it in an `if` statement:
@@ -691,7 +691,7 @@ Use it in an `if` statement:
 ```python
 txt = "The best things in life are free!"
 if "expensive" not in txt:
-    print("No, 'expensive' is NOT present.") 
+    print("No, 'expensive' is NOT present.")
 ```
 
 ### Slicing
@@ -730,7 +730,7 @@ Use negative indexes to start the slice from the end of the string:
 
 ```python
 b = "Hello, World!"
-print(b[-5:-2]) 
+print(b[-5:-2])
 ```
 
 ### Modify Strings
@@ -758,7 +758,7 @@ want to remove this space.
 
 ```python
 a = " Hello, World!   "
-print(a.strip()) # returns "Hello, World!" 
+print(a.strip()) # returns "Hello, World!"
 ```
 
 #### Replace String
@@ -786,7 +786,7 @@ To concatenate, or combine, two strings you can use the + operator.
 a = "Hello"
 b = "World"
 c = a + " " + b
-print(c) 
+print(c)
 ```
 
 ### String Format
@@ -797,7 +797,7 @@ in the string where the placeholders `{}` are:
 ```python
 age = 36
 txt = "My name is John, and I am {}"
-print(txt.format(age)) 
+print(txt.format(age))
 ```
 
 The format() method takes unlimited number of arguments, and are placed into
@@ -808,7 +808,7 @@ quantity = 3
 itemno = 567
 price = 49.95
 myorder = "I want {} pieces of item {} for {} dollars."
-print(myorder.format(quantity, itemno, price)) 
+print(myorder.format(quantity, itemno, price))
 ```
 
 You can use index numbers `{0}` to be sure the arguments are placed in the
@@ -819,7 +819,7 @@ quantity = 3
 itemno = 567
 price = 49.95
 myorder = "I want to pay {2} dollars for {0} pieces of item {1}."
-print(myorder.format(quantity, itemno, price)) 
+print(myorder.format(quantity, itemno, price))
 ```
 
 ### Escape Character
@@ -833,13 +833,13 @@ An example of an illegal character is a double quote inside a string that is
 surrounded by double quotes:
 
 ```python
-txt = "We are the so-called "Vikings" from the north." 
+txt = "We are the so-called "Vikings" from the north."
 ```
 
 To fix this problem, use the escape character `\"`:
 
 ```python
-txt = "We are the so-called \"Vikings\" from the north." 
+txt = "We are the so-called \"Vikings\" from the north."
 ```
 
 Other escape characters used in Python:
@@ -926,7 +926,7 @@ Boolean answer:
 ```python
 print(10 > 9)
 print(10 == 9)
-print(10 < 9) 
+print(10 < 9)
 ```
 
 When you run a condition in an if statement, Python returns `True` or `False`:
@@ -988,12 +988,12 @@ bool(0)
 bool("")
 bool(())
 bool([])
-bool({}) 
+bool({})
 ```
 
 One more value, or object in this case, evaluates to `False`, and that is if
 you have an object that is made from a class with a `__len__` function that
-returns `0` or `False`: 
+returns `0` or `False`:
 
 ```python
 class myclass():
@@ -1001,7 +1001,7 @@ class myclass():
         return 0
 
 myobj = myclass()
-print(bool(myobj)) 
+print(bool(myobj))
 ```
 
 ### Functions can Return a Boolean
@@ -1012,7 +1012,7 @@ You can create functions that returns a Boolean Value:
 def myFunction():
     return True
 
-print(myFunction()) 
+print(myFunction())
 ```
 
 You can execute code based on the Boolean answer of a function:
@@ -1024,7 +1024,7 @@ def myFunction():
 if myFunction():
     print("YES!")
 else:
-    print("NO!") 
+    print("NO!")
 ```
 
 Python also has many built-in functions that return a boolean value, like the
@@ -1033,7 +1033,7 @@ certain data type:
 
 ```python
 x = 200
-print(isinstance(x, int)) 
+print(isinstance(x, int))
 ```
 
 <!--}}}-->
@@ -1064,13 +1064,13 @@ mathematical operations:
 
 | **Operator** | **Name** | **Example** |
 |:------------:|:---------|:------------|
-| `+` | Addition | `x + y` | 
-| `-` | Subtraction | `x - y` | 
-| `*` | Multiplication | `x * y` | 
-| `/` | Division | `x / y` | 
-| `%` | Modulus | `x % y` | 
-| `**` | Exponentiation | `x ** y` | 
-| `//` | Floor division | `x // y` | 
+| `+` | Addition | `x + y` |
+| `-` | Subtraction | `x - y` |
+| `*` | Multiplication | `x * y` |
+| `/` | Division | `x / y` |
+| `%` | Modulus | `x % y` |
+| `**` | Exponentiation | `x ** y` |
+| `//` | Floor division | `x // y` |
 
 ### Assignment Operators
 
@@ -1098,12 +1098,12 @@ Comparison operators are used to compare two values:
 
 | **Operator** | **Name** | **Example** |
 |:------------:|:---------|:------------|
-| `==` | Equal | `x == y` | 
-| `!=` | Not equal | `x != y` | 
-| `>` | Greater than | `x > y` | 
-| `<` | Less than | `x < y` | 
-| `>=` | Greater than or equal to | `x >= y` | 
-| `<=` | Less than or equal to | `x <= y` | 
+| `==` | Equal | `x == y` |
+| `!=` | Not equal | `x != y` |
+| `>` | Greater than | `x > y` |
+| `<` | Less than | `x < y` |
+| `>=` | Greater than or equal to | `x >= y` |
+| `<=` | Less than or equal to | `x <= y` |
 
 ### Logical Operators
 
@@ -1111,9 +1111,9 @@ Logical operators are used to combine conditional statements:
 
 | **Operator** | **Description** | **Example** |
 |:------------:|:---------|:------------|
-| `and ` | Returns True if both statements are true | `x < 5 and  x < 10` | 
-| `or` | Returns True if one of the statements is true | `x < 5 or x < 4` | 
-| `not` | Reverse the result, returns False if the result is true | `not(x < 5 and x < 10)` | 
+| `and ` | Returns True if both statements are true | `x < 5 and  x < 10` |
+| `or` | Returns True if one of the statements is true | `x < 5 or x < 4` |
+| `not` | Reverse the result, returns False if the result is true | `not(x < 5 and x < 10)` |
 
 ### Identity Operators
 
@@ -1122,8 +1122,8 @@ if they are actually the same object, with the same memory location:
 
 | **Operator** | **Description** | **Example** |
 |:------------:|:---------|:------------|
-| `is ` | Returns True if both variables are the same object | `x is y` | 
-| `is not` | Returns True if both variables are not the same object | `x is not y` | 
+| `is ` | Returns True if both variables are the same object | `x is y` |
+| `is not` | Returns True if both variables are not the same object | `x is not y` |
 
 
 ### Membership Operators
@@ -1132,19 +1132,19 @@ Membership operators are used to test if a sequence is presented in an object:
 
 | **Operator** | **Description** | **Example** |
 |:------------:|:---------|:------------|
-| `in ` | Returns True if a sequence with the specified value is present in the object | `x in y` | 
-| `not in` | Returns True if a sequence with the specified value is not present in the object | `x not in y` | 
+| `in ` | Returns True if a sequence with the specified value is present in the object | `x in y` |
+| `not in` | Returns True if a sequence with the specified value is not present in the object | `x not in y` |
 
 ### Bitwise Operators
 
 | **Operator** | **Name** | **Description** | **Example** |
 |:------------:|:---------|:----------------|:------------|
-| `& ` | **AND** | Sets each bit to 1 if both bits are 1 | `x & y` | 
-| `|` | **OR** | Sets each bit to 1 if one of two bits is 1 | `x | y` | 
-| `^` | **XOR** | Sets each bit to 1 if only one of two bits is 1 | `x ^ y` | 
-| `~` | **NOT** | Inverts all the bits | `~x` | 
-| `<<` | **Zero fill left shift** | Shift left by pushing zeros in from the right and let the leftmost bits fall off | `x << 2` | 
-| `>>` | **Signed right shift** | Shift right by pushing copies of the leftmost bit in from the left, and let the rightmost bits fall off | `x >> 2` | 
+| `& ` | **AND** | Sets each bit to 1 if both bits are 1 | `x & y` |
+| `|` | **OR** | Sets each bit to 1 if one of two bits is 1 | `x | y` |
+| `^` | **XOR** | Sets each bit to 1 if only one of two bits is 1 | `x ^ y` |
+| `~` | **NOT** | Inverts all the bits | `~x` |
+| `<<` | **Zero fill left shift** | Shift left by pushing zeros in from the right and let the leftmost bits fall off | `x << 2` |
+| `>>` | **Signed right shift** | Shift right by pushing copies of the leftmost bit in from the left, and let the rightmost bits fall off | `x >> 2` |
 
 ### Operator Precedence
 
@@ -1169,24 +1169,669 @@ precedence at the top:
 
 | **Operator** | **Description** |
 |:------------:|:----------------|
-| `()` | Parentheses | 
-| `**` | Exponentiation | 
-| `+x` `-x` `~x` | Unary plus, unary minus, and bitwise NOT | 
-| `*` `/` `//` `%` | Multiplication, division, floor division, and modulus | 
-| `+` `-` | Addition and subtraction | 
-| `<<` `>>` | Bitwise left and right shifts | 
-| `&` | Bitwise AND | 
-| `^` | Bitwise XOR | 
-| `|` | Bitwise OR | 
-| `==` `!=` `>` `>=` `<` `<=` `is` `is not` `in` `not in` | Comparisons, identity, and membership operators | 
-| `not` | Logical NOT | 
-| `and` | AND | 
-| `or` | OR | 
+| `()` | Parentheses |
+| `**` | Exponentiation |
+| `+x` `-x` `~x` | Unary plus, unary minus, and bitwise NOT |
+| `*` `/` `//` `%` | Multiplication, division, floor division, and modulus |
+| `+` `-` | Addition and subtraction |
+| `<<` `>>` | Bitwise left and right shifts |
+| `&` | Bitwise AND |
+| `^` | Bitwise XOR |
+| `|` | Bitwise OR |
+| `==` `!=` `>` `>=` `<` `<=` `is` `is not` `in` `not in` | Comparisons, identity, and membership operators |
+| `not` | Logical NOT |
+| `and` | AND |
+| `or` | OR |
 
 + If two operators have the same precedence, the expression is evaluated from left to right.
 
 ```python
 print(5 + 4 - 7 + 3)
 ```
+
+<!--}}}-->
+## Python Collections (Arrays) <!--{{{-->
+
+There are four collection data types in the Python programming language:
+
++ **List** is a collection which is ordered and changeable. Allows duplicate members.
++ **Tuple** is a collection which is ordered and unchangeable. Allows duplicate members.
++ **Set** is a collection which is unordered, unchangeable¹, and unindexed. No duplicate members.
++ **Dictionary** is a collection which is ordered² and changeable. No duplicate members.
+
+> 1. Set items are unchangeable, but you can remove and/or add items whenever
+>    you like.
+> 1. As of Python version 3.7, dictionaries are ordered. In Python 3.6 and
+>    earlier, dictionaries are unordered.
+
+When choosing a collection type, it is useful to understand the properties of
+that type. Choosing the right type for a particular data set could mean
+retention of meaning, and, it could mean an increase in efficiency or security.
+
+<!--}}}-->
+## Lists <!--{{{-->
+
+Lists are used to store multiple items in a single variable.
+
+Lists are one of 4 built-in data types in Python used to store collections of
+data, the other 3 are **Tuple**, **Set**, and **Dictionary**, all with
+different qualities and usage.
+
+Lists are created using square brackets:
+
+```python
+thislist = ["apple", "banana", "cherry"]
+print(thislist)
+```
+
+### Basics
+
+List items are:
+
++ Ordered
++ Changeable
++ Allow duplicate values
+
+List items are indexed, the first item has index `[0]`, the second item has
+index `[1]` etc.
+
+#### Ordered
+
+When we say that lists are ordered, it means that the items have a defined
+order, and that order will not change.
+
+If you add new items to a list, the new items will be placed at the end of the
+list.
+
+> **Note**: There are some list methods that will change the order, but in
+> general: the order of the items will not change.
+
+#### Changeable
+
+The list is changeable, meaning that we can change, add, and remove items in a
+list after it has been created.
+
+#### Allow Duplicates
+
+Since lists are indexed, lists can have items with the same value:
+
+```python
+thislist = ["apple", "banana", "cherry", "apple", "cherry"]
+print(thislist)
+```
+
+#### List Length
+
+To determine how many items a list has, use the `len()` function:
+
+```python
+thislist = ["apple", "banana", "cherry"]
+print(len(thislist))
+```
+
+#### List Items - Data Types
+
+List items can be of any data type:
+
+```python
+list1 = ["apple", "banana", "cherry"]
+list2 = [1, 5, 7, 9, 3]
+list3 = [True, False, False]
+```
+
+A list can contain different data types:
+
+```python
+list1 = ["abc", 34, True, 40, "male"]
+```
+
+#### type()
+
+From Python's perspective, lists are defined as objects with the data type
+'list':
+
+```python
+mylist = ["apple", "banana", "cherry"]
+print(type(mylist))
+```
+
+    <class 'list'>
+
+#### The list() Constructor
+
+It is also possible to use the `list()` constructor when creating a new list.
+
+```python
+thislist = list(("apple", "banana", "cherry"))
+# note the double round-brackets
+print(thislist)
+```
+
+### Access List Items
+
+List items are indexed and you can access them by referring to the index
+number:
+
+```python
+thislist = ["apple", "banana", "cherry"]
+print(thislist[1])
+```
+
+> **Note**: The first item has index 0.
+
+#### Negative Indexing
+
+Negative indexing means start from the end
+
+`-1` refers to the last item, `-2` refers to the second last item etc.
+
+```python
+thislist = ["apple", "banana", "cherry"]
+print(thislist[-1])
+```
+
+#### Range of Indexes
+
+You can specify a range of indexes by specifying where to start and where to
+end the range.
+
+When specifying a range, the return value will be a new list with the specified
+items.
+
+```python
+thislist = [
+    "apple", "banana", "cherry", "orange",
+    "kiwi", "melon", "mango"
+]
+print(thislist[2:5]) 
+```
+
+> **Note**: The search will start at index 2 (included) and end at index 5 (not
+> included).
+
+> Remember that the first item has index 0.
+
+By leaving out the start value, the range will start at the first item:
+
+```python
+thislist = [
+    "apple", "banana", "cherry",
+    "orange", "kiwi", "melon", "mango"
+]
+print(thislist[:4]) 
+```
+
+By leaving out the end value, the range will go on to the end of the list:
+
+```python
+thislist = [
+    "apple", "banana", "cherry", "orange",
+    "kiwi", "melon", "mango"
+]
+print(thislist[2:])
+```
+
+#### Range of Negative Indexes
+
+Specify negative indexes if you want to start the search from the end of the
+list:
+
+```python
+thislist = ["apple", "banana", "cherry",
+    "orange", "kiwi", "melon", "mango"]
+print(thislist[-4:-1])
+```
+
+#### Check if Item Exists
+
+To determine if a specified item is present in a list use the `in` keyword:
+
+```python
+thislist = ["apple", "banana", "cherry"]
+if "apple" in thislist:
+    print("Yes, 'apple' is in the fruits list")
+```
+
+### Change List Items
+
+#### Change Item Value
+
+To change the value of a specific item, refer to the index number:
+
+```python
+thislist = ["apple", "banana", "cherry"]
+thislist[1] = "blackcurrant"
+print(thislist)
+```
+
+#### Change a Range of Item Values
+
+To change the value of items within a specific range, define a list with the
+new values, and refer to the range of index numbers where you want to insert
+the new values:
+
+```python
+thislist = ["apple", "banana", "cherry", "orange", "kiwi", "mango"]
+thislist[1:3] = ["blackcurrant", "watermelon"]
+print(thislist)
+```
+
+If you insert *more* items than you replace, the new items will be inserted
+where you specified, and the remaining items will move accordingly:
+
+```python
+thislist = ["apple", "banana", "cherry"]
+thislist[1:2] = ["blackcurrant", "watermelon"]
+print(thislist)
+```
+
+> **Note**: The length of the list will change when the number of items
+> inserted does not match the number of items replaced.
+
+If you insert *less* items than you replace, the new items will be inserted
+where you specified, and the remaining items will move accordingly:
+
+```python
+thislist = ["apple", "banana", "cherry"]
+thislist[1:3] = ["watermelon"]
+print(thislist)
+```
+
+#### Insert Items
+
+To insert a new list item, without replacing any of the existing values, we can
+use the `insert()` method.
+
+The `insert()` method inserts an item at the specified index:
+
+```python
+thislist = ["apple", "banana", "cherry"]
+thislist.insert(2, "watermelon")
+print(thislist)
+```
+
+> **Note**: As a result of the example above, the list will now contain 4
+> items.
+
+### Add List Items
+
+#### Append Items
+
+To add an item to the end of the list, use the `append()` method:
+
+```python
+thislist = ["apple", "banana", "cherry"]
+thislist.append("orange")
+print(thislist)
+```
+
+#### Insert Items
+
+To insert a list item at a specified index, use the `insert()` method.
+
+The `insert()` method inserts an item at the specified index:
+
+```python
+thislist = ["apple", "banana", "cherry"]
+thislist.insert(1, "orange")
+print(thislist)
+```
+
+> **Note**: As a result of the examples above, the lists will now contain 4
+> items.
+
+#### Extend List
+
+To append elements from another list to the current list, use the `extend()` method.
+
+```python
+thislist = ["apple", "banana", "cherry"]
+tropical = ["mango", "pineapple", "papaya"]
+thislist.extend(tropical)
+print(thislist)
+```
+
+The elements will be added to the *end* of the list.
+
+#### Add Any Iterable
+
+The `extend()` method does not have to append *lists*, you can add any iterable
+object (tuples, sets, dictionaries etc.).
+
+```python
+thislist = ["apple", "banana", "cherry"]
+thistuple = ("kiwi", "orange")
+thislist.extend(thistuple)
+print(thislist) 
+```
+
+### Remove List Items
+
+#### Remove Specified Item
+
+The `remove()` method removes the specified item.
+
+```python
+thislist = ["apple", "banana", "cherry"]
+thislist.remove("banana")
+print(thislist)
+```
+
+#### Remove Specified Index
+
+The `pop()` method removes the specified index.
+
+```python
+thislist = ["apple", "banana", "cherry"]
+thislist.pop(1)
+print(thislist)
+```
+
+If you do not specify the index, the `pop()` method removes the last item.
+
+```python
+thislist = ["apple", "banana", "cherry"]
+thislist.pop()
+print(thislist)
+```
+
+The `del` keyword also removes the specified index:
+
+```python
+ thislist = ["apple", "banana", "cherry"]
+del thislist[0]
+print(thislist) 
+```
+
+The `del` keyword can also delete the list completely.
+
+```python
+thislist = ["apple", "banana", "cherry"]
+del thislist
+```
+
+#### Clear the List
+
+The `clear()` method empties the list.
+
+The list still remains, but it has no content.
+
+```python
+thislist = ["apple", "banana", "cherry"]
+thislist.clear()
+print(thislist)
+```
+
+### Loop Lists
+
+#### Loop Through a List
+
+You can loop through the list items by using a `for` loop:
+
+```python
+thislist = ["apple", "banana", "cherry"]
+for x in thislist:
+    print(x)
+```
+
+#### Loop Through the Index Numbers
+
+You can also loop through the list items by referring to their index number.
+
+Use the `range()` and `len()` functions to create a suitable iterable.
+
+```python
+thislist = ["apple", "banana", "cherry"]
+for i in range(len(thislist)):
+    print(thislist[i])
+```
+
+The iterable created in the example above is `[0, 1, 2]`.
+
+#### Using a while Loop
+
+You can loop through the list items by using a `while` loop.
+
+Use the `len()` function to determine the length of the list, then start at 0
+and loop your way through the list items by referring to their indexes.
+
+Remember to increase the index by 1 after each iteration.
+
+```python
+thislist = ["apple", "banana", "cherry"]
+i = 0
+while i < len(thislist):
+    print(thislist[i])
+    i = i + 1
+```
+
+#### Looping Using List Comprehension
+
+List Comprehension offers the shortest syntax for looping through lists:
+
+```python
+thislist = ["apple", "banana", "cherry"]
+[print(x) for x in thislist]
+```
+
+### List Comprehension
+
+List comprehension offers a shorter syntax when you want to create a new list
+based on the values of an existing list.
+
+Example:
+
+Based on a list of fruits, you want a new list, containing only the fruits with
+the letter "a" in the name.
+
+Without list comprehension you will have to write a `for` statement with a
+conditional test inside:
+
+```python
+fruits = ["apple", "banana", "cherry", "kiwi", "mango"]
+newlist = []
+
+for x in fruits:
+	if "a" in x:
+		newlist.append(x)
+
+print(newlist)
+```
+
+With list comprehension you can do all that with only one line of code:
+
+```python
+fruits = ["apple", "banana", "cherry", "kiwi", "mango"]
+
+newlist = [x for x in fruits if "a" in x]
+
+print(newlist)
+```
+
+#### The Syntax
+
+```python
+newlist = [expression for item in iterable if condition == True]
+```
+
+The return value is a new list, leaving the old list unchanged.
+
+#### Condition
+
+The *condition* is like a filter that only accepts the items that valuate to `True`.
+
+```python
+newlist = [x for x in fruits if x != "apple"]
+```
+
+The condition `if x != "apple"`  will return `True` for all elements other than
+"apple", making the new list contain all fruits except "apple".
+
+The *condition* is optional and can be omitted:
+
+```python
+newlist = [x for x in fruits]
+```
+
+#### Iterable
+
+The *iterable* can be any iterable object, like a list, tuple, set etc.
+
+```python
+newlist = [x for x in range(10)]
+```
+
+Same example, but with a condition:
+
+```python
+newlist = [x for x in range(10) if x < 5]
+```
+
+#### Expression
+
+The *expression* is the current item in the iteration, but it is also the
+outcome, which you can manipulate before it ends up like a list item in the new
+list:
+
+```python
+newlist = [x.upper() for x in fruits]
+```
+
+You can set the outcome to whatever you like:
+
+```python
+newlist = ['hello' for x in fruits]
+```
+
+The *expression* can also contain conditions, not like a filter, but as a way
+to manipulate the outcome:
+
+```python
+newlist = [x if x != "banana" else "orange" for x in fruits]
+```
+
+The *expression* in the example above says:
+
+"*Return the item if it is not banana, if it is banana return orange*".
+
+### Sort Lists
+
+#### Sort List Alphanumerically
+
+List objects have a `sort()` method that will sort the list alphanumerically,
+ascending, by default:
+
+```python
+thislist = ["orange", "mango", "kiwi", "pineapple", "banana"]
+thislist.sort()
+print(thislist)
+```
+
+```python
+thislist = [100, 50, 65, 82, 23]
+thislist.sort()
+print(thislist)
+```
+
+#### Sort Descending
+
+To sort descending, use the keyword argument `reverse = True`:
+
+```python
+thislist = ["orange", "mango", "kiwi", "pineapple", "banana"]
+thislist.sort(reverse = True)
+print(thislist)
+```
+
+```python
+thislist = [100, 50, 65, 82, 23]
+thislist.sort(reverse = True)
+print(thislist)
+```
+
+#### Customize Sort Function
+
+You can also customize your own function by using the keyword argument `key = function`.
+
+The function will return a number that will be used to sort the list (the lowest number first):
+
+```python
+def myfunc(n):
+    return abs(n - 50)
+
+thislist = [100, 50, 65, 82, 23]
+thislist.sort(key = myfunc)
+print(thislist)
+```
+
+#### Case Insensitive Sort
+
+By default the `sort()` method is case sensitive, resulting in all capital
+letters being sorted before lower case letters:
+
+```python
+thislist = ["banana", "Orange", "Kiwi", "cherry"]
+thislist.sort()
+print(thislist)
+```
+
+Luckily we can use built-in functions as key functions when sorting a list.
+
+So if you want a case-insensitive sort function, use `str.lower` as a key
+function:
+
+```python
+thislist = ["banana", "Orange", "Kiwi", "cherry"]
+thislist.sort(key = str.lower)
+print(thislist)
+```
+
+#### Reverse Order
+
+What if you want to reverse the order of a list, regardless of the alphabet?
+
+The `reverse()` method reverses the current sorting order of the elements.
+
+```python
+thislist = ["banana", "Orange", "Kiwi", "cherry"]
+thislist.reverse()
+print(thislist)
+```
+
+### Copy Lists
+
+#### Copy a List
+
+You cannot copy a list simply by typing `list2 = list1`, because: `list2` will
+only be a reference to `list1`, and changes made in `list1` will automatically
+also be made in `list2`.
+
+There are ways to make a copy, one way is to use the built-in List method `copy().`
+
+```python
+thislist = ["apple", "banana", "cherry"]
+mylist = thislist.copy()
+print(mylist)
+```
+
+Another way to make a copy is to use the built-in method `list()`.
+
+```python
+thislist = ["apple", "banana", "cherry"]
+mylist = list(thislist)
+print(mylist)
+```
+
+### Join Lists
+
+#### Join Two Lists
+
+There are several ways to join, or concatenate, two or more lists in Python.
+
+One of the easiest ways are by using the `+` operator.
+
+
+### List Methods
+
 
 <!--}}}-->
