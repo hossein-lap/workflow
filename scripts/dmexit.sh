@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Variables {{{
-patched='-c -bw 2 -g 2'
+#patched='-c -bw 2 -g 2'
 dmenu="dmenu \
 		-i \
 		-l 3 \
