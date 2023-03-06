@@ -55,13 +55,13 @@ local fg = 'fg/' .. arg[1] .. '.h'
 local bg = 'bg/' .. arg[1] .. '.h'
 
 if file_exists(fg) then
-	io.write("Colors exists\n",
-			'\t', fg, '\n', '\t\27[0;3m',
-			'\27[0m\n', "Abroting\n")
+	io.write("Colors exists:",
+			'\t', fg, '\t', '\27[0;3m',
+			'\27[0m', "[Abrot]\n")
 	if file_exists(bg) then
-		io.write("Colors exists\n",
-				'\t', bg, '\n', '\t\27[0;3m',
-				'\27[0m\n', "Abroting\n")
+		io.write("Colors exists:",
+				'\t', bg, '\t', '\27[0;3m',
+				'\27[0m', "[Abrot]\n")
 		return 2
 	else
 		return 1
@@ -85,5 +85,5 @@ else
 		bg_file:write(bg_sel_fg, '\n')
 	bg_file:close()
 
-	print("Colorscheme created")
+	print(arg[1] .. ": colorscheme created")
 end
