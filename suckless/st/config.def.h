@@ -31,7 +31,7 @@ static int borderpx = 2;
  *    • tokyodark.h         • tokyonight.h
  *    • ubuntu.h            • vscode.h
  */
-#include "colors/dracula.h"
+#include "colors/default.h"
  
 /* bg opacity */
 float alpha = 0.97;

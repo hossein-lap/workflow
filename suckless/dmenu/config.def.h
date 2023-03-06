@@ -12,7 +12,7 @@ static const char *fonts[] = {
 static const char *prompt      = NULL;      /* -p  option; prompt to the left of input field */
 
 /* colorscheme */
-#include "colors/bg/blue.h"
+#include "colors/default.h"
 static const char *colors[SchemeLast][2] = {
 	/*     fg         bg       */
 	[SchemeNorm] =  { normal_fg,   normal_bg  },
