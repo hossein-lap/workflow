@@ -1,9 +1,4 @@
 #!/bin/lua5.4
---  _  _
--- | || | github: hossein-lap
--- | __ | email:  hosteam01@gmail.com
--- |_||_| matrix: hosaidenpwd:matrix.org
---
 
 function help()
 	io.stderr:write("Create new colorscheme", "\n\n",
@@ -27,26 +22,29 @@ end
 function file_exists(name)
 	local f = io.open(name, "r")
 	if f ~= nil then
-	   io.close(f)
-	   return true
+		io.close(f)
+		return true
 	else
-	   return false
+		return false
 	end
 end
 
 local color = arg[2]
+local dcolor = "#000000"
+local lcolor = "#444444"
+local bcolor = "#cccccc"
 
-local normals = [[static const char normal_bg[]		= "#000000";
-static const char normal_br[]		= "#444444";
-static const char normal_fg[]		= "#999999";
+local normals = [[static const char normal_bg[]		= "]] ..  dcolor .. [[";
+static const char normal_br[]		= "]] ..  bcolor .. [[";
+static const char normal_fg[]		= "]] ..  lcolor .. [[";
 ]]
 
 local focus_br = [[static const char focus_br[]		= "#]] .. color .. [[";]]
 
 local b_focus_bg = [[static const char focus_bg[]		= "#]] .. color .. [[";]]
-local b_focus_fg = [[static const char focus_fg[]		= "#000000";]]
+local b_focus_fg = [[static const char focus_fg[]		= "]] ..  dcolor .. [[";]]
 local f_focus_fg = [[static const char focus_bg[]		= "#]] .. color .. [[";]]
-local f_focus_bg = [[static const char focus_fg[]		= "#000000";]]
+local f_focus_bg = [[static const char focus_fg[]		= "]] ..  dcolor .. [[";]]
 
 ---- main
 local bg = 'bg/' .. arg[1] .. '.h'
