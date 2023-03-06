@@ -2,6 +2,7 @@ metadata:
     keywords:
         - 'bw theme'
 
+verbosity: WARNING # INFO 
 pdf-engine: xelatex
 top-level-division: chapter
 highlight-style: ../theme/bw.theme

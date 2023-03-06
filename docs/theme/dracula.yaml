@@ -2,6 +2,7 @@ metadata:
     keywords:
         - 'Dracula theme'
 
+verbosity: WARNING # INFO 
 pdf-engine: xelatex
 #headertext: false
 top-level-division: chapter
