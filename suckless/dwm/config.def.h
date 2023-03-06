@@ -27,7 +27,7 @@ static const char *fonts[]          = {
 static const char dmenufont[]       = { "Fira Code:size=14" };
 
 /* colorschemes */
-#include "colors/dracula.h"
+#include "colors/bg/blue.h"
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm]	= { normal_fg, normal_bg, normal_br },
