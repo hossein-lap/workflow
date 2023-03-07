@@ -60,7 +60,7 @@ vim.o.guifont = "Fira Mono:h12"
 -- }}}
 
 -- term color {{{
-local termcolor = 'vscode'
+local termcolor = 'tango'
 
 if termcolor == 'dracula' then
 	g.terminal_color_0		=	"#21222c"
