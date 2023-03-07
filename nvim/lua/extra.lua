@@ -34,19 +34,19 @@ end
 -- }}}
 
 -- autocmds {{{
-au("set filetype=nroff",	{'*.me'},	{'BufRead', 'BufNewFile'} )
-au("set filetype=nroff",	{'*.ms'},	{'BufRead', 'BufNewFile'} )
-au("set filetype=nroff",	{'*.mm'},	{'BufRead', 'BufNewFile'} )
-au("set filetype=nim",		{'*.nim'},	{'BufRead', 'BufNewFile'} )
-au("set filetype=c",		{'*.h'},	{'BufRead', 'BufNewFile'} )
-au("set filetype=json",		{'*.theme'},	{'BufRead', 'BufNewFile'} )
-au("set filetype=nasm",		{'*.s'},	{'BufRead', 'BufNewFile'} )
-au("set filetype=sent",		{'*.sent'},	{'BufRead', 'BufNewFile'} )
+au("set filetype=nroff",	{'*.me'},	{'BufRead', 'BufNewFile'})
+au("set filetype=nroff",	{'*.ms'},	{'BufRead', 'BufNewFile'})
+au("set filetype=nroff",	{'*.mm'},	{'BufRead', 'BufNewFile'})
+au("set filetype=nim",		{'*.nim'},	{'BufRead', 'BufNewFile'})
+au("set filetype=c",		{'*.h'},	{'BufRead', 'BufNewFile'})
+au("set filetype=json",		{'*.theme'},	{'BufRead', 'BufNewFile'})
+au("set filetype=nasm",		{'*.s'},	{'BufRead', 'BufNewFile'})
+au("set filetype=sent",		{'*.sent'},	{'BufRead', 'BufNewFile'})
 
-au("set noexpandtab",		{'c', 'make', 'lua', 'nasm'})
-au("set tabstop=8",		{'c', 'make', 'lua', 'nasm'})
-au("set softtabstop=8",		{'c', 'make', 'lua', 'nasm'})
-au("set shiftwidth=8",		{'c', 'make', 'lua', 'nasm'})
+au("set noexpandtab",		{'c', 'lua', 'make', 'nasm'})
+au("set tabstop=8",		{'c', 'lua', 'make', 'nasm'})
+au("set softtabstop=8",		{'c', 'lua', 'make', 'nasm'})
+au("set shiftwidth=8",		{'c', 'lua', 'make', 'nasm'})
 
 au("set filetype=tex",		{'plaintex'})
 
@@ -54,10 +54,22 @@ au("set filetype=tex",		{'plaintex'})
 --au("set softtabstop=2",	{'sent', 'text', })
 --au("set shiftwidth=3",	{'sent', 'text', })
 
-au("set tabstop=4",		{'python', 'bash', 'sh', 'toml', 'yaml', 'nvim', 'markdown', 'nim', 'rmd', 'sent', 'text'})
-au("set softtabstop=4",		{'python', 'bash', 'sh', 'toml', 'yaml', 'nvim', 'markdown', 'nim', 'rmd', 'sent', 'text'})
-au("set shiftwidth=4",		{'python', 'bash', 'sh', 'toml', 'yaml', 'nvim', 'markdown', 'nim', 'rmd', 'sent', 'text'})
-au("set expandtab",		{'python', 'toml', 'yaml', 'markdown', 'nim', 'rmd', 'sent', 'text'})
+au("set tabstop=4", {
+	'python', 'bash', 'sh', 'toml', 'yaml', 'nvim',
+	'markdown', 'nim', 'rmd', 'sent', 'text'
+})
+au("set softtabstop=4", {
+	'python', 'bash', 'sh', 'toml', 'yaml', 'nvim',
+	'markdown', 'nim', 'rmd', 'sent', 'text'
+})
+au("set shiftwidth=4", {
+	'python', 'bash', 'sh', 'toml', 'yaml', 'nvim',
+	'markdown', 'nim', 'rmd', 'sent', 'text'
+})
+au("set expandtab", {
+	'python', 'toml', 'yaml', 'markdown', 'nim', 'rmd',
+	'sent', 'text'
+})
 
 au(":silent lua AutoFillAll()", {
 	'c', 'cpp', 'python', 'lua', 'sh', 'make', 'tex',
