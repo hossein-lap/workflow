@@ -22,11 +22,11 @@ dashboard.section.header.val = {
 --dashboard.section.header.val = toppmsg
 
 dashboard.section.buttons.val = {
-	 dashboard.button("e", "  Insert", ":ene <BAR> startinsert <CR>"),
+	 dashboard.button("i", "  Insert", ":ene <BAR> startinsert <CR>"),
 	 dashboard.button("q", "  Quit NVIM", ":qa<CR>"),
 	 dashboard.button("c", "  Clear", ":ene <CR>"),
 	 dashboard.button("s", "ﮮ  Packer Sync ", ":PackerSync<CR>"),
-	 dashboard.button("n", "  New ", ":e "),
+	 dashboard.button("e", "  New ", ":e "),
 --	 dashboard.button("t", "  Terminal ", ":terminal zsh<CR>:setlocal nonu<CR>:norm a<CR>"),
 }
 local fhandle = io.popen('versions.sh')
