@@ -5,11 +5,12 @@ script_name=$(echo ${0} | awk -F '/' '{print $NF;}')
 
 help() {
 cat << EOF
-usage: ${script_name} [img] [dir] [-h] []
-	-h            print this message
-	<image>       set the image as wallpaper
-	<directory>   set a random picture as wallpaper
-	<no args>     choose a picture from ${defpicdir}
+usage: ${script_name} [img] [dir] [-s <dir>] [-h] []
+	-h             print this message
+	-s <dir>       random pic from <dir> as wallpaper
+	<img>          set the image as wallpaper
+	<dir>          set a random picture as wallpaper
+	<no args>      choose a picture from "${defpicdir}"
 EOF
 }
 
@@ -29,6 +30,21 @@ shuf_wall() {
 		exit 0
 	else
 		exit 1
+	fi
+}
+
+dir_wall() {
+	thewall=$(nsxiv -or "${1}")
+	if [ -f "${thewall}" ]; then
+		xwallpaper --zoom ${thewall}
+		cp -f ${thewall} ${defpicdir}/.wall
+		ww="$(echo ${thewall} | awk -F '/' '{print $NF;}')"
+		if [ $? -eq 0 ]; then
+			notif_send "Wallpaper changed" "${ww}"
+			exit 0
+		else
+			exit 1
+		fi
 	fi
 }
 
@@ -52,10 +68,12 @@ choose_wall() {
 if [ "${1}" = '-h' ]; then
 	help
 	exit 0
+elif [ "${1}" = '-s' ]; then
+	shuf_wall ${2}
 elif [ -d "${1}" ]; then
-	shuf_wall ${1}
+	dir_wall ${1}
 elif [ -f "${1}" ]; then
 	set_wall ${1}
+else
+	choose_wall
 fi
-
-choose_wall
