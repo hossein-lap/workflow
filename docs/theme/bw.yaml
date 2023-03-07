@@ -5,6 +5,7 @@ metadata:
 verbosity: WARNING # INFO 
 pdf-engine: xelatex
 top-level-division: chapter
+#highlight-style: /home/hos/.config/pandoc/highlight/solarized-light.theme
 highlight-style: ../theme/bw.theme
 
 variables:

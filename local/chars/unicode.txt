@@ -81,6 +81,7 @@
 ≤  less-equal
 ≥  greater-equal
 ≠  not-equal
+≡  equivalence
 ≈  almost-equal
 ∝  proportional
 ∅  empty

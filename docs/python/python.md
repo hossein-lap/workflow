@@ -828,7 +828,6 @@ To insert characters that are illegal in a string, use an escape character.
 
 An escape character is a backslash `\` followed by the character you want to insert.
 
-
 An example of an illegal character is a double quote inside a string that is
 surrounded by double quotes:
 
@@ -1124,7 +1123,6 @@ if they are actually the same object, with the same memory location:
 |:------------:|:---------|:------------|
 | `is ` | Returns True if both variables are the same object | `x is y` |
 | `is not` | Returns True if both variables are not the same object | `x is not y` |
-
 
 ### Membership Operators
 
@@ -2550,5 +2548,11 @@ print(z)
 | `symmetric_difference_update()` | inserts the symmetric differences from this set and another |
 | `union()` | Return a set containing the union of sets |
 | `update()` | Update the set with the union of this set and others |
+
+<!--}}}-->
+## Dictionaries <!--{{{-->
+
+
+
 
 <!--}}}-->
