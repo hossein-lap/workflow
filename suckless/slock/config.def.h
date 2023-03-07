@@ -3,7 +3,7 @@ static const char *user  = "hos";
 static const char *group = "hos";
 
 /* colorscheme */
-#include "colors/default.h"
+#include "colors/dracula.h"
 
 /* treat a cleared input like a wrong password (color) */
 static const int failonclear = 1;
