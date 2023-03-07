@@ -8,7 +8,7 @@
 #script_name="Printer"
 script_name=$(echo $0 | awk -F '/' '{print $NF;}')
 
-#patched='-c -bw 4'
+patched='-c -bw 2'
 dmenu="dmenu \
 		-i \
 		-l 20 \

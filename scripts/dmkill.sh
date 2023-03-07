@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Variables {{{
-#patched='-c -bw 4'
+patched='-c -bw 2'
 dmenu="dmenu \
 		-i \
 		-l 25 \
@@ -33,7 +33,7 @@ notify() {
 # }}}
 
 list=$( \
-	ps --cols 123 axfo pid,%mem,%cpu,user,cmd  k %mem \
+	ps --cols 110 axfo pid,%mem,%cpu,user,cmd  k %mem \
 		| sed 's/  \\_ /  • /' \
 		| sed 's/• -/• /' \
 		| ${dmenu} -p "${prompt}" \
