@@ -7,7 +7,7 @@
 set -e
 
 # Variables {{{
-#patched='-c -bw 2 -g 1'
+#patched='-c -bw 4 -g 1'
 dmenu="dmenu \
 		-i \
 		-l 5 \

@@ -1,10 +1,9 @@
 #!/bin/sh
 
 # Variables {{{
-#patched='-c -bw 2 -g 2'
+#patched='-c -bw 4 -g 2 -l 3'
 dmenu="dmenu \
 		-i \
-		-l 3 \
 		${patched} \
 		${@} \
 		"
