@@ -5,9 +5,9 @@ pdf-engine: xelatex
 highlight-style: /home/hos/.config/pandoc/highlight/solarized-light-beamer.theme
 
 variables:
-#    background-image: /home/hos/.config/pandoc/background/Beautiful-Minimalist-Presentation.jpg
+    background-image: /home/hos/.config/pandoc/background/Beautiful-Minimalist-Presentation.jpg
     header-includes:
         - \usepackage{/home/hos/.config/pandoc/defaults/beamer/main}
-        - \usepackage{/home/hos/.config/pandoc/defaults/beamer/english}
+        - \usepackage{/home/hos/.config/pandoc/defaults/beamer/en-ubuntu}
 filters:
     - /home/hos/.config/pandoc/filters/en-date.lua

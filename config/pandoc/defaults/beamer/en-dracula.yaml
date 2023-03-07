@@ -1,0 +1,12 @@
+metadata:
+    keywords:
+        - 'Theme for beamer'
+pdf-engine: xelatex
+highlight-style: /home/hos/.config/pandoc/highlight/dracula-beamer.theme
+
+variables:
+    background-image: /home/hos/.config/pandoc/background/luxury-dark-black-gradient-background-business-elegant-presentation-banner-vector
+    header-includes:
+        - \usepackage{/home/hos/.config/pandoc/defaults/beamer/en-dracula}
+filters:
+    - /home/hos/.config/pandoc/filters/en-date.lua

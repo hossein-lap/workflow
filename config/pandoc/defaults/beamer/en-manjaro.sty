@@ -1,0 +1,175 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{dark}
+\RequirePackage{fontspec,fancyvrb,titlesec,framed,xcolor}
+
+%\usefonttheme{serif}
+
+%% add line number to code-blocks
+%\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},numbers=left}
+
+\usetheme{Madrid}
+%% Warsaw with frame number {{{
+%\usetheme{Warsaw}
+%\defbeamertemplate*{footline}{shadow theme}
+%{%
+%  \leavevmode%
+%  \hbox{\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{author in head/foot}%
+%    \usebeamerfont{author in head/foot}\hfill\insertshortauthor
+%  \end{beamercolorbox}%
+%  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm plus1fil,rightskip=.3cm]{title in head/foot}%
+%    \usebeamerfont{title in head/foot}\insertshorttitle\hfill\insertframenumber\,/\,\inserttotalframenumber%
+%  \end{beamercolorbox}}%
+%  \vskip0pt%
+%}
+%%}}}
+
+%\usetheme{Copenhagen}
+%\usetheme{Berlin}
+%\usetheme{Boadilla}
+
+% theme {{{
+%\useoutertheme{shadow}
+
+% colors {{{
+\definecolor{color_main}{HTML}{34be5b} % #34be5b
+
+\definecolor{color_text}{HTML}{ffffff} % #ffffff
+\definecolor{color_frametitle_bg}{HTML}{0a4b3e} % #0a4b3e
+\definecolor{color_frametitle_fg}{HTML}{ffffff} % #ffffff
+\definecolor{color_but_left_bg}{HTML}{083930} % #083930
+\definecolor{color_but_right_fg}{HTML}{ffffff} % #ffffff
+\definecolor{color_but_right_bg}{HTML}{0a463a} % #0a463a
+\definecolor{color_but_mid_fg}{HTML}{ffffff} % #ffffff
+\definecolor{color_but_mid_bg}{HTML}{05221d} % #05221d
+\definecolor{color_but_left_fg}{HTML}{ffffff} % #ffffff
+\definecolor{color_gradient}{HTML}{000000} % #000000
+
+\definecolor{color_block_body_fg}{HTML}{dddddd} % #dddddd
+\definecolor{color_blocks_title_fg}{HTML}{010101} % #010101
+\definecolor{color_block_def_title_bg}{HTML}{2EB398} % #2EB398
+\definecolor{color_block_def_bg}{HTML}{1B2224} % #1B2224
+\definecolor{color_example_title_bg}{HTML}{3498DB} % #3498DB
+\definecolor{color_block_exm_bg}{HTML}{1B1D24} % #1B1D24
+\definecolor{color_alert_title_bg}{HTML}{F0544C} % #F0544C
+\definecolor{color_block_alr_bg}{HTML}{222222} % #222222
+
+%\definecolor{color_items_1}{HTML}{34be5b} % #34be5b
+\definecolor{color_items_1}{HTML}{007700} % #007700
+\definecolor{color_items_2}{HTML}{007700} % #007700
+%\definecolor{blockdeffg}{HTML}{} % #
+% }}}
+% configuration {{{
+\usecolortheme[named=color_main]{structure}
+% style {{{
+	% title
+	\setbeamertemplate{title page}[default][colsep=-4bp,rounded=true]
+	% blocks
+	\setbeamertemplate{blocks}[rounded][shadow=false]
+	% items
+	\setbeamertemplate{enumerate items}[circle]
+	\setbeamertemplate{itemize item}%
+		{\color{color_items_1}$\bullet$}
+	\setbeamertemplate{itemize subitem}%
+		{\tiny\color{color_items_1}$\blacktriangleright$}
+	\setbeamertemplate{itemize subsubitem}%
+		{\color{color_items_1}$\bullet$}
+% }}}
+% colors {{{
+	%% mains
+	\setbeamercolor*{title page}{%
+		fg=color_frametitle_fg,
+		bg=structure
+	}
+	\setbeamercolor{frametitle}{%
+		bg=color_frametitle_bg
+	}
+	\setbeamercolor{normal text}{%
+		fg=color_text
+	}
+	%% palettes
+	\setbeamercolor*{palette primary}{%
+		use=structure,
+		fg=color_but_right_fg,
+		bg=color_but_right_bg
+	}
+	\setbeamercolor*{palette secondary}{%
+		fg=color_but_mid_fg,
+		bg=color_but_mid_bg
+	}
+	\setbeamercolor*{palette tertiary}{%
+		use=structure,
+		fg=color_but_left_fg,
+		bg=color_but_left_bg
+	}
+	\setbeamercolor*{palette quaternary}{%
+		use=structure,
+		fg=white,
+		bg=color_gradient
+	}
+	%% blocks
+	\setbeamercolor{block title}{%
+		bg=color_block_def_title_bg,
+		fg=color_blocks_title_fg
+	}
+	\setbeamercolor{block body}{%
+		bg=color_block_def_bg,
+		fg=color_block_body_fg
+	}
+	\setbeamercolor{block title alerted}{%
+		bg=color_alert_title_bg,
+		fg=color_blocks_title_fg
+	}
+	\setbeamercolor{block body alerted}{%
+		bg=color_block_alr_bg,
+		fg=color_block_body_fg
+	}
+	\setbeamercolor{block title example}{%
+		bg=color_example_title_bg,
+		fg=color_blocks_title_fg
+	}
+	\setbeamercolor{block body example}{%
+		bg=color_block_exm_bg,
+		fg=color_block_body_fg
+	}
+	%% lists
+%	\setbeamercolor{enumerate items}{%
+%		fg=color_items_1
+%	}
+	\setbeamercolor{item projected}{%
+		bg=color_items_1,
+		fg=black
+	}
+	\setbeamercolor{itemize item}{%
+		fg=color_items_2
+	}
+	\setbeamercolor{itemize subitem}{%
+		fg=color_items_2
+	}
+	\setbeamercolor{itemize subsubitem}{%
+		fg=color_items_2
+	}
+% 		}}}
+% fonts {{{
+	% frame
+	\setbeamerfont{frametitle}{series=\bfseries}
+	% blocks
+	\setbeamerfont{block title}{series=\bfseries}
+% }}}
+% background {{{
+	\setbeamertemplate{background} 
+	{
+%		\includegraphics[height=\paperheight]{~/pic/ubuntu/ubuntu-18.04-default-wallpaper-2.jpg}
+		\includegraphics[width=\paperwidth,height=\paperheight]{/home/hos/.config/pandoc/background/manjaro-default-adapta-lockscreen.jpg}
+%		\includegraphics[height=\paperheight]{ubuntu-g.jpg}
+	}
+% }}}
+% }}}
+% }}}
+
+% default fonts
+\setmainfont{Libertinus Serif}
+\setsansfont{Fira Sans}
+\setmonofont{Fira Mono}
+
+%\linespread{1.1}
+
