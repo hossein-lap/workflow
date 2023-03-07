@@ -222,8 +222,8 @@ end
 	-- }}}
 	-- beamer {{{
 	pandoc_beamer_list = {
-		'dark', 'english',
-		'persian'
+		'en-manjaro', 'en-dracula', 'en-ubuntu',
+		'fa-manjaro', 'fa-dracula', 'fa-ubuntu'
 	}
 
 	pandoc_beamer_default = pandoc_beamer_list[1]
@@ -233,12 +233,21 @@ end
 	end
 
 	map("n", "<leader>vb1", ":lua pandoc_beamer_switch(1)<CR>",
-			{ silent = true, desc = "Pandoc › beamer → english — dark (dracula)" })
+			{ silent = true, desc = "Pandoc › beamer → english — dark (manjaro)" })
 
 	map("n", "<leader>vb2", ":lua pandoc_beamer_switch(2)<CR>",
-			{ silent = true, desc = "Pandoc › beamer → english — light (ubuntu)" })
+			{ silent = true, desc = "Pandoc › beamer → english — dark (dracula)" })
 
 	map("n", "<leader>vb3", ":lua pandoc_beamer_switch(3)<CR>",
+			{ silent = true, desc = "Pandoc › beamer → english — light (ubuntu)" })
+
+	map("n", "<leader>vb4", ":lua pandoc_beamer_switch(4)<CR>",
+			{ silent = true, desc = "Pandoc › beamer → persian — dark (manjaro)" })
+
+	map("n", "<leader>vb5", ":lua pandoc_beamer_switch(5)<CR>",
+			{ silent = true, desc = "Pandoc › beamer → persian — dark (dracula)" })
+
+	map("n", "<leader>vb6", ":lua pandoc_beamer_switch(6)<CR>",
 			{ silent = true, desc = "Pandoc › beamer → persian — light (ubuntu)" })
 	-- }}}
 -- }}}
