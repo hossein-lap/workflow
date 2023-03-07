@@ -2,7 +2,7 @@ metadata:
     keywords:
         - 'Theme for beamer'
 pdf-engine: xelatex
-highlight-style: /home/hos/.config/pandoc/highlight/dracula-beamer.theme
+highlight-style: /home/hos/.config/pandoc/highlight/solarized-dark-beamer.theme
 
 variables:
     background-image: /home/hos/.config/pandoc/background/manjaro-default-adapta-lockscreen.jpg
@@ -10,3 +10,4 @@ variables:
         - \usepackage{/home/hos/.config/pandoc/defaults/beamer/fa-manjaro}
 filters:
     - /home/hos/.config/pandoc/filters/fa-date.lua
+    - /home/hos/.config/pandoc/filters/tex-beamer-codeblock-fa.lua

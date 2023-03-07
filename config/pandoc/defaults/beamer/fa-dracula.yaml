@@ -10,3 +10,4 @@ variables:
         - \usepackage{/home/hos/.config/pandoc/defaults/beamer/fa-dracula}
 filters:
     - /home/hos/.config/pandoc/filters/fa-date.lua
+    - /home/hos/.config/pandoc/filters/tex-beamer-codeblock-fa.lua
