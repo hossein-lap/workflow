@@ -1,8 +1,21 @@
-diff --git a/colors/256_noir.h b/colors/256_noir.h
+diff --git a/st/Makefile b/st/Makefile
+index 470ac86..4d49649 100644
+--- a/st/Makefile
++++ b/st/Makefile
+@@ -30,7 +30,7 @@ st: $(OBJ)
+ 	$(CC) -o $@ $(OBJ) $(STLDFLAGS)
+ 
+ clean:
+-	rm -f st $(OBJ) st-$(VERSION).tar.gz
++	rm -f st $(OBJ) st-$(VERSION).tar.gz config.h
+ 
+ dist: clean
+ 	mkdir -p st-$(VERSION)
+diff --git a/st/colors/256_noir.h b/st/colors/256_noir.h
 new file mode 100644
 index 0000000..46afcb4
 --- /dev/null
-+++ b/colors/256_noir.h
++++ b/st/colors/256_noir.h
 @@ -0,0 +1,27 @@
 +/* Colorscheme */
 +static const char *colorname[] = {
@@ -31,11 +44,11 @@ index 0000000..46afcb4
 +	[258] = "#ff0000", /* 258 -> cursor */
 +	[259] = "#000000", /* 259 -> rev cursor*/
 +};
-diff --git a/colors/ayu-dark.h b/colors/ayu-dark.h
+diff --git a/st/colors/ayu-dark.h b/st/colors/ayu-dark.h
 new file mode 100644
 index 0000000..0ebf13b
 --- /dev/null
-+++ b/colors/ayu-dark.h
++++ b/st/colors/ayu-dark.h
 @@ -0,0 +1,27 @@
 +/* Colorscheme */
 +static const char *colorname[] = {
@@ -64,11 +77,11 @@ index 0000000..0ebf13b
 +	[258] = "#f32323", /* cursor background */
 +	[259] = "#010101", /* cursor foreground */
 +};
-diff --git a/colors/breeze.h b/colors/breeze.h
+diff --git a/st/colors/breeze.h b/st/colors/breeze.h
 new file mode 100644
 index 0000000..a926e51
 --- /dev/null
-+++ b/colors/breeze.h
++++ b/st/colors/breeze.h
 @@ -0,0 +1,27 @@
 +/* Colorscheme */
 +static const char *colorname[] = {
@@ -97,11 +110,11 @@ index 0000000..a926e51
 +	[258] = "#ff7700", /* 258 -> cursor */
 +	[259] = "#000000", /* 259 -> rev cursor*/
 +};
-diff --git a/colors/custom.h b/colors/custom.h
+diff --git a/st/colors/custom.h b/st/colors/custom.h
 new file mode 100644
 index 0000000..814bc15
 --- /dev/null
-+++ b/colors/custom.h
++++ b/st/colors/custom.h
 @@ -0,0 +1,27 @@
 +/* Colorscheme */
 +static const char *colorname[] = {
@@ -130,11 +143,11 @@ index 0000000..814bc15
 +	[258] = "#ff7700", /* cursor background */
 +	[259] = "#11121d", /* cursor foreground */
 +};
-diff --git a/colors/default.h b/colors/default.h
+diff --git a/st/colors/default.h b/st/colors/default.h
 new file mode 100644
-index 0000000..d9b6f03
+index 0000000..6379db1
 --- /dev/null
-+++ b/colors/default.h
++++ b/st/colors/default.h
 @@ -0,0 +1,27 @@
 +/* Colorscheme */
 +static const char *colorname[] = {
@@ -160,14 +173,14 @@ index 0000000..d9b6f03
 +	[255] = 0,
 +	[256] = "black", /* 256 -> bg */
 +	[257] = "#cccccc", /* foreground */
-+	[258] = "red", /* cursor background */
++	[258] = "#ff7700", /* cursor background */
 +	[259] = "black", /* cursor foreground */
 +};
-diff --git a/colors/dracula.h b/colors/dracula.h
+diff --git a/st/colors/dracula.h b/st/colors/dracula.h
 new file mode 100644
 index 0000000..eabde4b
 --- /dev/null
-+++ b/colors/dracula.h
++++ b/st/colors/dracula.h
 @@ -0,0 +1,27 @@
 +/* Colorscheme */
 +static const char *colorname[] = {
@@ -196,11 +209,11 @@ index 0000000..eabde4b
 +	[258] = "#ff7700", /* cursor background */
 +	[259] = "#000000", /* cursor foreground */
 +};
-diff --git a/colors/gruvbox-dark.h b/colors/gruvbox-dark.h
+diff --git a/st/colors/gruvbox-dark.h b/st/colors/gruvbox-dark.h
 new file mode 100644
 index 0000000..9003b4c
 --- /dev/null
-+++ b/colors/gruvbox-dark.h
++++ b/st/colors/gruvbox-dark.h
 @@ -0,0 +1,28 @@
 +/* Colorscheme */
 +static const char *colorname[] = {
@@ -230,11 +243,11 @@ index 0000000..9003b4c
 +	[258] = "#ff7700", /* cursor background */
 +	[259] = "#000000", /* cursor foreground */
 +};
-diff --git a/colors/gruvbox-material.h b/colors/gruvbox-material.h
+diff --git a/st/colors/gruvbox-material.h b/st/colors/gruvbox-material.h
 new file mode 100644
 index 0000000..81fdb68
 --- /dev/null
-+++ b/colors/gruvbox-material.h
++++ b/st/colors/gruvbox-material.h
 @@ -0,0 +1,28 @@
 +/* Colorscheme */
 +static const char *colorname[] = {
@@ -264,11 +277,11 @@ index 0000000..81fdb68
 +	[258] = "#ff7700", /* 258 -> cursor */
 +	[259] = "#000000", /* 259 -> rev cursor*/
 +};
-diff --git a/colors/hos.h b/colors/hos.h
+diff --git a/st/colors/hos.h b/st/colors/hos.h
 new file mode 100644
 index 0000000..dc96df2
 --- /dev/null
-+++ b/colors/hos.h
++++ b/st/colors/hos.h
 @@ -0,0 +1,28 @@
 +/* Colorscheme */
 +static const char *colorname[] = {
@@ -298,11 +311,11 @@ index 0000000..dc96df2
 +	[259] = "#11121d", /* 259 -> rev cursor*/
 +};
 +
-diff --git a/colors/hybrid-16.h b/colors/hybrid-16.h
+diff --git a/st/colors/hybrid-16.h b/st/colors/hybrid-16.h
 new file mode 100644
 index 0000000..f411b8e
 --- /dev/null
-+++ b/colors/hybrid-16.h
++++ b/st/colors/hybrid-16.h
 @@ -0,0 +1,27 @@
 +/* Colorscheme */
 +static const char *colorname[] = {
@@ -331,11 +344,11 @@ index 0000000..f411b8e
 +	[258] = "#ff7700", /* 258 -> cursor */
 +	[259] = "#000000", /* 259 -> rev cursor*/
 +};
-diff --git a/colors/hybrid-dark.h b/colors/hybrid-dark.h
+diff --git a/st/colors/hybrid-dark.h b/st/colors/hybrid-dark.h
 new file mode 100644
 index 0000000..86e6fcb
 --- /dev/null
-+++ b/colors/hybrid-dark.h
++++ b/st/colors/hybrid-dark.h
 @@ -0,0 +1,27 @@
 +/* Colorscheme */
 +static const char *colorname[] = {
@@ -364,11 +377,11 @@ index 0000000..86e6fcb
 +	[258] = "#ff7700", /* 258 -> cursor */
 +	[259] = "#000000", /* 259 -> rev cursor*/
 +};
-diff --git a/colors/nord.h b/colors/nord.h
+diff --git a/st/colors/nord.h b/st/colors/nord.h
 new file mode 100644
 index 0000000..2eda68a
 --- /dev/null
-+++ b/colors/nord.h
++++ b/st/colors/nord.h
 @@ -0,0 +1,27 @@
 +/* Colorscheme */
 +static const char *colorname[] = {
@@ -397,11 +410,11 @@ index 0000000..2eda68a
 +	[258] = "#f32323", /* cursor background */
 +	[259] = "#010101", /* cursor foreground */
 +};
-diff --git a/colors/pj.h b/colors/pj.h
+diff --git a/st/colors/pj.h b/st/colors/pj.h
 new file mode 100644
 index 0000000..a885d13
 --- /dev/null
-+++ b/colors/pj.h
++++ b/st/colors/pj.h
 @@ -0,0 +1,27 @@
 +/* Colorscheme */
 +static const char *colorname[] = {
@@ -430,11 +443,11 @@ index 0000000..a885d13
 +	[258] = "#ff2200", /* cursor background */
 +	[259] = "#11121d", /* cursor foreground */
 +};
-diff --git a/colors/solarized-dark.h b/colors/solarized-dark.h
+diff --git a/st/colors/solarized-dark.h b/st/colors/solarized-dark.h
 new file mode 100644
 index 0000000..d538a17
 --- /dev/null
-+++ b/colors/solarized-dark.h
++++ b/st/colors/solarized-dark.h
 @@ -0,0 +1,27 @@
 +/* Colorscheme */
 +static const char *colorname[] = {
@@ -463,11 +476,11 @@ index 0000000..d538a17
 +	[258] = "#cb4b16", /* 258 -> cursor */
 +	[259] = "#000000", /* 259 -> rev cursor*/
 +};
-diff --git a/colors/solarized-light.h b/colors/solarized-light.h
+diff --git a/st/colors/solarized-light.h b/st/colors/solarized-light.h
 new file mode 100644
 index 0000000..5f2e375
 --- /dev/null
-+++ b/colors/solarized-light.h
++++ b/st/colors/solarized-light.h
 @@ -0,0 +1,27 @@
 +/* Colorscheme */
 +static const char *colorname[] = {
@@ -496,11 +509,11 @@ index 0000000..5f2e375
 +	[258] = "#cb4b16", /* 258 -> cursor */
 +	[259] = "#000000", /* 259 -> rev cursor*/
 +};
-diff --git a/colors/termite.h b/colors/termite.h
+diff --git a/st/colors/termite.h b/st/colors/termite.h
 new file mode 100644
 index 0000000..5542511
 --- /dev/null
-+++ b/colors/termite.h
++++ b/st/colors/termite.h
 @@ -0,0 +1,29 @@
 +/* Colorscheme */
 +static const char *colorname[] = {
@@ -531,11 +544,11 @@ index 0000000..5542511
 +	//[258] = "#ff7700", /* cursor background */
 +	[259] = "#010101", /* cursor foreground */
 +};
-diff --git a/colors/tokyodark.h b/colors/tokyodark.h
+diff --git a/st/colors/tokyodark.h b/st/colors/tokyodark.h
 new file mode 100644
 index 0000000..e61f07f
 --- /dev/null
-+++ b/colors/tokyodark.h
++++ b/st/colors/tokyodark.h
 @@ -0,0 +1,27 @@
 +/* Colorscheme */
 +static const char *colorname[] = {
@@ -564,11 +577,11 @@ index 0000000..e61f07f
 +	[258] = "#ff2200", /* 258 -> cursor */
 +	[259] = "#11121d", /* 259 -> rev cursor*/
 +};
-diff --git a/colors/tokyonight.h b/colors/tokyonight.h
+diff --git a/st/colors/tokyonight.h b/st/colors/tokyonight.h
 new file mode 100644
 index 0000000..1478f6d
 --- /dev/null
-+++ b/colors/tokyonight.h
++++ b/st/colors/tokyonight.h
 @@ -0,0 +1,27 @@
 +/* Colorscheme */
 +static const char *colorname[] = {
@@ -597,11 +610,11 @@ index 0000000..1478f6d
 +	[258] = "#ff2200", /* 258 -> cursor */
 +	[259] = "#11121d", /* 259 -> rev cursor*/
 +};
-diff --git a/colors/ubuntu.h b/colors/ubuntu.h
+diff --git a/st/colors/ubuntu.h b/st/colors/ubuntu.h
 new file mode 100644
 index 0000000..1862356
 --- /dev/null
-+++ b/colors/ubuntu.h
++++ b/st/colors/ubuntu.h
 @@ -0,0 +1,27 @@
 +/* Colorscheme */
 +static const char *colorname[] = {
@@ -630,11 +643,11 @@ index 0000000..1862356
 +	[258] = "#fe8b00", /* cursor background */
 +	[259] = "#010101", /* cursor foreground */
 +};
-diff --git a/colors/vscode.h b/colors/vscode.h
+diff --git a/st/colors/vscode.h b/st/colors/vscode.h
 new file mode 100644
 index 0000000..3f5b0b9
 --- /dev/null
-+++ b/colors/vscode.h
++++ b/st/colors/vscode.h
 @@ -0,0 +1,27 @@
 +/* Colorscheme */
 +static const char *colorname[] = {
@@ -663,10 +676,10 @@ index 0000000..3f5b0b9
 +	[258] = "#ff7700", /* 258 -> cursor */
 +	[259] = "#000000", /* 259 -> rev cursor*/
 +};
-diff --git a/config.def.h b/config.def.h
-index 91ab8ca..0711a53 100644
---- a/config.def.h
-+++ b/config.def.h
+diff --git a/st/config.def.h b/st/config.def.h
+index 91ab8ca..1555d00 100644
+--- a/st/config.def.h
++++ b/st/config.def.h
 @@ -5,9 +5,24 @@
   *
   * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
@@ -689,7 +702,7 @@ index 91ab8ca..0711a53 100644
 + *    • tokyodark.h         • tokyonight.h
 + *    • ubuntu.h            • vscode.h
 + */
-+#include "colors/dracula.h"
++#include "colors/default.h"
  /*
   * What program is execed by st depends of these precedence rules:
   * 1: program passed with -e
@@ -803,10 +816,10 @@ index 91ab8ca..0711a53 100644
  	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
  };
  
-diff --git a/st.1 b/st.1
+diff --git a/st/st.1 b/st/st.1
 index 39120b4..8e50f65 100644
---- a/st.1
-+++ b/st.1
+--- a/st/st.1
++++ b/st/st.1
 @@ -130,11 +130,11 @@ Send a break in the serial line.
  Break key is obtained in PC keyboards
  pressing at the same time control and pause.

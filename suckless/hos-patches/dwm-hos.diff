@@ -1,8 +1,21 @@
-diff --git a/colors/bg/blue.h b/colors/bg/blue.h
+diff --git a/dwm/Makefile b/dwm/Makefile
+index 77bcbc0..c05dbdd 100644
+--- a/dwm/Makefile
++++ b/dwm/Makefile
+@@ -26,7 +26,7 @@ dwm: ${OBJ}
+ 	${CC} -o $@ ${OBJ} ${LDFLAGS}
+ 
+ clean:
+-	rm -f dwm ${OBJ} dwm-${VERSION}.tar.gz
++	rm -f dwm ${OBJ} dwm-${VERSION}.tar.gz config.h
+ 
+ dist: clean
+ 	mkdir -p dwm-${VERSION}
+diff --git a/dwm/colors/bg/blue.h b/dwm/colors/bg/blue.h
 new file mode 100644
-index 0000000..230e9f2
+index 0000000..a333550
 --- /dev/null
-+++ b/colors/bg/blue.h
++++ b/dwm/colors/bg/blue.h
 @@ -0,0 +1,6 @@
 +static const char normal_bg[]		= "#000000";
 +static const char normal_br[]		= "#444444";
@@ -10,11 +23,11 @@ index 0000000..230e9f2
 +static const char focus_fg[]		= "#000000";
 +static const char focus_bg[]		= "#0077ff";
 +static const char focus_br[]		= "#0077ff";
-diff --git a/colors/bg/cyan.h b/colors/bg/cyan.h
+diff --git a/dwm/colors/bg/cyan.h b/dwm/colors/bg/cyan.h
 new file mode 100644
-index 0000000..4dffeb3
+index 0000000..57558c9
 --- /dev/null
-+++ b/colors/bg/cyan.h
++++ b/dwm/colors/bg/cyan.h
 @@ -0,0 +1,6 @@
 +static const char normal_bg[]		= "#000000";
 +static const char normal_br[]		= "#444444";
@@ -22,11 +35,11 @@ index 0000000..4dffeb3
 +static const char focus_bg[]		= "#00aaff";
 +static const char focus_fg[]		= "#000000";
 +static const char focus_br[]		= "#00aaff";
-diff --git a/colors/bg/darkpink.h b/colors/bg/darkpink.h
+diff --git a/dwm/colors/bg/darkpink.h b/dwm/colors/bg/darkpink.h
 new file mode 100644
-index 0000000..d1370c3
+index 0000000..4546227
 --- /dev/null
-+++ b/colors/bg/darkpink.h
++++ b/dwm/colors/bg/darkpink.h
 @@ -0,0 +1,6 @@
 +static const char normal_bg[]		= "#000000";
 +static const char normal_br[]		= "#444444";
@@ -34,11 +47,11 @@ index 0000000..d1370c3
 +static const char focus_fg[]		= "#000000";
 +static const char focus_bg[]		= "#e95678";
 +static const char focus_br[]		= "#e95678";
-diff --git a/colors/bg/orange.h b/colors/bg/orange.h
+diff --git a/dwm/colors/bg/orange.h b/dwm/colors/bg/orange.h
 new file mode 100644
-index 0000000..ca81b56
+index 0000000..e41eafe
 --- /dev/null
-+++ b/colors/bg/orange.h
++++ b/dwm/colors/bg/orange.h
 @@ -0,0 +1,6 @@
 +static const char normal_bg[]		= "#000000";
 +static const char normal_br[]		= "#444444";
@@ -46,11 +59,11 @@ index 0000000..ca81b56
 +static const char focus_fg[]		= "#000000";
 +static const char focus_bg[]		= "#fe8b00";
 +static const char focus_br[]		= "#fe8b00";
-diff --git a/colors/bg/pink.h b/colors/bg/pink.h
+diff --git a/dwm/colors/bg/pink.h b/dwm/colors/bg/pink.h
 new file mode 100644
-index 0000000..1906f8d
+index 0000000..984bd32
 --- /dev/null
-+++ b/colors/bg/pink.h
++++ b/dwm/colors/bg/pink.h
 @@ -0,0 +1,6 @@
 +static const char normal_bg[]		= "#000000";
 +static const char normal_br[]		= "#444444";
@@ -58,11 +71,11 @@ index 0000000..1906f8d
 +static const char focus_fg[]		= "#000000";
 +static const char focus_bg[]		= "#ff77cc";
 +static const char focus_br[]		= "#ff77cc";
-diff --git a/colors/bg/purple.h b/colors/bg/purple.h
+diff --git a/dwm/colors/bg/purple.h b/dwm/colors/bg/purple.h
 new file mode 100644
-index 0000000..cf54331
+index 0000000..fc9e5d9
 --- /dev/null
-+++ b/colors/bg/purple.h
++++ b/dwm/colors/bg/purple.h
 @@ -0,0 +1,6 @@
 +static const char normal_bg[]		= "#000000";
 +static const char normal_br[]		= "#444444";
@@ -70,11 +83,11 @@ index 0000000..cf54331
 +static const char focus_fg[]		= "#000000";
 +static const char focus_bg[]		= "#cc77ff";
 +static const char focus_br[]		= "#cc77ff";
-diff --git a/colors/bg/red.h b/colors/bg/red.h
+diff --git a/dwm/colors/bg/red.h b/dwm/colors/bg/red.h
 new file mode 100644
-index 0000000..651b55f
+index 0000000..9b85e75
 --- /dev/null
-+++ b/colors/bg/red.h
++++ b/dwm/colors/bg/red.h
 @@ -0,0 +1,6 @@
 +static const char normal_bg[]		= "#000000";
 +static const char normal_br[]		= "#444444";
@@ -82,11 +95,11 @@ index 0000000..651b55f
 +static const char focus_fg[]		= "#000000";
 +static const char focus_bg[]		= "#ff0000";
 +static const char focus_br[]		= "#ff0000";
-diff --git a/colors/bg/white.h b/colors/bg/white.h
+diff --git a/dwm/colors/bg/white.h b/dwm/colors/bg/white.h
 new file mode 100644
-index 0000000..539113e
+index 0000000..cdacc63
 --- /dev/null
-+++ b/colors/bg/white.h
++++ b/dwm/colors/bg/white.h
 @@ -0,0 +1,6 @@
 +static const char normal_bg[]		= "#000000";
 +static const char normal_br[]		= "#444444";
@@ -94,11 +107,11 @@ index 0000000..539113e
 +static const char focus_fg[]		= "#000000";
 +static const char focus_bg[]		= "#ffffff";
 +static const char focus_br[]		= "#ffffff";
-diff --git a/colors/bg/yellow.h b/colors/bg/yellow.h
+diff --git a/dwm/colors/bg/yellow.h b/dwm/colors/bg/yellow.h
 new file mode 100644
-index 0000000..537145f
+index 0000000..280d3c3
 --- /dev/null
-+++ b/colors/bg/yellow.h
++++ b/dwm/colors/bg/yellow.h
 @@ -0,0 +1,6 @@
 +static const char normal_bg[]		= "#000000";
 +static const char normal_br[]		= "#444444";
@@ -106,11 +119,11 @@ index 0000000..537145f
 +static const char focus_bg[]		= "#ffd500";
 +static const char focus_fg[]		= "#000000";
 +static const char focus_br[]		= "#ffd500";
-diff --git a/colors/default.h b/colors/default.h
+diff --git a/dwm/colors/default.h b/dwm/colors/default.h
 new file mode 100644
 index 0000000..5d6d5c8
 --- /dev/null
-+++ b/colors/default.h
++++ b/dwm/colors/default.h
 @@ -0,0 +1,6 @@
 +static const char normal_bg[]		= "#222222";
 +static const char normal_br[]		= "#444444";
@@ -118,11 +131,11 @@ index 0000000..5d6d5c8
 +static const char focus_fg[]		= "#eeeeee";
 +static const char focus_bg[]		= "#005577";
 +static const char focus_br[]		= "#005577";
-diff --git a/colors/dracula.h b/colors/dracula.h
+diff --git a/dwm/colors/dracula.h b/dwm/colors/dracula.h
 new file mode 100644
 index 0000000..df69c7b
 --- /dev/null
-+++ b/colors/dracula.h
++++ b/dwm/colors/dracula.h
 @@ -0,0 +1,15 @@
 +#define ACCENTCOLOR "#ffb86c"
 +//#define ACCENTCOLOR "#ff79c6"
@@ -139,11 +152,11 @@ index 0000000..df69c7b
 +static const char focus_bg[]	= ACCENTCOLOR;
 +static const char focus_br[]	= ACCENTCOLOR;
 +static const char focus_fg[]	= "#282a36";
-diff --git a/colors/fg/blue.h b/colors/fg/blue.h
+diff --git a/dwm/colors/fg/blue.h b/dwm/colors/fg/blue.h
 new file mode 100644
-index 0000000..2711920
+index 0000000..7e8ec52
 --- /dev/null
-+++ b/colors/fg/blue.h
++++ b/dwm/colors/fg/blue.h
 @@ -0,0 +1,6 @@
 +static const char normal_bg[]		= "#000000";
 +static const char normal_br[]		= "#444444";
@@ -151,11 +164,11 @@ index 0000000..2711920
 +static const char focus_bg[]		= "#000000";
 +static const char focus_fg[]		= "#0077ff";
 +static const char focus_br[]		= "#0077ff";
-diff --git a/colors/fg/cyan.h b/colors/fg/cyan.h
+diff --git a/dwm/colors/fg/cyan.h b/dwm/colors/fg/cyan.h
 new file mode 100644
-index 0000000..a595eb5
+index 0000000..30076df
 --- /dev/null
-+++ b/colors/fg/cyan.h
++++ b/dwm/colors/fg/cyan.h
 @@ -0,0 +1,6 @@
 +static const char normal_bg[]		= "#000000";
 +static const char normal_br[]		= "#444444";
@@ -163,11 +176,11 @@ index 0000000..a595eb5
 +static const char focus_fg[]		= "#000000";
 +static const char focus_bg[]		= "#00aaff";
 +static const char focus_br[]		= "#00aaff";
-diff --git a/colors/fg/darkpink.h b/colors/fg/darkpink.h
+diff --git a/dwm/colors/fg/darkpink.h b/dwm/colors/fg/darkpink.h
 new file mode 100644
-index 0000000..1883871
+index 0000000..074f42d
 --- /dev/null
-+++ b/colors/fg/darkpink.h
++++ b/dwm/colors/fg/darkpink.h
 @@ -0,0 +1,6 @@
 +static const char normal_bg[]		= "#000000";
 +static const char normal_br[]		= "#444444";
@@ -175,11 +188,11 @@ index 0000000..1883871
 +static const char focus_bg[]		= "#000000";
 +static const char focus_fg[]		= "#e95678";
 +static const char focus_br[]		= "#e95678";
-diff --git a/colors/fg/orange.h b/colors/fg/orange.h
+diff --git a/dwm/colors/fg/orange.h b/dwm/colors/fg/orange.h
 new file mode 100644
-index 0000000..2d6e303
+index 0000000..e61971a
 --- /dev/null
-+++ b/colors/fg/orange.h
++++ b/dwm/colors/fg/orange.h
 @@ -0,0 +1,6 @@
 +static const char normal_bg[]		= "#000000";
 +static const char normal_br[]		= "#444444";
@@ -187,11 +200,11 @@ index 0000000..2d6e303
 +static const char focus_bg[]		= "#000000";
 +static const char focus_fg[]		= "#fe8b00";
 +static const char focus_br[]		= "#fe8b00";
-diff --git a/colors/fg/pink.h b/colors/fg/pink.h
+diff --git a/dwm/colors/fg/pink.h b/dwm/colors/fg/pink.h
 new file mode 100644
-index 0000000..a1e6f94
+index 0000000..9aade9b
 --- /dev/null
-+++ b/colors/fg/pink.h
++++ b/dwm/colors/fg/pink.h
 @@ -0,0 +1,6 @@
 +static const char normal_bg[]		= "#000000";
 +static const char normal_br[]		= "#444444";
@@ -199,11 +212,11 @@ index 0000000..a1e6f94
 +static const char focus_bg[]		= "#000000";
 +static const char focus_fg[]		= "#ff77cc";
 +static const char focus_br[]		= "#ff77cc";
-diff --git a/colors/fg/purple.h b/colors/fg/purple.h
+diff --git a/dwm/colors/fg/purple.h b/dwm/colors/fg/purple.h
 new file mode 100644
-index 0000000..353349c
+index 0000000..afb3246
 --- /dev/null
-+++ b/colors/fg/purple.h
++++ b/dwm/colors/fg/purple.h
 @@ -0,0 +1,6 @@
 +static const char normal_bg[]		= "#000000";
 +static const char normal_br[]		= "#444444";
@@ -211,11 +224,11 @@ index 0000000..353349c
 +static const char focus_bg[]		= "#000000";
 +static const char focus_fg[]		= "#cc77ff";
 +static const char focus_br[]		= "#cc77ff";
-diff --git a/colors/fg/red.h b/colors/fg/red.h
+diff --git a/dwm/colors/fg/red.h b/dwm/colors/fg/red.h
 new file mode 100644
-index 0000000..8396d00
+index 0000000..2370f22
 --- /dev/null
-+++ b/colors/fg/red.h
++++ b/dwm/colors/fg/red.h
 @@ -0,0 +1,6 @@
 +static const char normal_bg[]		= "#000000";
 +static const char normal_br[]		= "#444444";
@@ -223,11 +236,11 @@ index 0000000..8396d00
 +static const char focus_bg[]		= "#000000";
 +static const char focus_fg[]		= "#ff0000";
 +static const char focus_br[]		= "#ff0000";
-diff --git a/colors/fg/white.h b/colors/fg/white.h
+diff --git a/dwm/colors/fg/white.h b/dwm/colors/fg/white.h
 new file mode 100644
-index 0000000..e9c1a99
+index 0000000..4225f71
 --- /dev/null
-+++ b/colors/fg/white.h
++++ b/dwm/colors/fg/white.h
 @@ -0,0 +1,6 @@
 +static const char normal_bg[]		= "#000000";
 +static const char normal_br[]		= "#444444";
@@ -235,11 +248,11 @@ index 0000000..e9c1a99
 +static const char focus_bg[]		= "#000000";
 +static const char focus_fg[]		= "#ffffff";
 +static const char focus_br[]		= "#ffffff";
-diff --git a/colors/fg/yellow.h b/colors/fg/yellow.h
+diff --git a/dwm/colors/fg/yellow.h b/dwm/colors/fg/yellow.h
 new file mode 100644
-index 0000000..6aaf911
+index 0000000..49a3893
 --- /dev/null
-+++ b/colors/fg/yellow.h
++++ b/dwm/colors/fg/yellow.h
 @@ -0,0 +1,6 @@
 +static const char normal_bg[]		= "#000000";
 +static const char normal_br[]		= "#444444";
@@ -247,11 +260,11 @@ index 0000000..6aaf911
 +static const char focus_fg[]		= "#000000";
 +static const char focus_bg[]		= "#ffd500";
 +static const char focus_br[]		= "#ffd500";
-diff --git a/colors/new-scheme.lua b/colors/new-scheme.lua
+diff --git a/dwm/colors/new-scheme.lua b/dwm/colors/new-scheme.lua
 new file mode 100755
-index 0000000..7c7d0a8
+index 0000000..8eeefc9
 --- /dev/null
-+++ b/colors/new-scheme.lua
++++ b/dwm/colors/new-scheme.lua
 @@ -0,0 +1,80 @@
 +#!/bin/lua5.4
 +--  _  _
@@ -333,11 +346,11 @@ index 0000000..7c7d0a8
 +	bg_file:close()
 +	return 0
 +end
-diff --git a/colors/solarized-dark.h b/colors/solarized-dark.h
+diff --git a/dwm/colors/solarized-dark.h b/dwm/colors/solarized-dark.h
 new file mode 100644
 index 0000000..f957ab5
 --- /dev/null
-+++ b/colors/solarized-dark.h
++++ b/dwm/colors/solarized-dark.h
 @@ -0,0 +1,15 @@
 +#define ACCENTCOLOR "#b58900"
 +//#define ACCENTCOLOR "#859900"
@@ -354,11 +367,11 @@ index 0000000..f957ab5
 +static const char focus_fg[]		= ACCENTCOLOR;
 +
 +//static const char focus_bg[]		= "#073642";
-diff --git a/colors/tokyo.h b/colors/tokyo.h
+diff --git a/dwm/colors/tokyo.h b/dwm/colors/tokyo.h
 new file mode 100644
 index 0000000..5190464
 --- /dev/null
-+++ b/colors/tokyo.h
++++ b/dwm/colors/tokyo.h
 @@ -0,0 +1,8 @@
 +static const char normal_bg[]		= "#1b181f";
 +//static const char normal_bg[]		= "#000000";
@@ -368,11 +381,11 @@ index 0000000..5190464
 +static const char focus_bg[]		= "#242230";
 +static const char focus_fg[]		= "#fd0000";
 +static const char focus_br[]		= "#eeedf0";
-diff --git a/colors/ubuntu.h b/colors/ubuntu.h
+diff --git a/dwm/colors/ubuntu.h b/dwm/colors/ubuntu.h
 new file mode 100644
 index 0000000..0e6b2ed
 --- /dev/null
-+++ b/colors/ubuntu.h
++++ b/dwm/colors/ubuntu.h
 @@ -0,0 +1,7 @@
 +static const char normal_bg[]		= "#2d0922";
 +static const char normal_br[]		= "#444444";
@@ -381,10 +394,10 @@ index 0000000..0e6b2ed
 +static const char focus_bg[]		= "#ff7700";
 +static const char focus_br[]		= "#E95420";
 +//static const char focus_br[]		= "#B43C12";
-diff --git a/config.def.h b/config.def.h
-index 9efa774..ec612f4 100644
---- a/config.def.h
-+++ b/config.def.h
+diff --git a/dwm/config.def.h b/dwm/config.def.h
+index 9efa774..7c4c9c1 100644
+--- a/dwm/config.def.h
++++ b/dwm/config.def.h
 @@ -1,34 +1,54 @@
  /* See LICENSE file for copyright and license details. */
  
@@ -418,7 +431,7 @@ index 9efa774..ec612f4 100644
 +static const char dmenufont[]       = { "Fira Code:size=14" };
 +
 +/* colorschemes */
-+#include "colors/dracula.h"
++#include "colors/default.h"
  static const char *colors[][3]      = {
  	/*               fg         bg         border   */
 -	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
@@ -430,10 +443,10 @@ index 9efa774..ec612f4 100644
  /* tagging */
 -static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 +static const char *tags[] = {
-+//	"1", "2", "3", "4", "5", "6", "7", "8", "9"
++	"1", "2", "3", "4", "5", "6", "7", "8", "9"
 +//	"a", "b", "c", "d", "e", "f", "g", "h", "i"
 +//	"", "", "", "", "磊", "ﳲ", "", "", ""
-+	"♠", "♠", "♠", "♥", "♥", "♥", "♣", "♣", "♣" 
++//	"♠", "♠", "♠", "♥", "♥", "♥", "♣", "♣", "♣" 
 +};
  
  static const Rule rules[] = {
@@ -539,10 +552,10 @@ index 9efa774..ec612f4 100644
  	{ MODKEY,                       XK_space,  setlayout,      {0} },
  	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
  	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
-diff --git a/dwm.1 b/dwm.1
+diff --git a/dwm/dwm.1 b/dwm/dwm.1
 index ddc8321..9d1ed7d 100644
---- a/dwm.1
-+++ b/dwm.1
+--- a/dwm/dwm.1
++++ b/dwm/dwm.1
 @@ -142,6 +142,75 @@ Add/remove all windows with nth tag to/from the view.
  .TP
  .B Mod1\-Shift\-q

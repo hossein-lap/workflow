@@ -1,30 +1,43 @@
-diff --git a/colors/custom.h b/colors/custom.h
+diff --git a/slock/Makefile b/slock/Makefile
+index b20fd4e..c6534ee 100644
+--- a/slock/Makefile
++++ b/slock/Makefile
+@@ -30,7 +30,7 @@ slock: ${OBJ}
+ 
+ clean:
+ 	@echo cleaning
+-	@rm -f slock ${OBJ} slock-${VERSION}.tar.gz
++	@rm -f slock ${OBJ} slock-${VERSION}.tar.gz config.h
+ 
+ dist: clean
+ 	@echo creating dist tarball
+diff --git a/slock/colors/custom.h b/slock/colors/custom.h
 new file mode 100644
 index 0000000..264d681
 --- /dev/null
-+++ b/colors/custom.h
++++ b/slock/colors/custom.h
 @@ -0,0 +1,5 @@
 +static const char *colorname[NUMCOLS] = {
 +	[INIT]		= "#000000",   /* after initialization */
 +	[INPUT]		= "#ff7700",   /* after initialization */
 +	[FAILED]	= "#ff2222",   /* wrong password */
 +};
-diff --git a/colors/default.h b/colors/default.h
+diff --git a/slock/colors/default.h b/slock/colors/default.h
 new file mode 100644
 index 0000000..369073a
 --- /dev/null
-+++ b/colors/default.h
++++ b/slock/colors/default.h
 @@ -0,0 +1,5 @@
 +static const char *colorname[NUMCOLS] = {
 +	[INIT]	= "black",   /* after initialization */
 +	[INPUT]		= "#005577",   /* after initialization */
 +	[FAILED]	= "#cc3333",   /* wrong password */
 +};
-diff --git a/colors/dracula.h b/colors/dracula.h
+diff --git a/slock/colors/dracula.h b/slock/colors/dracula.h
 new file mode 100644
 index 0000000..301ae9f
 --- /dev/null
-+++ b/colors/dracula.h
++++ b/slock/colors/dracula.h
 @@ -0,0 +1,13 @@
 +//#define ACCENTCOLOR "#ffb86c"
 +//#define ACCENTCOLOR "#ff79c6"
@@ -39,11 +52,11 @@ index 0000000..301ae9f
 +	[INPUT]		= ACCENTCOLOR,   /* after initialization */
 +	[FAILED]	= "#ff5555",   /* wrong password */
 +};
-diff --git a/colors/solarized-dark.h b/colors/solarized-dark.h
+diff --git a/slock/colors/solarized-dark.h b/slock/colors/solarized-dark.h
 new file mode 100644
 index 0000000..74ec139
 --- /dev/null
-+++ b/colors/solarized-dark.h
++++ b/slock/colors/solarized-dark.h
 @@ -0,0 +1,12 @@
 +//#define ACCENTCOLOR "#b58900"
 +#define ACCENTCOLOR "#859900"
@@ -57,21 +70,21 @@ index 0000000..74ec139
 +	[INPUT]		= ACCENTCOLOR,   /* after initialization */
 +	[FAILED]	= "#dc322f",   /* wrong password */
 +};
-diff --git a/colors/ubuntu.h b/colors/ubuntu.h
+diff --git a/slock/colors/ubuntu.h b/slock/colors/ubuntu.h
 new file mode 100644
 index 0000000..3acfafd
 --- /dev/null
-+++ b/colors/ubuntu.h
++++ b/slock/colors/ubuntu.h
 @@ -0,0 +1,5 @@
 +static const char *colorname[NUMCOLS] = {
 +	[INIT]		= "#300a24",   /* after initialization */
 +	[INPUT]		= "#ff7700",   /* after initialization */
 +	[FAILED]	= "#ff2222",   /* wrong password */
 +};
-diff --git a/config.def.h b/config.def.h
-index 9855e21..ed5f76f 100644
---- a/config.def.h
-+++ b/config.def.h
+diff --git a/slock/config.def.h b/slock/config.def.h
+index 9855e21..81ad9c6 100644
+--- a/slock/config.def.h
++++ b/slock/config.def.h
 @@ -1,12 +1,9 @@
  /* user and group to drop privileges to */
 -static const char *user  = "nobody";
@@ -85,7 +98,7 @@ index 9855e21..ed5f76f 100644
 -	[FAILED] = "#CC3333",   /* wrong password */
 -};
 +/* colorscheme */
-+#include "colors/dracula.h"
++#include "colors/default.h"
  
  /* treat a cleared input like a wrong password (color) */
  static const int failonclear = 1;

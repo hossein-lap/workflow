@@ -1,7 +1,20 @@
-diff --git a/config.def.h b/config.def.h
+diff --git a/slstatus/Makefile b/slstatus/Makefile
+index 7834257..9142e99 100644
+--- a/slstatus/Makefile
++++ b/slstatus/Makefile
+@@ -44,7 +44,7 @@ slstatus: slstatus.o $(COM:=.o) $(REQ:=.o)
+ 	$(CC) -o $@ $(LDFLAGS) $(COM:=.o) $(REQ:=.o) slstatus.o $(LDLIBS)
+ 
+ clean:
+-	rm -f slstatus slstatus.o $(COM:=.o) $(REQ:=.o)
++	rm -f slstatus slstatus.o $(COM:=.o) $(REQ:=.o) config.h
+ 
+ dist:
+ 	rm -rf "slstatus-$(VERSION)"
+diff --git a/slstatus/config.def.h b/slstatus/config.def.h
 index d805331..ad81f32 100644
---- a/config.def.h
-+++ b/config.def.h
+--- a/slstatus/config.def.h
++++ b/slstatus/config.def.h
 @@ -1,10 +1,13 @@
  /* See LICENSE file for copyright and license details. */
  

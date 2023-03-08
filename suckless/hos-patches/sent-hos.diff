@@ -1,7 +1,20 @@
-diff --git a/config.def.h b/config.def.h
+diff --git a/sent/Makefile b/sent/Makefile
+index 731f71b..fdf942c 100644
+--- a/sent/Makefile
++++ b/sent/Makefile
+@@ -29,7 +29,7 @@ cscope: ${SRC} config.h
+ 	cscope -R -b || echo cScope not installed
+ 
+ clean:
+-	rm -f sent ${OBJ} sent-${VERSION}.tar.gz
++	rm -f sent ${OBJ} sent-${VERSION}.tar.gz config.h
+ 
+ dist: clean
+ 	mkdir -p sent-${VERSION}
+diff --git a/sent/config.def.h b/sent/config.def.h
 index 60eb376..36385b5 100644
---- a/config.def.h
-+++ b/config.def.h
+--- a/sent/config.def.h
++++ b/sent/config.def.h
 @@ -1,16 +1,16 @@
  /* See LICENSE file for copyright and license details. */
  

@@ -1,8 +1,21 @@
-diff --git a/colors/256_noir.h b/colors/256_noir.h
+diff --git a/dmenu/Makefile b/dmenu/Makefile
+index a03a95c..fe864c3 100644
+--- a/dmenu/Makefile
++++ b/dmenu/Makefile
+@@ -29,7 +29,7 @@ stest: stest.o
+ 	$(CC) -o $@ stest.o $(LDFLAGS)
+ 
+ clean:
+-	rm -f dmenu stest $(OBJ) dmenu-$(VERSION).tar.gz
++	rm -f dmenu stest $(OBJ) dmenu-$(VERSION).tar.gz config.h
+ 
+ dist: clean
+ 	mkdir -p dmenu-$(VERSION)
+diff --git a/dmenu/colors/256_noir.h b/dmenu/colors/256_noir.h
 new file mode 100644
 index 0000000..4ad6da4
 --- /dev/null
-+++ b/colors/256_noir.h
++++ b/dmenu/colors/256_noir.h
 @@ -0,0 +1,6 @@
 +static const char normal_fg[]	= "#f8f8f2";
 +static const char normal_bg[]	= "#000000";
@@ -10,11 +23,11 @@ index 0000000..4ad6da4
 +static const char focus_bg[]	= "#AAABA6";
 +static const char sel_fg[]	= "#000000";
 +static const char sel_bg[]	= "#f30000";
-diff --git a/colors/default.h b/colors/default.h
+diff --git a/dmenu/colors/default.h b/dmenu/colors/default.h
 new file mode 100644
 index 0000000..efb3202
 --- /dev/null
-+++ b/colors/default.h
++++ b/dmenu/colors/default.h
 @@ -0,0 +1,6 @@
 +static const char normal_fg[] = "#bbbbbb";
 +static const char normal_bg[] = "#222222";
@@ -22,11 +35,11 @@ index 0000000..efb3202
 +static const char focus_bg[]  = "#005577";
 +static const char sel_fg[]    = "#000000";
 +static const char sel_bg[]    = "#00ffff";
-diff --git a/colors/dracula.h b/colors/dracula.h
+diff --git a/dmenu/colors/dracula.h b/dmenu/colors/dracula.h
 new file mode 100644
 index 0000000..7317fe8
 --- /dev/null
-+++ b/colors/dracula.h
++++ b/dmenu/colors/dracula.h
 @@ -0,0 +1,16 @@
 +//#define ACCENTCOLOR "#ffb86c"
 +//#define ACCENTCOLOR "#ff79c6"
@@ -44,11 +57,11 @@ index 0000000..7317fe8
 +static const char focus_bg[]  = ACCENTCOLOR;
 +static const char sel_fg[]    = ACCENTCOLOR;
 +static const char sel_bg[]    = "#44475A";
-diff --git a/colors/fg/orange.h b/colors/fg/orange.h
+diff --git a/dmenu/colors/fg/orange.h b/dmenu/colors/fg/orange.h
 new file mode 100644
 index 0000000..a392e8d
 --- /dev/null
-+++ b/colors/fg/orange.h
++++ b/dmenu/colors/fg/orange.h
 @@ -0,0 +1,6 @@
 +static const char normal_fg[]		= "#ffffff";
 +static const char normal_bg[]		= "#000000";
@@ -56,11 +69,11 @@ index 0000000..a392e8d
 +static const char focus_fg[]		= "#000000";
 +static const char sel_fg[]		= "#FE8B00";
 +static const char sel_bg[]		= "#000000";
-diff --git a/colors/new-scheme.lua b/colors/new-scheme.lua
+diff --git a/dmenu/colors/new-scheme.lua b/dmenu/colors/new-scheme.lua
 new file mode 100755
-index 0000000..f657dee
+index 0000000..db338a1
 --- /dev/null
-+++ b/colors/new-scheme.lua
++++ b/dmenu/colors/new-scheme.lua
 @@ -0,0 +1,73 @@
 +#!/bin/lua5.4
 +--  _  _
@@ -135,11 +148,11 @@ index 0000000..f657dee
 +		fg_file:write(sel_fg, '\n')
 +	fg_file:close()
 +end
-diff --git a/colors/plain.h b/colors/plain.h
+diff --git a/dmenu/colors/plain.h b/dmenu/colors/plain.h
 new file mode 100644
 index 0000000..ac0c2a2
 --- /dev/null
-+++ b/colors/plain.h
++++ b/dmenu/colors/plain.h
 @@ -0,0 +1,6 @@
 +static const char focus_fg[] = "#010101";
 +static const char focus_bg[] = "#0097ff";
@@ -147,11 +160,11 @@ index 0000000..ac0c2a2
 +static const char normal_bg[]  = "#010101";
 +static const char sel_fg[]   = "#010101";
 +static const char sel_bg[]   = "#f59554";
-diff --git a/colors/solarized-dark.h b/colors/solarized-dark.h
+diff --git a/dmenu/colors/solarized-dark.h b/dmenu/colors/solarized-dark.h
 new file mode 100644
 index 0000000..fc08ab6
 --- /dev/null
-+++ b/colors/solarized-dark.h
++++ b/dmenu/colors/solarized-dark.h
 @@ -0,0 +1,13 @@
 +#define ACCENTCOLOR "#b58900"
 +//#define ACCENTCOLOR "#859900"
@@ -166,11 +179,11 @@ index 0000000..fc08ab6
 +static const char focus_bg[]  = ACCENTCOLOR;
 +static const char sel_fg[]    = "#073642";
 +static const char sel_bg[]    = "#eee8d5";
-diff --git a/colors/ubuntu.h b/colors/ubuntu.h
+diff --git a/dmenu/colors/ubuntu.h b/dmenu/colors/ubuntu.h
 new file mode 100644
 index 0000000..3003638
 --- /dev/null
-+++ b/colors/ubuntu.h
++++ b/dmenu/colors/ubuntu.h
 @@ -0,0 +1,6 @@
 +static const char normal_fg[] = "#eeeeec";
 +static const char normal_bg[] = "#2d0922";
@@ -178,10 +191,10 @@ index 0000000..3003638
 +static const char focus_bg[]  = "#ff7700";
 +static const char sel_fg[]    = "#010101";
 +static const char sel_bg[]    = "#E95420";
-diff --git a/config.def.h b/config.def.h
-index 1edb647..8744376 100644
---- a/config.def.h
-+++ b/config.def.h
+diff --git a/dmenu/config.def.h b/dmenu/config.def.h
+index 1edb647..ba77faf 100644
+--- a/dmenu/config.def.h
++++ b/dmenu/config.def.h
 @@ -4,14 +4,18 @@
  static int topbar = 1;                      /* -b  option; if 0, dmenu appears at bottom     */
  /* -fn option overrides fonts[0]; default X11 font or font set */
@@ -193,7 +206,7 @@ index 1edb647..8744376 100644
  static const char *prompt      = NULL;      /* -p  option; prompt to the left of input field */
 +
 +/* colorscheme */
-+#include "colors/dracula.h"
++#include "colors/default.h"
  static const char *colors[SchemeLast][2] = {
  	/*     fg         bg       */
 -	[SchemeNorm] = { "#bbbbbb", "#222222" },
