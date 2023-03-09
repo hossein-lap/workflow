@@ -702,7 +702,7 @@ index 91ab8ca..1555d00 100644
 + *    • tokyodark.h         • tokyonight.h
 + *    • ubuntu.h            • vscode.h
 + */
-+#include "colors/default.h"
++#include "colors/dracula.h"
  /*
   * What program is execed by st depends of these precedence rules:
   * 1: program passed with -e
