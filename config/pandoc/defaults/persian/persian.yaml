@@ -6,7 +6,7 @@ number-sections: false
 pdf-engine: xelatex
 #highlight-style: /home/hos/.config/pandoc/highlight/dracula.theme
 #highlight-style: tango
-highlight-style: /home/hos/.config/pandoc/highlight/solarized-light.theme
+highlight-style: /home/hos/.config/pandoc/highlight/solarized-light-beamer.theme
 
 variables:
   geometry: margin=1in
@@ -25,3 +25,4 @@ filters:
     - /home/hos/.config/pandoc/filters/fa-date.lua
     - /home/hos/.config/pandoc/filters/tex-codeblock-fa.lua
     - /home/hos/.config/pandoc/filters/tex-quoteblock-fa.lua
+#    - /home/hos/.config/pandoc/filters/tex-definition_list-en.lua
