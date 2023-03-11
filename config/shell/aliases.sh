@@ -80,7 +80,7 @@ alias glg="git log --oneline --all --graph --stat"
 alias gls="git log --oneline --all --graph"
 alias gll="git log --stat --graph --all --show-signature"
 
-alias ed="ed -p ':'"
+#alias ed="ed -p ':'"
 
 alias gpg-agent-reload="gpg-connect-agent reloadagent /bye"
 

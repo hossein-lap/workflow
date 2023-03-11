@@ -8,6 +8,9 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# enable vim mode
+set -o vi
+
 # pervent to end a session by once 'C-d' [twice will do]
 export IGNOREEOF=1
 
