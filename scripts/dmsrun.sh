@@ -3,7 +3,7 @@
 # Variables {{{
 path="$HOME/.local/dev/hossein-lap/workflow/scripts"
 
-patched='-c -bw 2 -g 1 -l 8'
+#patched='-c -bw 2 -g 1 -l 8'
 dmenu="dmenu \
 		-i \
 		${patched} \

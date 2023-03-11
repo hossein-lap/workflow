@@ -22,10 +22,10 @@ elif [ $status = 'Full' ]; then
 		notify-send $args -u normal "Baterry is full: ${percent}%"
 	fi
 else
-	percent=$(acpi -b | awk -F '%' '{print $1;}' | awk '{print $NF"%"}')
+	percent=$(acpi -b | awk -F '%' '{print $1;}' | awk '{print $NF;}')
 fi
 
-printf '%s' " ${percent} "
+printf '%s' " ${percent}% "
 #printf '%s\n' "$status"
 #elif [ $status = 'Full' ] && [ $percent = 100 ]; then
 	#notify-send $args -u low "Baterry is fully charged"

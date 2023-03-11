@@ -1,7 +1,7 @@
 #!/bin/sh
 
 prompt=$(echo $0 | awk -F '/' '{print $NF;}')
-patched='-bw 0 -g 3 -l 20'
+#patched='-bw 0 -g 3 -l 20'
 runner="dmenu -l 9 -p ${prompt} ${patched}"
 path="$HOME/.local/hos/chars/"
 
