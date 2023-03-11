@@ -14,7 +14,7 @@ _G._packer.inside_compile = true
 
 local time
 local profile_info
-local should_profile = false
+local should_profile = true
 if should_profile then
   local hrtime = vim.loop.hrtime
   profile_info = {}
@@ -84,6 +84,11 @@ _G.packer_plugins = {
     path = "/home/hos/.local/share/nvim/site/pack/packer/start/alpha-nvim",
     url = "https://github.com/goolord/alpha-nvim"
   },
+  catppuccin = {
+    loaded = true,
+    path = "/home/hos/.local/share/nvim/site/pack/packer/start/catppuccin",
+    url = "https://github.com/catppuccin/nvim"
+  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/home/hos/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -124,6 +129,16 @@ _G.packer_plugins = {
     path = "/home/hos/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
+  ["neovim-ayu"] = {
+    loaded = true,
+    path = "/home/hos/.local/share/nvim/site/pack/packer/start/neovim-ayu",
+    url = "https://github.com/Shatur/neovim-ayu"
+  },
+  ["nightfox.nvim"] = {
+    loaded = true,
+    path = "/home/hos/.local/share/nvim/site/pack/packer/start/nightfox.nvim",
+    url = "https://github.com/EdenEast/nightfox.nvim"
+  },
   ["nord.nvim"] = {
     loaded = true,
     path = "/home/hos/.local/share/nvim/site/pack/packer/start/nord.nvim",
@@ -138,6 +153,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/hos/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
     url = "https://github.com/norcalli/nvim-colorizer.lua"
+  },
+  ["nvim-gtd"] = {
+    loaded = true,
+    path = "/home/hos/.local/share/nvim/site/pack/packer/start/nvim-gtd",
+    url = "https://github.com/hrsh7th/nvim-gtd"
   },
   ["nvim-lspconfig"] = {
     loaded = true,

@@ -25,7 +25,6 @@ require('plugins.lsp') ---- lsp configs
 require('plugins.cmp') ---- Snippet Manager Configs
 require('plugins.colorizer') ---- Colorizer Plugin
 require('plugins.lualine') ---- Lualine [status line]
-require('plugins.tokyodark') ---- Colorscheme
 require('plugins.nvimtree') ---- NvimTree
 require('plugins.treesitter') ---- Treesitter Settings
 require('plugins.which-key') ---- GitSigns Settings
@@ -34,26 +33,22 @@ require('plugins.alpha') ---- ToggleTerm Settings
 --require('plugins.toggleterm') ---- ToggleTerm Settings
 -- }}}
 -- colorscheme {{{
---cmd [[ colorscheme solarized ]]
---cmd [[ colorscheme hybrid_material ]]
 
-require('plugins.dracula')
-cmd [[ colorscheme dracula ]]
-
---require('plugins.tokyonight')
---cmd [[ colorscheme tokyonight ]]
+--require('plugins/schemes/ayu')
+--require('plugins/schemes/nightfox')
+--require('plugins/schemes/catppuccin')
+require('plugins/schemes/nord')
+--require('plugins/schemes/solarized')
+--require('plugins/schemes/dracula')
+--require('plugins/schemes/tokyodark')
+--require('plugins/schemes/tokyonight')
 
 ---- some favorate colorschemes
 --[[ hybrid_material sunbather dalton tokyodark
      solarized material nord onedark
 ]]
-
----- colorscheme options
---vim.g.tokyodark_transparent_background = false
---vim.g.tokyodark_enable_italic_comment = false
---vim.g.tokyodark_enable_italic = false
---vim.g.tokyodark_color_gamma = "1.0"
---cmd [[ colorscheme tokyodark ]]
+--cmd [[ colorscheme hybrid ]]
+--vim.cmd.colorscheme "hybrid"
 -- }}}
 -- NeoVide {{{
 vim.o.guifont = "Fira Mono:h12"

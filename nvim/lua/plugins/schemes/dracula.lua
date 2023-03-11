@@ -41,3 +41,5 @@ dracula.setup({
 		-- Nothing = {} -- clear highlight of Nothing
 	},
 })
+
+vim.cmd.colorscheme "dracula"
