@@ -8,11 +8,11 @@ function CodeBlock(cb)
 	local cbft = cb.classes[1]
 	local codeblockbox = {
 		raw_tex '\\begin{quote}',
---		raw_tex '\\begin{bbox}',
+--		raw_tex '\\begin{tcolorbox}',
 		raw_tex '\\begin{latin}',
 			cb,
 		raw_tex '\\end{latin}',
---		raw_tex '\\end{bbox}',
+--		raw_tex '\\end{tcolorbox}',
 		raw_tex '\\end{quote}',
 	}
 	local codeblock = {
