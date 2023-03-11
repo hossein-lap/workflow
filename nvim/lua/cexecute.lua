@@ -195,7 +195,8 @@ end
 -- swtich pandoc configs {{{
 	-- article {{{
 	pandoc_article_list = {
-		'dracula', 'solarized', 'english', 'monochrome',
+		'nord', 'dracula', 'solarized',
+		'english', 'monochrome',
 		'persian'
 	}
 
@@ -205,20 +206,18 @@ end
 		print("pandoc article => style: " .. pandoc_article_default)
 	end
 
-	map("n", "<leader>va1", ":lua pandoc_article_switch(1)<CR>",
-			{ silent = true, desc = "Pandoc › article → dark — dracula" })
-
-	map("n", "<leader>va2", ":lua pandoc_article_switch(2)<CR>",
-			{ silent = true, desc = "Pandoc › article → dark — solarized" })
-
-	map("n", "<leader>va3", ":lua pandoc_article_switch(3)<CR>",
-			{ silent = true, desc = "Pandoc › article → light — english" })
-
-	map("n", "<leader>va4", ":lua pandoc_article_switch(4)<CR>",
-			{ silent = true, desc = "Pandoc › article → light — monochrome" })
-
-	map("n", "<leader>va5", ":lua pandoc_article_switch(5)<CR>",
-			{ silent = true, desc = "Pandoc › article → light — persian" })
+--	print(#pandoc_article_list)
+	for aitem_counter = 1, #pandoc_article_list, 1 do
+--		print(aitem_counter)
+		if #pandoc_article_list > 9 then
+			print("You cannot have more than 9 themes")
+			print("pandoc_article_switch() mapping failed")
+			return 9
+		end
+		map("n", "<leader>va"..aitem_counter, ":lua pandoc_article_switch("..aitem_counter..")<CR>",
+			{ silent = true, desc = "Pandoc: article › " .. pandoc_article_list[aitem_counter] }
+		)
+	end
 	-- }}}
 	-- beamer {{{
 	pandoc_beamer_list = {
@@ -232,23 +231,18 @@ end
 		print("pandoc beamer => style: " .. pandoc_beamer_default)
 	end
 
-	map("n", "<leader>vb1", ":lua pandoc_beamer_switch(1)<CR>",
-			{ silent = true, desc = "Pandoc › beamer → english — dark (manjaro)" })
-
-	map("n", "<leader>vb2", ":lua pandoc_beamer_switch(2)<CR>",
-			{ silent = true, desc = "Pandoc › beamer → english — dark (dracula)" })
-
-	map("n", "<leader>vb3", ":lua pandoc_beamer_switch(3)<CR>",
-			{ silent = true, desc = "Pandoc › beamer → english — light (ubuntu)" })
-
-	map("n", "<leader>vb4", ":lua pandoc_beamer_switch(4)<CR>",
-			{ silent = true, desc = "Pandoc › beamer → persian — dark (manjaro)" })
-
-	map("n", "<leader>vb5", ":lua pandoc_beamer_switch(5)<CR>",
-			{ silent = true, desc = "Pandoc › beamer → persian — dark (dracula)" })
-
-	map("n", "<leader>vb6", ":lua pandoc_beamer_switch(6)<CR>",
-			{ silent = true, desc = "Pandoc › beamer → persian — light (ubuntu)" })
+--	print(#pandoc_beamer_list)
+	for bitem_counter = 1, #pandoc_beamer_list, 1 do
+--		print(bitem_counter)
+		if #pandoc_beamer_list > 9 then
+			print("You cannot have more than 9 themes")
+			print("pandoc_beamer_switch() mapping failed")
+			return 9
+		end
+		map("n", "<leader>vb"..bitem_counter, ":lua pandoc_beamer_switch("..bitem_counter..")<CR>",
+			{ silent = true, desc = "Pandoc: beamer › " .. pandoc_beamer_list[bitem_counter] }
+		)
+	end
 	-- }}}
 -- }}}
 
