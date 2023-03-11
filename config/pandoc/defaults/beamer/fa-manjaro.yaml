@@ -11,3 +11,4 @@ variables:
 filters:
     - /home/hos/.config/pandoc/filters/fa-date.lua
     - /home/hos/.config/pandoc/filters/tex-beamer-codeblock-fa.lua
+    - /home/hos/.config/pandoc/filters/tex-quoteblock-fa.lua

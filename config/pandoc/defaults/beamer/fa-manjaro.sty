@@ -12,38 +12,38 @@
 %% add line number to code-blocks
 %\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},numbers=left}
 
-%% Madrid {{{
-%\usetheme{Madrid}
-%\defbeamertemplate*{footline}{shadow theme}
-%{%
-%  \leavevmode%
-%  \hbox{%
-%  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
-%    \usebeamerfont{author in head/foot}\insertshortauthor
-%  \end{beamercolorbox}%
-%  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
-%    \usebeamerfont{title in head/foot}\insertshorttitle
-%  \end{beamercolorbox}%
-%  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,leftskip=2ex,rightskip=2ex,sep=0pt]{date in head/foot}%
-%    \usebeamerfont{date in head/foot}\hfill\insertshortdate\hfill\inserttotalframenumber\,/\,\insertframenumber
-%  \end{beamercolorbox}}%
-%  \vskip0pt%
-%}
-%% }}}
-% Copenhagen with frame number {{{
-\usetheme{Copenhagen}
+% Madrid {{{
+\usetheme{Madrid}
 \defbeamertemplate*{footline}{shadow theme}
 {%
   \leavevmode%
-  \hbox{\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm plus1fil,rightskip=.3cm]{author in head/foot}%
-    \usebeamerfont{author in head/foot}\inserttotalframenumber\,/\,\insertframenumber\hfill\insertshortauthor
+  \hbox{%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\insertshortauthor
   \end{beamercolorbox}%
-  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
-    \usebeamerfont{title in head/foot}\insertshorttitle%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertshorttitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,leftskip=2ex,rightskip=2ex,sep=0pt]{date in head/foot}%
+    \usebeamerfont{date in head/foot}\hfill\insertshortdate\hfill\inserttotalframenumber\,/\,\insertframenumber
   \end{beamercolorbox}}%
   \vskip0pt%
 }
-%}}}
+% }}}
+%% Copenhagen with frame number {{{
+%\usetheme{Copenhagen}
+%\defbeamertemplate*{footline}{shadow theme}
+%{%
+%  \leavevmode%
+%  \hbox{\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm plus1fil,rightskip=.3cm]{author in head/foot}%
+%    \usebeamerfont{author in head/foot}\inserttotalframenumber\,/\,\insertframenumber\hfill\insertshortauthor
+%  \end{beamercolorbox}%
+%  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+%    \usebeamerfont{title in head/foot}\insertshorttitle%
+%  \end{beamercolorbox}}%
+%  \vskip0pt%
+%}
+%%}}}
 
 % theme {{{
 %\useoutertheme{shadow}
@@ -54,12 +54,12 @@
 \definecolor{color_text}{HTML}{ffffff} % #ffffff
 \definecolor{color_frametitle_bg}{HTML}{0a4b3e} % #0a4b3e
 \definecolor{color_frametitle_fg}{HTML}{ffffff} % #ffffff
-\definecolor{color_but_left_bg}{HTML}{083930} % #083930
-\definecolor{color_but_right_fg}{HTML}{ffffff} % #ffffff
-\definecolor{color_but_right_bg}{HTML}{0a463a} % #0a463a
-\definecolor{color_but_mid_fg}{HTML}{ffffff} % #ffffff
-\definecolor{color_but_mid_bg}{HTML}{05221d} % #05221d
-\definecolor{color_but_left_fg}{HTML}{ffffff} % #ffffff
+\definecolor{color_but_left_bg}		{HTML}{0a463a} % #0a463a
+\definecolor{color_but_left_fg}		{HTML}{ffffff} % #ffffff
+\definecolor{color_but_mid_bg}		{HTML}{05221d} % #05221d
+\definecolor{color_but_mid_fg}		{HTML}{ffffff} % #ffffff
+\definecolor{color_but_right_bg}	{HTML}{000000} % #000000
+\definecolor{color_but_right_fg}	{HTML}{ffffff} % #ffffff
 \definecolor{color_gradient}{HTML}{000000} % #000000
 
 \definecolor{color_block_body_fg}{HTML}{dddddd} % #dddddd
@@ -107,8 +107,8 @@
 	%% palettes
 	\setbeamercolor*{palette primary}{%
 		use=structure,
-		fg=color_but_right_fg,
-		bg=color_but_right_bg
+		fg=color_but_left_fg,
+		bg=color_but_left_bg
 	}
 	\setbeamercolor*{palette secondary}{%
 		fg=color_but_mid_fg,
@@ -116,8 +116,8 @@
 	}
 	\setbeamercolor*{palette tertiary}{%
 		use=structure,
-		fg=color_but_left_fg,
-		bg=color_but_left_bg
+		fg=color_but_right_fg,
+		bg=color_but_right_bg
 	}
 	\setbeamercolor*{palette quaternary}{%
 		use=structure,
@@ -168,9 +168,9 @@
 	}
 % 		}}}
 % fonts {{{
-	% frame
-	\setbeamerfont{frametitle}{series=\bfseries}
-	% blocks
+%	% frame
+	\setbeamerfont{frametitle}{series=\headfont}
+%	% blocks
 	\setbeamerfont{block title}{series=\bfseries}
 % }}}
 % background {{{
@@ -185,24 +185,19 @@
 % }}}
 
 % default fonts
-\setmainfont{Libertinus Serif}
-\setsansfont{Fira Sans}
-\setmonofont{Fira Mono}
-%% default fonts:
-\setlatintextfont{Libertinus Serif}
+\setlatintextfont{Source Serif Pro}
 \setlatinsansfont{Source Sans Pro}
 \setlatinmonofont{Fira Mono}
 
 \linespread{1.5}
 
-\newcommand\defperfont{Vazir}
+\newcommand\defperfont{Sahel}
+%\newcommand\defperfont{Vazir}
 \settextfont[Scale=1.1]{\defperfont}
 \setdigitfont[Scale=1.1]{\defperfont}
-\defpersianfont\secfont{HMFTitr}
-\defpersianfont\qfont{HMFNazli}
-
-\setbeamerfont{frametitle}{series=\secfont}
-\setbeamerfont{blocktitle}{series=\qfont}
+\defpersianfont\headfont{Sahel Black}
+\defpersianfont\secfont{\defperfont}
+\defpersianfont\qfont{HMFRoya}
 
 % persian fixes {{{
 % Thanks To Dr. Vafa Khalighi For Fixing This
