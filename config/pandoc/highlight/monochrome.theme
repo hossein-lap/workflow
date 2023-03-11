@@ -19,10 +19,10 @@
             "underline": false
         },
         "Comment": {
-            "text-color": "#888888",
+            "text-color": null,
             "background-color": null,
             "bold": false,
-            "italic": false,
+            "italic": true,
             "underline": false
         },
         "CommentVar": {
@@ -42,7 +42,7 @@
         "DataType": {
             "text-color": null,
             "background-color": null,
-            "bold": false,
+            "bold": true,
             "italic": false,
             "underline": false
         },
@@ -103,9 +103,9 @@
             "underline": false
         },
         "String": {
-            "text-color": "#323232",
+            "text-color": null,
             "background-color": null,
-            "bold": true,
+            "bold": false,
             "italic": false,
             "underline": false
         }

@@ -11,7 +11,8 @@ pdf-engine: xelatex
 highlight-style: /home/hos/.config/pandoc/highlight/monochrome.theme
 
 variables:
-  geometry: margin=1.5cm
+  geometry: margin=3cm
+  fontsize: 12pt
   header-includes:
     - \usepackage{/home/hos/.config/pandoc/defaults/monochrome/main}
 filters:

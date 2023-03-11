@@ -1,0 +1,117 @@
+{
+  "metadata": {
+    "author": "hossein-lap <hosteam01@gmail.com>",
+    "license": "GPLv2 License",
+    "name": "Nord",
+    "revision": 1
+  },
+  "background-color": "#2E3440",
+  "line-number-background-color": "#3B4252",
+  "line-number-color": "#4C566A",
+  "text-color": "#ECEFF4",
+  "text-styles": {
+    "Keyword": {
+      "bold": true,
+      "text-color": "#88C0D0"
+    },
+    "Function": {
+      "bold": true,
+      "text-color": "#5E81AC"
+    },
+    "Variable": {
+      "bold": true,
+      "text-color": "#81A1C1"
+    },
+    "ControlFlow": {
+      "bold": true,
+      "text-color": "#81A1C1"
+    },
+    "Operator": {
+      "text-color": "#81A1C1"
+    },
+    "BuiltIn": {
+      "bold": true,
+      "text-color": "#88C0D0"
+    },
+    "Extension": {
+      "text-color": "#4C566A"
+    },
+    "Preprocessor": {
+      "bold": true,
+      "text-color": "#81A1C1"
+    },
+    "Attribute": {
+      "text-color": "#EBCB8B"
+    },
+    "Char": {
+      "text-color": "#B48EAD"
+    },
+    "SpecialChar": {
+      "text-color": "#B48EAD"
+    },
+    "String": {
+      "text-color": "#A3BE8C"
+    },
+    "VerbatimString": {
+      "text-color": "#A3BE8C"
+    },
+    "SpecialString": {
+      "text-color": "#D08770"
+    },
+    "Import": {
+      "bold": true,
+      "text-color": "#A3BE8C"
+    },
+    "DataType": {
+      "bold": true,
+      "text-color": "#81A1C1"
+    },
+    "DecVal": {
+      "text-color": "#B48EAD"
+    },
+    "BaseN": {
+      "bold": true,
+      "text-color": "#B48EAD"
+    },
+    "Float": {
+      "text-color": "#B48EAD"
+    },
+    "Constant": {
+      "text-color": "#B48EAD"
+    },
+    "Comment": {
+      "italic": false,
+      "text-color": "#616E88"
+    },
+    "Documentation": {
+      "text-color": "#B48EAD"
+    },
+    "Annotation": {
+      "text-color": "#BF616A"
+    },
+    "CommentVar": {
+      "text-color": "#D08770"
+    },
+    "RegionMarker": {
+      "text-color": "#81A1C1"
+    },
+    "Information": {
+      "text-color": "#B48EAD"
+    },
+    "Warning": {
+      "bold": true,
+      "text-color": "#BF616A"
+    },
+    "Alert": {
+      "bold": true,
+      "text-color": "#88C0D0"
+    },
+    "Error": {
+      "background-color": "#ff0000",
+      "text-color": "#ffffff"
+    },
+    "Other": {
+      "text-color": "#5E81AC"
+    }
+  }
+}

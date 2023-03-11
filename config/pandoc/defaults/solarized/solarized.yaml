@@ -7,14 +7,15 @@ highlight-style: /home/hos/.config/pandoc/highlight/solarized-dark.theme
 
 variables:
   geometry:  margin=1in
+  fontsize:  12pt
   linkcolor: solarizedpink
   filecolor: solarizedgreen
   citecolor: solarizedpurple
   urlcolor:  solarizedcyan
   toccolor:  solarizedorange
   header-includes:
+    - \usepackage{/home/hos/.config/pandoc/defaults/main}
     - \usepackage{/home/hos/.config/pandoc/defaults/solarized/theme}
-    - \usepackage{/home/hos/.config/pandoc/defaults/solarized/main}
 filters:
     - /home/hos/.config/pandoc/filters/en-date.lua
     - /home/hos/.config/pandoc/filters/tex-codeblock-en.lua

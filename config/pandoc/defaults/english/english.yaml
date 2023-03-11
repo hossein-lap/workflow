@@ -13,6 +13,7 @@ highlight-style: /home/hos/.config/pandoc/highlight/monochrome.theme
 
 variables:
   geometry: margin=1in
+  fontsize:  12pt
   header-includes:
     - \usepackage{/home/hos/.config/pandoc/defaults/english/main}
 filters:

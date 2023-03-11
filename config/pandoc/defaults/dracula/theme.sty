@@ -1,10 +1,12 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{draculatheme}[2021/02/26 Dracula Theme]
-\RequirePackage{xcolor}
+\RequirePackage{tikz,tcolorbox,xcolor}
 
+% colors {{{
 \definecolor{draculabg}      {RGB} {40,   42,   54}
 \definecolor{draculacl}      {RGB} {68,   71,   90}
-\definecolor{draculacb}      {HTML}{242630}
+\definecolor{draculacb}      {HTML}{21222c} % #21222c
+%\definecolor{draculacb}      {HTML}{242630} % #242630
 \definecolor{draculafg}      {RGB} {248,  248,  242}
 \definecolor{draculacomment} {RGB} {98,   114,  164}
 \definecolor{draculacyan}    {RGB} {139,  233,  253}
@@ -14,6 +16,25 @@
 \definecolor{draculapurple}  {RGB} {189,  147,  249}
 \definecolor{draculared}     {RGB} {255,  85,   85}
 \definecolor{draculayellow}  {RGB} {241,  250,  140}
+% }}}
+% box env {{{
+\newtcolorbox{bbox}{
+%	title={\centering \color{black}{\textsf{Example} }},
+	boxrule=1pt,
+	arc = 0.5mm,
+	%sharp corners = downhill,
+	enlarge top by=3mm,
+	minipage boxed title*=-15cm,
+%	beamer,
+	enhanced,
+	center,
+	%attach boxed title to top center={yshift=-2.5mm},
+	attach boxed title to top left={yshift=-2mm, xshift=1cm},
+	colback  = draculacb,
+	colframe = black!90!white,
+	colbacktitle = white,
+}
+% }}}
 
 \pagecolor{draculabg}
 \color{draculafg}

@@ -10,6 +10,7 @@ highlight-style: /home/hos/.config/pandoc/highlight/solarized-light.theme
 
 variables:
   geometry: margin=1in
+  fontsize:  12pt
 #  linkcolor: draculapink
 #  filecolor: draculagreen
 #  citecolor: draculapurple

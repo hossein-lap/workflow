@@ -1,7 +1,8 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{solarizedtheme}[2021/02/26 Solarized (Dark) Theme]
-\RequirePackage{xcolor}
+\RequirePackage{xcolor,tikz,tcolorbox}
 
+% colors {{{
 \definecolor{solarizedcl}      {HTML} {002b36}
 \definecolor{solarizedbg}      {HTML} {073642}
 \definecolor{solarizedfg}      {HTML} {fdf6e3}
@@ -13,3 +14,25 @@
 \definecolor{solarizedpurple}  {HTML} {6c71c4}
 \definecolor{solarizedred}     {HTML} {dc322f}
 \definecolor{solarizedyellow}  {HTML} {b58900}
+% }}}
+% box env {{{
+\newtcolorbox{bbox}{
+%	title={\centering \color{black}{\textsf{Example} }},
+	boxrule=1pt,
+	arc = 0.5mm,
+	%sharp corners = downhill,
+	enlarge top by=3mm,
+	minipage boxed title*=-15cm,
+%	beamer,
+	enhanced,
+	center,
+	%attach boxed title to top center={yshift=-2.5mm},
+	attach boxed title to top left={yshift=-2mm, xshift=1cm},
+	colback  = solarizedcl,
+	colframe = black!90!white,
+	colbacktitle = white,
+}
+% }}}
+
+\pagecolor{solarizedbg}
+\color{solarizedfg}

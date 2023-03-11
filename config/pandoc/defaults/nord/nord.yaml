@@ -1,22 +1,23 @@
 metadata:
   keywords:
-    - 'Dracula theme'
+    - 'nord theme'
 
 pdf-engine: xelatex
-highlight-style: /home/hos/.config/pandoc/highlight/dracula.theme
+highlight-style: /home/hos/.config/pandoc/highlight/nord.theme
 
 variables:
   geometry:  margin=1in
   fontsize:  12pt
-  linkcolor: draculapink
-  filecolor: draculagreen
-  citecolor: draculapurple
-  urlcolor:  draculacyan
-  toccolor:  draculaorange
+  linkcolor: nordblue
+  filecolor: nordgreen
+  citecolor: nordpurple
+  urlcolor:  nordorange
+  toccolor:  nordcyan
   header-includes:
     - \usepackage{/home/hos/.config/pandoc/defaults/main}
-    - \usepackage{/home/hos/.config/pandoc/defaults/dracula/theme}
+    - \usepackage{/home/hos/.config/pandoc/defaults/nord/theme}
 filters:
     - /home/hos/.config/pandoc/filters/en-date.lua
     - /home/hos/.config/pandoc/filters/tex-codeblock-en.lua
     - /home/hos/.config/pandoc/filters/tex-quoteblock-en.lua
+#    - /home/hos/.config/pandoc/filters/tangle.lua
