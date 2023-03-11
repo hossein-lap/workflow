@@ -34,10 +34,10 @@ require('plugins.alpha') ---- ToggleTerm Settings
 -- }}}
 -- colorscheme {{{
 
---require('plugins/schemes/ayu')
+require('plugins/schemes/ayu')
 --require('plugins/schemes/nightfox')
 --require('plugins/schemes/catppuccin')
-require('plugins/schemes/nord')
+--require('plugins/schemes/nord')
 --require('plugins/schemes/solarized')
 --require('plugins/schemes/dracula')
 --require('plugins/schemes/tokyodark')

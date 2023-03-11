@@ -43,10 +43,10 @@ au("set filetype=json",		{'*.theme'},	{'BufRead', 'BufNewFile'})
 au("set filetype=nasm",		{'*.s'},	{'BufRead', 'BufNewFile'})
 au("set filetype=sent",		{'*.sent'},	{'BufRead', 'BufNewFile'})
 
-au("set noexpandtab",		{'c', 'lua', 'make', 'nasm'})
-au("set tabstop=8",		{'c', 'lua', 'make', 'nasm'})
-au("set softtabstop=8",		{'c', 'lua', 'make', 'nasm'})
-au("set shiftwidth=8",		{'c', 'lua', 'make', 'nasm'})
+au("set noexpandtab",		{'c', 'make', 'nasm'})
+au("set tabstop=8",		{'c', 'make', 'nasm'})
+au("set softtabstop=8",		{'c', 'make', 'nasm'})
+au("set shiftwidth=8",		{'c', 'make', 'nasm'})
 
 au("set filetype=tex",		{'plaintex'})
 
