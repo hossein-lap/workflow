@@ -22,6 +22,6 @@ static const char *colorname[] = {
 	[255] = 0,
 	[256] = "black", /* 256 -> bg */
 	[257] = "#cccccc", /* foreground */
-	[258] = "red", /* cursor background */
+	[258] = "#ff7700", /* cursor background */
 	[259] = "black", /* cursor foreground */
 };

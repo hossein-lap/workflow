@@ -27,7 +27,7 @@ static const char *fonts[]          = {
 static const char dmenufont[]       = { "Fira Code:size=14" };
 
 /* colorschemes */
-#include "colors/dracula.h"
+#include "colors/default.h"
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm]	= { normal_fg, normal_bg, normal_br },
@@ -37,8 +37,8 @@ static const char *colors[][3]      = {
 /* tagging */
 static const char *tags[] = {
 //	"", "", "", "", "磊", "ﳲ", "", "", ""
-	"♠", "♠", "♠", "♥", "♥", "♥", "♣", "♣", "♣" 
-//	"1", "2", "3", "4", "5", "6", "7", "8", "9"
+//	"♠", "♠", "♠", "♥", "♥", "♥", "♣", "♣", "♣" 
+	"1", "2", "3", "4", "5", "6", "7", "8", "9"
 //	"a", "b", "c", "d", "e", "f", "g", "h", "i"
 };
 
@@ -53,6 +53,7 @@ static const Rule rules[] = {
 	{ "Nsxiv",     "nsxiv",     "nsxiv",      0,            1,           -1 },
 	{ "Sxiv",      "sxiv",      "sxiv",       0,            1,           -1 },
 	{ "Firefox",   NULL,        NULL,         1 << 2,       0,           -1 },
+	{ "st",        NULL,        "lfub",       1 << 3,       0,           -1 },
 	{ "Telegram",  NULL,        NULL,         1 << 8,       0,           -1 },
 };
 

@@ -3,7 +3,7 @@
 /* appearance */
 static const char font[]        = "Fira Code:size=16";
 /* colorscheme */
-#include "colors/dracula.h"
+#include "colors/default.h"
 static const char before[]      = "<";
 static const char after[]       = ">";
 static const char titletrim[]   = "...";
