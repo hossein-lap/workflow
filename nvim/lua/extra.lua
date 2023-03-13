@@ -15,17 +15,22 @@ end
 --}}}
 -- key map function {{{
 local function map(mode, key, command, opts)
+	if not mode or not key then
+		vim.notify('map(mode, key) must have at least two arguments', 4,
+			{title = 'Error on using map()'})
+		return 1
+	end
 	local options = { noremap = true }
 	if opts then
 		options = vim.tbl_extend("force", options, opts)
 	end
 	api.nvim_set_keymap(mode, key, command, options)
 end
--- unmap 
+-- umap 
 local function umap(mode, key)
 	if not mode or not key then
-		print('Error on using umap()')
-		print('umap(mode, key) must have both arguments')
+		vim.notify('umap(mode, key) must have both arguments', 4,
+			{title = 'Error on using umap()'})
 		return 1
 	end
 	api.nvim_del_keymap(mode, key)
@@ -77,121 +82,183 @@ au(":silent lua AutoFillAll()", {
 })
 --}}}
 -- autofill {{{
+Autofill  = true
+Mautofill = true
+Sautofill = true
 -- global autofill function {{{
 function AutoFillAll()
-	AutoFill()
-	AutoFillMarkdown()
-	AutoFillSent()
+	AutoFillEnable(false)
+	AutoFillMarkdownEnable(false)
+	AutoFillSentEnable(false)
+end
+
+function AutoFill(notify_me)
+	notify_me = true
+	AutoFillToggle(notify_me)
+	AutoFillMarkdownToggle(notify_me)
+	AutoFillSentToggle(notify_me)
 end
 -- }}}
 -- basic autofill function {{{
-Autofill = 0
-function AutoFill()
-	if Autofill == 0 then
-		Autofill = 1
-		map('i', '"', '""<Left>')
-		map("i", "'", "''<Left>")
-		map('i', '`', '``<Left>')
-		map('i', '(', '()<Left>')
-		map('i', '[', '[]<Left>')
-		map('i', '{', '{}<Left>')
---		print("AutoFill() [Enabled]")
+function AutoFillToggle(notify_me)
+	notify_me = true
+	if Autofill == false then
+		Autofill = true
+		AutoFillEnable(notify_me)
 	else
-		Autofill = 0
-		umap('i', '"')
-		umap("i", "'")
-		umap('i', '`')
-		umap('i', '(')
-		umap('i', '[')
-		umap('i', '{')
---		print("AutoFill() [Disabled]")
+		Autofill = false
+		AutoFillDisable(notify_me)
+	end
+end
+
+function AutoFillEnable(notify_me)
+	map('i', '"', '""<Left>')
+	map("i", "'", "''<Left>")
+	map('i', '`', '``<Left>')
+	map('i', '(', '()<Left>')
+	map('i', '[', '[]<Left>')
+	map('i', '{', '{}<Left>')
+
+	if notify_me then
+		Notify('extra.lua', "Autofill is enabled", 2)
+	end
+end
+
+function AutoFillDisable(notify_me)
+	umap('i', '"')
+	umap("i", "'")
+	umap('i', '`')
+	umap('i', '(')
+	umap('i', '[')
+	umap('i', '{')
+
+	if notify_me then
+		Notify('extra.lua', "Autofill is disabled", 2)
 	end
 end
 --}}}
 -- markdown autofill function {{{
-Mautofill = 0
-function AutoFillMarkdown()
+function AutoFillMarkdownToggle(notify_me)
+	notify_me = true
+	if Mautofill == false then
+		Mautofill = true
+		AutoFillMarkdownEnable(notify_me)
+	else
+		Mautofill = false
+		AutoFillMarkdownDisable(notify_me)
+	end
+end
+
+function AutoFillMarkdownEnable(notify_me)
 	local ft = vim.bo.filetype
 	if ft == 'markdown' or ft == 'rmd' then
-		if Mautofill == 0 then
-			Mautofill = 1
-			map('i', '*', '**<Left>')
-			map('i', '_', '__<Left>')
-		else
-			Mautofill = 0
-			umap('i', '*')
-			umap('i', '_')
+		map('i', '*', '**<Left>')
+		map('i', '_', '__<Left>')
+
+		if notify_me then
+			Notify('extra.lua', "Markdown Autofill is enabled", 2)
+		end
+	end
+end
+
+function AutoFillMarkdownDisable(notify_me)
+	local ft = vim.bo.filetype
+	if ft == 'markdown' or ft == 'rmd' then
+		umap('i', '*')
+		umap('i', '_')
+
+		if notify_me then
+			Notify('extra.lua', "Markdown Autofill is disabled", 2)
 		end
 	end
 end
 --}}}
 -- sent autofill function {{{
-Sautofill = 0
-function AutoFillSent()
+function AutoFillSentToggle(notify_me)
+	notify_me = true
+	if Sautofill == false then
+		Sautofill = true
+		AutoFillSentEnable(notify_me)
+	else
+		Sautofill = false
+		AutoFillSentDisable(notify_me)
+	end
+end
+
+function AutoFillSentEnable(notify_me)
 	local ft = vim.bo.filetype
 	if ft == 'sent' or ft == 'text' then
-		if Sautofill == 0 then
-			Sautofill = 1
-			map('i',	'`>',	'›')
-			map('i',	'`<',	'‹')
-			map('i',	'`>>',	'»')
-			map('i',	'`<<',	'«')
-			map('i',	'`>>>',	'⟩')
-			map('i',	'`<<<',	'⟨')
-			map('i',	'`|',	'¦')
-			map('i',	'``',	'●')
-			map('i',	'`1',	'○')
-			map('i',	'`2',	'□')
-			map('i',	'`3',	'◊')
-			map('i',	'`4',	'¶')
-			map('i',	'`5',	'✓')
-			map('i',	'`.',	'•')
-			map('i',	'`,',	'▸')
-			map('i',	'`->',	'→')
-			map('i',	'`-<',	'←')
-			map('i',	'`=>',	'⇒')
-			map('i',	'`=<',	'⇐')
-			map('i',	'`x',	'×')
-			map('i',	'`e',	'≡')
-			map('i',	'`c',	'©')
-			map('i',	'`r',	'®')
-			map('i',	'`t',	'™')
-			map('i',	'`<=',	'≤')
-			map('i',	'`>=',	'≥')
-			map('i',	'`!=',	'≠')
-			map('i',	'`~=',	'≃')
-			map('i',	'`~~',	'≈')
-		else --[[   ]]
-			Sautofill = 0
-			umap('i',	'`>')
-			umap('i',	'`<')
-			umap('i',	'`>>')
-			umap('i',	'`<<')
-			umap('i',	'`>>>')
-			umap('i',	'`<<<')
-			umap('i',	'`|')
-			umap('i',	'`->')
-			umap('i',	'`-<')
-			umap('i',	'`=>')
-			umap('i',	'`=<')
-			umap('i',	'`.')
-			umap('i',	'`,')
-			umap('i',	'``')
-			umap('i',	'`1')
-			umap('i',	'`2')
-			umap('i',	'`3')
-			umap('i',	'`4')
-			umap('i',	'`5')
-			umap('i',	'`x')
-			umap('i',	'`e')
-			umap('i',	'`c')
-			umap('i',	'`r')
-			umap('i',	'`t')
-			umap('i',	'`<=')
-			umap('i',	'`>=')
-			umap('i',	'`!=')
-			umap('i',	'`~=')
-			umap('i',	'`~~')
+		map('i',	'`>',	'›')
+		map('i',	'`<',	'‹')
+		map('i',	'`>>',	'»')
+		map('i',	'`<<',	'«')
+		map('i',	'`>>>',	'⟩')
+		map('i',	'`<<<',	'⟨')
+		map('i',	'`|',	'¦')
+		map('i',	'``',	'●')
+		map('i',	'`1',	'○')
+		map('i',	'`2',	'□')
+		map('i',	'`3',	'◊')
+		map('i',	'`4',	'¶')
+		map('i',	'`5',	'✓')
+		map('i',	'`.',	'•')
+		map('i',	'`,',	'▸')
+		map('i',	'`->',	'→')
+		map('i',	'`-<',	'←')
+		map('i',	'`=>',	'⇒')
+		map('i',	'`=<',	'⇐')
+		map('i',	'`x',	'×')
+		map('i',	'`e',	'≡')
+		map('i',	'`c',	'©')
+		map('i',	'`r',	'®')
+		map('i',	'`t',	'™')
+		map('i',	'`<=',	'≤')
+		map('i',	'`>=',	'≥')
+		map('i',	'`!=',	'≠')
+		map('i',	'`~=',	'≃')
+		map('i',	'`~~',	'≈')
+
+		if notify_me then
+			Notify('extra.lua', "Sent Autofill is enabled", 2)
+		end
+	end
+end
+
+function AutoFillSentDisable(notify_me)
+	local ft = vim.bo.filetype
+	if ft == 'sent' or ft == 'text' then
+		umap('i',	'`>')
+		umap('i',	'`<')
+		umap('i',	'`>>')
+		umap('i',	'`<<')
+		umap('i',	'`>>>')
+		umap('i',	'`<<<')
+		umap('i',	'`|')
+		umap('i',	'`->')
+		umap('i',	'`-<')
+		umap('i',	'`=>')
+		umap('i',	'`=<')
+		umap('i',	'`.')
+		umap('i',	'`,')
+		umap('i',	'``')
+		umap('i',	'`1')
+		umap('i',	'`2')
+		umap('i',	'`3')
+		umap('i',	'`4')
+		umap('i',	'`5')
+		umap('i',	'`x')
+		umap('i',	'`e')
+		umap('i',	'`c')
+		umap('i',	'`r')
+		umap('i',	'`t')
+		umap('i',	'`<=')
+		umap('i',	'`>=')
+		umap('i',	'`!=')
+		umap('i',	'`~=')
+		umap('i',	'`~~')
+
+		if notify_me then
+			Notify('extra.lua', "Sent Autofill is disabled", 2)
 		end
 	end
 end

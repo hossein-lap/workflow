@@ -32,10 +32,10 @@ local bufopts = { noremap=true, silent=true, buffer=bufnr }
 	vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
 end
 
--- LSP Configs
-require('plugins.conf-lsp.clangd')
-require('plugins.conf-lsp.texlab')
-require('plugins.conf-lsp.lua_ls')
-require('plugins.conf-lsp.pyright')
---require('plugins.conf-lsp.bashls')
-require('plugins.conf-lsp.gopls')
+---- LSP Configs
+--require('plugins.conf-lsp.clangd')
+--require('plugins.conf-lsp.texlab')
+--require('plugins.conf-lsp.lua_ls')
+--require('plugins.conf-lsp.pyright')
+----require('plugins.conf-lsp.bashls')
+--require('plugins.conf-lsp.gopls')

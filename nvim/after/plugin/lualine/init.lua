@@ -1,27 +1,36 @@
 -- helper {{{
 local expand = vim.fn.expand
+local tlength = 3
 -- }}}
 -- autofill sym {{{
 local function showautofill()
 	local Achar = ''
 	local Mchar = ''
 	local Schar = ''
-	if Autofill == 1 then
+	local ft = vim.bo.filetype
+
+	if Autofill then
 		Achar = 'α'
 	end
-	if Mautofill == 1 then
-		Mchar = 'μ'
+
+	if ft == 'markdown' or ft == 'rmd' then
+		if Mautofill then
+			Mchar = 'μ'
+		end
 	end
-	if Sautofill == 1 then
-		Mchar = 'Σ'
+
+	if ft == 'sent' or ft == 'text' then
+		if Sautofill then
+			Mchar = 'Σ'
+		end
 	end
 	return Achar .. Mchar .. Schar
 end
 -- }}}
 -- split sym {{{
 local function ShowSplitMode()
-	if Windstyle then
-		return Windstyle:sub(1,1)
+	if WindowStyle then
+		return WindowStyle:sub(1,tlength)
 	else
 		return ''
 	end
@@ -57,21 +66,24 @@ end
 local function vimlogo()
 	return ''
 end
+-- }}}
+-- buffers {{{
 local function buftext()
-	return 'B'
+	local buf = 'Buffers'
+	return buf:sub(1,tlength)
 end
 -- }}}
 -- filetype {{{
 local function currfiletype()
-	return vim.bo.filetype
+	return vim.bo.filetype:sub(1,tlength)
 end
 -- }}}
--- username {{{
-local function username()
-	return os.getenv("USER")
---	return 'test'
-end
--- }}}
+---- username {{{
+--local function username()
+--	return os.getenv("USER"):sub(1,tlength)
+----	return 'test'
+--end
+---- }}}
 
 require('lualine').setup {
 	options = {
@@ -110,7 +122,7 @@ require('lualine').setup {
 	sections = {
 		lualine_a = {
 --			'mode',
-			{ 'mode', fmt = function(str) return str:sub(1,1) end },
+			{ 'mode', fmt = function(str) return str:sub(1,tlength) end },
 		},
 		lualine_b = {{'branch', icon = ''}},
 		lualine_c = {basename, '%f %m'},

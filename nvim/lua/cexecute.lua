@@ -1,11 +1,17 @@
 -- helper {{{
 local api = vim.api
 local expand = vim.fn.expand
-local ft = vim.bo.filetype
-local g = vim.g
+--local ft = vim.bo.filetype
+--local g = vim.g
+--local vim.notify = require("")
 
 -- map() {{{
 local function map(mode, key, command, opts)
+	if not mode or not key then
+		vim.notify('map(mode, key) must have at least two arguments', 4,
+			{title = 'Error on using map()'})
+		return 1
+	end
 	local options = { noremap = true }
 	if opts then
 		options = vim.tbl_extend("force", options, opts)
@@ -13,16 +19,7 @@ local function map(mode, key, command, opts)
 	api.nvim_set_keymap(mode, key, command, options)
 end
 -- }}}
----- keymap function {{{
---function map(mode, key, command, opts)
---	local options = { noremap = true }
---	if opts then
---		options = vim.tbl_extend("force", options, opts)
---	end
---	api.nvim_set_keymap(mode, key, command, options)
---end
----- }}}
----- unmap {{{
+---- umap {{{
 --local function umap(mode, key)
 --	if not mode or not key then
 --		print('Error on using umap()')
@@ -32,100 +29,116 @@ end
 --	api.nvim_del_keymap(mode, key)
 --end
 ---- }}}
--- autocmd {{{
-local function au(commands, patterns, evnt)
-	if evnt == nil then
-		evnt = 'FileType'
+---- autocmd {{{
+--local function au(commands, patterns, evnt)
+--	if evnt == nil then
+--		evnt = 'FileType'
+--	end
+--	api.nvim_create_autocmd(evnt, {
+--		pattern = patterns,
+--		command = commands,
+----		 group = patterns .. 'groups'
+--	})
+--end
+---- }}}
+-- }}}
+
+WindowStyle = 'horizontal'
+
+-- Toggle WindowStyle {{{
+local WindowStyles = {
+	'horizontal', 'vertical', 'floating'
+}
+
+function WindowStyle_Toggle(i)
+	WindowStyle = WindowStyles[i]
+	print("term split => style: " .. WindowStyle)
+end
+
+	for witem_counter = 1, #WindowStyles, 1 do
+--		print(bitem_counter)
+		if #WindowStyles > 9 then
+			print("You cannot have more than 9 themes")
+			print("WindowStyle_Toggle() mapping failed")
+			return 9
+		end
+		map("n", "<leader>vs"..witem_counter, ":lua WindowStyle_Toggle("..witem_counter..")<CR>",
+			{ silent = true, desc = "term split: " .. WindowStyles[witem_counter] }
+		)
 	end
-	api.nvim_create_autocmd(evnt, {
-		pattern = patterns,
-		command = commands,
---		 group = patterns .. 'groups'
-	})
-end
--- }}}
--- }}}
 
-Windstyle = 'horizontal'
-
--- Toggle Windstyle {{{
-function Windstyle_Toggle(i)
-	Windstyles = {
-		 'horizontal', 'vertical', 'floating'
-	}
-	Windstyle = Windstyles[i]
-	print("term split => style: " .. Windstyle)
-end
-
-map('n', '<leader>vs1', ":lua Windstyle_Toggle(1)<CR>",
-	{ silent = true, desc = "term › horizontal split" })
-
-map('n', '<leader>vs2', ":lua Windstyle_Toggle(2)<CR>",
-	{ silent = true, desc = "term › vertical split" })
-
-map('n', '<leader>vs3', ":lua Windstyle_Toggle(3)<CR>",
-	{ silent = true, desc = "term › float Window" })
+--map('n', '<leader>vs1', ":lua WindowStyle_Toggle(1)<CR>",
+--	{ silent = true, desc = "term › horizontal split" })
+--
+--map('n', '<leader>vs2', ":lua WindowStyle_Toggle(2)<CR>",
+--	{ silent = true, desc = "term › vertical split" })
+--
+--map('n', '<leader>vs3', ":lua WindowStyle_Toggle(3)<CR>",
+--	{ silent = true, desc = "term › float Window" })
 -- }}}
 -- Float Term {{{
-function fTerminal(wrapand)
-	local buf, win
+function Fterminal(wrapand)
+	local buf --, win
 
 	buf = api.nvim_create_buf(false, true) -- create new emtpy buffer
-
 	api.nvim_buf_set_option(buf, 'bufhidden', 'wipe')
 
-	-- get dimensions
+	-- get dimensions {{{
 	local width = api.nvim_get_option("columns")
 	local height = api.nvim_get_option("lines")
+	-- }}}
 
-	-- calculate our floating window size
+	-- calculate our floating window size {{{
 	local scale = 0.7
 	local win_height = math.ceil(height * scale - 4)
 	local win_width = math.ceil(width * scale)
+	-- }}}
 
-	-- and its starting position
+	-- and its starting position {{{
 	local row = math.ceil((height - win_height) / 2 - 2)
 	local col = math.ceil((width - win_width) / 2)
+	-- }}}
 
-	-- set some options
+	-- set some options {{{
 	local borderstyle = {
 		ascii = {
-			{ "/", 'Normal' },
-			{ "-", 'Normal' },
-			{ "\\", 'Normal' },
-			{ "|", 'Normal' },
+			{ "/", 'FloatBorder' },
+			{ "-", 'FloatBorder' },
+			{ "\\", 'FloatBorder' },
+			{ "|", 'FloatBorder' },
 		},
 		single = {
-			{ "┌", 'Normal' },
-			{ "─", 'Normal' },
-			{ "┐", 'Normal' },
-			{ "│", 'Normal' },
-			{ "┘", 'Normal' },
-			{ "─", 'Normal' },
-			{ "└", 'Normal' },
-			{ "│", 'Normal' },
+			{ "┌", 'FloatBorder' },
+			{ "─", 'FloatBorder' },
+			{ "┐", 'FloatBorder' },
+			{ "│", 'FloatBorder' },
+			{ "┘", 'FloatBorder' },
+			{ "─", 'FloatBorder' },
+			{ "└", 'FloatBorder' },
+			{ "│", 'FloatBorder' },
 		},
 		double = {
-			{ "╔", 'Normal' },
-			{ "═", 'Normal' },
-			{ "╗", 'Normal' },
-			{ "║", 'Normal' },
-			{ "╝", 'Normal' },
-			{ "═", 'Normal' },
-			{ "╚", 'Normal' },
-			{ "║", 'Normal' },
+			{ "╔", 'FloatBorder' },
+			{ "═", 'FloatBorder' },
+			{ "╗", 'FloatBorder' },
+			{ "║", 'FloatBorder' },
+			{ "╝", 'FloatBorder' },
+			{ "═", 'FloatBorder' },
+			{ "╚", 'FloatBorder' },
+			{ "║", 'FloatBorder' },
 		},
 		round = {
-			{ "╭", 'Normal' },
-			{ "─", 'Normal' },
-			{ "╮", 'Normal' },
-			{ "│", 'Normal' },
-			{ "╯", 'Normal' },
-			{ "─", 'Normal' },
-			{ "╰", 'Normal' },
-			{ "│", 'Normal' },
+			{ "╭", 'FloatBorder' },
+			{ "─", 'FloatBorder' },
+			{ "╮", 'FloatBorder' },
+			{ "│", 'FloatBorder' },
+			{ "╯", 'FloatBorder' },
+			{ "─", 'FloatBorder' },
+			{ "╰", 'FloatBorder' },
+			{ "│", 'FloatBorder' },
 		},
 	}
+	-- }}}
 
 	local opts = {
 		noautocmd = true,
@@ -148,21 +161,32 @@ function fTerminal(wrapand)
 	end
 	api.nvim_command('startinsert')
 end
+
 -- }}}
 -- V/H Term {{{
-function vhTerminal(wrapand)
-	if not Windstyle then
-		Windstyle = 'horizontal'
+function VHterminal(wrapand)
+	if not WindowStyle then
+		WindowStyle = 'horizontal'
+		Notify('VHterminal',
+			string.format("WindowStyle is not set, swtiched to default (%s)",
+				WindowStyle),
+			3
+		)
 	end
 
-	if Windstyle == 'vertical' then
+	if WindowStyle == 'vertical' then
 		Buffercmd = 'vs '
-	elseif Windstyle == 'horizontal' then
+	elseif WindowStyle == 'horizontal' then
 		Buffercmd = 'split '
 	else
-		print("ERROR!")
-		print("** Windstyle is not set to use `vhTerminal()`")
-		print("** try `fTerminal()`")
+		Notify('VHterminal',
+			string.format("** WindowStyle is not set %s",
+				"to use `VHterminal()`\n** try `Fterminal()`"),
+			4
+		)
+--		print("ERROR!")
+--		print("** WindowStyle is not set to use `VHterminal()`")
+--		print("** try `Fterminal()`")
 		return -1
 	end
 
@@ -178,12 +202,12 @@ function vhTerminal(wrapand)
 end
 -- }}}
 
-function runTerminal(inp)
+function RUNterminal(inp)
 --	api.nvim_command('set ls=0')
-	if Windstyle == 'floating' then
-		fTerminal(inp)
+	if WindowStyle == 'floating' then
+		Fterminal(inp)
 	else
-		vhTerminal(inp)
+		VHterminal(inp)
 	end
 --	-- print the executed command
 --	print('!' .. inp)
@@ -194,53 +218,56 @@ end
 
 -- swtich pandoc configs {{{
 	-- article {{{
-	pandoc_article_list = {
+	Pandoc_article_list = {
 		'nord', 'dracula', 'solarized',
 		'english', 'monochrome',
 		'persian'
 	}
 
-	pandoc_article_default = pandoc_article_list[1]
-	function pandoc_article_switch(item)
-		pandoc_article_default = pandoc_article_list[item]
-		print("pandoc article => style: " .. pandoc_article_default)
+	Pandoc_article_default = Pandoc_article_list[1]
+	function Pandoc_article_switch(item)
+		Pandoc_article_default = Pandoc_article_list[item]
+--		print("pandoc article => style: " .. Pandoc_article_default)
+--		vim.notify("pandoc article => style: " .. Pandoc_article_default)
+--		vim.notify(Pandoc_article_default, 2, {title = "pandoc article style"})
+		Notify("Pandoc article style", Pandoc_article_default, 2)
 	end
 
---	print(#pandoc_article_list)
-	for aitem_counter = 1, #pandoc_article_list, 1 do
+--	print(#Pandoc_article_list)
+	for aitem_counter = 1, #Pandoc_article_list, 1 do
 --		print(aitem_counter)
-		if #pandoc_article_list > 9 then
-			print("You cannot have more than 9 themes")
-			print("pandoc_article_switch() mapping failed")
+		if #Pandoc_article_list > 9 then
+			Notify('Pandoc_article_switch() mapping failed',
+				'You cannot have more than 9 themes', 4)
 			return 9
 		end
-		map("n", "<leader>va"..aitem_counter, ":lua pandoc_article_switch("..aitem_counter..")<CR>",
-			{ silent = true, desc = "Pandoc: article › " .. pandoc_article_list[aitem_counter] }
+		map("n", "<leader>va"..aitem_counter, ":lua Pandoc_article_switch("..aitem_counter..")<CR>",
+			{ silent = true, desc = "Pandoc: article › " .. Pandoc_article_list[aitem_counter] }
 		)
 	end
 	-- }}}
 	-- beamer {{{
-	pandoc_beamer_list = {
+	Pandoc_beamer_list = {
 		'en-manjaro', 'en-dracula', 'en-ubuntu',
 		'fa-manjaro', 'fa-dracula', 'fa-ubuntu'
 	}
 
-	pandoc_beamer_default = pandoc_beamer_list[1]
-	function pandoc_beamer_switch(item)
-		pandoc_beamer_default = pandoc_beamer_list[item]
-		print("pandoc beamer => style: " .. pandoc_beamer_default)
+	Pandoc_beamer_default = Pandoc_beamer_list[1]
+	function Pandoc_beamer_switch(item)
+		Pandoc_beamer_default = Pandoc_beamer_list[item]
+		Notify("Pandoc beamer style", Pandoc_beamer_default, 2)
 	end
 
---	print(#pandoc_beamer_list)
-	for bitem_counter = 1, #pandoc_beamer_list, 1 do
+--	print(#Pandoc_beamer_list)
+	for bitem_counter = 1, #Pandoc_beamer_list, 1 do
 --		print(bitem_counter)
-		if #pandoc_beamer_list > 9 then
-			print("You cannot have more than 9 themes")
-			print("pandoc_beamer_switch() mapping failed")
+		if #Pandoc_beamer_list > 9 then
+			Notify('Pandoc_beamer_switch() mapping failed',
+				'You cannot have more than 9 themes', 4)
 			return 9
 		end
-		map("n", "<leader>vb"..bitem_counter, ":lua pandoc_beamer_switch("..bitem_counter..")<CR>",
-			{ silent = true, desc = "Pandoc: beamer › " .. pandoc_beamer_list[bitem_counter] }
+		map("n", "<leader>vb"..bitem_counter, ":lua Pandoc_beamer_switch("..bitem_counter..")<CR>",
+			{ silent = true, desc = "Pandoc: beamer › " .. Pandoc_beamer_list[bitem_counter] }
 		)
 	end
 	-- }}}
@@ -275,14 +302,14 @@ function TriggerRun(file_type)
 		return 1
 	end
 
-	runTerminal(runner[file_type])
+	RUNterminal(runner[file_type])
 end
 -- }}}
 -- Compile {{{
 function TriggerCompile(file_type)
 	local src_name = expand('%')
 	local out_name = expand('%:r')
-	local pandoc_path = ' ~/.config/pandoc/defaults/' .. pandoc_article_default .. '/' .. pandoc_article_default .. '.yaml '
+	local pandoc_path = ' ~/.config/pandoc/defaults/' .. Pandoc_article_default .. '/' .. Pandoc_article_default .. '.yaml '
 	local r_cmd_s = [[Rscript -e "rmarkdown::render(input = ']]
 	local r_cmd_e = [[', output_format = \"all\", params = \" ]] .. pandoc_path .. [[ \" )"]]
 
@@ -305,7 +332,7 @@ function TriggerCompile(file_type)
 		return 1
 	end
 
-	runTerminal(compiler[file_type])
+	RUNterminal(compiler[file_type])
 end
 -- }}}
 -- Extra {{{
@@ -314,7 +341,7 @@ function TriggerExtra(file_type)
 	local out_name = expand('%:r')
 	local pdf_viewer = 'nohup zathura '
 	local log_handler =  '.pdf & 2>&1 > /dev/null'
-	local pandoc_path = ' -t beamer -V classoption:aspectratio=169 --defaults ~/.config/pandoc/defaults/beamer/' .. pandoc_beamer_default  .. '.yaml '
+	local pandoc_path = ' -t beamer -V classoption:aspectratio=169 --defaults ~/.config/pandoc/defaults/beamer/' .. Pandoc_beamer_default  .. '.yaml '
 
 	local extra = {
 		rmd = pdf_viewer .. out_name .. log_handler,
@@ -329,7 +356,7 @@ function TriggerExtra(file_type)
 		return 1
 	end
 
-	runTerminal(extra[file_type])
+	RUNterminal(extra[file_type])
 end
 -- }}}
 
@@ -343,40 +370,40 @@ map('n', '<leader>fq',  ':lua TriggerExtra(vim.bo.filetype)<CR>',
 	{ silent = true, desc = 'command3 › Extra thing' })
 
 ---- makefile
-map('n', '<leader>cc', ':lua runTerminal("make")<CR>',
+map('n', '<leader>cc', ':lua RUNterminal("make")<CR>',
 		{ silent = true, desc = 'make › all' })
-map('n', '<leader>cd', ':lua runTerminal("make clean")<CR>',
+map('n', '<leader>cd', ':lua RUNterminal("make clean")<CR>',
 		{ silent = true, desc = 'make › clean' })
-map('n', '<leader>cf', ':lua runTerminal("make force")<CR>',
+map('n', '<leader>cf', ':lua RUNterminal("make force")<CR>',
 		{ silent = true, desc = 'make › force' })
-map('n', '<leader>ca', ':lua runTerminal("make full")<CR>',
+map('n', '<leader>ca', ':lua RUNterminal("make full")<CR>',
 		{ silent = true, desc = 'make › full' })
 
 ---- Run terminal
-map('n', '<leader>ts', ':lua runTerminal("bash")<CR>',
+map('n', '<leader>ts', ':lua RUNterminal("bash")<CR>',
 		{ silent = true, desc = 'term › bash shell' })
-map('n', '<leader>tt', ':lua runTerminal("zsh")<CR>',
+map('n', '<leader>tt', ':lua RUNterminal("zsh")<CR>',
 		{ silent = true, desc = 'term › zsh shell' })
-map('n', '<leader>td', ':lua runTerminal("dash")<CR>',
+map('n', '<leader>td', ':lua RUNterminal("dash")<CR>',
 		{ silent = true, desc = 'term › dash shell' })
 
 ---- Git commands
-map('n', '<leader>gi', ":lua runTerminal('git init')<CR>",
+map('n', '<leader>gi', ":lua RUNterminal('git init')<CR>",
 		{ silent = true, desc = "git › initial local repo" })
-map('n', '<leader>gs', ":lua runTerminal('git status -s')<CR>",
+map('n', '<leader>gs', ":lua RUNterminal('git status -s')<CR>",
 		{ silent = true, desc = "git › current branch's status" })
-map('n', '<leader>gl', ":lua runTerminal('git log --oneline --all --graph')<CR>",
+map('n', '<leader>gl', ":lua RUNterminal('git log --oneline --all --graph')<CR>",
 		{ silent = true, desc = "git › log" })
-map('n', '<leader>ga', ":lua runTerminal('git add %')<CR>",
+map('n', '<leader>ga', ":lua RUNterminal('git add %')<CR>",
 		{ silent = true, desc = "git › add current file to stage area" })
-map('n', '<leader>gd', ":lua runTerminal('git diff %')<CR>",
+map('n', '<leader>gd', ":lua RUNterminal('git diff %')<CR>",
 		{ silent = true, desc = "git › diff changes of current file" })
-map('n', '<leader>gt', ":lua runTerminal('git tag')<CR>",
+map('n', '<leader>gt', ":lua RUNterminal('git tag')<CR>",
 		{ silent = true, desc = "git › Tags" })
-map('n', '<leader>gb', ":lua runTerminal('git branch')<CR>",
+map('n', '<leader>gb', ":lua RUNterminal('git branch')<CR>",
 		{ silent = true, desc = "git › Branchs" })
-map('n', '<leader>gc', ":lua runTerminal('git commit')<CR>",
+map('n', '<leader>gc', ":lua RUNterminal('git commit')<CR>",
 		{ silent = true, desc = "git › Commit the changes" })
-map('n', '<leader>gh', ":lua runTerminal('git show HEAD~1:./%')<CR>",
+map('n', '<leader>gh', ":lua RUNterminal('git show HEAD~1:./%')<CR>",
 		{ silent = true, desc = "git › Previous version of the current file" })
 -- }}}

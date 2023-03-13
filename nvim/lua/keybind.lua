@@ -121,12 +121,12 @@ map('', '+',
 )
 -- }}}
 -- autofill {{{
-map('n', '<leader>af', ':lua AutoFillAll()<CR>',
-		{ silent = true, desc = "Toggle autofill [ { ( ' \"" })
---map('n', '<leader>af', ':lua AutoFill()<CR>',
---		{ silent = true, desc = "Toggle basic autofill" })
---map('n', '<leader>ad', ':lua AutoFillMarkdown()<CR>',
---		{ silent = true, desc = "Toggle markdown autofill" })
---map('n', '<leader>as', ':lua AutoFillSent()<CR>',
---		{ silent = true, desc = "Toggle sent autofill" })
+map('n', '<leader>aa', ':lua AutoFill()<CR>',
+		{ silent = true, desc = "Toggle autofill (all)" })
+map('n', '<leader>af', ':lua AutoFillToggle()<CR>',
+		{ silent = true, desc = "Toggle basic autofill" })
+map('n', '<leader>ad', ':lua AutoFillMarkdownToggle()<CR>',
+		{ silent = true, desc = "Toggle markdown autofill" })
+map('n', '<leader>as', ':lua AutoFillSentToggle()<CR>',
+		{ silent = true, desc = "Toggle sent autofill" })
 -- }}}

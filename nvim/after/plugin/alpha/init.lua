@@ -37,7 +37,8 @@ dashboard.section.buttons.val = {
 	 dashboard.button("c", "  Clear", ":ene <CR>"),
 	 dashboard.button("S", "ﮮ  Packer Sync ", ":PackerSync<CR>"),
 	 dashboard.button("I", "  Packer Install ", ":PackerInstall<CR>"),
-	 dashboard.button("C", "  Packer Compile ", ":PackerCompile profile=true<CR>"),
+	 dashboard.button("C", "  Packer Clean ", ":PackerClean<CR>"),
+	 dashboard.button("B", "  Packer Compile ", ":PackerCompile profile=true<CR>"),
 --	 dashboard.button("q", "  Quit NVIM", ":qa<CR>"),
 --	 dashboard.button("t", "  Terminal ", ":terminal zsh<CR>:setlocal nonu<CR>:norm a<CR>"),
 }

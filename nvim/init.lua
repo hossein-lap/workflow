@@ -1,13 +1,20 @@
-----*** neovim config ***---
+----*** neovim config ***----
+
+require('helper')
 
 -- helper {{{
 local set = vim.opt
 local cmd = vim.cmd
 local g = vim.g
 local go = vim.go
--- }}}
+-- global
+vim.notify = require("notify") -- notification plugin
+go.python3_host_prog = '/bin/python3'
 
-go.python3_host_prog = '/bin/python'
+function Notify(title, body, level, opts)
+	vim.notify(body, level, {title = title, opts})
+end
+-- }}}
 
 -- some options {{{
 set.termguicolors = true
@@ -20,28 +27,29 @@ require('cexecute') ---- compile and execute with built-in term
 require('keybind') ---- set the keybindings and shortcuts
 -- }}}
 -- Plugins {{{
-require('plugins') ---- packer plugin-manager
-require('plugins.lsp') ---- lsp configs
-require('plugins.cmp') ---- Snippet Manager Configs
-require('plugins.colorizer') ---- Colorizer Plugin
-require('plugins.lualine') ---- Lualine [status line]
-require('plugins.nvimtree') ---- NvimTree
-require('plugins.treesitter') ---- Treesitter Settings
-require('plugins.which-key') ---- GitSigns Settings
-require('plugins.gitsigns') ---- Treesitter Settings
-require('plugins.alpha') ---- ToggleTerm Settings
---require('plugins.toggleterm') ---- ToggleTerm Settings
+--require('plugins') ---- packer plugin-manager
+--require('plugins.packer') ---- packer plugin-manager
+--require('plugins.lsp') ---- lsp configs
+--require('plugins.cmp') ---- Snippet Manager Configs
+--require('plugins.colorizer') ---- Colorizer Plugin
+--require('plugins.lualine') ---- Lualine [status line]
+--require('plugins.nvimtree') ---- NvimTree
+--require('plugins.treesitter') ---- Treesitter Settings
+--require('plugins.which-key') ---- GitSigns Settings
+--require('plugins.gitsigns') ---- Treesitter Settings
+--require('plugins.alpha') ---- ToggleTerm Settings
+----require('plugins.toggleterm') ---- ToggleTerm Settings
 -- }}}
 -- colorscheme {{{
 
-require('plugins/schemes/ayu')
---require('plugins/schemes/nightfox')
---require('plugins/schemes/catppuccin')
---require('plugins/schemes/nord')
---require('plugins/schemes/solarized')
---require('plugins/schemes/dracula')
---require('plugins/schemes/tokyodark')
---require('plugins/schemes/tokyonight')
+require('schemes/ayu')
+--require('schemes/tokyodark')
+--require('schemes/nightfox')
+--require('schemes/catppuccin')
+--require('schemes/nord')
+--require('schemes/solarized')
+--require('schemes/dracula')
+--require('schemes/tokyonight')
 
 ---- some favorate colorschemes
 --[[ hybrid_material sunbather dalton tokyodark
@@ -49,6 +57,7 @@ require('plugins/schemes/ayu')
 ]]
 --cmd [[ colorscheme hybrid ]]
 --vim.cmd.colorscheme "hybrid"
+--vim.cmd.colorscheme "256_noir"
 -- }}}
 -- NeoVide {{{
 vim.o.guifont = "Fira Mono:h12"
