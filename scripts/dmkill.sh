@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Variables {{{
-#patched='-c -bw 2'
+patched='-c -bw 2'
 dmenu="dmenu \
 		-i \
 		-l 25 \
@@ -47,6 +47,7 @@ list=$( \
 
 if [ ${list} = 'PID' ] || [ -z ${list} ]; then
 	notify 'Canceled' 1
+	echo 'Canceled'
 	exit 0
 else
 	thesig=$(printf '%s\n' \
@@ -60,6 +61,7 @@ else
 
 	if [ -z "${thesig}" ]; then
 		notify 'Canceled' 1
+		echo 'Canceled'
 		exit 0
 	else
 		kill="kill -s ${thesig}"
@@ -69,6 +71,8 @@ else
 	do
 		${kill} "${i}" \
 			&& notify "Process [${i}] killed (signal ${thesig})" \
-			|| notify "[${i}] Termination failed" 3
+				& echo "Process [${i}] killed (signal ${thesig})" \
+			|| notify "[${i}] Termination failed" 3 \
+				& notify "[${i}] Termination failed"
 	done
 fi
