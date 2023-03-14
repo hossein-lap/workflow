@@ -5,3 +5,4 @@ vim
 *.old
 *~
 \#.*\#
+spell
