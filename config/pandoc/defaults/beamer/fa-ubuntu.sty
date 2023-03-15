@@ -1,269 +1,175 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{main}
-\RequirePackage{titlesec,fontspec,fancyvrb,framed,xcolor,booktabs,ragged2e,ptext}
+\ProvidesPackage{fa-ubuntu}
+\RequirePackage{xcolor,fancyvrb,ragged2e,xstring}
 
 \usepackage{xepersian}
-
-%% Render <200c> for pandoc before 2.19 relase
-\let\textormath=\TextOrMath
-
 \usefonttheme{serif}
 
-%% default fonts:
-\setlatintextfont{Source Serif Pro}
-\setlatinsansfont{Source Sans Pro}
-\setlatinmonofont{Fira Mono}
+%% Render <200c> for pandoc < 2.19 release
+\let\textormath=\TextOrMath
 
-%% add line number to code-blocks
-%\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},numbers=left}
-
-% Madrid {{{
-\usetheme{Madrid}
-\defbeamertemplate*{footline}{shadow theme}
-{%
-  \leavevmode%
-  \hbox{%
-  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
-    \usebeamerfont{author in head/foot}\insertshortauthor
-  \end{beamercolorbox}%
-  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
-    \usebeamerfont{title in head/foot}\insertshorttitle
-  \end{beamercolorbox}%
-  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,leftskip=2ex,rightskip=2ex,sep=0pt]{date in head/foot}%
-    \usebeamerfont{date in head/foot}\hfill\insertshortdate\hfill\inserttotalframenumber\,/\,\insertframenumber
-  \end{beamercolorbox}}%
-  \vskip0pt%
-}
-% }}}
-%% Copenhagen with frame number {{{
-%\usetheme{Copenhagen}
-%\defbeamertemplate*{footline}{shadow theme}
-%{%
-%  \leavevmode%
-%  \hbox{\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm plus1fil,rightskip=.3cm]{author in head/foot}%
-%    \usebeamerfont{author in head/foot}\inserttotalframenumber\,/\,\insertframenumber\hfill\insertshortauthor
-%  \end{beamercolorbox}%
-%  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
-%    \usebeamerfont{title in head/foot}\insertshorttitle%
-%  \end{beamercolorbox}}%
-%  \vskip0pt%
-%}
-%%}}}
-
-\linespread{1.3}
-
-\newcommand\defperfont{Sahel}
-%\newcommand\defperfont{Vazir}
-\settextfont[Scale=1.1]{\defperfont}
-\setdigitfont[Scale=1.1]{\defperfont}
-\defpersianfont\headfont{Sahel Black}
-\defpersianfont\secfont{\defperfont}
-\defpersianfont\qfont{HMFRoya}
-
-% persian fixes {{{
-% Thanks To Dr. Vafa Khalighi For Fixing This
-% http://qa.parsilatex.com/14100/
-% Note Thet: In newer TeXlive (2022+) there are no need for these
-
-%\setbeamertemplate{enumerate items}[circle]
-%%\setbeamertemplate{itemize item}{$\bullet$}
-%\setbeamertemplate{itemize subitem}{\tiny$\blacktriangleleft$}
-%\setbeamertemplate{itemize subsubitem}{$\ast$}
-
-\apptocmd{\frame}{}{\justifying}{} 
-\addtobeamertemplate{block begin}{}{\justifying}
-\addtobeamertemplate{block example begin}{}{\justifying}
-\addtobeamertemplate{block alerted begin}{}{\justifying}
-
-\makeatletter
-%\expandafter\let\csname beamer@@tmpop@itemize item@default\endcsname\relax
-%\expandafter\let\csname beamer@@tmpop@itemize subitem@default\endcsname\relax
-%\expandafter\let\csname beamer@@tmpop@itemize subsubitem@default\endcsname\relax
-%
-%\defbeamertemplate*{itemize item}{default}{\scriptsize\raise1.25pt\hbox{\donotcoloroutermaths$\blacktriangleleft$}}
-%\defbeamertemplate*{itemize subitem}{default}{\tiny\raise1.5pt\hbox{\donotcoloroutermaths$\blacktriangleleft$}}
-%\defbeamertemplate*{itemize subsubitem}{default}{\tiny\raise1.5pt\hbox{\donotcoloroutermaths$\blacktriangleleft$}}
-
-\bidi@patchcmd{\@listi}{\leftmargin}{\rightmargin}{}{}
-\let\@listI\@listi
-\bidi@patchcmd{\@listii}{\leftmargin}{\rightmargin}{}{}
-\bidi@patchcmd{\@listiii}{\leftmargin}{\rightmargin}{}{}
-\bidi@patchcmd{\beamer@enum@}{\raggedright}{\justifying}{}{}
-\bidi@patchcmd{\@@description}{\raggedright}{\justifying}{}{}
-\bidi@patchcmd{\@@description}{\leftmargin}{\rightmargin}{}{}
-
-\renewcommand{\itemize}[1][]{%
-  \beamer@ifempty{#1}{}{\def\beamer@defaultospec{#1}}%
-  \ifnum \@itemdepth >2\relax\@toodeep\else
-	\advance\@itemdepth\@ne
-	\beamer@computepref\@itemdepth% sets \beameritemnestingprefix
-	\usebeamerfont{itemize/enumerate \beameritemnestingprefix body}%
-	\usebeamercolor[fg]{itemize/enumerate \beameritemnestingprefix body}%
-	\usebeamertemplate{itemize/enumerate \beameritemnestingprefix body begin}%
-	\list
-	  {\usebeamertemplate{itemize \beameritemnestingprefix item}}
-	  {\def\makelabel##1{%
-		  {%
-			\hss\llap{{%
-				\usebeamerfont*{itemize \beameritemnestingprefix item}%
-				\usebeamercolor[fg]{itemize \beameritemnestingprefix item}##1}}%
-		  }%
-		}%
-	  }
-  \fi%
-  \beamer@cramped%
- \raggedleft%
-\justifying
-  \beamer@firstlineitemizeunskip%
-}
-\makeatother
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%اصلاح نوار پایین
-%\makeatletter
-%\setbeamertemplate{footline}
-%{
-%\leavevmode%
-%\hbox{%
-%\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{section in head/foot}%
-%\usebeamerfont{author in head/foot}
-%\insertshortauthor
-%\end{beamercolorbox}%
-%\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{section in head/foot}%
-%\usebeamerfont{title in head/foot}\insertshorttitle
-%\end{beamercolorbox}%
-%\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{section in head/foot}%
-%%\usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
-%\insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
-%\end{beamercolorbox}}%
-%\vskip0pt%
-%}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%اصلاح فهرست مطالب
-\makeatletter
-\expandafter\let\csname beamer@@tmpop@section in toc@default\endcsname\relax
-\expandafter\let\csname beamer@@tmpop@subsection in toc@default\endcsname\relax
-\expandafter\let\csname beamer@@tmpop@subsubsection in toc@default\endcsname\relax
-\defbeamertemplate*{section in toc}{default}
-{\leavevmode\rightskip=1.5cm\inserttocsection\par}
-\defbeamertemplate*{subsection in toc}{default}
-{\leavevmode\rightskip=1.5em\inserttocsubsection\par}
-
-\defbeamertemplate*{subsubsection in toc}{default}
-{\leavevmode\normalsize\usebeamerfont{subsection in toc}\rightskip=3em%
-  \usebeamerfont{subsubsection in toc}\inserttocsubsubsection\par}
-\makeatother
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%اصلاح زیرنویس
-\makeatletter
-\bidi@undef\beamer@@tmpop@footnote@default
-
-\defbeamertemplate*{footnote}{default}
-{
-  \parindent 1em\noindent%
-  \raggedleft
-  \hbox to 1.8em{\hfil\insertfootnotemark}\insertfootnotetext\par%
+%% define pandoc code-blocks
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{
+	commandchars=\\\{\},
+%	numbers=left,
 }
 
-\defbeamertemplate*{LTRfootnote}{default}
-{
-  \parindent 1em\noindent%
-  \raggedright
-  \hbox to 1.8em{\hfil\insertfootnotemark}\latinfont\insertfootnotetext\par%
-}
-\footdir@temp\footdir@ORG@bidi@beamer@framefootnotetext\beamer@framefootnotetext{R}
-\let\@footnotetext=\beamer@framefootnotetext
-\let\@RTLfootnotetext\@footnotetext
-
-\def\@makeLTRfntext#1{%
-  \def\insertfootnotetext{#1}%
-  \def\insertfootnotemark{\@makefnmark}%
-  \usebeamertemplate***{LTRfootnote}}
-
-\newcommand<>\beamer@frameLTRfootnotetext[1]{%
-  \global\setbox\beamer@footins\vbox{\@RTLfalse%
-	\hsize\framewidth
-	\textwidth\hsize
-	\columnwidth\hsize
-	\unvbox\beamer@footins
-	\reset@font\footnotesize
-	\@parboxrestore
-	\protected@edef\@currentlabel
-		 {\csname p@footnote\endcsname\@thefnmark}%
-	\color@begingroup
-	  \uncover#2{\@makeLTRfntext{%
-		\rule\z@\footnotesep\ignorespaces#1\@finalstrut\strutbox}}%
-	\color@endgroup}}
-
-
-\footdir@temp\footdir@ORG@bidi@beamer@frameLTRfootnotetext\beamer@frameLTRfootnotetext{L}
-\let\@LTRfootnotetext=\beamer@frameLTRfootnotetext
-
-\makeatother
-
-\setbeamertemplate{title graphic}{\vspace*{.3cm}
-  \inserttitlegraphic%
-  \par%
-\vspace*{-1.3cm}
-}
-\setbeamertemplate{title}{
-  \inserttitle%
-  \par%
-}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\makeatletter
-\def\@xobeysp{\mbox{}\space}
-\def\verbatim@font{\latin\normalfont\ttfamily}
-\makeatother
-
-%\ifdefined\Shaded
-%    \renewenvironment{Shaded}%
-%        {\begin{latin}\begin{snugshade}}%
-%        {\end{snugshade}\end{latin}}
-%\else
-%    \newenvironment{Shaded}%
-%        {\begin{latin}\begin{snugshade}}%
-%        {\end{snugshade}\end{latin}}
-%\fi
-
-% }}}
 % theme {{{
-%\useoutertheme{shadow}
+\usetheme{Copenhagen}
+
+% macro to config beamer-style {{{
+% headline {{{
+% shaded {{{
+\newcommand{\shadedheadlinemacro}{
+	\useoutertheme{shadow}
+	\makeatletter
+	\setbeamertemplate{frametitle}{%
+		\nointerlineskip%
+		\vskip-2pt%
+		\hbox{\leavevmode
+		\advance\beamer@leftmargin by -12bp%
+		\advance\beamer@rightmargin by -12bp%
+		\beamer@tempdim=\textwidth%
+		\advance\beamer@tempdim by \beamer@leftmargin%
+		\advance\beamer@tempdim by \beamer@rightmargin%
+		\hskip-\Gm@lmargin\hbox{%
+			\setbox\beamer@tempbox=\hbox{\begin{minipage}[b]{\paperwidth}%
+				\vbox{}\vskip-.75ex%
+				\vspace{0cm}% <- change here to whatever you want
+				\leftskip0.3cm%
+				\rightskip0.3cm plus0fil\leavevmode
+				\usebeamercolor[fg]{frametitle}\usebeamerfont{frametitle}\strut\insertframetitle\strut\par%
+				\ifx\insertframesubtitle\@empty\else%
+				{\usebeamerfont*{framesubtitle}{\usebeamercolor[fg]{framesubtitle}\insertframesubtitle}\strut\par}%
+				\fi%
+				\nointerlineskip
+				\vspace{2mm}% <- change here to whatever you want
+%						\vbox{}%
+				\end{minipage}}%
+			\beamer@tempdim=\ht\beamer@tempbox%
+			\advance\beamer@tempdim by 1pt%
+			\begin{pgfpicture}{0pt}{0pt}{\paperwidth}{\beamer@tempdim}
+			\usebeamercolor{frametitle right}
+			\pgfpathrectangle{\pgfpointorigin}{\pgfpoint{\paperwidth}{\beamer@tempdim}}
+			\pgfusepath{clip}
+			\pgftext[left,base]{\pgfuseshading{beamer@frametitleshade}}
+			\end{pgfpicture}
+			\hskip-\paperwidth%
+			\box\beamer@tempbox%
+		}%
+		\hskip-\Gm@rmargin%
+	}%
+%		\nointerlineskip
+%			\vskip-.2pt
+%			\hbox to\textwidth{\hskip-\Gm@lmargin\pgfuseshading{beamer@topshade}\hskip-\Gm@rmargin}
+%			\vskip-.2pt
+	}
+	\makeatother
+	}
+% }}} 
+% not shaded {{{
+\newcommand{\plainheadlinemacro}{
+	\useoutertheme{split}
+	\setbeamertemplate{frametitle}{%
+		\nointerlineskip%
+		\begin{beamercolorbox}[wd=\paperwidth,ht=2.6ex,dp=1.6ex]{frametitle}
+			\hspace*{1ex}\insertframetitle%
+		\end{beamercolorbox}%
+	}
+}
+% }}} 
+% }}}
+% footline {{{
+% three row {{{
+\newcommand{\threerowedfootlinemacro}{
+	\defbeamertemplate*{footline}{shadow theme}
+	{%
+		\leavevmode%
+		\hbox{%
+		\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+			\usebeamerfont{author in head/foot}\insertshortauthor
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+			\usebeamerfont{title in head/foot}\insertshorttitle
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,leftskip=2.25ex,rightskip=2ex,sep=0pt]{date in head/foot}%
+			\usebeamerfont{date in head/foot}\hfill\insertshortdate\hfill\inserttotalframenumber\,/\,\insertframenumber
+		\end{beamercolorbox}}%
+		\vskip0pt%
+	}
+}
+% }}}
+% two row {{{
+\newcommand{\tworowedfootlinemacro}{
+	\defbeamertemplate*{footline}{shadow theme}
+	{%
+		\leavevmode%
+		\hbox{\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm plus1fil,rightskip=.3cm]{author in head/foot}%
+			\usebeamerfont{author in head/foot}\inserttotalframenumber\,/\,\insertframenumber\hfill\insertshortauthor
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+			\usebeamerfont{title in head/foot}\insertshorttitle%
+		\end{beamercolorbox}}%
+		\vskip0pt%
+	}
+}
+% }}}
+% }}}
+
+% argument parsing
+\makeatletter
+\define@key{mykeys}{shade}{\def\isshaded{#1}}
+\define@key{mykeys}{three}{\def\isthree{#1}}
+
+% \themeconfig{} macro
+\newcommand{\themeconfig}[1]{%
+	\setkeys{mykeys}{#1}%
+
+	\IfStrEq{\isshaded}{yes}%
+		{\shadedheadlinemacro}{\plainheadlinemacro}
+
+	\IfStrEq{\isthree}{yes}%
+		{\threerowedfootlinemacro}{\tworowedfootlinemacro}
+}
+\makeatother
+% }}}
+
+% set theme style (using the above macro)
+\themeconfig{shade=yes, three=yes}
 
 % colors {{{
-\definecolor{color_main}			{HTML}{ffb86c} % #ffb86c
+\definecolor{color_main}	{HTML}{ffb86c} % #ffb86c
 
-\definecolor{color_text}			{HTML}{010101} % #010101
+\definecolor{color_text}	{HTML}{010101} % #010101
 \definecolor{color_frametitle_bg}	{HTML}{E95420} % #E95420
 \definecolor{color_frametitle_fg}	{HTML}{010101} % #010101
 
 \definecolor{color_but_right_bg}	{HTML}{2C001E} % #2C001E
 \definecolor{color_but_right_fg}	{HTML}{ffffff} % #ffffff
-\definecolor{color_but_mid_bg}		{HTML}{77216F} % #77216F
-\definecolor{color_but_mid_fg}		{HTML}{ffffff} % #ffffff
-\definecolor{color_but_left_bg}		{HTML}{E95420} % #E95420
-\definecolor{color_but_left_fg}		{HTML}{ffffff} % #ffffff
+\definecolor{color_but_mid_bg}	{HTML}{77216F} % #77216F
+\definecolor{color_but_mid_fg}	{HTML}{ffffff} % #ffffff
+\definecolor{color_but_left_bg}	{HTML}{E95420} % #E95420
+\definecolor{color_but_left_fg}	{HTML}{ffffff} % #ffffff
 
 %\definecolor{color_but_right_bg}	{HTML}{E95420} % #E95420
 %\definecolor{color_but_right_fg}	{HTML}{ffffff} % #ffffff
-%\definecolor{color_but_mid_bg}		{HTML}{77216F} % #77216F
-%\definecolor{color_but_mid_fg}		{HTML}{ffffff} % #ffffff
-%\definecolor{color_but_left_bg}		{HTML}{2C001E} % #2C001E
-%\definecolor{color_but_left_fg}		{HTML}{ffffff} % #ffffff
+%\definecolor{color_but_mid_bg}	{HTML}{77216F} % #77216F
+%\definecolor{color_but_mid_fg}	{HTML}{ffffff} % #ffffff
+%\definecolor{color_but_left_bg}	{HTML}{2C001E} % #2C001E
+%\definecolor{color_but_left_fg}	{HTML}{ffffff} % #ffffff
 
-\definecolor{color_gradient}		{HTML}{2d0922} % #2d0922
+\definecolor{color_gradient}	{HTML}{2d0922} % #2d0922
 
-\definecolor{color_block_body_fg}		{HTML}{010101} % #010101
-\definecolor{color_blocks_title_fg}		{HTML}{ffffff} % #ffffff
-\definecolor{color_block_def_bg}		{HTML}{EEEDEB} % #EEEDEB
+\definecolor{color_block_body_fg}	{HTML}{010101} % #010101
+\definecolor{color_blocks_title_fg}	{HTML}{ffffff} % #ffffff
+\definecolor{color_block_def_bg}	{HTML}{EEEDEB} % #EEEDEB
 \definecolor{color_block_def_title_bg}	{HTML}{772953} % #772953
 \definecolor{color_example_title_bg}	{HTML}{3465a4} % #3465a4
-\definecolor{color_alert_title_bg}		{HTML}{cc0000} % #cc0000
+\definecolor{color_alert_title_bg}	{HTML}{cc0000} % #cc0000
 
-\definecolor{color_item_fg}			{HTML}{ffffff} % #ffffff
-\definecolor{color_items_1}			{HTML}{772953} % #772953
-\definecolor{color_items_2}			{HTML}{000000} % #000000
+\definecolor{color_item_fg}	{HTML}{ffffff} % #ffffff
+\definecolor{color_items_1}	{HTML}{772953} % #772953
+\definecolor{color_items_2}	{HTML}{000000} % #000000
 %\definecolor{blockdeffg}{HTML}{} % #
 
 \definecolor{shadecolor}{HTML}{F1E6EE}
@@ -366,10 +272,9 @@
 	\setbeamerfont{block title}{series=\bfseries}
 % }}}
 % background {{{
-	\setbeamertemplate{background} 
-	{
+	\setbeamertemplate{background canvas}{%
+		\includegraphics[width=\paperwidth,height=\paperheight]{/home/hos/.config/pandoc/background/Beautiful-Minimalist-Presentation.jpg}%
 %		\includegraphics[height=\paperheight]{~/pic/ubuntu/ubuntu-18.04-default-wallpaper-2.jpg}
-		\includegraphics[width=\paperwidth,height=\paperheight]{/home/hos/.config/pandoc/background/Beautiful-Minimalist-Presentation.jpg}
 %		\includegraphics[width=\paperwidth,height=\paperheight]{/home/hos/.config/pandoc/background/238367-best-gradient-background-tumblr-1920x1080.jpg}
 %		\includegraphics[width=\paperwidth,height=\paperheight]{/home/hos/.config/pandoc/background/Pastel-Presentation-Gradient-Background.jpg}
 %		\includegraphics[width=\paperwidth,height=\paperheight]{/home/hos/.config/pandoc/background/manjaro-default-adapta-lockscreen.jpg}
@@ -379,3 +284,174 @@
 % }}}
 % }}}
 
+% default fonts {{{
+	%% latin
+	\setlatintextfont{Source Serif Pro}
+	\setlatinsansfont{Source Sans Pro}
+	\setlatinmonofont{Fira Mono}
+
+	%% persian
+	\newcommand\defperfont{Sahel}
+	%\newcommand\defperfont{Vazir}
+	\settextfont[Scale=1.1]{\defperfont}
+	\setdigitfont[Scale=1.1]{\defperfont}
+	\defpersianfont\headfont{Sahel Black}
+	\defpersianfont\qfont{HMFRoya}
+% }}}
+
+\linespread{1.5}
+
+% persian fixes {{{
+% Thanks To Dr. Vafa Khalighi For Fixing This
+% http://qa.parsilatex.com/14100/
+% Note Thet: In newer TeXlive (2022+) there are no need for these
+
+\setbeamertemplate{enumerate items}[circle]
+%\setbeamertemplate{itemize item}{$\bullet$}
+\setbeamertemplate{itemize subitem}{\tiny$\blacktriangleleft$}
+\setbeamertemplate{itemize subsubitem}{$\ast$}
+
+\apptocmd{\frame}{}{\justifying}{} 
+\addtobeamertemplate{block begin}{}{\justifying}
+\addtobeamertemplate{block example begin}{}{\justifying}
+\addtobeamertemplate{block alerted begin}{}{\justifying}
+
+\makeatletter
+%\expandafter\let\csname beamer@@tmpop@itemize item@default\endcsname\relax
+%\expandafter\let\csname beamer@@tmpop@itemize subitem@default\endcsname\relax
+%\expandafter\let\csname beamer@@tmpop@itemize subsubitem@default\endcsname\relax
+%
+%\defbeamertemplate*{itemize item}{default}{\scriptsize\raise1.25pt\hbox{\donotcoloroutermaths$\blacktriangleleft$}}
+%\defbeamertemplate*{itemize subitem}{default}{\tiny\raise1.5pt\hbox{\donotcoloroutermaths$\blacktriangleleft$}}
+%\defbeamertemplate*{itemize subsubitem}{default}{\tiny\raise1.5pt\hbox{\donotcoloroutermaths$\blacktriangleleft$}}
+
+\bidi@patchcmd{\@listi}{\leftmargin}{\rightmargin}{}{}
+\let\@listI\@listi
+\bidi@patchcmd{\@listii}{\leftmargin}{\rightmargin}{}{}
+\bidi@patchcmd{\@listiii}{\leftmargin}{\rightmargin}{}{}
+\bidi@patchcmd{\beamer@enum@}{\raggedright}{\justifying}{}{}
+\bidi@patchcmd{\@@description}{\raggedright}{\justifying}{}{}
+\bidi@patchcmd{\@@description}{\leftmargin}{\rightmargin}{}{}
+
+\renewcommand{\itemize}[1][]{%
+  \beamer@ifempty{#1}{}{\def\beamer@defaultospec{#1}}%
+  \ifnum \@itemdepth >2\relax\@toodeep\else
+	\advance\@itemdepth\@ne
+	\beamer@computepref\@itemdepth% sets \beameritemnestingprefix
+	\usebeamerfont{itemize/enumerate \beameritemnestingprefix body}%
+	\usebeamercolor[fg]{itemize/enumerate \beameritemnestingprefix body}%
+	\usebeamertemplate{itemize/enumerate \beameritemnestingprefix body begin}%
+	\list
+	  {\usebeamertemplate{itemize \beameritemnestingprefix item}}
+	  {\def\makelabel##1{%
+		  {%
+			\hss\llap{{%
+				\usebeamerfont*{itemize \beameritemnestingprefix item}%
+				\usebeamercolor[fg]{itemize \beameritemnestingprefix item}##1}}%
+		  }%
+		}%
+	  }
+  \fi%
+  \beamer@cramped%
+ \raggedleft%
+\justifying
+  \beamer@firstlineitemizeunskip%
+}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% اصلاح نوار پایین {{{
+%\makeatletter
+%\setbeamertemplate{footline}
+%{
+%\leavevmode%
+%\hbox{%
+%\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{section in head/foot}%
+%\usebeamerfont{author in head/foot}
+%\insertshortauthor
+%\end{beamercolorbox}%
+%\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{section in head/foot}%
+%\usebeamerfont{title in head/foot}\insertshorttitle
+%\end{beamercolorbox}%
+%\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{section in head/foot}%
+%%\usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+%\insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+%\end{beamercolorbox}}%
+%\vskip0pt%
+%}
+% }}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% اصلاح فهرست مطالب
+\makeatletter
+\expandafter\let\csname beamer@@tmpop@section in toc@default\endcsname\relax
+\expandafter\let\csname beamer@@tmpop@subsection in toc@default\endcsname\relax
+\expandafter\let\csname beamer@@tmpop@subsubsection in toc@default\endcsname\relax
+\defbeamertemplate*{section in toc}{default}
+{\leavevmode\rightskip=1.5cm\inserttocsection\par}
+\defbeamertemplate*{subsection in toc}{default}
+{\leavevmode\rightskip=1.5em\inserttocsubsection\par}
+
+\defbeamertemplate*{subsubsection in toc}{default}
+{\leavevmode\normalsize\usebeamerfont{subsection in toc}\rightskip=3em%
+  \usebeamerfont{subsubsection in toc}\inserttocsubsubsection\par}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%اصلاح زیرنویس
+\makeatletter
+\bidi@undef\beamer@@tmpop@footnote@default
+
+\defbeamertemplate*{footnote}{default}
+{
+  \parindent 1em\noindent%
+  \raggedleft
+  \hbox to 1.8em{\hfil\insertfootnotemark}\insertfootnotetext\par%
+}
+
+\defbeamertemplate*{LTRfootnote}{default}
+{
+  \parindent 1em\noindent%
+  \raggedright
+  \hbox to 1.8em{\hfil\insertfootnotemark}\latinfont\insertfootnotetext\par%
+}
+\footdir@temp\footdir@ORG@bidi@beamer@framefootnotetext\beamer@framefootnotetext{R}
+\let\@footnotetext=\beamer@framefootnotetext
+\let\@RTLfootnotetext\@footnotetext
+
+\def\@makeLTRfntext#1{%
+  \def\insertfootnotetext{#1}%
+  \def\insertfootnotemark{\@makefnmark}%
+  \usebeamertemplate***{LTRfootnote}}
+
+\newcommand<>\beamer@frameLTRfootnotetext[1]{%
+  \global\setbox\beamer@footins\vbox{\@RTLfalse%
+	\hsize\framewidth
+	\textwidth\hsize
+	\columnwidth\hsize
+	\unvbox\beamer@footins
+	\reset@font\footnotesize
+	\@parboxrestore
+	\protected@edef\@currentlabel
+		 {\csname p@footnote\endcsname\@thefnmark}%
+	\color@begingroup
+	  \uncover#2{\@makeLTRfntext{%
+		\rule\z@\footnotesep\ignorespaces#1\@finalstrut\strutbox}}%
+	\color@endgroup}}
+
+
+\footdir@temp\footdir@ORG@bidi@beamer@frameLTRfootnotetext\beamer@frameLTRfootnotetext{L}
+\let\@LTRfootnotetext=\beamer@frameLTRfootnotetext
+
+\makeatother
+
+\setbeamertemplate{title graphic}{\vspace*{.3cm}
+  \inserttitlegraphic%
+  \par%
+\vspace*{-1.3cm}
+}
+\setbeamertemplate{title}{
+  \inserttitle%
+  \par%
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% }}}

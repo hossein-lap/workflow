@@ -1,11 +1,10 @@
 metadata:
     keywords:
-        - 'Persian beamer config'
-
+        - 'Persian light (ubuntu) beamer theme '
 pdf-engine: xelatex
 highlight-style: /home/hos/.config/pandoc/highlight/solarized-light-beamer.theme
-
 variables:
+    aspectratio: 169
     background-image: /home/hos/.config/pandoc/background/Beautiful-Minimalist-Presentation.jpg
     header-includes:
         - \usepackage{/home/hos/.config/pandoc/defaults/beamer/fa-ubuntu}

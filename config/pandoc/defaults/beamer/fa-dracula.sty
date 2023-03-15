@@ -1,66 +1,155 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{dark}
-\RequirePackage{titlesec,fontspec,fancyvrb,framed,xcolor,booktabs,ragged2e,ptext}
+\ProvidesPackage{fa-dracula}
+\RequirePackage{xcolor,fancyvrb,ragged2e,xstring}
 
 \usepackage{xepersian}
-
-%% Render <200c> for pandoc before 2.19 relase
-\let\textormath=\TextOrMath
-
 \usefonttheme{serif}
 
-%% add line number to code-blocks
-%\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},numbers=left}
+%% Render <200c> for pandoc < 2.19 release
+\let\textormath=\TextOrMath
 
-% Madrid {{{
-\usetheme{Madrid}
-\defbeamertemplate*{footline}{shadow theme}
-{%
-  \leavevmode%
-  \hbox{%
-  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
-    \usebeamerfont{author in head/foot}\insertshortauthor
-  \end{beamercolorbox}%
-  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
-    \usebeamerfont{title in head/foot}\insertshorttitle
-  \end{beamercolorbox}%
-  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,leftskip=2ex,rightskip=2ex,sep=0pt]{date in head/foot}%
-    \usebeamerfont{date in head/foot}\hfill\insertshortdate\hfill\inserttotalframenumber\,/\,\insertframenumber
-  \end{beamercolorbox}}%
-  \vskip0pt%
+%% define pandoc code-blocks
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{
+	commandchars=\\\{\},
+%	numbers=left,
 }
-% }}}
-%% Copenhagen with frame number {{{
-%\usetheme{Copenhagen}
-%\defbeamertemplate*{footline}{shadow theme}
-%{%
-%  \leavevmode%
-%  \hbox{\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm plus1fil,rightskip=.3cm]{author in head/foot}%
-%    \usebeamerfont{author in head/foot}\inserttotalframenumber\,/\,\insertframenumber\hfill\insertshortauthor
-%  \end{beamercolorbox}%
-%  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
-%    \usebeamerfont{title in head/foot}\insertshorttitle%
-%  \end{beamercolorbox}}%
-%  \vskip0pt%
-%}
-%%}}}
 
 % theme {{{
-%\useoutertheme{shadow}
+\usetheme{Copenhagen}
 
-% colors {{{
-\definecolor{color_main}			{HTML}{ffb86c} % #ffb86c
+% macro to config beamer-style {{{
+% headline {{{
+% shaded {{{
+\newcommand{\shadedheadlinemacro}{
+	\useoutertheme{shadow}
+	\makeatletter
+	\setbeamertemplate{frametitle}{%
+		\nointerlineskip%
+		\vskip-2pt%
+		\hbox{\leavevmode
+		\advance\beamer@leftmargin by -12bp%
+		\advance\beamer@rightmargin by -12bp%
+		\beamer@tempdim=\textwidth%
+		\advance\beamer@tempdim by \beamer@leftmargin%
+		\advance\beamer@tempdim by \beamer@rightmargin%
+		\hskip-\Gm@lmargin\hbox{%
+			\setbox\beamer@tempbox=\hbox{\begin{minipage}[b]{\paperwidth}%
+				\vbox{}\vskip-.75ex%
+				\vspace{0cm}% <- change here to whatever you want
+				\leftskip0.3cm%
+				\rightskip0.3cm plus0fil\leavevmode
+				\usebeamercolor[fg]{frametitle}\usebeamerfont{frametitle}\strut\insertframetitle\strut\par%
+				\ifx\insertframesubtitle\@empty\else%
+				{\usebeamerfont*{framesubtitle}{\usebeamercolor[fg]{framesubtitle}\insertframesubtitle}\strut\par}%
+				\fi%
+				\nointerlineskip
+				\vspace{2mm}% <- change here to whatever you want
+%						\vbox{}%
+				\end{minipage}}%
+			\beamer@tempdim=\ht\beamer@tempbox%
+			\advance\beamer@tempdim by 1pt%
+			\begin{pgfpicture}{0pt}{0pt}{\paperwidth}{\beamer@tempdim}
+			\usebeamercolor{frametitle right}
+			\pgfpathrectangle{\pgfpointorigin}{\pgfpoint{\paperwidth}{\beamer@tempdim}}
+			\pgfusepath{clip}
+			\pgftext[left,base]{\pgfuseshading{beamer@frametitleshade}}
+			\end{pgfpicture}
+			\hskip-\paperwidth%
+			\box\beamer@tempbox%
+		}%
+		\hskip-\Gm@rmargin%
+	}%
+%		\nointerlineskip
+%			\vskip-.2pt
+%			\hbox to\textwidth{\hskip-\Gm@lmargin\pgfuseshading{beamer@topshade}\hskip-\Gm@rmargin}
+%			\vskip-.2pt
+	}
+	\makeatother
+	}
+% }}} 
+% not shaded {{{
+\newcommand{\plainheadlinemacro}{
+	\useoutertheme{split}
+	\setbeamertemplate{frametitle}{%
+		\nointerlineskip%
+		\begin{beamercolorbox}[wd=\paperwidth,ht=2.6ex,dp=1.6ex]{frametitle}
+			\hspace*{1ex}\insertframetitle%
+		\end{beamercolorbox}%
+	}
+}
+% }}} 
+% }}}
+% footline {{{
+% three row {{{
+\newcommand{\threerowedfootlinemacro}{
+	\defbeamertemplate*{footline}{shadow theme}
+	{%
+		\leavevmode%
+		\hbox{%
+		\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+			\usebeamerfont{author in head/foot}\insertshortauthor
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+			\usebeamerfont{title in head/foot}\insertshorttitle
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,leftskip=2.25ex,rightskip=2ex,sep=0pt]{date in head/foot}%
+			\usebeamerfont{date in head/foot}\hfill\insertshortdate\hfill\inserttotalframenumber\,/\,\insertframenumber
+		\end{beamercolorbox}}%
+		\vskip0pt%
+	}
+}
+% }}}
+% two row {{{
+\newcommand{\tworowedfootlinemacro}{
+	\defbeamertemplate*{footline}{shadow theme}
+	{%
+		\leavevmode%
+		\hbox{\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm plus1fil,rightskip=.3cm]{author in head/foot}%
+			\usebeamerfont{author in head/foot}\inserttotalframenumber\,/\,\insertframenumber\hfill\insertshortauthor
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+			\usebeamerfont{title in head/foot}\insertshorttitle%
+		\end{beamercolorbox}}%
+		\vskip0pt%
+	}
+}
+% }}}
+% }}}
 
-\definecolor{color_text}			{HTML}{f1fa8c} % #f1fa8c
+% argument parsing
+\makeatletter
+\define@key{mykeys}{shade}{\def\isshaded{#1}}
+\define@key{mykeys}{three}{\def\isthree{#1}}
+
+% \themeconfig{} macro
+\newcommand{\themeconfig}[1]{%
+	\setkeys{mykeys}{#1}%
+
+	\IfStrEq{\isshaded}{yes}%
+		{\shadedheadlinemacro}{\plainheadlinemacro}
+
+	\IfStrEq{\isthree}{yes}%
+		{\threerowedfootlinemacro}{\tworowedfootlinemacro}
+}
+\makeatother
+% }}}
+
+% set theme style (using the above macro)
+\themeconfig{shade=yes, three=yes}
+
+% define colors {{{
+\definecolor{color_main}	{HTML}{ffb86c} % #ffb86c
+
+\definecolor{color_text}	{HTML}{f1fa8c} % #f1fa8c
 \definecolor{color_frametitle_bg}	{HTML}{3b4048} % #3b4048
 \definecolor{color_frametitle_fg}	{HTML}{ffffff} % #ffffff
-\definecolor{color_but_left_bg}		{HTML}{3b4048} % #3b4048
-\definecolor{color_but_left_fg}		{HTML}{ffffff} % #ffffff
-\definecolor{color_but_mid_bg}		{HTML}{1e1f29} % #1e1f29
-\definecolor{color_but_mid_fg}		{HTML}{ffffff} % #ffffff
+\definecolor{color_but_left_bg}	{HTML}{3b4048} % #3b4048
+\definecolor{color_but_left_fg}	{HTML}{ffffff} % #ffffff
+\definecolor{color_but_mid_bg}	{HTML}{1e1f29} % #1e1f29
+\definecolor{color_but_mid_fg}	{HTML}{ffffff} % #ffffff
 \definecolor{color_but_right_bg}	{HTML}{000000} % #000000
 \definecolor{color_but_right_fg}	{HTML}{ffffff} % #ffffff
-\definecolor{color_gradient}		{HTML}{000000} % #000000
+\definecolor{color_gradient}	{HTML}{000000} % #000000
 
 \definecolor{color_blocks_body_fg}	{HTML}{dddddd} % #dddddd
 \definecolor{color_blocks_body_bg}	{HTML}{3E4452} % #3E4452
@@ -71,9 +160,9 @@
 \definecolor{color_block_alrt_abg}	{HTML}{ff5555} % #ff5555
 \definecolor{color_block_alrt_bg}	{HTML}{3E4452} % #3E4452
 
-\definecolor{color_items_1}			{HTML}{ff79c6} % #ff79c6
-\definecolor{color_items_2}			{HTML}{50fa7b} % #50fa7b
-%\definecolor{blockdeffg}{HTML}{} % #
+\definecolor{color_items_1}	{HTML}{ff79c6} % #ff79c6
+\definecolor{color_items_2}	{HTML}{50fa7b} % #50fa7b
+%\definecolor{blockdeffg}	{HTML}{} % #
 % }}}
 % configuration {{{
 \usecolortheme[named=color_main]{structure}
@@ -91,7 +180,7 @@
 	\setbeamertemplate{itemize subsubitem}%
 		{\color{color_items_1}$\bullet$}
 % }}}
-% colors {{{
+% set colors {{{
 	%% mains
 	\setbeamercolor*{title page}{%
 		fg=color_frametitle_fg,
@@ -173,40 +262,41 @@
 	\setbeamerfont{block title}{series=\bfseries}
 % }}}
 % background {{{
-	\setbeamertemplate{background} 
-	{
+	\setbeamertemplate{background canvas}{%
+		\includegraphics[width=\paperwidth,height=\paperheight]{/home/hos/.config/pandoc/background/luxury-dark-black-gradient-background-business-elegant-presentation-banner-vector.jpg}%
 %		\includegraphics[height=\paperheight]{~/pic/ubuntu/ubuntu-18.04-default-wallpaper-2.jpg}
-		\includegraphics[width=\paperwidth,height=\paperheight]{/home/hos/.config/pandoc/background/luxury-dark-black-gradient-background-business-elegant-presentation-banner-vector.jpg}
 %		\includegraphics[height=\paperheight]{ubuntu-g.jpg}
 	}
 % }}}
 % }}}
 % }}}
 
-% default fonts:
-\setlatintextfont{Source Serif Pro}
-\setlatinsansfont{Source Sans Pro}
-\setlatinmonofont{Fira Mono}
+% default fonts {{{
+	%% latin
+	\setlatintextfont{Source Serif Pro}
+	\setlatinsansfont{Source Sans Pro}
+	\setlatinmonofont{Fira Mono}
+
+	%% persian
+	\newcommand\defperfont{Sahel}
+	%\newcommand\defperfont{Vazir}
+	\settextfont[Scale=1.1]{\defperfont}
+	\setdigitfont[Scale=1.1]{\defperfont}
+	\defpersianfont\headfont{Sahel Black}
+	\defpersianfont\qfont{HMFRoya}
+% }}}
 
 \linespread{1.5}
-
-\newcommand\defperfont{Sahel}
-%\newcommand\defperfont{Vazir}
-\settextfont[Scale=1.1]{\defperfont}
-\setdigitfont[Scale=1.1]{\defperfont}
-\defpersianfont\headfont{Sahel Black}
-\defpersianfont\secfont{\defperfont}
-\defpersianfont\qfont{HMFRoya}
 
 % persian fixes {{{
 % Thanks To Dr. Vafa Khalighi For Fixing This
 % http://qa.parsilatex.com/14100/
 % Note Thet: In newer TeXlive (2022+) there are no need for these
 
-%\setbeamertemplate{enumerate items}[circle]
-%%\setbeamertemplate{itemize item}{$\bullet$}
-%\setbeamertemplate{itemize subitem}{\tiny$\blacktriangleleft$}
-%\setbeamertemplate{itemize subsubitem}{$\ast$}
+\setbeamertemplate{enumerate items}[circle]
+%\setbeamertemplate{itemize item}{$\bullet$}
+\setbeamertemplate{itemize subitem}{\tiny$\blacktriangleleft$}
+\setbeamertemplate{itemize subsubitem}{$\ast$}
 
 \apptocmd{\frame}{}{\justifying}{} 
 \addtobeamertemplate{block begin}{}{\justifying}
@@ -256,7 +346,7 @@
 }
 \makeatother
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%اصلاح نوار پایین
+%% اصلاح نوار پایین {{{
 %\makeatletter
 %\setbeamertemplate{footline}
 %{
@@ -275,8 +365,9 @@
 %\end{beamercolorbox}}%
 %\vskip0pt%
 %}
+% }}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%اصلاح فهرست مطالب
+% اصلاح فهرست مطالب
 \makeatletter
 \expandafter\let\csname beamer@@tmpop@section in toc@default\endcsname\relax
 \expandafter\let\csname beamer@@tmpop@subsection in toc@default\endcsname\relax
@@ -349,20 +440,5 @@
   \par%
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%\makeatletter
-%\def\@xobeysp{\mbox{}\space}
-%\def\verbatim@font{\latin\normalfont\ttfamily}
-%\makeatother
-
-%\ifdefined\Shaded
-%    \renewenvironment{Shaded}%
-%        {\begin{latin}\begin{snugshade}}%
-%        {\end{snugshade}\end{latin}}
-%\else
-%    \newenvironment{Shaded}%
-%        {\begin{latin}\begin{snugshade}}%
-%        {\end{snugshade}\end{latin}}
-%\fi
 
 % }}}

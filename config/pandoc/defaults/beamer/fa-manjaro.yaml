@@ -1,14 +1,14 @@
 metadata:
     keywords:
-        - 'Theme for beamer'
+        - 'Persian dark (manjaro) beamer theme '
 pdf-engine: xelatex
 highlight-style: /home/hos/.config/pandoc/highlight/solarized-dark-beamer.theme
-
 variables:
+    aspectratio: 169
     background-image: /home/hos/.config/pandoc/background/manjaro-default-adapta-lockscreen.jpg
     header-includes:
         - \usepackage{/home/hos/.config/pandoc/defaults/beamer/fa-manjaro}
 filters:
     - /home/hos/.config/pandoc/filters/fa-date.lua
     - /home/hos/.config/pandoc/filters/tex-beamer-codeblock-fa.lua
-    - /home/hos/.config/pandoc/filters/tex-quoteblock-fa.lua
+#    - /home/hos/.config/pandoc/filters/tex-quoteblock-fa.lua

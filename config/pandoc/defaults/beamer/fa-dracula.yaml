@@ -1,10 +1,10 @@
 metadata:
     keywords:
-        - 'Theme for beamer'
+        - 'Persian dark (dracula) beamer theme '
 pdf-engine: xelatex
 highlight-style: /home/hos/.config/pandoc/highlight/dracula-beamer.theme
-
 variables:
+    aspectratio: 169
     background-image: /home/hos/.config/pandoc/background/luxury-dark-black-gradient-background-business-elegant-presentation-banner-vector
     header-includes:
         - \usepackage{/home/hos/.config/pandoc/defaults/beamer/fa-dracula}
