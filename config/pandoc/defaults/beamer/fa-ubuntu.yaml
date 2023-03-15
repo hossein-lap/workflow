@@ -1,6 +1,7 @@
 metadata:
     keywords:
         - 'Persian light (ubuntu) beamer theme '
+    documentclass: beamer
 pdf-engine: xelatex
 highlight-style: /home/hos/.config/pandoc/highlight/solarized-light-beamer.theme
 variables:
@@ -9,5 +10,5 @@ variables:
     header-includes:
         - \usepackage{/home/hos/.config/pandoc/defaults/beamer/fa-ubuntu}
 filters:
-    - /home/hos/.config/pandoc/filters/fa-date.lua
+    - /home/hos/.config/pandoc/filters/fa-today.lua
     - /home/hos/.config/pandoc/filters/tex-beamer-codeblock-fa.lua

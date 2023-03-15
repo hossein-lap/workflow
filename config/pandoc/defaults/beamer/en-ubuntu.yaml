@@ -1,13 +1,14 @@
 metadata:
     keywords:
-        - 'Theme for beamer'
+        - 'English light (ubuntu) theme for beamer'
+    documentclass: beamer
 pdf-engine: xelatex
 highlight-style: /home/hos/.config/pandoc/highlight/solarized-light-beamer.theme
-
 variables:
+    aspectratio: 169
     background-image: /home/hos/.config/pandoc/background/Beautiful-Minimalist-Presentation.jpg
     header-includes:
         - \usepackage{/home/hos/.config/pandoc/defaults/beamer/main}
         - \usepackage{/home/hos/.config/pandoc/defaults/beamer/en-ubuntu}
 filters:
-    - /home/hos/.config/pandoc/filters/en-date.lua
+    - /home/hos/.config/pandoc/filters/en-today.lua

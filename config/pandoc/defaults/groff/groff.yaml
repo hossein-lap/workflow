@@ -50,6 +50,6 @@ variables:
 #        - '.char \[u2610] \s[+3]\[sq]\s[0]'
 #        - '.char \[u2612] \[OK]'
 filters:
-    - /home/hos/.config/pandoc/filters/en-date.lua
+    - /home/hos/.config/pandoc/filters/en-today.lua
     - /home/hos/.config/pandoc/filters/ms-image.lua
 #    - /home/hos/.config/pandoc/filters/ms-codeblock.lua

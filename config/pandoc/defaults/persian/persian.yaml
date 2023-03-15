@@ -22,7 +22,7 @@ variables:
 #    - \pagecolor{draculabg}
 #    - \color{draculafg}
 filters:
-    - /home/hos/.config/pandoc/filters/fa-date.lua
+    - /home/hos/.config/pandoc/filters/fa-today.lua
     - /home/hos/.config/pandoc/filters/tex-codeblock-fa.lua
     - /home/hos/.config/pandoc/filters/tex-quoteblock-fa.lua
 #    - /home/hos/.config/pandoc/filters/tex-definition_list-en.lua

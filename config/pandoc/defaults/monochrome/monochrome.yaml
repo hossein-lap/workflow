@@ -16,7 +16,7 @@ variables:
   header-includes:
     - \usepackage{/home/hos/.config/pandoc/defaults/monochrome/main}
 filters:
-    - /home/hos/.config/pandoc/filters/en-date.lua
+    - /home/hos/.config/pandoc/filters/en-today.lua
     - /home/hos/.config/pandoc/filters/tex-codeblock-mc.lua
     - /home/hos/.config/pandoc/filters/tex-quoteblock-en.lua
     - /home/hos/.config/pandoc/filters/tex-definition_list-en.lua
