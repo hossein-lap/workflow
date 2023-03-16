@@ -1,9 +1,4 @@
 #!/bin/lua5.4
---  _  _
--- | || | github: hossein-lap
--- | __ | email:  hosteam01@gmail.com
--- |_||_| matrix: hosaidenpwd:matrix.org
---
 
 -- help function
 function help()
