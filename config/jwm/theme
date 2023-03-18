@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<JWM>
+    <!-- Visual Styles -->
+    <!-- http://joewing.net/projects/jwm/config-2.3.html#window  -->
+    <WindowStyle decorations="flat">
+      <Font align="left">Vazir-15:bold</Font>
+      <Width>5</Width>
+      <Height>32</Height>
+      <Corner>5</Corner>
+      <Foreground>#FFFFFF</Foreground>
+      <Background>#44475A</Background>
+      <Outline>#000000</Outline>
+      <Opacity>1</Opacity>
+      <Active>
+        <Foreground>#FFFFFF</Foreground>
+        <Background>#282a36</Background>
+        <Outline>#000000</Outline>
+        <Opacity>1</Opacity>
+      </Active>
+    </WindowStyle>
+
+    <ClockStyle>
+      <Font>Vazir-15</Font>
+      <Background>#1e1f29</Background>
+      <Foreground>#FFFFFF</Foreground>
+    </ClockStyle>
+
+    <TrayStyle group="true" list="all" decorations="flat">
+      <Font>Vazir-15</Font>
+      <Foreground>#FFFFFF</Foreground>
+      <Background>#1e1f29</Background>
+      <Outline>#000000</Outline>
+      <Active>
+        <Foreground>#FFFFFF</Foreground>
+        <Background>#282a36</Background>
+        <Outline>#ff0000</Outline>
+      </Active>
+      <Opacity>1</Opacity>
+    </TrayStyle>
+
+    <TaskListStyle decorations="flat">
+      <Font>Vazir-15</Font>
+      <Foreground>#FFFFFF</Foreground>
+      <Background>#282a36</Background>
+      <Outline>#000000</Outline>
+      <Active>
+        <Foreground>#ffffff</Foreground>
+        <Background>#44475a</Background>
+        <Outline>#000000</Outline>
+      </Active>
+    </TaskListStyle>
+
+    <TrayButtonStyle group="true" list="all" decorations="flat">
+      <Font>Vazir-15</Font>
+      <Foreground>#FFFFFF</Foreground>
+      <Background>#1e1f29</Background>
+      <Outline>#000000</Outline>
+      <Active>
+        <Foreground>#FFFFFF</Foreground>
+        <Background>#282a36</Background>
+        <Outline>#ff0000</Outline>
+      </Active>
+    </TrayButtonStyle>
+
+    <PagerStyle>
+      <Outline>#1e1f29</Outline>
+      <Foreground>#44475A</Foreground>
+      <Background>#000000</Background>
+      <Text>#FFFFFF</Text>
+      <Font>Vazir-15</Font>
+      <Active>
+        <Foreground>#383c4a</Foreground>
+        <Background>#bd93f9</Background>
+      </Active>
+    </PagerStyle>
+
+    <MenuStyle decorations="flat">
+      <Font>Vazir-15</Font>
+      <Foreground>#FFFFFF</Foreground>
+      <Background>#1e1f29</Background>
+      <Outline>#000000</Outline>
+      <Active>
+        <Foreground>#FFFFFF</Foreground>
+        <Background>#44475A</Background>
+      </Active>
+      <Opacity>1</Opacity>
+    </MenuStyle>
+
+    <PopupStyle enabled="true" delay="600">
+      <Font>Vazir-15</Font>
+      <Outline>#000000</Outline>
+      <Foreground>#000000</Foreground>
+      <Background>#999999</Background>
+    </PopupStyle>
+
+    <IconPath>
+      /usr/share/icons/Papirus-Dark/
+    </IconPath>
+    <IconPath>
+      /usr/share/jwm
+    </IconPath>
+</JWM>

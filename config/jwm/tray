@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<JWM>
+	<!-- Tray at the bottom. -->
+	<Tray x="0" y="-1" autohide="off" height="30" layer="above" halign="left" valign="top">
+		<TrayButton label="[M]">root:3</TrayButton>
+		<Spacer width="6"/>
+		<TaskList maxwidth="250"/>
+		<Spacer width="6"/>
+		<Pager labeled="true"/>
+		<Spacer width="6"/>
+		<Dock/>
+		<Spacer width="6"/>
+		<!-- Tray at the bottom.
+		<Swallow name="ls | head -1" width="0" height="0"/>
+		-->
+		<Swallow width="0" height="0">name:sh -c 'slsbattery.sh'</Swallow>
+		<Spacer width="6"/>
+		<Clock format="%y/%m/%d %b, %H:%M:%S">
+			<Button mask="1">
+					exec:st bash -c 'datestartup.sh && read -n 1'
+			</Button>
+			<Button mask="3">
+					exec:st bash -c 'cal && read -n 1'
+			</Button>
+		</Clock>
+		<Spacer width="6"/>
+		<Spacer width="6"/>
+		<TrayButton label="[D]">showdesktop</TrayButton>
+	</Tray>
+</JWM>

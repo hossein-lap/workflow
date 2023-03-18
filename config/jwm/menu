@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<JWM>
+    <RootMenu onroot="3">
+      <Program label="File manager">
+		  pcmanfm
+      </Program>
+      <Program label="Terminal">
+	  <!--
+			<Program icon="/usr/share/icons/Papirus-Dark/16x16/categories/utilities-terminal.svg" label="Terminal">
+			<Program icon="/usr/share/icons/Papirus-Dark/16x16/categories/system-file-manager.svg" label="Filemanager">
+	  -->
+        st -g 95x25
+      </Program>
+      <Separator/>
+      <Include>exec:xdgmenumaker -n -f jwm</Include>
+      <Separator/>
+
+	    <Program label="Jwm folder">st -g 95x25 lf ~/.config/jwm</Program>
+      <Separator/>
+      <Restart label="Restart Jwm"/>
+      <Program label="Exit">dmexit.sh</Program>
+    </RootMenu>
+</JWM>

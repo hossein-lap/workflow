@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<JWM>
+  <StartupCommand>
+      sh ~/.xprofile
+  </StartupCommand>
+</JWM>
