@@ -12,9 +12,9 @@
 		<Spacer width="6"/>
 		<!-- Tray at the bottom.
 		<Swallow name="ls | head -1" width="0" height="0"/>
-		-->
 		<Swallow width="0" height="0">name:sh -c 'slsbattery.sh'</Swallow>
 		<Spacer width="6"/>
+		-->
 		<Clock format="%y/%m/%d %b, %H:%M:%S">
 			<Button mask="1">
 					exec:st bash -c 'datestartup.sh && read -n 1'

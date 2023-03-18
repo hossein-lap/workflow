@@ -20,14 +20,13 @@
     </WindowStyle>
 
     <ClockStyle>
-      <Font>Vazir-15</Font>
+      <Font>Vazir Code-15</Font>
       <Background>#1e1f29</Background>
       <Foreground>#FFFFFF</Foreground>
     </ClockStyle>
 
     <TrayStyle group="true" list="all" decorations="flat">
-      <Font>Vazir-15</Font>
-      <Foreground>#FFFFFF</Foreground>
+      <Foregroun:>#FFFFFF</Foreground>
       <Background>#1e1f29</Background>
       <Outline>#000000</Outline>
       <Active>
@@ -51,7 +50,6 @@
     </TaskListStyle>
 
     <TrayButtonStyle group="true" list="all" decorations="flat">
-      <Font>Vazir-15</Font>
       <Foreground>#FFFFFF</Foreground>
       <Background>#1e1f29</Background>
       <Outline>#000000</Outline>
@@ -67,7 +65,7 @@
       <Foreground>#44475A</Foreground>
       <Background>#000000</Background>
       <Text>#FFFFFF</Text>
-      <Font>Vazir-15</Font>
+      <Font>Vazir Code-15</Font>
       <Active>
         <Foreground>#383c4a</Foreground>
         <Background>#bd93f9</Background>
@@ -75,7 +73,7 @@
     </PagerStyle>
 
     <MenuStyle decorations="flat">
-      <Font>Vazir-15</Font>
+      <Font>Fira Mono-15</Font>
       <Foreground>#FFFFFF</Foreground>
       <Background>#1e1f29</Background>
       <Outline>#000000</Outline>
@@ -87,7 +85,7 @@
     </MenuStyle>
 
     <PopupStyle enabled="true" delay="600">
-      <Font>Vazir-15</Font>
+      <Font>Vazir Code-15</Font>
       <Outline>#000000</Outline>
       <Foreground>#000000</Foreground>
       <Background>#999999</Background>
