@@ -26,6 +26,7 @@ dmenu \- dynamic menu
 .IR windowid ]
 .RB [ \-bw
 .IR borderwidth ]
+.RB [ \-wm ]
 .P
 .BR dmenu_run " ..."
 .SH DESCRIPTION
@@ -93,6 +94,9 @@ embed into windowid.
 .TP
 .BI \-bw " borderwidth"
 specify border's width.
+.TP
+.BI \-wm
+Display as a managed WM window (e.g. don't set overide_redirect flag)
 .SH USAGE
 dmenu is completely controlled by the keyboard.  Items are selected using the
 arrow keys, page up, page down, home, and end.
