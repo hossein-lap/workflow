@@ -146,12 +146,12 @@ local options = {
 			-- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
 			 	-- This concatonates the icons with the name of the item kind
 			vim_item.menu = ({
-				nvim_lsp = "lsp",
-				luasnip = "snip",
-				nvim_lua = "lua_ls",
-				buffer = "buf",
-				path = "path",
-				dictionary = "dict",
+				nvim_lsp = '[lsp]',
+				luasnip = '[snippet]',
+				nvim_lua = '[nvim_lua]',
+				buffer = '[buffer]',
+				path = '[path]',
+				dictionary = '[dictionary]'
 			})[entry.source.name]
 			return vim_item
 		end,
