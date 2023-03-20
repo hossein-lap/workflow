@@ -15,12 +15,37 @@ for _, lsp in ipairs(servers) do
 end
 
 -- luasnip setup
-local luasnip = require 'luasnip'
-
-vim.opt.completeopt = "menuone,noselect"
+--vim.opt.completeopt = "menuone,noselect"
 
 local function border(hl_name)
-	return {
+local borderstyle = { -- {{{
+	ascii = {
+		{ "/", hl_name },
+		{ "-", hl_name },
+		{ "\\", hl_name },
+		{ "|", hl_name },
+	},
+	single = {
+		{ "┌", hl_name },
+		{ "─", hl_name },
+		{ "┐", hl_name },
+		{ "│", hl_name },
+		{ "┘", hl_name },
+		{ "─", hl_name },
+		{ "└", hl_name },
+		{ "│", hl_name },
+	},
+	double = {
+		{ "╔", hl_name },
+		{ "═", hl_name },
+		{ "╗", hl_name },
+		{ "║", hl_name },
+		{ "╝", hl_name },
+		{ "═", hl_name },
+		{ "╚", hl_name },
+		{ "║", hl_name },
+	},
+	round = {
 		{ "╭", hl_name },
 		{ "─", hl_name },
 		{ "╮", hl_name },
@@ -29,7 +54,10 @@ local function border(hl_name)
 		{ "─", hl_name },
 		{ "╰", hl_name },
 		{ "│", hl_name },
-	}
+	},
+}
+-- }}}
+	return borderstyle['single']
 end
 
 local cmp_window = require "cmp.utils.window"
@@ -49,8 +77,16 @@ if not present then
 	return
 end
 
+---- If you want insert `(` after select function or method item
+---- **requires** `nvim-autopairs`
+--local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+--cmp.event:on(
+--	'confirm_done',
+--	cmp_autopairs.on_confirm_done()
+--)
+
 --   פּ ﯟ   some other good icons
-local kind_icons = {
+local kind_icons = { -- {{{
 	Text = " ",
 	Method = " ",
 	Function = " ",
@@ -76,9 +112,11 @@ local kind_icons = {
 	Event = " ",
 	Operator = " ",
 	TypeParameter = " ",
-}
+} -- }}}
 
+-- all options as a table {{{
 local options = {
+	-- window {{{
 	window = {
 		completion = {
 			border = border "CmpBorder",
@@ -88,11 +126,15 @@ local options = {
 			border = border "CmpDocBorder",
 		},
 	},
+	-- }}}
+	-- snippet {{{
 	snippet = {
 		expand = function(args)
 			require("luasnip").lsp_expand(args.body)
 		end,
 	},
+	-- }}}
+	-- formatting {{{
 	formatting = {
 --		format = function(_, vim_item)
 ----			local icons = require("nvchad_ui.icons").lspkind
@@ -104,15 +146,17 @@ local options = {
 			-- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
 			 	-- This concatonates the icons with the name of the item kind
 			vim_item.menu = ({
-				nvim_lsp = "[lsp]",
-				luasnip = "[snippet]",
-				nvim_lua = "[nvim_lua]",
-				buffer = "[buffer]",
-				path = "[path]",
+				nvim_lsp = "lsp",
+				luasnip = "snip",
+				nvim_lua = "lua_ls",
+				buffer = "buf",
+				path = "path",
+				dictionary = "dict",
 			})[entry.source.name]
 			return vim_item
 		end,
-	},
+	}, -- }}}
+	-- mappings {{{
 	mapping = {
 		["<C-p>"] = cmp.mapping.select_prev_item(),
 		["<C-n>"] = cmp.mapping.select_next_item(),
@@ -128,7 +172,9 @@ local options = {
 			if cmp.visible() then
 				cmp.select_next_item()
 			elseif require("luasnip").expand_or_jumpable() then
-				vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
+				vim.fn.feedkeys(
+					vim.api.nvim_replace_termcodes(
+						"<Plug>luasnip-expand-or-jump", true, true, true), "")
 			else
 				fallback()
 			end
@@ -140,7 +186,9 @@ local options = {
 			if cmp.visible() then
 				cmp.select_prev_item()
 			elseif require("luasnip").jumpable(-1) then
-				vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
+				vim.fn.feedkeys(
+					vim.api.nvim_replace_termcodes(
+						"<Plug>luasnip-jump-prev", true, true, true) , "")
 			else
 				fallback()
 			end
@@ -149,16 +197,42 @@ local options = {
 			"s",
 		}),
 	},
+	-- }}}
+	-- sources {{{
 	sources = {
-		{ name = "luasnip" },
-		{ name = "nvim_lsp" },
-		{ name = "buffer" },
-		{ name = "nvim_lua" },
-		{ name = "path" },
+		{ name = "nvim_lsp", priority = 5 },
+		{ name = "nvim_lua", priority = 4 },
+		{ name = "path", priority = 3 },
+		{ name = "buffer", priority = 3 },
+		{ name = 'dictionary', keyword_lenth = 3, priority = 2 },
+		{ name = "luasnip", priority = 1 },
 	},
+	-- }}}
+--	-- sorting {{{
+--	sorting = {
+--		priority_weight = 1.0,
+--		comparators = {
+----			compare.score_offset, -- not good at all
+--			compare.locality,
+--			compare.recently_used,
+--			-- based on :  score = score + ((#sources - (source_index - 1)) * sorting.priority_weight)
+--			compare.score,
+--			compare.offset,
+--			compare.order,
+----			compare.scopes, -- what?
+----			compare.sort_text,
+----			compare.exact,
+----			compare.kind,
+----			compare.length, -- useless 
+--		},
+--	},
+--	-- }}}
 }
+-- }}}
 
 -- check for any override
 --options = require("core.utils").load_override(options, "hrsh7th/nvim-cmp")
 
 cmp.setup(options)
+
+require('plugin.cmp.dictionary')

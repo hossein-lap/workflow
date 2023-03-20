@@ -1,18 +1,15 @@
 local util = require('packer.util')
 local packer = require('packer')
 --local use = packer.use
-local cmd = vim.cmd
-local api = vim.api
-local fn = vim.fn
 
 -- bootstrap {{{
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-	packer_bootstrap = fn.system({
+local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+	packer_bootstrap = vim.fn.system({
 		'git', 'clone', '--depth', '1',
 		'https://github.com/wbthomason/packer.nvim', install_path
 	})
-	cmd [[packadd packer.nvim]]
+	vim.cmd [[packadd packer.nvim]]
 end
 -- }}}
 -- configs {{{
@@ -20,9 +17,9 @@ packer.reset()
 packer.init {
 	ensure_dependencies = true, -- Should packer install plugin dependencies?
 	snapshot = nil, -- Name of the snapshot you would like to load at startup
-	snapshot_path = util.join_paths(fn.stdpath 'cache', 'packer.nvim'), -- Default save directory for snapshots
-	package_root = util.join_paths(fn.stdpath('data'), 'site', 'pack'),
-	compile_path = util.join_paths(fn.stdpath('config'), 'plugin', 'packer_compiled.lua'),
+	snapshot_path = util.join_paths(vim.fn.stdpath 'cache', 'packer.nvim'), -- Default save directory for snapshots
+	package_root = util.join_paths(vim.fn.stdpath('data'), 'site', 'pack'),
+	compile_path = util.join_paths(vim.fn.stdpath('config'), 'plugin', 'packer_compiled.lua'),
 	plugin_package = 'packer', -- The default package for plugins
 	max_jobs = 1, -- Limit the number of simultaneous jobs. nil means no limit
 	auto_clean = true, -- During sync(), remove unused plugins
@@ -54,7 +51,7 @@ packer.init {
 	},
 	display = {
 		non_interactive = false, -- If true, disable display windows for all operations
-		compact = false, -- If true, fold updates results by default
+		compact = true, -- If true, fold updates results by default
 		-- An optional function to open a window for packer's display
 		open_fn = nil,
 --		open_fn = function()
@@ -70,10 +67,10 @@ packer.init {
 --					{ '│', 'FloatBorder' },
 --				},
 --			}
---			api.nvim_win_set_option(win, 'winhighlight', 'NormalFloat:Normal')
+--			vim.api.nvim_win_set_option(win, 'winhighlight', 'NormalFloat:Normal')
 --			return result, win, buf
 --		end,
-		open_cmd = '20new \\[packer\\]', -- An optional command to open a window for packer's display
+		open_cmd = 'split \\[packer\\]', -- An optional command to open a window for packer's display
 		working_sym = '⟳', -- The symbol for a plugin being installed/updated
 		error_sym = '✗', -- The symbol for a plugin with an error in installation/updating
 		done_sym = '✓', -- The symbol for a plugin which has completed installation/updating
@@ -94,12 +91,12 @@ packer.init {
 	luarocks = {
 		python_cmd = 'python' -- Set the python command to use for running hererocks
 	},
-	log = { level = 'warn' }, -- The default print log level. One of: "trace", "debug", "info", "warn", "error", "fatal".
+	log = { level = 'debug' }, -- The default print log level. One of: "trace", "debug", "info", "warn", "error", "fatal".
 	profile = {
 		enable = false,
 		threshold = 1, -- integer in milliseconds, plugins which load faster than this won't be shown in profile output
 	},
-	autoremove = false, -- Remove disabled or unused plugins without prompting the user
+	autoremove = true, -- Remove disabled or unused plugins without prompting the user
 }
 -- }}}
 -- plugins {{{
@@ -112,13 +109,11 @@ return packer.startup(function(use)
 		use 'hrsh7th/cmp-nvim-lua' -- nvim Lua API source for nvim-cmp
 		use 'hrsh7th/cmp-buffer' -- buffer source for nvim-cmp
 		use 'hrsh7th/cmp-path' -- path source for nvim-cmp
+		use 'uga-rosa/cmp-dictionary' -- dictionary source for nvim-cmp
 	use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
 	use 'L3MON4D3/LuaSnip' -- Snippets plugin
 
-	use { -- Treesitter [more syntax color]
-		'nvim-treesitter/nvim-treesitter',
-		build = ":TSUpdate",
-	}
+	use 'nvim-treesitter/nvim-treesitter' -- Treesitter [more syntax color]
 
 	use 'norcalli/nvim-colorizer.lua' -- Hex color preview
 	use 'goolord/alpha-nvim' -- Greeting
