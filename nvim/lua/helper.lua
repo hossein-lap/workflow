@@ -42,8 +42,8 @@ end
 -- unmap {{{
 function umap(mode, key)
 	if not mode or not key then
-		print('Error on using umap()')
-		print('umap(mode, key) must have both arguments')
+		vim.notify('umap(mode, key) must have at least two arguments', 4,
+			{title = 'Error on using umap()'})
 		return 1
 	end
 	api.nvim_del_keymap(mode, key)

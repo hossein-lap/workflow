@@ -1,39 +1,29 @@
 -- helper {{{
-local api = vim.api
--- key mapping {{{
+-- map {{{
 local function map(mode, key, command, opts)
 	local options = { noremap = true }
 	if opts then
 		options = vim.tbl_extend("force", options, opts)
 	end
-	api.nvim_set_keymap(mode, key, command, options)
+	vim.api.nvim_set_keymap(mode, key, command, options)
 end
--- keymap function {{{
-function map(mode, key, command, opts)
-	local options = { noremap = true }
-	if opts then
-		options = vim.tbl_extend("force", options, opts)
-	end
-	api.nvim_set_keymap(mode, key, command, options)
-end
---}}}
 -- }}}
----- unmap {{{
+---- umap {{{
 --local function umap(mode, key)
 --	if not mode or not key then
---		print('Error on using umap()')
---		print('umap(mode, key) must have both arguments')
+--		vim.notify('umap(mode, key) must have at least two arguments', 4,
+--			{title = 'Error on using umap()'})
 --		return 1
 --	end
---	api.nvim_del_keymap(mode, key)
+--	vim.api.nvim_del_keymap(mode, key)
 --end
 ---- }}}
--- autocmd {{{
+-- au {{{
 local function au(commands, patterns, evnt)
 	if evnt == nil then
 		evnt = 'FileType'
 	end
-	api.nvim_create_autocmd(evnt, {
+	vim.api.nvim_create_autocmd(evnt, {
 		pattern = patterns,
 		command = commands,
 --		group = patterns .. 'groups'
@@ -59,11 +49,21 @@ map('i', '<C-c>', '<Esc>',
 		{ desc = "Exit insert mode" })
 -- }}}
 -- NvimTree Toggle {{{
-map('n', '<leader>qf', ':lua nvim_tree_toggle()<CR>',
+map('n', '<leader>qf', ':NvimTreeToggle<CR>',
 		{ silent = true, desc = "Toggle › nvim tree" })
 -- }}}
 -- toggle paste mode {{{
-map('n', '<C-P>', ':set paste! nu! list!<CR>',
+PasteModeEnable = 0
+function tmpNotify()
+	if PasteModeEnable == 1 then
+		PasteModeEnable = 0 -- it's off
+		vim.notify("paste mode enabled", 2)
+	else
+		PasteModeEnable = 1 -- it's on
+		vim.notify("paste mode disabled", 2)
+	end
+end
+map('n', '<C-P>', ':set paste! nu! list!<CR>:lua <CR>',
 		{ silent = true, desc = "Toggle › paste mode, disable decorations" })
 -- }}}
 -- spelling check {{{

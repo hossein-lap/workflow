@@ -1,50 +1,68 @@
 local options = {
-	backup = false,
-	swapfile = false,
-	number = true,
-	wrap = false,
-	autochdir = true,
-	linebreak = true,
-	wildmenu = true,
-	wildmode = {
+	belloff = "all", -- no bells
+	inccommand = "nosplit", -- preview `:%s` commands live
+	undofile = true, -- keep track of undos between sessions
+	grepprg = "rg --vimgrep --smart-case --no-heading", -- search with rg
+	grepformat = "%f:%l:%c:%m", -- filename:line number:column number:error message
+	mousescroll = "ver:3,hor:0", -- scroll vertically by 3 lines, no horizontal scrolling
+	signcolumn = "yes", -- show the sign column always
+
+	backup = false, -- do not create backup file
+	swapfile = false, -- do not create swapfile
+	number = true, -- enable line number
+	wrap = true, -- enable wrapping
+	autochdir = true, -- auto-switch base directory
+	linebreak = true, -- set wrapping on `breaking` words (e.g: `,`)
+	wildmenu = true, -- enable popup menu
+	wildmode = { -- popmenu style
 		'longest:list',
 		'full',
 	},
-	clipboard = {
+	completeopt = { -- luasnippet complition option
+		'menuone',
+		'noselect'
+	},
+	clipboard = { -- enable clipboard and sync it with system's clipboard
 		'unnamed',
 		'unnamedplus'
 	},
-	showcmd = true,
-	showmode = false,
-	tabstop = 4,
-	shiftwidth = 4,
-	autoindent = true,
-	hlsearch = true,
-	cursorline = true,
-	scrolloff = 2,
-	foldmethod = 'marker',
-	foldenable = true,
-	foldnestmax = 15,
-	foldlevel = 0,
-	splitbelow = true,
-	splitright = true,
-	spelllang = {
+	showcmd = true, -- show presses keys in normal mode
+	showmode = false, -- do not show vim-mode in `ex` prompt
+	tabstop = 4, -- where tab stop
+	shiftwidth = 4, -- set tab width
+	autoindent = true, -- enable indentation
+	hlsearch = true, -- highligh search keywords
+	cursorline = true, -- highlight current line
+	scrolloff = 2, -- set where scrolling begins
+	foldmethod = 'marker', -- folding style (set to use `{{{ ... }}}` characters)
+	foldenable = true, -- enable folding
+	foldnestmax = 15, -- maximum od folds
+	foldlevel = 0, -- starting fold level
+	splitbelow = true, -- set horizontal split-style
+	splitright = true, -- set vertical split-style
+	spelllang = { -- spell-check languages
 		'en_us',
-		'de'
+		'de',
 	},
-	spellsuggest = 'best',
-	hidden = true,
-	list = true,
+	spellsuggest = 'best', -- suggestion method
+	hidden = true, -- hide the buffer
+	list = true, -- show special characters (e.g: `EOL`, `TAB`, `TRAIL`)
 	listchars = {
-		tab = '› ',
-		trail = ' ',
-		lead = ' ',
-		eol = ' '
+		tab = '› ', -- <Tab> special character
+		trail = '+',
+		lead = '-',
+		eol = ' ', -- <End Of Line> special character
+
+		nbsp = "␣",
+		extends = "·",
+		precedes = "·",
+		multispace = "…", -- show chars if I have multiple spaces between text
+		leadmultispace = "-", -- ...but don't show any when they're at the start
 	},
-	termbidi = true,
-	background = 'dark',
---	colorcolumn = '66',
-	colorcolumn= '85',
+	termbidi = true, -- enable bidirectional support
+	background = 'dark', -- set background style
+--	colorcolumn = '66', -- highlight maximum preferred column
+	colorcolumn= '85', -- highlight maximum preferred column
 }
 
 for key, value in pairs(options) do

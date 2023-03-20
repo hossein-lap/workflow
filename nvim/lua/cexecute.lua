@@ -22,8 +22,8 @@ end
 ---- umap {{{
 --local function umap(mode, key)
 --	if not mode or not key then
---		print('Error on using umap()')
---		print('umap(mode, key) must have both arguments')
+--		vim.notify('umap(mode, key) must have at least two arguments', 4,
+--			{title = 'Error on using umap()'})
 --		return 1
 --	end
 --	api.nvim_del_keymap(mode, key)
@@ -47,20 +47,22 @@ WindowStyle = 'horizontal'
 
 -- Toggle WindowStyle {{{
 local WindowStyles = {
-	'horizontal', 'vertical', 'floating'
+	'horizontal', 'vertical', 'floating',
 }
 
 function WindowStyle_Toggle(i)
 	WindowStyle = WindowStyles[i]
-	print("term split => style: " .. WindowStyle)
+	vim.notify(string.format('term split => style: %s', WindowStyle),
+		2, {title = 'WindowStyle_Toggle()'})
 end
 
 	for witem_counter = 1, #WindowStyles, 1 do
---		print(bitem_counter)
+--		vim.notify(string.format('%s', bitem_counter) , 2)
 		if #WindowStyles > 9 then
-			print("You cannot have more than 9 themes")
-			print("WindowStyle_Toggle() mapping failed")
-			return 9
+			vim.notify(string.format('You cannot have more than 9 themes\n%s',
+					'WindowStyle_Toggle() mapping failed'), 4,
+				{title = 'WindowStyle_Toggle()'})
+			break
 		end
 		map("n", "<leader>vs"..witem_counter, ":lua WindowStyle_Toggle("..witem_counter..")<CR>",
 			{ silent = true, desc = "term split: " .. WindowStyles[witem_counter] }
@@ -87,19 +89,16 @@ function Fterminal(wrapand)
 	local width = api.nvim_get_option("columns")
 	local height = api.nvim_get_option("lines")
 	-- }}}
-
 	-- calculate our floating window size {{{
 	local scale = 0.7
 	local win_height = math.ceil(height * scale - 4)
 	local win_width = math.ceil(width * scale)
 	-- }}}
-
 	-- and its starting position {{{
 	local row = math.ceil((height - win_height) / 2 - 2)
 	local col = math.ceil((width - win_width) / 2)
 	-- }}}
-
-	-- set some options {{{
+	-- border style {{{
 	local borderstyle = {
 		ascii = {
 			{ "/", 'FloatBorder' },
@@ -143,7 +142,7 @@ function Fterminal(wrapand)
 	local opts = {
 		noautocmd = true,
 		style = "minimal",
-		border = borderstyle['round'],
+		border = borderstyle['single'],
 		relative = "editor",
 		width = win_width,
 		height = win_height,
@@ -161,32 +160,24 @@ function Fterminal(wrapand)
 	end
 	api.nvim_command('startinsert')
 end
-
 -- }}}
 -- V/H Term {{{
-function VHterminal(wrapand)
-	if not WindowStyle then
-		WindowStyle = 'horizontal'
-		Notify('VHterminal',
-			string.format("WindowStyle is not set, swtiched to default (%s)",
-				WindowStyle),
-			3
-		)
+function VHterminal(wrapand, windowstyle)
+	if windowstyle == nil then
+		windowstyle = 'horizontal'
+		vim.notify(string.format('windowstyle is not set, swtiched to default (%s)',
+				windowstyle), 3,
+			{title = 'VHterminal'})
 	end
 
-	if WindowStyle == 'vertical' then
+	if windowstyle == 'vertical' then
 		Buffercmd = 'vs '
-	elseif WindowStyle == 'horizontal' then
+	elseif windowstyle == 'horizontal' then
 		Buffercmd = 'split '
 	else
-		Notify('VHterminal',
-			string.format("** WindowStyle is not set %s",
-				"to use `VHterminal()`\n** try `Fterminal()`"),
-			4
-		)
---		print("ERROR!")
---		print("** WindowStyle is not set to use `VHterminal()`")
---		print("** try `Fterminal()`")
+		vim.notify(string.format('** windowstyle is not set %s',
+				'to use `VHterminal()`\n** try `Fterminal()`'), 4,
+			{title = 'VHterminal'})
 		return -1
 	end
 
@@ -202,15 +193,30 @@ function VHterminal(wrapand)
 end
 -- }}}
 
-function RUNterminal(inp)
+function RUNterminal(inputcmd, ws)
+	local windowstyle
+	local ws_list = {
+		h = 'horizontal',
+		v = 'vertical',
+		f = 'floating'
+	}
+
 --	api.nvim_command('set ls=0')
-	if WindowStyle == 'floating' then
-		Fterminal(inp)
+	if ws == nil then
+		windowstyle = WindowStyle
 	else
-		VHterminal(inp)
+		windowstyle = ws_list[ws]
 	end
---	-- print the executed command
---	print('!' .. inp)
+
+	if windowstyle == 'floating' then
+		Fterminal(inputcmd)
+	else
+		VHterminal(inputcmd, windowstyle)
+	end
+
+	-- print the executed command
+----	print('!' .. inputcmd)
+--	vim.notify(inputcmd, 2, {title = 'Command executed'})
 end
 
 --au('set ls=0', '*', 'TermEnter')
@@ -227,19 +233,19 @@ end
 	Pandoc_article_default = Pandoc_article_list[1]
 	function Pandoc_article_switch(item)
 		Pandoc_article_default = Pandoc_article_list[item]
---		print("pandoc article => style: " .. Pandoc_article_default)
---		vim.notify("pandoc article => style: " .. Pandoc_article_default)
---		vim.notify(Pandoc_article_default, 2, {title = "pandoc article style"})
-		Notify("Pandoc article style", Pandoc_article_default, 2)
+		vim.notify(string.format('Pandoc article style => %s',
+				Pandoc_article_default), 2,
+			{title = 'Pandoc article style'})
 	end
 
 --	print(#Pandoc_article_list)
 	for aitem_counter = 1, #Pandoc_article_list, 1 do
 --		print(aitem_counter)
 		if #Pandoc_article_list > 9 then
-			Notify('Pandoc_article_switch() mapping failed',
-				'You cannot have more than 9 themes', 4)
-			return 9
+			vim.notify(string.format('Pandoc_article_switch() mapping failed\n%s',
+					'You cannot have more than 9 themes'), 4,
+				{title = 'Pandoc_article_switch()'})
+			break
 		end
 		map("n", "<leader>va"..aitem_counter, ":lua Pandoc_article_switch("..aitem_counter..")<CR>",
 			{ silent = true, desc = "Pandoc: article › " .. Pandoc_article_list[aitem_counter] }
@@ -255,16 +261,19 @@ end
 	Pandoc_beamer_default = Pandoc_beamer_list[1]
 	function Pandoc_beamer_switch(item)
 		Pandoc_beamer_default = Pandoc_beamer_list[item]
-		Notify("Pandoc beamer style", Pandoc_beamer_default, 2)
+		vim.notify(string.format('Pandoc beamer style switched => %s',
+				Pandoc_beamer_default), 2,
+			{title = 'Pandoc beamer style'})
 	end
 
 --	print(#Pandoc_beamer_list)
 	for bitem_counter = 1, #Pandoc_beamer_list, 1 do
 --		print(bitem_counter)
 		if #Pandoc_beamer_list > 9 then
-			Notify('Pandoc_beamer_switch() mapping failed',
-				'You cannot have more than 9 themes', 4)
-			return 9
+			vim.notify(string.format('Pandoc_beamer_switch() mapping failed\n%s',
+					'You cannot have more than 9 themes'), 4,
+				{title = 'Pandoc_beamer_switch()'})
+			break
 		end
 		map("n", "<leader>vb"..bitem_counter, ":lua Pandoc_beamer_switch("..bitem_counter..")<CR>",
 			{ silent = true, desc = "Pandoc: beamer › " .. Pandoc_beamer_list[bitem_counter] }
@@ -278,7 +287,8 @@ end
 function TriggerRun(file_type)
 	local src_name = expand('%')
 	local out_name = expand('%:r')
-	local pandoc_path = ' -t ms --defaults ~/.config/pandoc/defaults/groff/groff.yaml '
+	local pandoc_path = string.format(' %s %s ',
+		'-t ms', '--defaults ~/.config/pandoc/defaults/groff/groff.yaml')
 --	local pandoc_path = ' -t ms --highlight monochrome '
 
 	local runner = {
@@ -293,12 +303,15 @@ function TriggerRun(file_type)
 		zsh = 'zsh ' .. src_name,
 		sent = 'sent ' .. src_name,
 		text = 'sent ' .. src_name,
-		markdown = 'pandoc  ' .. pandoc_path .. src_name .. ' -o ' .. out_name .. '.pdf',
-		rmd = [[Rscript -e "rmarkdown::render(input = ']] .. src_name .. [[', output_format = \"md_document\")"]],
+		markdown = string.format('pandoc %s %s -o %s.pdf',
+			pandoc_path, src_name, out_name),
+		rmd = string.format("%s = '%s', %s",
+			'Rscript -e "rmarkdown::render(input', src_name,
+			'output_format = \\"md_document\\")"')
 	}
 
 	if runner[file_type] == nil then
-		print('Not exec')
+		vim.notify('Not exec', 2, {title = 'TriggerRun()'})
 		return 1
 	end
 
@@ -309,26 +322,33 @@ end
 function TriggerCompile(file_type)
 	local src_name = expand('%')
 	local out_name = expand('%:r')
-	local pandoc_path = ' ~/.config/pandoc/defaults/' .. Pandoc_article_default .. '/' .. Pandoc_article_default .. '.yaml '
-	local r_cmd_s = [[Rscript -e "rmarkdown::render(input = ']]
-	local r_cmd_e = [[', output_format = \"all\", params = \" ]] .. pandoc_path .. [[ \" )"]]
+	local pandoc_path = string.format(' %s%s/%s%s ',
+		'~/.config/pandoc/defaults/', Pandoc_article_default,
+		Pandoc_article_default, '.yaml')
+	local rmd_path 
 
 	local compiler = {
-		c = 'gcc -Wall ' .. src_name .. ' -o ' .. out_name,
-		cpp = 'g++ -Wall ' .. src_name .. ' -o ' .. out_name,
+		c = string.format('gcc -Wall %s -o %s', src_name, out_name),
+		cpp = string.format('g++ -Wall %s -o %s', src_name, out_name),
 		rust = 'rustc ' .. src_name,
 		go = 'go build ' .. src_name,
 		sh = 'sh ' .. src_name,
-		nroff = 'tbl '.. src_name .. ' | groff -mspdf -keUGs -Tpdf > ' .. out_name .. '.pdf ',
-		tex = 'xelatex -shell-escape ' .. src_name,
+--		nroff = string.format('pdfroff -U -mspdf %s > %s.pdf',
+--			src_name, out_name),
+		nroff = string.format('tbl %s | groff %s > %s.pdf',
+			src_name, '-mspdf -keUGs -Tpdf', out_name),
+		tex = 'xelatex ' .. src_name,
 		sent = 'sent -i ' .. src_name,
 		text = 'sent -i ' .. src_name,
-		markdown = 'pandoc --defaults ' .. pandoc_path .. src_name .. ' -o ' .. out_name .. '.pdf',
-		rmd = r_cmd_s .. src_name .. r_cmd_e,
+		markdown = string.format('pandoc --defaults %s %s -o %s.pdf',
+			pandoc_path, src_name, out_name),
+		rmd = string.format([[%s(input='%s', %s, params='%s')"]],
+			[[Rscript -e "rmarkdown::render]], src_name,
+			[[output_format = 'all']], pandoc_path)
 	}
 
 	if compiler[file_type] == nil then
-		print('Not src')
+		vim.notify('Not src', 2, {title = 'TriggerCompile()'})
 		return 1
 	end
 
@@ -341,18 +361,20 @@ function TriggerExtra(file_type)
 	local out_name = expand('%:r')
 	local pdf_viewer = 'nohup zathura '
 	local log_handler =  '.pdf & 2>&1 > /dev/null'
-	local pandoc_path = ' -t beamer -V classoption:aspectratio=169 --defaults ~/.config/pandoc/defaults/beamer/' .. Pandoc_beamer_default  .. '.yaml '
-
 	local extra = {
 		rmd = pdf_viewer .. out_name .. log_handler,
 		nroff = pdf_viewer .. out_name ..log_handler,
 		sent = "sent -f 'Source Sans Pro' " .. src_name,
 		text = "sent -f 'Source Sans Pro' " .. src_name,
-		markdown = 'pandoc ' .. pandoc_path .. src_name .. ' -o ' .. out_name .. '.pdf'
+		tex = 'xelatex -interaction=nonstopmode -synctex=1 ' .. src_name,
+		markdown = string.format('pandoc %s%s%s %s -o %s.pdf ',
+			'--defaults ~/.config/pandoc/defaults/beamer/',
+				Pandoc_beamer_default, '.yaml', src_name, out_name)
+
 	}
 
 	if extra[file_type] == nil then
-		print('No extra works yet :/')
+		vim.notify('No extra works yet :/', 2, {title = 'TriggerExtra()'})
 		return 1
 	end
 
@@ -380,9 +402,9 @@ map('n', '<leader>ca', ':lua RUNterminal("make full")<CR>',
 		{ silent = true, desc = 'make › full' })
 
 ---- Run terminal
-map('n', '<leader>ts', ':lua RUNterminal("bash")<CR>',
+map('n', '<leader>tt', ':lua RUNterminal("bash")<CR>',
 		{ silent = true, desc = 'term › bash shell' })
-map('n', '<leader>tt', ':lua RUNterminal("zsh")<CR>',
+map('n', '<leader>tz', ':lua RUNterminal("zsh")<CR>',
 		{ silent = true, desc = 'term › zsh shell' })
 map('n', '<leader>td', ':lua RUNterminal("dash")<CR>',
 		{ silent = true, desc = 'term › dash shell' })

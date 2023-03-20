@@ -120,7 +120,7 @@ function AutoFillEnable(notify_me)
 	map('i', '{', '{}<Left>')
 
 	if notify_me then
-		Notify('extra.lua', "Autofill is enabled", 2)
+		vim.notify("Autofill is enabled", 2, {title = 'extra.lua'})
 	end
 end
 
@@ -133,7 +133,7 @@ function AutoFillDisable(notify_me)
 	umap('i', '{')
 
 	if notify_me then
-		Notify('extra.lua', "Autofill is disabled", 2)
+		vim.notify("Autofill is disabled", 2, {title = 'extra.lua'})
 	end
 end
 --}}}
@@ -156,7 +156,7 @@ function AutoFillMarkdownEnable(notify_me)
 		map('i', '_', '__<Left>')
 
 		if notify_me then
-			Notify('extra.lua', "Markdown Autofill is enabled", 2)
+			vim.notify("Markdown Autofill is enabled", 2, {title = 'extra.lua'})
 		end
 	end
 end
@@ -168,7 +168,7 @@ function AutoFillMarkdownDisable(notify_me)
 		umap('i', '_')
 
 		if notify_me then
-			Notify('extra.lua', "Markdown Autofill is disabled", 2)
+			vim.notify("Markdown Autofill is disabled", 2, {title = 'extra.lua'})
 		end
 	end
 end
@@ -219,7 +219,7 @@ function AutoFillSentEnable(notify_me)
 		map('i',	'`~~',	'≈')
 
 		if notify_me then
-			Notify('extra.lua', "Sent Autofill is enabled", 2)
+			vim.notify("Sent Autofill is enabled", 2, {title = 'extra.lua'})
 		end
 	end
 end
@@ -258,7 +258,7 @@ function AutoFillSentDisable(notify_me)
 		umap('i',	'`~~')
 
 		if notify_me then
-			Notify('extra.lua', "Sent Autofill is disabled", 2)
+			vim.notify("Sent Autofill is disabled", 2, {title = 'extra.lua'})
 		end
 	end
 end
