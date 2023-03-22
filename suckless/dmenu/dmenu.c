@@ -182,7 +182,12 @@ drawmenu(void)
 	drw_rect(drw, 0, 0, mw, mh, 1, 1);
 
 	if (prompt && *prompt) {
-		drw_setscheme(drw, scheme[SchemeSel]);
+		if (vertful) {
+			drw_setscheme(drw, scheme[SchemeOut]);
+		}
+		else {
+			drw_setscheme(drw, scheme[SchemeSel]);
+		}
 		x = drw_text(drw, x, 0, promptw, bh, lrpad / 2, prompt, 0);
 	}
 	/* draw input field */
@@ -200,13 +205,23 @@ drawmenu(void)
 	if (lines > 0) {
 		/* draw grid */
 		int i = 0;
-		for (item = curr; item != next; item = item->right, i++)
-			drawitem(
-				item,
-				x + ((i / lines) *  ((mw - x) / columns)),
-				y + (((i % lines) + 1) * bh),
-				(mw - x) / columns
-			);
+		for (item = curr; item != next; item = item->right, i++) {
+			if (vertful) {
+				drawitem(
+					item,
+					((i / lines) * (mw / columns)),
+					y + (((i % lines) + 1) * bh),
+					mw / columns
+				);
+			} else {
+				drawitem(
+					item,
+					x + ((i / lines) *  ((mw - x) / columns)),
+					y + (((i % lines) + 1) * bh),
+					(mw - x) / columns
+				);
+			}
+		}
 	} else if (matches) {
 		/* draw horizontal list */
 		x += inputw;
@@ -850,6 +865,12 @@ main(int argc, char *argv[])
 			fstrstr = cistrstr;
 		} else if (!strcmp(argv[i], "-wm")) { /* display as managed wm window */
 			managed = 1;
+		} else if (!strcmp(argv[i], "-vf")) { /* remove extra vertical padding */
+			if (vertful) {
+				vertful = 0;
+			} else {
+				vertful = 1;
+			}
 		} else if (i + 1 == argc)
 			usage();
 		/* these options take one argument */

@@ -27,6 +27,7 @@ dmenu \- dynamic menu
 .RB [ \-bw
 .IR borderwidth ]
 .RB [ \-wm ]
+.RB [ \-vf ]
 .P
 .BR dmenu_run " ..."
 .SH DESCRIPTION
@@ -97,6 +98,10 @@ specify border's width.
 .TP
 .BI \-wm
 Display as a managed WM window (e.g. don't set overide_redirect flag)
+.TP
+.BI \-vf
+Toggle disable vertical padding.
+.\"
 .SH USAGE
 dmenu is completely controlled by the keyboard.  Items are selected using the
 arrow keys, page up, page down, home, and end.
