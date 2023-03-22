@@ -22,10 +22,11 @@ static const int showbar	= 1; /* 0 means no bar */
 static const int topbar		= 1; /* 0 means bottom bar */
 static const char *fonts[]	= {
 	"Fira Code:size=14",
+	"Vazir Variable:pixelsize=20:antialias=true:autohint=true",
 	"FiraCode Nerd Font:size=14",
-	"JoyPixels:pixelsize=20:antialias=true:autohint=true"
-	"FontAwesome:pixelsize=20:antialias=true:autohint=true"
-//	"Noto Color Emoji:pixelsize=20:antialias=true:autohint=true"
+	"JoyPixels:pixelsize=20:antialias=true:autohint=true",
+	"FontAwesome:pixelsize=20:antialias=true:autohint=true",
+//	"Noto Color Emoji:pixelsize=20:antialias=true:autohint=true",
 };
 static const char dmenufont[]	= { "Fira Code:size=14" };
 

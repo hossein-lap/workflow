@@ -1,0 +1,132 @@
+From 0386419cfb5311d4a7516ece8f3f8fe923c43098 Mon Sep 17 00:00:00 2001
+From: MahdiMirzadeh <mahdi@mirzadeh.pro>
+Date: Wed, 9 Mar 2022 17:44:42 +0330
+Subject: [PATCH] [PATCH] Added support for RTL languages (Farsi, Arabic and
+ Hebrew using the FriBiDi library) - 9th Mar 2022 Fix
+
+---
+ config.mk |  8 ++++++--
+ dwm.c     | 40 +++++++++++++++++++++++++++++++++-------
+ 2 files changed, 39 insertions(+), 9 deletions(-)
+
+diff --git a/config.mk b/config.mk
+index b6eb7e0..5b60a24 100644
+--- a/config.mk
++++ b/config.mk
+@@ -10,6 +10,8 @@ MANPREFIX = ${PREFIX}/share/man
+ X11INC = /usr/X11R6/include
+ X11LIB = /usr/X11R6/lib
+ 
++BDINC = /usr/include/fribidi
++
+ # Xinerama, comment if you don't want it
+ XINERAMALIBS  = -lXinerama
+ XINERAMAFLAGS = -DXINERAMA
+@@ -20,9 +22,11 @@ FREETYPEINC = /usr/include/freetype2
+ # OpenBSD (uncomment)
+ #FREETYPEINC = ${X11INC}/freetype2
+ 
++BDLIBS = -lfribidi
++
+ # includes and libs
+-INCS = -I${X11INC} -I${FREETYPEINC}
+-LIBS = -L${X11LIB} -lX11 ${XINERAMALIBS} ${FREETYPELIBS}
++INCS = -I${X11INC} -I${FREETYPEINC} -I$(BDINC)
++LIBS = -L${X11LIB} -lX11 ${XINERAMALIBS} ${FREETYPELIBS} $(BDLIBS)
+ 
+ # flags
+ CPPFLAGS = -D_DEFAULT_SOURCE -D_BSD_SOURCE -D_POSIX_C_SOURCE=200809L -DVERSION=\"${VERSION}\" ${XINERAMAFLAGS}
+diff --git a/dwm.c b/dwm.c
+index a96f33c..4f11fa0 100644
+--- a/dwm.c
++++ b/dwm.c
+@@ -40,6 +40,7 @@
+ #include <X11/extensions/Xinerama.h>
+ #endif /* XINERAMA */
+ #include <X11/Xft/Xft.h>
++#include <fribidi.h>
+ 
+ #include "drw.h"
+ #include "util.h"
+@@ -238,6 +239,7 @@ static void zoom(const Arg *arg);
+ /* variables */
+ static const char broken[] = "broken";
+ static char stext[256];
++static char fribidi_text[BUFSIZ] = "";
+ static int screen;
+ static int sw, sh;           /* X display screen geometry width, height */
+ static int bh, blw = 0;      /* bar geometry */
+@@ -276,6 +278,26 @@ static Window root, wmcheckwin;
+ struct NumTags { char limitexceeded[LENGTH(tags) > 31 ? -1 : 1]; };
+ 
+ /* function implementations */
++static void
++apply_fribidi(char *str)
++{
++        FriBidiStrIndex len = strlen(str);
++        FriBidiChar logical[BUFSIZ];
++        FriBidiChar visual[BUFSIZ];
++        FriBidiParType base = FRIBIDI_PAR_ON;
++        FriBidiCharSet charset;
++        fribidi_boolean result;
++    
++        fribidi_text[0] = 0;
++        if (len>0)
++        {
++                charset = fribidi_parse_charset("UTF-8");
++                len = fribidi_charset_to_unicode(charset, str, len, logical);
++                result = fribidi_log2vis(logical, len, &base, visual, NULL, NULL, NULL);
++                len = fribidi_unicode_to_charset(charset, visual, len, fribidi_text);
++        }
++}
++
+ void
+ applyrules(Client *c)
+ {
+@@ -708,8 +730,9 @@ drawbar(Monitor *m)
+ 	/* draw status first so it can be overdrawn by tags later */
+ 	if (m == selmon) { /* status is only drawn on selected monitor */
+ 		drw_setscheme(drw, scheme[SchemeNorm]);
+-		tw = TEXTW(stext) - lrpad + 2; /* 2px right padding */
+-		drw_text(drw, m->ww - tw, 0, tw, bh, 0, stext, 0);
++                apply_fribidi(stext);
++		tw = TEXTW(fribidi_text) - lrpad + 2; /* 2px right padding */
++		drw_text(drw, m->ww - tw, 0, tw, bh, 0, fribidi_text, 0);
+ 	}
+ 
+ 	for (c = m->clients; c; c = c->next) {
+@@ -719,23 +742,26 @@ drawbar(Monitor *m)
+ 	}
+ 	x = 0;
+ 	for (i = 0; i < LENGTH(tags); i++) {
+-		w = TEXTW(tags[i]);
++                apply_fribidi(tags[i]);
++		w = TEXTW(fribidi_text);
+ 		drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeSel : SchemeNorm]);
+-		drw_text(drw, x, 0, w, bh, lrpad / 2, tags[i], urg & 1 << i);
++		drw_text(drw, x, 0, w, bh, lrpad / 2, fribidi_text, urg & 1 << i);
+ 		if (occ & 1 << i)
+ 			drw_rect(drw, x + boxs, boxs, boxw, boxw,
+ 				m == selmon && selmon->sel && selmon->sel->tags & 1 << i,
+ 				urg & 1 << i);
+ 		x += w;
+ 	}
+-	w = blw = TEXTW(m->ltsymbol);
++        apply_fribidi(m->ltsymbol);
++	w = blw = TEXTW(fribidi_text);
+ 	drw_setscheme(drw, scheme[SchemeNorm]);
+-	x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);
++	x = drw_text(drw, x, 0, w, bh, lrpad / 2, fribidi_text, 0);
+ 
+ 	if ((w = m->ww - tw - x) > bh) {
+ 		if (m->sel) {
+ 			drw_setscheme(drw, scheme[m == selmon ? SchemeSel : SchemeNorm]);
+-			drw_text(drw, x, 0, w, bh, lrpad / 2, m->sel->name, 0);
++                        apply_fribidi(m->sel->name);
++			drw_text(drw, x, 0, w, bh, lrpad / 2, fribidi_text, 0);
+ 			if (m->sel->isfloating)
+ 				drw_rect(drw, x + boxs, boxs, boxw, boxw, m->sel->isfixed, 0);
+ 		} else {
+-- 
+2.35.1
+
