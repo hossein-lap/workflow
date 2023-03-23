@@ -6,7 +6,7 @@ static const char *group = "hos";
 #include "colors/default.h"
 
 /* treat a cleared input like a wrong password (color) */
-static const int failonclear = 1;
+static const int failonclear = 0;
 
 /* default message */
 static const char * message = "Stay away";
