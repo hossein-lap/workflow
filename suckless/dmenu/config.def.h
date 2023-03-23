@@ -9,7 +9,7 @@ static int vertful = 0;		/* -vf option; if 1, no vertical padding */
 /* -fn option overrides fonts[0]; default X11 font or font set */
 static const char *fonts[] = {
 	"Fira Code:size=15",
-	"Vazir Variable:pixelsize=20:antialias=true:autohint=true",
+	"Vazir Variable:Bold:pixelsize=20:antialias=true:autohint=true",
 	"FiraCode Nerd Font:size=15",
 	"FontAwesome:pixelsize=25:antialias=true:autohint=true",
 //	"Noto Color Emoji:pixelsize=25:antialias=true:autohint=true",
