@@ -1,7 +1,16 @@
 /* See LICENSE file for copyright and license details. */
 
 static char *fontfallbacks[] = {
+	/* text */
 	"Libertinus Serif",
+	/* Farsi */
+	"Vazir Variable:Bold",
+	/* emoji */
+	"JoyPixels",
+//	"Noto Color Emoji",
+	/* icons */
+	"FiraCode Nerd Font",
+//	"FontAwesome",
 };
 #define NUMFONTSCALES 42
 #define FONTSZ(x) ((int)(10.0 * powf(1.1288, (x)))) /* x in [0, NUMFONTSCALES-1] */
@@ -24,6 +33,7 @@ static Mousekey mshortcuts[] = {
 	{ Button3,        advance,        {.i = -1} },
 	{ Button4,        advance,        {.i = -1} },
 	{ Button5,        advance,        {.i = +1} },
+	{ Button2,        togglescm,      {0} },
 };
 
 static Shortcut shortcuts[] = {
