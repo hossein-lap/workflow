@@ -1,7 +1,7 @@
 local options = {
 	belloff = "all", -- no bells
 	inccommand = "nosplit", -- preview `:%s` commands live
-	undofile = true, -- keep track of undos between sessions
+	undofile = false, -- DO NOT keep track of undos between sessions
 	grepprg = "rg --vimgrep --smart-case --no-heading", -- search with rg
 	grepformat = "%f:%l:%c:%m", -- filename:line number:column number:error message
 	mousescroll = "ver:3,hor:0", -- scroll vertically by 3 lines, no horizontal scrolling
