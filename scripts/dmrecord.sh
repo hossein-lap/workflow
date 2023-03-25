@@ -40,7 +40,7 @@ notify() {
 extention="mkv"
 audioCodec="aac"
 framerate="30"
-Directory="$HOME/screen/record"
+Directory="${HOME}/screen/record"
 Name=$(date +%y%m%d_%H%M%S)
 
 # Kill {{{
@@ -51,7 +51,7 @@ stop_record () {
 		"3   SIGQUIT  Quit       Terminate with core dump" \
 		"9   SIGKILL  Kill       Forced termination" \
 		"15  SIGTERM  Terminate  Terminate" \
-		| $dmenu -p 'Send signal:' \
+		| ${dmenu} -p 'Send signal:' \
 		| awk '{print $1;}')
 	
 	if [ -z "${thesig}" ]; then
@@ -67,6 +67,159 @@ stop_record () {
 	else
 		$kill "${pid}"
 	fi
+}
+# }}}
+# whole screen {{{
+record_screen () {
+	if [ ! -d "${Directory}" ]; then
+		mkdir -p "${Directory}"
+	fi
+
+	DemResTmp=$(xdpyinfo | grep dimensions | awk '{print $2;}')
+
+	if [ -z "${monsel}" ]; then
+		echo test
+		monsel=$(printf '%s\n' '0' '1' 'all' 'cancel' \
+			| ${dmenu} -p monitor -l 2 -g 2)
+		if [ -z "${monsel}" ]; then
+			notify "Record canceled" 1
+			exit 0
+		fi
+
+		case ${monsel} in
+			'0')
+				DemResX=$(echo "${DemResTmp}" | sed 's/x.*//')
+				DemResY=$(echo "${DemResTmp}" | sed -e 's/.*x//' -e 's/$/ \/ 2/' | bc)
+
+				DemRes="${DemResX}x${DemResY}"
+				Monitor=":0.0+0,1080"
+				;;
+			'1')
+				DemResX=$(echo "${DemResTmp}" | sed 's/x.*//')
+				DemResY=$(echo "${DemResTmp}" | sed -e 's/.*x//' -e 's/$/ \/ 2/' | bc)
+
+				DemRes="${DemResX}x${DemResY}"
+				Monitor=":0.0+0,0"
+				;;
+			all)
+				DemRes="${DemResTmp}"
+				Monitor=":0.0"
+				;;
+			*)
+				notify "Record canceled" 1
+				exit 0
+				;;
+		esac
+	fi
+
+	case ${WithAudio} in
+	mic)
+		ffmpeg \
+			-f x11grab \
+			-i :0.0 \
+			-vcodec libx264 \
+			-s "${DemResX}x${DemResY}" \
+			-f pulse \
+			-ac 2 \
+			-i default \
+			-acodec ${audioCodec} \
+			-r ${framerate} \
+			-pix_fmt yuv420p \
+			-loglevel quiet -stats \
+			"${Directory}/${BaseName}-${Name}.${extention}"
+		;;
+	sys)
+		PaDevOut=$(pactl list short sources \
+			| awk '{print $2;}' \
+			| grep output)
+		ffmpeg \
+			-f x11grab \
+			-s "${DemResX}x${DemResY}" \
+			-i :0.0 \
+			-f pulse \
+			-i "${PaDevOut}" \
+			-ac 2 \
+			-vcodec libx264 \
+			-acodec ${audioCodec} \
+			-r ${framerate} \
+			-pix_fmt yuv420p \
+			-loglevel quiet -stats \
+			"${Directory}/${BaseName}-${Name}.${extention}"
+		;;
+	none)
+		ffmpeg \
+			-f x11grab \
+			-s ${DemRes} \
+			-i ${Monitor} \
+			-vcodec libx264 \
+			-r ${framerate} \
+			-pix_fmt yuv420p \
+			-loglevel quiet -stats \
+			"${Directory}/${BaseName}-${Name}.${extention}"
+		;;
+	esac
+}
+# }}}
+# active window {{{
+record_act_window () {
+	if [ ! -d "${Directory}" ]; then
+		mkdir -p "${Directory}"
+	fi
+	
+	DemRes=$(xwininfo -id $(xdotool getactivewindow))
+	OutRes=$(xdpyinfo | grep dimensions | awk '{print $2;}')
+	PaDevOut=$(pactl list short sources | awk '{print $2;}' | grep output)
+	PaDevIn=$(pactl list short sources | awk '{print $2;}' | grep input)
+	
+	xwininfo -id $(xdotool getactivewindow) | {
+	while IFS=: read -r k v; do
+		case "$k" in
+		*"Absolute upper-left X"*) x=$v;;
+		*"Absolute upper-left Y"*) y=$v;;
+		*"Border width"*) bw=$v ;;
+		*"Width"*) w=$v;;
+		*"Height"*) h=$v;;
+		esac
+	done
+###
+	case ${WithAudio} in
+		mic)
+		ffmpeg -y -f x11grab -r ${framerate} \
+				-video_size "$((w))x$((h))" \
+				-i "+$((x+bw)),$((y+bw))" \
+				-f pulse \
+				-ac 2 \
+				-i default \
+				-vcodec libx264 \
+				-acodec ${audioCodec} \
+				-pix_fmt yuv420p \
+				-loglevel quiet -stats \
+				"${Directory}/${BaseName}-${Name}.${extention}"
+		;;
+		sys)
+		ffmpeg -y -f x11grab -r ${framerate} \
+				-video_size "$((w))x$((h))" \
+				-i "+$((x+bw)),$((y+bw))" \
+				-f pulse \
+				-i "${PaDevOut}" \
+				-ac 2 \
+				-vcodec libx264 \
+				-acodec ${audioCodec} \
+				-pix_fmt yuv420p \
+				-loglevel quiet -stats \
+				"${Directory}/${BaseName}-${Name}.${extention}"
+		;;
+		*)
+		ffmpeg -y -f x11grab -r ${framerate} \
+				-video_size "$((w))x$((h))" \
+				-i "+$((x+bw)),$((y+bw))" \
+				-vcodec libx264 \
+				-pix_fmt yuv420p \
+				-loglevel quiet -stats \
+				"${Directory}/${BaseName}-${Name}.${extention}"
+		;;
+	esac
+	}
 }
 # }}}
 # select window {{{
@@ -132,124 +285,6 @@ record_sel_window () {
 		;;
 	esac
 	}
-}
-# }}}
-# active window {{{
-record_act_window () {
-	if [ ! -d "${Directory}" ]; then
-		mkdir -p "${Directory}"
-	fi
-	
-	DemRes=$(xwininfo -id $(xdotool getactivewindow))
-	OutRes=$(xdpyinfo | grep dimensions | awk '{print $2;}')
-	PaDevOut=$(pactl list short sources | awk '{print $2;}' | grep output)
-	PaDevIn=$(pactl list short sources | awk '{print $2;}' | grep input)
-	
-	xwininfo -id $(xdotool getactivewindow) | {
-	while IFS=: read -r k v; do
-		case "$k" in
-		*"Absolute upper-left X"*) x=$v;;
-		*"Absolute upper-left Y"*) y=$v;;
-		*"Border width"*) bw=$v ;;
-		*"Width"*) w=$v;;
-		*"Height"*) h=$v;;
-		esac
-	done
-###
-	case ${WithAudio} in
-		mic)
-		ffmpeg -y -f x11grab -r ${framerate} \
-				-video_size "$((w))x$((h))" \
-				-i "+$((x+bw)),$((y+bw))" \
-				-f pulse \
-				-ac 2 \
-				-i default \
-				-vcodec libx264 \
-				-acodec ${audioCodec} \
-				-pix_fmt yuv420p \
-				-loglevel quiet -stats \
-				"${Directory}/${BaseName}-${Name}.${extention}"
-		;;
-		sys)
-		ffmpeg -y -f x11grab -r ${framerate} \
-				-video_size "$((w))x$((h))" \
-				-i "+$((x+bw)),$((y+bw))" \
-				-f pulse \
-				-i "${PaDevOut}" \
-				-ac 2 \
-				-vcodec libx264 \
-				-acodec ${audioCodec} \
-				-pix_fmt yuv420p \
-				-loglevel quiet -stats \
-				"${Directory}/${BaseName}-${Name}.${extention}"
-		;;
-		*)
-		ffmpeg -y -f x11grab -r ${framerate} \
-				-video_size "$((w))x$((h))" \
-				-i "+$((x+bw)),$((y+bw))" \
-				-vcodec libx264 \
-				-pix_fmt yuv420p \
-				-loglevel quiet -stats \
-				"${Directory}/${BaseName}-${Name}.${extention}"
-		;;
-	esac
-	}
-}
-# }}}
-# whole screen {{{
-record_screen () {
-	if [ ! -d "${Directory}" ]; then
-		mkdir -p "${Directory}"
-	fi
-
-	DemRes=$(xdpyinfo | grep dimensions | awk '{print $2;}')
-
-	case ${WithAudio} in
-	mic)
-		ffmpeg \
-			-f x11grab \
-			-s "${DemRes}" \
-			-i :0.0 \
-			-f pulse \
-			-ac 2 \
-			-i default \
-			-vcodec libx264 \
-			-acodec ${audioCodec} \
-			-r ${framerate} \
-			-pix_fmt yuv420p \
-			-loglevel quiet -stats \
-			"${Directory}/${BaseName}-${Name}.${extention}"
-		;;
-	sys)
-		PaDevOut=$(pactl list short sources \
-			| awk '{print $2;}' \
-			| grep output)
-		ffmpeg \
-			-f x11grab \
-			-s "${DemRes}" \
-			-i :0.0 \
-			-f pulse \
-			-i "${PaDevOut}" \
-			-ac 2 \
-			-vcodec libx264 \
-			-acodec ${audioCodec} \
-			-r ${framerate} \
-			-pix_fmt yuv420p \
-			-loglevel quiet -stats \
-			"${Directory}/${BaseName}-${Name}.${extention}"
-		;;
-	none)
-		ffmpeg \
-			-f x11grab \
-			-s "${DemRes}" \
-			-i :0.0 \
-			-vcodec libx264 \
-			-r ${framerate} \
-			-pix_fmt yuv420p \
-			-loglevel quiet -stats \
-			"${Directory}/${BaseName}-${Name}.${extention}"
-		;;
-	esac
 }
 # }}}
 # Help {{{
