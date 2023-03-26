@@ -40,6 +40,7 @@ notify() {
 extention="mkv"
 audioCodec="aac"
 framerate="30"
+videoCodec="libx264"
 Directory="${HOME}/screen/record"
 Name=$(date +%y%m%d_%H%M%S)
 
@@ -78,8 +79,7 @@ record_screen () {
 	DemResTmp=$(xdpyinfo | grep dimensions | awk '{print $2;}')
 
 	if [ -z "${monsel}" ]; then
-		echo test
-		monsel=$(printf '%s\n' '0' '1' 'all' 'cancel' \
+		monsel=$(printf '%s\n' '↓' '↑' '↕' '→' \
 			| ${dmenu} -p monitor -l 2 -g 2)
 		if [ -z "${monsel}" ]; then
 			notify "Record canceled" 1
@@ -87,21 +87,21 @@ record_screen () {
 		fi
 
 		case ${monsel} in
-			'0')
+			↓)
 				DemResX=$(echo "${DemResTmp}" | sed 's/x.*//')
 				DemResY=$(echo "${DemResTmp}" | sed -e 's/.*x//' -e 's/$/ \/ 2/' | bc)
 
 				DemRes="${DemResX}x${DemResY}"
 				Monitor=":0.0+0,1080"
 				;;
-			'1')
+			↑)
 				DemResX=$(echo "${DemResTmp}" | sed 's/x.*//')
 				DemResY=$(echo "${DemResTmp}" | sed -e 's/.*x//' -e 's/$/ \/ 2/' | bc)
 
 				DemRes="${DemResX}x${DemResY}"
 				Monitor=":0.0+0,0"
 				;;
-			all)
+			↕)
 				DemRes="${DemResTmp}"
 				Monitor=":0.0"
 				;;
@@ -111,19 +111,23 @@ record_screen () {
 				;;
 		esac
 	fi
+#	echo "${DemResTmp}"
+#	echo "${DemRes}"
+#	echo "${Monitor}"
+#	exit 99
 
 	case ${WithAudio} in
 	mic)
 		ffmpeg \
 			-f x11grab \
-			-i :0.0 \
-			-vcodec libx264 \
-			-s "${DemResX}x${DemResY}" \
+			-s ${DemRes} \
+			-i ${Monitor} \
 			-f pulse \
 			-ac 2 \
 			-i default \
 			-acodec ${audioCodec} \
 			-r ${framerate} \
+			-vcodec ${videoCodec} \
 			-pix_fmt yuv420p \
 			-loglevel quiet -stats \
 			"${Directory}/${BaseName}-${Name}.${extention}"
@@ -134,15 +138,15 @@ record_screen () {
 			| grep output)
 		ffmpeg \
 			-f x11grab \
-			-s "${DemResX}x${DemResY}" \
-			-i :0.0 \
+			-s ${DemRes} \
+			-i ${Monitor} \
 			-f pulse \
 			-i "${PaDevOut}" \
 			-ac 2 \
-			-vcodec libx264 \
 			-acodec ${audioCodec} \
-			-r ${framerate} \
+			-vcodec ${videoCodec} \
 			-pix_fmt yuv420p \
+			-r ${framerate} \
 			-loglevel quiet -stats \
 			"${Directory}/${BaseName}-${Name}.${extention}"
 		;;
@@ -151,8 +155,8 @@ record_screen () {
 			-f x11grab \
 			-s ${DemRes} \
 			-i ${Monitor} \
-			-vcodec libx264 \
 			-r ${framerate} \
+			-vcodec ${videoCodec} \
 			-pix_fmt yuv420p \
 			-loglevel quiet -stats \
 			"${Directory}/${BaseName}-${Name}.${extention}"
@@ -190,7 +194,7 @@ record_act_window () {
 				-f pulse \
 				-ac 2 \
 				-i default \
-				-vcodec libx264 \
+				-vcodec ${videoCodec} \
 				-acodec ${audioCodec} \
 				-pix_fmt yuv420p \
 				-loglevel quiet -stats \
@@ -203,7 +207,7 @@ record_act_window () {
 				-f pulse \
 				-i "${PaDevOut}" \
 				-ac 2 \
-				-vcodec libx264 \
+				-vcodec ${videoCodec} \
 				-acodec ${audioCodec} \
 				-pix_fmt yuv420p \
 				-loglevel quiet -stats \
@@ -213,7 +217,7 @@ record_act_window () {
 		ffmpeg -y -f x11grab -r ${framerate} \
 				-video_size "$((w))x$((h))" \
 				-i "+$((x+bw)),$((y+bw))" \
-				-vcodec libx264 \
+				-vcodec ${videoCodec} \
 				-pix_fmt yuv420p \
 				-loglevel quiet -stats \
 				"${Directory}/${BaseName}-${Name}.${extention}"
@@ -255,7 +259,7 @@ record_sel_window () {
 				-f pulse \
 				-ac 2 \
 				-i default \
-				-vcodec libx264 \
+				-vcodec ${videoCodec} \
 				-acodec ${audioCodec} \
 				-pix_fmt yuv420p \
 				-loglevel quiet -stats \
@@ -268,7 +272,7 @@ record_sel_window () {
 				-f pulse \
 				-i "${PaDevOut}" \
 				-ac 2 \
-				-vcodec libx264 \
+				-vcodec ${videoCodec} \
 				-acodec ${audioCodec} \
 				-pix_fmt yuv420p \
 				-loglevel quiet -stats \
@@ -278,7 +282,7 @@ record_sel_window () {
 		ffmpeg -y -f x11grab -r ${framerate} \
 				-video_size "$((w))x$((h))" \
 				-i "+$((x+bw)),$((y+bw))" \
-				-vcodec libx264 \
+				-vcodec ${videoCodec} \
 				-pix_fmt yuv420p \
 				-loglevel quiet -stats \
 				"${Directory}/${BaseName}-${Name}.${extention}"
