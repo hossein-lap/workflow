@@ -236,8 +236,8 @@ clock_dwheel_command =
 # Battery
 battery_tooltip = 1
 battery_low_status = 6
-battery_low_cmd = notify-send "battery low"
-battery_full_cmd = notify-send "battery full"
+battery_low_cmd = notify-send -i battery -a openbox -u 3 "battery low"
+battery_full_cmd = notify-send -i battery -a openbox "battery full"
 bat1_font = Liberation Mono 10
 bat2_font = Liberation Mono 10
 battery_font_color = #b5b5b5 100
