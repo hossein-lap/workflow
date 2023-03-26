@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<JWM>
+    <Include>$HOME/.config/jwm/jwmrc</Include>
+</JWM>

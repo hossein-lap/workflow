@@ -12,7 +12,7 @@
     <Group>
         <Class>st</Class>
         <Class>tabbed</Class>
-		<Option>height:900</Option>
+		<Option>height:950</Option>
 		<Option>width:1400</Option>
         <Option>centered</Option>
         <Option>opacity:1.0</Option>        

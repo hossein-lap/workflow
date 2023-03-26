@@ -92,7 +92,7 @@
     </PopupStyle>
 
     <IconPath>
-      /usr/share/icons/Papirus-Dark/
+		/usr/share/icons/Jade
     </IconPath>
     <IconPath>
       /usr/share/jwm

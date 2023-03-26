@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <JWM>
   <StartupCommand>
-      sh ~/.xprofile
+	  sh ~/.config/jwm/autostart.sh
   </StartupCommand>
 </JWM>

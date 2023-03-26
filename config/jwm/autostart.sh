@@ -1,25 +1,25 @@
 #!/bin/bash
 # more info on http://joewing.net/projects/jwm/config-2.3.html
-function run {
-	if [ -z $(pgrep $1) ]; then
-		$@ &
-	else
-		pkill $1 && $@ &
-	fi
-}
+#function run {
+#	if [ -z $(pgrep $1) ]; then
+#		$@ &
+#	else
+#		pkill $1 && $@ &
+#	fi
+#}
 #autorandr horizontal
 #change your keyboard if you need it
 #setxkbmap -layout be
 # start ArcoLinux Welcome  App
 #dex $HOME/.config/autostart/arcolinux-welcome-app.desktop
 
-run sxhkd
-run slstatus
-run xcompmgr
-run dunst
-run xwallpaper --zoom ~/pic/.wall
+sxhkd &
+#slstatus &
+#xcompmgr &
+#dunst &
+#xwallpaper --zoom ~/pic/.wall &
 
-unset run
+#unset run
 
 #xsetroot -cursor_name left_ptr &
 #run volumeicon &
