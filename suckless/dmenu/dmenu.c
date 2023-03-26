@@ -43,7 +43,7 @@ static char text[BUFSIZ] = "";
 static char fribidi_text[BUFSIZ] = "";
 static char *embed;
 static int bh, mw, mh;
-static int inputw = 0, promptw;
+static int inputw = 0, promptw, titlew;
 static int lrpad; /* sum of left and right padding */
 static size_t cursor;
 static struct item *items = NULL;
@@ -93,14 +93,26 @@ calcoffsets(void)
 	if (lines > 0)
 		n = lines * columns * bh;
 	else
-		n = mw - (promptw + inputw + TEXTW("<") + TEXTW(">") + TEXTW(numbers));
+		if (title && *title)
+			n = mw - (promptw + titlew + inputw + TEXTW(title) + TEXTW("<") + TEXTW(">") + TEXTW(numbers));
+		else
+			n = mw - (promptw + inputw + TEXTW("<") + TEXTW(">") + TEXTW(numbers));
 	/* calculate which items will begin the next page and previous page */
-	for (i = 0, next = curr; next; next = next->right)
-		if ((i += (lines > 0) ? bh : textw_clamp(next->text, n)) > n)
-			break;
-	for (i = 0, prev = curr; prev && prev->left; prev = prev->left)
-		if ((i += (lines > 0) ? bh : textw_clamp(prev->left->text, n)) > n)
-			break;
+//	if (title && *title) {
+//		for (i = 1, next = curr; next; next = next->right)
+//			if ((i += (lines > 1) ? bh : textw_clamp(next->text, n)) > n)
+//				break;
+//		for (i = 1, prev = curr; prev && prev->left; prev = prev->left)
+//			if ((i += (lines > 1) ? bh : textw_clamp(prev->left->text, n)) > n)
+//				break;
+//	} else {
+		for (i = 0, next = curr; next; next = next->right)
+			if ((i += (lines > 0) ? bh : textw_clamp(next->text, n)) > n)
+				break;
+		for (i = 0, prev = curr; prev && prev->left; prev = prev->left)
+			if ((i += (lines > 0) ? bh : textw_clamp(prev->left->text, n)) > n)
+				break;
+//	}
 }
 
 static int
@@ -200,25 +212,37 @@ drawmenu(void)
 {
 	unsigned int curpos;
 	struct item *item;
-	int x = 0, y = 0, w;
+	int x = 0, y = 0, w, z = 0;
 
 	drw_setscheme(drw, scheme[SchemeNorm]);
 	drw_rect(drw, 0, 0, mw, mh, 1, 1);
 
 	if (prompt && *prompt) {
-		if (vertful) {
-			drw_setscheme(drw, scheme[SchemeOut]);
-		}
-		else {
-			drw_setscheme(drw, scheme[SchemeSel]);
-		}
+		drw_setscheme(drw, scheme[SchemeSel]);
 		x = drw_text(drw, x, 0, promptw, bh, lrpad / 2, prompt, 0);
 	}
+
+	if (title && *title) {
+		if (vertful) {
+			drw_setscheme(drw, scheme[SchemeOut]);
+			z = drw_text(drw, x, 0, titlew, bh, lrpad / 2, title, 0);
+		} else {
+			drw_setscheme(drw, scheme[SchemeNorm]);
+			if (lines > 0)
+				z = drw_text(drw, z, bh, titlew, bh, lrpad / 2, title, 0);
+			else
+				z = drw_text(drw, x, z, titlew, bh, lrpad / 2, title, 0);
+		}
+	}
+
+	if (x < z) x = z;
+
+
 	/* draw input field */
 	w = (lines > 0 || !matches) ? mw - x : inputw;
 	drw_setscheme(drw, scheme[SchemeNorm]);
 	apply_fribidi(text);
-	drw_text(drw, x, 0, w, bh, lrpad / 2, fribidi_text, 0);
+	drw_text(drw, x, 0, w, bh, lrpad / 3, fribidi_text, 0);
 
 	curpos = TEXTW(text) - TEXTW(&text[cursor]);
 	if ((curpos += lrpad / 2 - 1) < w) {
@@ -230,6 +254,8 @@ drawmenu(void)
 	if (lines > 0) {
 		/* draw grid */
 		int i = 0;
+//		if (title && *title)
+//			i = 1;
 		for (item = curr; item != next; item = item->right, i++) {
 			if (vertful) {
 				drawitem(
@@ -758,6 +784,7 @@ setup(void)
 	lines = MAX(lines, 0);
 	mh = (lines + 1) * bh;
 	promptw = (prompt && *prompt) ? TEXTW(prompt) - lrpad / 4 : 0;
+	titlew = (title && *title) ? TEXTW(title) - lrpad / 4 : 1;
 #ifdef XINERAMA
 	i = 0;
 	if (parentwin == root && (info = XineramaQueryScreens(dpy, &n))) {
@@ -813,6 +840,7 @@ setup(void)
 		}
 	}
 	promptw = (prompt && *prompt) ? TEXTW(prompt) - lrpad / 4 : 0;
+	titlew = (title && *title) ? TEXTW(title) - lrpad / 4 : 0;
 	inputw = mw / 3; /* input width: ~33% of monitor width */
 	match();
 
@@ -909,6 +937,8 @@ main(int argc, char *argv[])
 			mon = atoi(argv[++i]);
 		else if (!strcmp(argv[i], "-p"))   /* adds prompt to left of input field */
 			prompt = argv[++i];
+		else if (!strcmp(argv[i], "-t"))   /* adds title to center of first input field */
+			title = argv[++i];
 		else if (!strcmp(argv[i], "-fn"))  /* font or font set */
 			fonts[0] = argv[++i];
 		else if (!strcmp(argv[i], "-nb"))  /* normal background color */

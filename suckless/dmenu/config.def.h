@@ -16,6 +16,7 @@ static const char *fonts[] = {
 	"JoyPixels:pixelsize=25:antialias=true:autohint=true",
 };
 static const char *prompt = NULL;	/* -p option; prompt to the left of input field */
+static const char *title = NULL;	/* -t option; title to the center of first input field */
 
 /* colorscheme */
 #include "colors/default.h"
