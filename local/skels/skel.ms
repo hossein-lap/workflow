@@ -18,7 +18,4 @@
 .\".ds LH Title\" title on top-center
 .\".ds CF \*(DY\" current date on top-right
 .\".\" }}}
-
-.\" body
-
 .\".TC
