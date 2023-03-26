@@ -4,86 +4,58 @@
 # | __ | _|     
 # |_||_|___|   J
 #
-#
-#if [ -z "$1" ]; then
-	#themon=''
-#else
-	#themon="-m $1"
-#fi
 
 # sent notification {{{
 notify() {
-	case $2 in
-		1)
-			mode=low
-			;;
-		2)
-			mode=normal
-			;;
-		3)
-			mode=critical
-			;;
-		*)
-			mode=normal
-			;;
+	case $3 in
+		1) mode=low ;;
+		2) mode=normal ;;
+		3) mode=critical ;;
+		*) mode=normal ;;
 	esac
 
-	notify-send -u $mode -a ${script_name} -i accessories-screenshot "${1}"
-	printf '%s\n' "Screenshot taken: ${1}"
+	notify-send -u ${mode} -a ${prompt} \
+		-i accessories-screenshot "${1}" "${2}"
+
+	if [ -z ${2} ]; then
+		printf '%s\n' "${1}"
+	else
+		printf '%s: %s\n' "${1}" "${2}"
+	fi
 }
 # }}}
 # variables {{{
-patched='-c -g 2 -bw 2 -l 2 '
-dmenu="dmenu \
+directory="${HOME}/screen/shots"
+stamp=$(date '+%y%m%d_%H%M%S')
+name="${directory}/shot-${stamp}.png"
+prompt=$(echo $0 | awk -F '/' '{print $NF;}')
+patched='-c -g 2 -bw 2 -l 2'
+runner="dmenu \
+		-p ${prompt} \
 		-i \
 		${patched} \
 		${@} \
 		"
-script_name=$(echo $0 | awk -F '/' '{print $NF;}')
 
+# main choice
 choice=$(printf '%s\n' \
-	"whole screen" "active window" "area" "quit" \
-		| ${dmenu} -p ${script_name} \
+	"whole screen" "active window" "select area" "quit" \
+		| ${runner} \
 		| awk '{print $1}')
 
 if [ -z "${choice}" ]; then
-	notify "Shot canceled." 1
+	notify "Shot canceled." '' 1
 	exit 0
 fi
-monitor=$(printf '%s\n' '0' '1' 'all' 'cancel' \
-		| ${dmenu} -p monitor -l 2 -g 2)
 
-case ${monitor} in
-	'0')
-		mon="-M 0"
-		;;
-	'1')
-		mon="-M 1"
-		;;
-	all)
-		mon=''
-		;;
-	cancel)
-		notify "Shot canceled." 1
-		exit 0
-		;;
-	*)
-		notify "Shot canceled." 1
-		exit 1
-		;;
-esac
-alias notify="${notify}"
-
-directory="${HOME}/screen/shots"
-scrot="scrot"
-quality="-q 60"
-execarg="mv \$f ${directory}/; nsxiv ${directory}/\$f & printf ${directory}/\$f | xclip -selection c "
-#shooter="${scrot} -p ${quality} ${mon}"
+quality="5"
+shooter="maim --hidecursor -m ${quality}"
+#execarg="mv \$f ${directory}/; nsxiv ${directory}/\$f & printf ${directory}/\$f | xclip -selection c "
 # }}}
-# main {{{
 
-if [ ! -d "${HOME}/screen/shots" ]; then
-	mkdir -p ${HOME}/screen/shots
+# main {{{
+if [ ! -d "${directory}" ]; then
+	mkdir -p "${directory}"
 fi
 
 case ${choice} in
@@ -91,24 +63,69 @@ case ${choice} in
 		exit 0
 		;;
 	whole)
-		${scrot} -p ${quality} \
-			${mon} 'shots-%y%m%d_%H%M%S_$wx$h.png' \
-			-e "mv \$f ${directory}/; r.sh nsxiv ${directory}/\$f; printf ${directory}/\$f | xclip -selection c "
+#		# scrot (broken for dual-monitor) {{{
+		#Monitor=":0.0+0,1080"
+		#${scrot} -p ${quality} \
+		#	${mon} 'shots-%y%m%d_%H%M%S_$wx$h.png' \
+		#	-e "mv \$f ${directory}/; r.sh nsxiv ${directory}/\$f; printf ${directory}/\$f | xclip -selection c "
+#		# }}}
+		# vars {{{
+		DemResTmp=$(xdpyinfo | grep dimensions | awk '{print $2;}')
+		DemResX=$(echo "${DemResTmp}" | sed 's/x.*//')
+		DemResY=$(echo "${DemResTmp}" | sed -e 's/.*x//' -e 's/$/ \/ 2/' | bc)
+
+#		if [ -z "${#}" ]; then
+			monitor=$(printf '%s\n' '↓' '↑' '↕' '→' \
+					| ${runner} -p monitor)
+#		fi
+
+		case ${monitor} in
+			'↑') DemRes="-g ${DemResX}x${DemResY}+0+0" ;;
+			'↓') DemRes="-g ${DemResX}x${DemResY}+0+${DemResY}" ;;
+			'↕') DemRes="-g ${DemResTmp}" ;;
+			'—') notify "Shot canceled." '' 1; exit 0; ;;
+			*) notify "Shot canceled." '' 1; exit 1; ;;
+		esac
+		# }}}
+		${shooter} ${DemRes} ${name}
 		;;
 	active)
-		${scrot} -p ${quality} \
-			-u 'shots-%y%m%d_%H%M%S_$wx$h.png' \
-			-e "mv \$f ${directory}/; r.sh nsxiv ${directory}/\$f; printf ${directory}/\$f | xclip -selection c "
+#		# scrot (broken for dual-monitor) {{{
+#		${scrot} -p ${quality} \
+#			${mon} -u 'shots-%y%m%d_%H%M%S_$wx$h.png' \
+#			-e "mv \$f ${directory}/; r.sh nsxiv ${directory}/\$f; printf ${directory}/\$f | xclip -selection c "
+#		# }}}
+		${shooter} -i $(xdotool getactivewindow) ${name}
 		;;
-	area)
-		${scrot} -p ${quality} \
-			-s 'shots-%y%m%d_%H%M%S_$wx$h.png' \
-			-e "mv \$f ${directory}/; r.sh nsxiv ${directory}/\$f; printf ${directory}/\$f | xclip -selection c "
+	select)
+#		# scrot (broken for dual-monitor) {{{
+#		${scrot} -p ${quality} \
+#			${mon} -s 'shots-%y%m%d_%H%M%S_$wx$h.png' \
+#			-e "mv \$f ${directory}/; r.sh nsxiv ${directory}/\$f; printf ${directory}/\$f | xclip -selection c "
+#		# }}}
+		${shooter} -s ${name}
 		;;
 	*)
-		notify "Shot canceled." 1
+		notify "Shot canceled." '' 1
 		exit 1
 		;;
 esac
-#notify "Screenshot taken. ${fullpath}"
+
+notify "Screenshot taken" "${name}"
+
+nsxiv "${name}" &
+
+tocopy=$(printf '%s\n' "image" "path" | ${runner} -l 1)
+case ${tocopy} in
+	image)
+		cat ${name} | xclip -selection clipboard -t image/png
+		;;
+	path)
+		echo ${name} | tr -d '\n' | xclip -selection clipboard
+		;;
+	*)
+		echo ${name} | xclip -selection clipboard
+		;;
+esac
+
 # }}}
