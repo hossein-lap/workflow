@@ -69,9 +69,10 @@
   align_right
 ﮼  all_inclusive
 ﴀ  allo
+  almalinux
   alpha
   alphabetical
-  alpine
+  alpine linux
 𥳐  altimeter
   amazon
   amazon
@@ -125,6 +126,7 @@
   archive
   archive
   archlinux
+  archlabs linux
   area_chart
   arrange_bring_forward
   arrange_bring_to_front
@@ -216,6 +218,7 @@
   arrow_up_drop_circle_outline
   arrow_up_thick
 ﴁ  artist
+  artixlinux
   assistant
   assistive_listening_systems
   asterisk
@@ -612,7 +615,7 @@
 ﴓ  cellphone_wireless
   celluloid
   celsius
-  centos
+  centos linux
   certificate
   certificate
   chain_broken
@@ -979,8 +982,8 @@
   day_thunderstorm
   day_windy
   deaf
-  debian
-  debian
+  debian gnu/linux
+  debian gnu/linux
   debug_step_into
   debug_step_out
   debug_step_over
@@ -1013,7 +1016,7 @@
   device_camera_video
   device_desktop
   device_mobile
-  devuan
+  devuan gnu/linux
 ﬛  dialpad
   diamond
   diamond
@@ -1121,7 +1124,7 @@
   eject
   ejs
   electron
-  elementary
+  elementary os linux
 ﳄ  elephant
   elevation_decline
   elevation_rise
@@ -1140,6 +1143,7 @@
   email_outline
   email_secure
 﫯  email_variant
+  emacs
   ember
 ﮲  emby
   emoticon
@@ -1225,8 +1229,8 @@
   fax
   fax
 ﯑  feather
-  fedora
-  fedora_inverse
+  fedora linux
+  fedora_inverse linux
   feedly
   female
   ferry
@@ -1507,7 +1511,7 @@
   gender_male
   gender_male_female
   gender_transgender
-  gentoo
+  gentoo linux
 ﳉ  gesture
 ﰺ  gesture_double_tap
 ﰻ  gesture_swipe_down
@@ -1856,6 +1860,7 @@
   json
 ﬥ  json
   julia
+  kali linux
 ﴪ  karate
   karma
   keg
@@ -2026,7 +2031,7 @@
   lumx
   lunar_eclipse
   lung
-  mageia
+  mageia linux
   magento
   magic
   magnet
@@ -2045,8 +2050,8 @@
   mail_ru
   makeup_brushes
   male
-  mandriva
-  manjaro
+  mandriva linux
+  manjaro linux
   map
   map
   map_marker
@@ -2332,7 +2337,7 @@
 ﱲ  ninja
   nintendo
 ﳟ  nintendo_switch
-  nixos
+  nixos linux
   nodejs
   nodejs
   nodejs_small
@@ -2406,6 +2411,7 @@
   onedrive
 ﱅ  onenote
 頋  opacity
+  openbsd
   opencart
   openid
   openid
@@ -2459,6 +2465,7 @@
   paper_plane_o
   paragraph
   parking
+  parrot linux
 ﳡ  passport
   pause
   pause
@@ -2604,10 +2611,12 @@
 ﬅ  pool
   popcorn
 嵐  popcorn
+  pop_os linux
   popsicle
   postgresql
 ﭙ  pot
 ﭚ  pot_mix
+󰙛  pot_mix
 濫  pound
 藍  pound_box
 ⏻  power
@@ -2712,8 +2721,9 @@
 樓  reddit
   reddit_alien
   reddit_square
-  redhat
-  redhat
+󱄛  redhat linux
+  redhat linux
+  redhat linux
   redis
 淚  redo
 漏  redo_variant
@@ -2775,6 +2785,7 @@
   rocket
   rocket
 異  rocket
+  rocky linux
 ﰋ  roomba
 北  rotate_3d
 磻  rotate_left
@@ -2803,7 +2814,7 @@
 ﰌ  run
 省  run_fast
   rust
-  sabayon
+  sabayon linux
   safari
   safari
 葉  sale
@@ -2960,8 +2971,8 @@
 羚  skype_business
   slack
 聆  slack
-  slackware
-  slackware_inverse
+  slackware linux
+  slackware_inverse linux
   slash
 鈴  sleep
 ⏾  sleep_mode
@@ -2997,6 +3008,7 @@
 隸  sofa
   solar_eclipse
 ﮋ  solid
+  solus linux
   sort
 惡  sort
   sort_alpha_asc
@@ -3386,10 +3398,10 @@
   typescript
   typo3
 ﱇ  uber
-  ubuntu
-  ubuntu
-漢  ubuntu
-  ubuntu_inverse
+  ubuntu linux
+  ubuntu linux
+漢  ubuntu linux
+  ubuntu_inverse linux
   uikit
 ﳷ  ultra_high_definition
 煮  umbraco
@@ -3514,6 +3526,7 @@
 嗢  vlc
 響  voice
 塚  voicemail
+  voidlinux
   volcano
   volume_control_phone
   volume_down
@@ -3690,3 +3703,4 @@
 ⚡  zap
   zend
 遲  zip_box
+  zorin os linux

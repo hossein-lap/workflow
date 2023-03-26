@@ -1,53 +1,54 @@
-“  left-double-quote
-”  right-double-quote
-‘  left-quote
-’  right-quote
-„  double-comma
+“  double quote left
+”  double quote right
+‘  quote left
+’  quote right
+„  comma double
 ‚  comma
-«  left-guillemet
-»  right-guillemet
-‹  left-single-angle
-›  right-single-angle
+«  guillemet left
+»  guillemet right
+‹  single angle left
+›  single angle right
+▸  triangle
 •  bullet
-●  big-bullet
+●  bullet big
 ○  circle
 □  square
-☒  checked square
+☒  square checked
 ¶  paragraph
 §  section
 †  dagger
 ◊  lozenge
-←  left-arrow
-→  right-arrow
-↔  both-arrow
-↓  down-arrow
-↑  up-arrow
-↕  updown-arrow
-⇐  double-left-arrow
-⇒  double-right-arrow
-⇔  double-both-arrow
-⇓  double-down-arrow
-⇑  double-up-arrow
-⇕  double-updown-arrow
-¦  broken-pipe
-┆  more-broken-pipe
-⟨  left-angle
-⟩  right-angle
-·  centered-period
-´  acute-accent
-˝  double-acute-accent
-˘  brave-accent
-ˇ  caron-accent
+←  arrow left
+→  arrow right
+↔  arrow both
+↓  arrow down
+↑  arrow up
+↕  arrow updown
+⇐  double arrow left
+⇒  double arrow right
+⇔  double arrow both
+⇓  double arrow down
+⇑  double arrow up
+⇕  double arrow updown
+¦  broken pipe
+┆  more broken pipe
+⟨  angle left
+⟩  angle right
+·  centered period
+´  acute accent
+˝  acute accent double
+˘  brave accent
+ˇ  caron accent
 —  emdash
 –  endash
 ‐  hyphen
-↵  carriage-return
-✓  check-mark
-⎨  left-midbrace
-⎬  right-midbrace
-⎪  long-pipe
-¡  down-exclamation
-¿  question-down
+↵  carriage return
+✓  check mark
+⎨  midbrace left
+⎬  midbrace right
+⎪  long pipe
+¡  down exclamation
+¿  down question
 ¢  cent
 £  pound
 €  euro
@@ -69,30 +70,30 @@
 ³  3
 ×  multiply
 ÷  divide
-∃  there-exists
-∀  for-all
-∋  sucht-that
+∃  there exists
+∀  for all
+∋  sucht that
 ∴  therefore
-±  plus-minus
-⋅  multiply-dot
-⊗  circled-multiply
-⊕  circled-plus
+±  plus minus
+⋅  multiply dot
+⊗  multiply circled
+⊕  plus circled
 ∗  asterisk
-≤  less-equal
-≥  greater-equal
-≠  not-equal
+≤  less equal
+≥  greater equal
+≠  not equal
 ≡  equivalence
-≈  almost-equal
+≈  almost equal
 ∝  proportional
 ∅  empty
 ∈  element
-∉  not-element
-⊆  subset-equal
-⊇  superset-equal
+∉  not element
+⊆  subset equal
+⊇  superset equal
 ⊂  subset
-⊄  not-subset
+⊄  not subset
 ⊃  superset
-⊅  not-superset
+⊅  not superset
 ∩  intersection
 ∪  union
 ∠  angle
@@ -123,5 +124,5 @@
 ♥  heart
 ♦  diamond
 ♣  club
-♡  e-heart
-♢  e-diamond
+♡  e heart
+♢  e diamond
