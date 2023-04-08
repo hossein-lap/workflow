@@ -1,4 +1,4 @@
---** THIS IS BROKEN **--
+--** THIS WILL BROKE ms-image.lua FILTER **--
 -- helper: store output of a command into a varaible
 function os.capture(cmd, raw)
 	local f = assert(io.popen(cmd, 'r'))
