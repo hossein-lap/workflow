@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* vars */
-#define SCRIPTSPATH "~/.local/dev/hossein-lap/workflow/scripts/"
+//#define SCRIPTSPATH "/data/dev/hossein-lap/workflow/scripts/"
 
 static const char term[]	= "st";
 static const char fileman[]	= "lfub";
@@ -31,7 +31,7 @@ static const char *fonts[]	= {
 static const char dmenufont[]	= { "Fira Code:size=14" };
 
 /* colorschemes */
-#include "colors/default.h"
+#include "colors/dracula.h"
 static const char *colors[][3]	= {
 	/*               fg         bg         border   */
 	[SchemeNorm]	= { normal_fg, normal_bg, normal_br },
@@ -73,7 +73,7 @@ static const Rule rules[]	= {
 /* layout(s) */
 static const float mfact	= 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster	= 1;    /* number of clients in master area */
-static const int resizehints	= 0;    /* 1 means respect size hints in tiled resizals */
+static const int resizehints	= 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen	= 1;    /* 1 will force focus on the fullscreen window */
 
 static const Layout layouts[]	= {
@@ -104,36 +104,36 @@ static const char *dmenucmd[] = {
 };
 static const char *termcmd[] = { "st", NULL };
 /* hos custom {{{ */
-static const char *tabbdcmd[]	= { "tabbed", "-c", "-k", "-r", "2", "st", "-w", "''", NULL };
-//static const char *takenote[]	= { "st", "-t", "Terminal", "sh", "-c", SCRIPTSPATH"notetake.sh", NULL};
-static const char *bidicmd[]	= { bdterm, NULL};
-static const char *filecmd[]	= { term, "-t", fileman, fileman, NULL};
-static const char *newsboat[]	= { term, "-t", "Newsboat", rssread, NULL};
-static const char *muscmd[]	= { "sh", "-c", SCRIPTSPATH"cmustmux.sh", NULL};
-static const char *wwwcmd[]	= { browser, NULL};
-/* change brightness */
-static const char *brightu[]	= { "brightnessctl", "s", "+5\%", NULL};
-static const char *brightd[]	= { "brightnessctl", "s", "5\%-", NULL};
-static const char *takenote[]	= { "sh", "-c", SCRIPTSPATH"mdtodo.sh",  NULL};
-static const char *floatcmd[]	= { "sh", "-c", SCRIPTSPATH"dmstexec.sh", NULL};
-static const char *dmshot[]	= { "sh", "-c", SCRIPTSPATH"dmshot.sh", NULL};
-static const char *dmkill[]	= { "sh", "-c", SCRIPTSPATH"dmkill.sh", NULL};
-static const char *dmsrun[]	= { "sh", "-c", SCRIPTSPATH"dmsrun.sh", NULL};
-static const char *dmusbd[]	= { "sh", "-c", SCRIPTSPATH"dmusb.sh",  NULL};
-static const char *dmchnf[]	= { "sh", "-c", SCRIPTSPATH"dmchar_nerdfont.sh",  NULL};
-static const char *dmchfa[]	= { "sh", "-c", SCRIPTSPATH"dmchar_fontawesome.sh",  NULL};
-static const char *dmchem[]	= { "sh", "-c", SCRIPTSPATH"dmchar_emoji.sh",  NULL};
-static const char *dmchuc[]	= { "sh", "-c", SCRIPTSPATH"dmchar_unicode.sh",  NULL};
-static const char *scrn_lock[]	= { "slock", NULL};
-static const char *emclient[]	= { "emacsclient", "-c", "-a", "emacs", NULL};
-static const char *sysbtop[]	= { term, "btop", NULL};
+static const char *tabbdcmd[] = { "tabbed", "-c", "-k", "-r", "2", "st", "-w", "''", NULL };
+//static const char *takenote[] = { "st", "-t", "Terminal", "sh", "-c", "notetake.sh", NULL};
+static const char *bidicmd[] = { bdterm, NULL};
+static const char *filecmd[] = { term, "-t", fileman, fileman, NULL};
+static const char *newsboat[] = { term, "-t", "Newsboat", rssread, NULL};
+static const char *muscmd[] = { "sh", "-c", "cmustmux.sh", NULL};
+static const char *wwwcmd[] = { browser, NULL};
+static const char *brightu[] = { "brightnessctl", "s", "+5\%", NULL};
+static const char *brightd[] = { "brightnessctl", "s", "5\%-", NULL};
+static const char *takenote[] = { "sh", "-c", "mdtodo.sh", NULL};
+static const char *floatcmd[] = { "sh", "-c", "dmstexec.sh", NULL};
+static const char *dmshot[] = { "sh", "-c", "dmshot.sh", NULL};
+static const char *dmkill[] = { "sh", "-c", "dmkill.sh", NULL};
+static const char *dmsrun[] = { "sh", "-c", "dmsrun.sh", NULL};
+static const char *dmusbd[] = { "sh", "-c", "dmusb.sh", NULL};
+static const char *dmchnf[] = { "sh", "-c", "dmchar_nerdfont.sh", NULL};
+static const char *dmchfa[] = { "sh", "-c", "dmchar_fontawesome.sh", NULL};
+static const char *dmchem[] = { "sh", "-c", "dmchar_emoji.sh", NULL};
+static const char *dmchuc[] = { "sh", "-c", "dmchar_unicode.sh", NULL};
+static const char *dmexit[] = { "sh", "-c", "dmexit.sh", NULL};
+static const char *scrn_lock[] = { "slock", NULL};
+static const char *emclient[] = { "emacsclient", "-c", "-a", "emacs", NULL};
+static const char *sysbtop[] = { term, "btop", NULL};
 /* }}}*/
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	/* hos custom {{{ */
-	{ MODKEY|ShiftMask,		XK_Return,		spawn,		{.v = termcmd	} },
-	{ MODKEY|ShiftMask,		XK_t,	spawn,		{.v = tabbdcmd	} },
+	{ MODKEY|ShiftMask,		XK_Return,	spawn,		{.v = termcmd	} },
+	{ MODKEY|ShiftMask,		XK_t,		spawn,		{.v = tabbdcmd	} },
 	{ MODKEY,			XK_x,		spawn,		{.v = floatcmd	} },
 	{ MODKEY|ControlMask,		XK_t,		spawn,		{.v = bidicmd	} },
 	{ 0,				XK_Print,	spawn,		{.v = dmshot	} },
@@ -155,6 +155,7 @@ static const Key keys[] = {
 	{ MODKEY,			XK_p,		spawn,		{.v = dmenucmd	} },
 	{ MODKEY,			XK_Up,		spawn,		{.v = brightu	} },
 	{ MODKEY,			XK_Down,	spawn,		{.v = brightd	} },
+	{ MODKEY,			XK_q,		spawn,		{.v = dmexit	} },
 	/* }}}*/
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
