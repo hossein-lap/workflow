@@ -39,13 +39,14 @@ function CodeBlock(cb)
 --	local wrapper = cmdparser(cbft, cb.text) -- os.capture(cb) -- os.capture(wrapper)
 ----	local test = cmdparser(cb.classes[1], temp) -- os.capture(cb) -- os.capture(wrapper)
 --	local output = string.format("\\begin{verbatim}\n%s\n\\end{verbatim}", wrapper)
+    local backsrender = string.gsub(cb.text, '\\', '\\\\')
 	local codeblockbox = {
 --		raw_ms '.cb',
 ----		raw_ms '\\begin{tcolorbox}',
 --			cb,
 ----		raw_ms '\\end{tcolorbox}',
 --		raw_ms './cb',
-		raw_ms(string.format('.QP\n.cb\n%s\n./cb', string.gsub(cb.text, '\'', '\\\'')))
+		raw_ms(string.format('.QP\n.cb\n%s\n./cb', string.gsub(backsrender, '\'', '\\\'')))
 	}
 	local codeblock = {
 --		raw_ms(string.format('.QP\n.ft CW\n%s\n.ft P\n', cb.text))
