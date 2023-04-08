@@ -1,3 +1,4 @@
+--** NOTE: enabling toc WILL BREAK this **--
 -- Rudimentary image support for pandoc roff ms export.
 --	 See also cf. https://github.com/jgm/pandoc/issues/4475
 --

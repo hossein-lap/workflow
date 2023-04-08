@@ -1,6 +1,3 @@
---** THIS WILL BROKE ms-image.lua FILTER **--
---* Ignore the commented codes, they are for testing new things to implement *--
-
 -- helper: store output of a command into a varaible
 function os.capture(cmd, raw)
 	local f = assert(io.popen(cmd, 'r'))
@@ -41,8 +38,8 @@ function CodeBlock(cb)
 --	local wrapper = cmdparser(cbft, cb.text) -- os.capture(cb) -- os.capture(wrapper)
 ----	local test = cmdparser(cb.classes[1], temp) -- os.capture(cb) -- os.capture(wrapper)
 
-    local backsrender = string.gsub(cb.text, '\\', '\\\\')
-    local charsfixed = backsrender --string.gsub(backsrender, '^\\.', '\\\\.') --[IN PROGRESS]
+	local backsrender = string.gsub(cb.text, '\\', '\\\\')
+	local charsfixed = backsrender --string.gsub(backsrender, '^\\.', '\\\\.') --[IN PROGRESS]
 	local codeblockbox = {
 --		raw_ms '.cb',
 --			cb,
