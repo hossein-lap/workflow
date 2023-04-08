@@ -1,4 +1,6 @@
 --** THIS WILL BROKE ms-image.lua FILTER **--
+--* Ignore the commented codes, they are for testing new things to implement *--
+
 -- helper: store output of a command into a varaible
 function os.capture(cmd, raw)
 	local f = assert(io.popen(cmd, 'r'))
@@ -30,7 +32,7 @@ end
 --	return out
 --end
 
--- Wrap code blocks in tcolorbox environments
+-- Wrap code blocks in box
 function CodeBlock(cb)
 ----	local wrapper = cmdparser(cb.classes, 'ls /tmp/test.*') -- os.capture(cb)
 	print(cb.classes[1], cb.text)
@@ -38,14 +40,12 @@ function CodeBlock(cb)
 ----	local temp = string(cb.text)
 --	local wrapper = cmdparser(cbft, cb.text) -- os.capture(cb) -- os.capture(wrapper)
 ----	local test = cmdparser(cb.classes[1], temp) -- os.capture(cb) -- os.capture(wrapper)
---	local output = string.format("\\begin{verbatim}\n%s\n\\end{verbatim}", wrapper)
+
     local backsrender = string.gsub(cb.text, '\\', '\\\\')
-    local charsfixed = string.gsub(backsrender, '^\\.', '\\\\.')
+    local charsfixed = backsrender --string.gsub(backsrender, '^\\.', '\\\\.') --[IN PROGRESS]
 	local codeblockbox = {
 --		raw_ms '.cb',
-----		raw_ms '\\begin{tcolorbox}',
 --			cb,
-----		raw_ms '\\end{tcolorbox}',
 --		raw_ms './cb',
 		raw_ms(string.format('.QP\n.cb\n%s\n./cb', string.gsub(charsfixed, '\'', '\\(aq')))
 	}
@@ -55,8 +55,6 @@ function CodeBlock(cb)
 --		raw_ms '.QP',
 --			cb,
 --		raw_ms '.QP',
---			cb,
-----		raw_ms '\\end{quote}',
 	}
 
 	if cbft then
