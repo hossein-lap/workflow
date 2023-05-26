@@ -19,7 +19,7 @@ static const char *prompt = NULL;	/* -p option; prompt to the left of input fiel
 static const char *title = NULL;	/* -t option; title to the center of first input field */
 
 /* colorscheme */
-#include "colors/default.h"
+#include "colors/bg/blue.h"
 static const char *colors[SchemeLast][2] = {
 	/*			fg	bg	*/
 	[SchemeNorm]	= { normal_fg,	normal_bg },
