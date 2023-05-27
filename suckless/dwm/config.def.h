@@ -9,6 +9,7 @@ static const char browser[]	= "firefox";
 static const char muspley[]	= "cmus";
 static const char rssread[]	= "newsboat";
 static const char bdterm[]	= "xfce4-terminal";
+static const int statusmon = -1;
 
 /* appearance */
 static const unsigned int borderpx	= 3;  /* border pixel of windows */
@@ -31,7 +32,7 @@ static const char *fonts[]	= {
 static const char dmenufont[]	= { "Fira Code:size=14" };
 
 /* colorschemes */
-#include "colors/dracula.h"
+#include "colors/void.h"
 static const char *colors[][3]	= {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { normal_fg, normal_bg, normal_br },
@@ -40,13 +41,15 @@ static const char *colors[][3]	= {
 
 /* tagging */
 static const char *tags[] = {
-	"", "", "漣", "", "ﳲ", "", "", "", ""
-//	"♠", "♠", "♠", "♥", "♥", "♥", "♣", "♣", "♣" 
+	"♠", "♠", "♠", "♥", "♥", "♥", "♣", "♣", "♣" 
+//	"", "", "漣", "", "ﳲ", "", "", "", ""
 //	"1", "2", "3", "4", "5", "6", "7", "8", "9"
 //	"a", "b", "c", "d", "e", "f", "g", "h", "i"
 };
 static const char *tagsalt[] = {
 	"1", "2", "3", "4", "5", "6", "7", "8", "9"
+//	"q", "w", "e", "r", "t", "y", "u", "i", "o"
+//	"a", "b", "c", "d", "e", "f", "g", "h", "i"
 };
 static const int momentaryalttags = 0; /* 1 means alttags will show only when key is held down*/
 
@@ -59,7 +62,7 @@ static const Rule rules[]	= {
 	{ "Gimp",      NULL,       NULL,           0,            1,          -1 },
 	{ "st",        NULL,       "Terminal",     0,            1,          -1 },
 	{ "Nsxiv",     "nsxiv",    "nsxiv",        0,            1,          -1 },
-	{ "Sxiv",      "sxiv",     "sxiv",         0,            1,          -1 },
+//	{ "Sxiv",      "sxiv",     "sxiv",         0,            1,          -1 },
 //	{ "dmenu",     NULL,       "dmsrun.sh",    0,            1,          -1 },
 //	{ "dmenu",     NULL,       "dmshot.sh",    0,            1,          -1 },
 //	{ "dmenu",     NULL,       "dmusb.sh",     0,            1,          -1 },
@@ -75,7 +78,7 @@ static const Rule rules[]	= {
 };
 
 /* layout(s) */
-static const float mfact	= 0.55; /* factor of master area size [0.05..0.95] */
+static const float mfact	= 0.53; /* factor of master area size [0.05..0.95] */
 static const int nmaster	= 1;    /* number of clients in master area */
 static const int resizehints	= 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen	= 1;    /* 1 will force focus on the fullscreen window */
@@ -136,30 +139,30 @@ static const char *sysbtop[] = { term, "btop", NULL};
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	/* hos custom {{{ */
-	{ MODKEY|ShiftMask,		XK_Return,	spawn,		{.v = termcmd	} },
-	{ MODKEY|ShiftMask,		XK_t,		spawn,		{.v = tabbdcmd	} },
-	{ MODKEY,			XK_x,		spawn,		{.v = floatcmd	} },
-	{ MODKEY|ControlMask,		XK_t,		spawn,		{.v = bidicmd	} },
-	{ 0,				XK_Print,	spawn,		{.v = dmshot	} },
-	{ MODKEY|ShiftMask,		XK_k,		spawn,		{.v = dmkill	} },
-	{ MODKEY,			XK_r,		spawn,		{.v = dmsrun	} },
-	{ MODKEY|ShiftMask,		XK_d,		spawn,		{.v = dmusbd	} },
-	{ MODKEY|ShiftMask,		XK_a,		spawn,		{.v = dmchfa	} },
-	{ MODKEY,			XK_a,		spawn,		{.v = dmchnf	} },
-	{ MODKEY,			XK_e,		spawn,		{.v = dmchem	} },
-	{ MODKEY,			XK_u,		spawn,		{.v = dmchuc	} },
-	{ MODKEY|ShiftMask,		XK_l,		spawn,		{.v = scrn_lock	} },
-	{ MODKEY|ShiftMask,		XK_f,		spawn,		{.v = filecmd	} },
-	{ MODKEY|ShiftMask,		XK_b,		spawn,		{.v = wwwcmd	} },
-	{ MODKEY|ShiftMask,		XK_m,		spawn,		{.v = muscmd	} },
-	{ MODKEY|ShiftMask,		XK_n,		spawn,		{.v = newsboat	} },
-	{ MODKEY|ControlMask,		XK_Delete,	spawn,		{.v = sysbtop	} },
-	{ MODKEY,			XK_n,		spawn,		{.v = takenote	} },
-	{ MODKEY|ShiftMask,		XK_e,		spawn,		{.v = emclient	} },
-	{ MODKEY,			XK_p,		spawn,		{.v = dmenucmd	} },
-	{ MODKEY,			XK_Up,		spawn,		{.v = brightu	} },
-	{ MODKEY,			XK_Down,	spawn,		{.v = brightd	} },
-	{ MODKEY,			XK_q,		spawn,		{.v = dmexit	} },
+	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY|ShiftMask,             XK_t,      spawn,          {.v = tabbdcmd } },
+	{ MODKEY,                       XK_x,      spawn,          {.v = floatcmd } },
+	{ MODKEY|ControlMask,           XK_t,      spawn,          {.v = bidicmd } },
+	{ 0,                            XK_Print,  spawn,          {.v = dmshot } },
+	{ MODKEY|ShiftMask,             XK_k,      spawn,          {.v = dmkill } },
+	{ MODKEY,                       XK_r,      spawn,          {.v = dmsrun } },
+	{ MODKEY|ShiftMask,             XK_d,      spawn,          {.v = dmusbd } },
+	{ MODKEY|ShiftMask,             XK_a,      spawn,          {.v = dmchfa } },
+	{ MODKEY,                       XK_a,      spawn,          {.v = dmchnf } },
+	{ MODKEY,                       XK_e,      spawn,          {.v = dmchem } },
+	{ MODKEY,                       XK_u,      spawn,          {.v = dmchuc } },
+	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = scrn_lock } },
+	{ MODKEY|ShiftMask,             XK_f,      spawn,          {.v = filecmd } },
+	{ MODKEY|ShiftMask,             XK_b,      spawn,          {.v = wwwcmd } },
+	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = muscmd } },
+	{ MODKEY|ShiftMask,             XK_n,      spawn,          {.v = newsboat } },
+	{ MODKEY|ControlMask,           XK_Delete, spawn,          {.v = sysbtop } },
+	{ MODKEY,                       XK_n,      spawn,          {.v = takenote } },
+	{ MODKEY|ShiftMask,             XK_e,      spawn,          {.v = emclient } },
+	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_Up,     spawn,          {.v = brightu } },
+	{ MODKEY,                       XK_Down,   spawn,          {.v = brightd } },
+	{ MODKEY,                       XK_q,      spawn,          {.v = dmexit } },
 	/* }}}*/
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
@@ -198,16 +201,16 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	{ MODKEY,                       XK_v,      togglealttag,   {0} },
-	TAGKEYS(                        XK_1,                      0)
-	TAGKEYS(                        XK_2,                      1)
-	TAGKEYS(                        XK_3,                      2)
-	TAGKEYS(                        XK_4,                      3)
-	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_6,                      5)
-	TAGKEYS(                        XK_7,                      6)
-	TAGKEYS(                        XK_8,                      7)
-	TAGKEYS(                        XK_9,                      8)
+	{ MODKEY|ShiftMask,             XK_v,      togglealttag,   {0} },
+	TAGKEYS(                        XK_1,                       0)
+	TAGKEYS(                        XK_2,                       1)
+	TAGKEYS(                        XK_3,                       2)
+	TAGKEYS(                        XK_4,                       3)
+	TAGKEYS(                        XK_5,                       4)
+	TAGKEYS(                        XK_6,                       5)
+	TAGKEYS(                        XK_7,                       6)
+	TAGKEYS(                        XK_8,                       7)
+	TAGKEYS(                        XK_9,                       8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 };
 

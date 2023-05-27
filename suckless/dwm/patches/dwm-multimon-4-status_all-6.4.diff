@@ -1,0 +1,104 @@
+From 34d7ca93ff7fff443f9cf0ce6ba6da6acbcfe06c Mon Sep 17 00:00:00 2001
+From: "Gary B. Genett" <me@garybgenett.net>
+Date: Sun, 19 Feb 2023 08:59:36 -0800
+Subject: added statusall toggle
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="------------2.37.4"
+
+This is a multi-part message in MIME format.
+--------------2.37.4
+Content-Type: text/plain; charset=UTF-8; format=fixed
+Content-Transfer-Encoding: 8bit
+
+---
+ config.def.h | 1 +
+ dwm.c        | 4 ++--
+ 2 files changed, 3 insertions(+), 2 deletions(-)
+
+
+--------------2.37.4
+Content-Type: text/x-patch; name="0004-added-statusall-toggle.patch"
+Content-Transfer-Encoding: 8bit
+Content-Disposition: attachment; filename="0004-added-statusall-toggle.patch"
+
+diff --git a/config.def.h b/config.def.h
+index a664c793845c4c7c0ebe8ac69c96885c76193819..fcfe8245a438686f276ffc9a4df17695382ed58b 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -29,20 +29,21 @@ static const Rule rules[] = {
+ 	/* class      instance    title       tags mask     isfloating   monitor */
+ 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
+ 	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+ };
+ 
+ /* layout(s) */
+ static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
+ static const int nmaster     = 1;    /* number of clients in master area */
+ static const int nviews      = 3;    /* mask of tags highlighted by default (tags 1-4) */
+ static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
++static const int statusall   = 1;    /* 1 means status is shown in all bars, not just active monitor */
+ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
+ 
+ static const float facts[1];    //static const float facts[]     = {     0,     0.5 }; // = mfact   // 50%
+ static const int masters[1];    //static const int masters[]     = {     0,      -1 }; // = nmaster // vertical stacking (for rotated monitor)
+ static const int views[1];      //static const int views[]       = {     0,      ~0 }; // = nviews  // all tags
+ /* invert tags after nviews */  /* array dimentions can both be as big as needed */  // final highlighted tags
+ static const int toggles[1][1]; //static const int toggles[2][2] = { {0,8}, {~0,~0} }; // 2-4+9     // all (leave as views above)
+ static const int toggles[1][1] = {{~0}};
+ 
+ static const Layout layouts[] = {
+ 	/* symbol     arrange function */
+diff --git a/dwm.c b/dwm.c
+index 93da0f4565d7a17ef96a1b167cfcb2c9f0ac6ad3..77ff310e03edbf42ac2dd55471962ce259b63071 100644
+--- a/dwm.c
++++ b/dwm.c
+@@ -709,21 +709,21 @@ drawbar(Monitor *m)
+ 	int x, w, tw = 0;
+ 	int boxs = drw->fonts->h / 9;
+ 	int boxw = drw->fonts->h / 6 + 2;
+ 	unsigned int i, occ = 0, urg = 0;
+ 	Client *c;
+ 
+ 	if (!m->showbar)
+ 		return;
+ 
+ 	/* draw status first so it can be overdrawn by tags later */
+-	if (m == selmon) { /* status is only drawn on selected monitor */
++	if (m == selmon || statusall) { /* status is only drawn on selected monitor */
+ 		drw_setscheme(drw, scheme[SchemeNorm]);
+ 		tw = TEXTW(stext) - lrpad + 2; /* 2px right padding */
+ 		drw_text(drw, m->ww - tw, 0, tw, bh, 0, stext, 0);
+ 	}
+ 
+ 	for (c = m->clients; c; c = c->next) {
+ 		occ |= c->tags;
+ 		if (c->isurgent)
+ 			urg |= c->tags;
+ 	}
+@@ -2017,21 +2017,21 @@ updatesizehints(Client *c)
+ 		c->maxa = c->mina = 0.0;
+ 	c->isfixed = (c->maxw && c->maxh && c->maxw == c->minw && c->maxh == c->minh);
+ 	c->hintsvalid = 1;
+ }
+ 
+ void
+ updatestatus(void)
+ {
+ 	if (!gettextprop(root, XA_WM_NAME, stext, sizeof(stext)))
+ 		strcpy(stext, "dwm-"VERSION);
+-	drawbar(selmon);
++	statusall ? drawbars() : drawbar(selmon);
+ }
+ 
+ void
+ updatetitle(Client *c)
+ {
+ 	if (!gettextprop(c->win, netatom[NetWMName], c->name, sizeof c->name))
+ 		gettextprop(c->win, XA_WM_NAME, c->name, sizeof c->name);
+ 	if (c->name[0] == '\0') /* hack to mark broken clients */
+ 		strcpy(c->name, broken);
+ }
+
+--------------2.37.4--
+
+
