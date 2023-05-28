@@ -754,7 +754,7 @@ drawbar(Monitor *m)
 		return;
 
 	/* draw status first so it can be overdrawn by tags later */
-	if (m == selmon) { /* status is only drawn on selected monitor */
+	if (m == selmon || statusall) { /* status is only drawn on selected monitor */
 		drw_setscheme(drw, scheme[SchemeNorm]);
 			apply_fribidi(stext);
 		tw = TEXTW(fribidi_text) - lrpad + 2; /* 2px right padding */
@@ -2189,7 +2189,7 @@ updatestatus(void)
 {
 	if (!gettextprop(root, XA_WM_NAME, stext, sizeof(stext)))
 		strcpy(stext, " dwm-"VERSION" ");
-	drawbar(selmon);
+	statusall ? drawbars() : drawbar(selmon);
 }
 
 void

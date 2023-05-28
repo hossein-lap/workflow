@@ -3,25 +3,24 @@
 /* vars */
 //#define SCRIPTSPATH "/data/dev/hossein-lap/workflow/scripts/"
 
-static const char term[]	= "st";
-static const char fileman[]	= "lfub";
-static const char browser[]	= "firefox";
-static const char muspley[]	= "cmus";
-static const char rssread[]	= "newsboat";
-static const char bdterm[]	= "xfce4-terminal";
-static const int statusmon = -1;
+static const char term[]    = "st";
+static const char fileman[] = "lfub";
+static const char browser[] = "firefox";
+static const char muspley[] = "cmus";
+static const char rssread[] = "newsboat";
+static const char bdterm[]  = "xfce4-terminal";
 
 /* appearance */
-static const unsigned int borderpx	= 3;  /* border pixel of windows */
-static const unsigned int snap		= 32; /* snap pixel */
-static const unsigned int gappih	= 12; /* horiz inner gap between windows */
-static const unsigned int gappoh	= 22; /* horiz outer gap between windows and screen edge */
-static const unsigned int gappiv	= 10; /* vert inner gap between windows */
-static const unsigned int gappov	= 10; /* vert outer gap between windows and screen edge */
-static const int smartgaps	= 0; /* 1 means no outer gap when there is only one window */
-static const int showbar	= 1; /* 0 means no bar */
-static const int topbar		= 1; /* 0 means bottom bar */
-static const char *fonts[]	= {
+static const unsigned int borderpx = 3;  /* border pixel of windows */
+static const unsigned int snap     = 32; /* snap pixel */
+static const unsigned int gappih   = 12; /* horiz inner gap between windows */
+static const unsigned int gappoh   = 22; /* horiz outer gap between windows and screen edge */
+static const unsigned int gappiv   = 10; /* vert inner gap between windows */
+static const unsigned int gappov   = 10; /* vert outer gap between windows and screen edge */
+static const int smartgaps    = 0; /* 1 means no outer gap when there is only one window */
+static const int showbar      = 1; /* 0 means no bar */
+static const int topbar       = 1; /* 0 means bottom bar */
+static const char *fonts[]    = {
 	"Fira Code:size=14",
 	"Vazir Variable:Bold:pixelsize=20:antialias=true:autohint=true",
 	"FiraCode Nerd Font:size=14",
@@ -29,7 +28,7 @@ static const char *fonts[]	= {
 	"FontAwesome:pixelsize=20:antialias=true:autohint=true",
 //	"Noto Color Emoji:pixelsize=20:antialias=true:autohint=true",
 };
-static const char dmenufont[]	= { "Fira Code:size=14" };
+static const char dmenufont[] = { "Fira Code:size=14" };
 
 /* colorschemes */
 #include "colors/void.h"
@@ -78,10 +77,11 @@ static const Rule rules[]	= {
 };
 
 /* layout(s) */
-static const float mfact	= 0.53; /* factor of master area size [0.05..0.95] */
-static const int nmaster	= 1;    /* number of clients in master area */
-static const int resizehints	= 1;    /* 1 means respect size hints in tiled resizals */
-static const int lockfullscreen	= 1;    /* 1 will force focus on the fullscreen window */
+static const float mfact = 0.53;     /* factor of master area size [0.05..0.95] */
+static const int nmaster = 1;        /* number of clients in master area */
+static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static const int statusall = 1;      /* 1 means status is shown in all bars, not just active monitor */
+static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
 static const Layout layouts[]	= {
 	/* symbol     arrange function */
