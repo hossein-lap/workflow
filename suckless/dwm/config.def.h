@@ -8,7 +8,7 @@ static const char fileman[] = "lfub";
 static const char browser[] = "firefox";
 static const char muspley[] = "cmus";
 static const char rssread[] = "newsboat";
-static const char bdterm[]  = "xfce4-terminal";
+static const char bdterm[]  = "lxterminal";
 
 /* appearance */
 static const unsigned int borderpx = 3;  /* border pixel of windows */
@@ -22,10 +22,10 @@ static const int showbar      = 1; /* 0 means no bar */
 static const int topbar       = 1; /* 0 means bottom bar */
 static const char *fonts[]    = {
 	"Fira Code:size=14",
-	"Vazir Variable:Bold:pixelsize=20:antialias=true:autohint=true",
+	"Vazir Variable:Bold:pixelsize=20",
 	"FiraCode Nerd Font:size=14",
-	"JoyPixels:pixelsize=20:antialias=true:autohint=true",
-	"FontAwesome:pixelsize=20:antialias=true:autohint=true",
+	"JoyPixels:pixelsize=20",
+	"FontAwesome:pixelsize=20",
 //	"Noto Color Emoji:pixelsize=20:antialias=true:autohint=true",
 };
 static const char dmenufont[] = { "Fira Code:size=14" };
@@ -62,16 +62,18 @@ static const Rule rules[]	= {
 	{ "st",        NULL,       "Terminal",     0,            1,          -1 },
 	{ "Nsxiv",     "nsxiv",    "nsxiv",        0,            1,          -1 },
 //	{ "Sxiv",      "sxiv",     "sxiv",         0,            1,          -1 },
-//	{ "dmenu",     NULL,       "dmsrun.sh",    0,            1,          -1 },
-//	{ "dmenu",     NULL,       "dmshot.sh",    0,            1,          -1 },
-//	{ "dmenu",     NULL,       "dmusb.sh",     0,            1,          -1 },
-//	{ "dmenu",     NULL,       "dmrecord.sh",  0,            1,          -1 },
-//	{ "dmenu",     NULL,       "dmchar.sh",    0,            1,          -1 },
-//	{ "dmenu",     NULL,       "dmstexec.sh",  0,            1,          -1 },
-//	{ "dmenu",     NULL,       "dmlp.sh",      0,            1,          -1 },
-////	{ "dmenu",     NULL,       NULL,           0,            0,          -1 },
+	{ "dmenu",     NULL,       "dmexit.sh",    0,            1,          -1 },
+	{ "dmenu",     NULL,       "dmsrun.sh",    0,            1,          -1 },
+	{ "dmenu",     NULL,       "dmshot.sh",    0,            1,          -1 },
+	{ "dmenu",     NULL,       "dmplay.sh",    0,            1,          -1 },
+	{ "dmenu",     NULL,       "dmusb.sh",     0,            1,          -1 },
+	{ "dmenu",     NULL,       "dmrecord.sh",  0,            1,          -1 },
+	{ "dmenu",     NULL,       "dmchar.sh",    0,            1,          -1 },
+	{ "dmenu",     NULL,       "dmstexec.sh",  0,            1,          -1 },
+	{ "dmenu",     NULL,       "dmlp.sh",      0,            1,          -1 },
+//	{ "dmenu",     NULL,       NULL,           0,            0,          -1 },
 	{ "Firefox",   NULL,       NULL,           1 << 3,       0,          -1 },
-	{ "st",        NULL,       "lfub",         1 << 4,       0,          -1 },
+//	{ "st",        NULL,       "lfub",         1 << 4,       0,          -1 },
 	{ "st",        NULL,       "cmus",         1 << 7,       0,          -1 },
 	{ "Telegram",  NULL,       NULL,           1 << 8,       0,          -1 },
 };
@@ -79,7 +81,7 @@ static const Rule rules[]	= {
 /* layout(s) */
 static const float mfact = 0.53;     /* factor of master area size [0.05..0.95] */
 static const int nmaster = 1;        /* number of clients in master area */
-static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 static const int statusall = 1;      /* 1 means status is shown in all bars, not just active monitor */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
@@ -109,19 +111,20 @@ static const char *dmenucmd[] = {
 		"-sb", focus_bg, "-sf", focus_fg,
 	NULL
 };
-static const char *termcmd[] = { "st", NULL };
+// static const char *termcmd[] = { "st", NULL };
 /* hos custom {{{ */
-static const char *tabbdcmd[] = { "tabbed", "-c", "-k", "-r", "2", "st", "-w", "''", NULL };
+// static const char *tabbdcmd[] = { "tabbed", "-c", "-k", "-r", "2", "st", "-w", "''", NULL };
+static const char *termcmd[] = { "st", NULL };
+static const char *floatcmd[] = { "st", "-T", "Terminal", NULL};
 //static const char *takenote[] = { "st", "-t", "Terminal", "sh", "-c", "notetake.sh", NULL};
 static const char *bidicmd[] = { bdterm, NULL};
 static const char *filecmd[] = { term, "-t", fileman, fileman, NULL};
 static const char *newsboat[] = { term, "-t", "Newsboat", rssread, NULL};
-static const char *muscmd[] = { "sh", "-c", "cmustmux.sh", NULL};
+static const char *muscmd[] = { "sh", "-c", "dmplay.sh", NULL};
 static const char *wwwcmd[] = { browser, NULL};
 static const char *brightu[] = { "brightnessctl", "s", "+5\%", NULL};
 static const char *brightd[] = { "brightnessctl", "s", "5\%-", NULL};
 static const char *takenote[] = { "sh", "-c", "mdtodo.sh", NULL};
-static const char *floatcmd[] = { "sh", "-c", "dmstexec.sh", NULL};
 static const char *dmshot[] = { "sh", "-c", "dmshot.sh", NULL};
 static const char *dmkill[] = { "sh", "-c", "dmkill.sh", NULL};
 static const char *dmsrun[] = { "sh", "-c", "dmsrun.sh", NULL};
@@ -140,9 +143,9 @@ static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	/* hos custom {{{ */
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY|ShiftMask,             XK_t,      spawn,          {.v = tabbdcmd } },
+//	{ MODKEY|ControlMask,           XK_t,      spawn,          {.v = tabbdcmd } },
 	{ MODKEY,                       XK_x,      spawn,          {.v = floatcmd } },
-	{ MODKEY|ControlMask,           XK_t,      spawn,          {.v = bidicmd } },
+	{ MODKEY|ShiftMask,             XK_t,      spawn,          {.v = bidicmd } },
 	{ 0,                            XK_Print,  spawn,          {.v = dmshot } },
 	{ MODKEY|ShiftMask,             XK_k,      spawn,          {.v = dmkill } },
 	{ MODKEY,                       XK_r,      spawn,          {.v = dmsrun } },

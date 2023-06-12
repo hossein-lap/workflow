@@ -8,8 +8,8 @@
 static const char normal_fg[]		= "#fdf6e3";
 static const char normal_bg[]		= "#002b36";
 static const char normal_br[]		= "#002b36";
-static const char focus_bg[]		= "#073642";
+static const char focus_fg[]		= "#002b36";
+static const char focus_bg[]		= ACCENTCOLOR;
 static const char focus_br[]		= ACCENTCOLOR;
-static const char focus_fg[]		= ACCENTCOLOR;
 
 //static const char focus_bg[]		= "#073642";
