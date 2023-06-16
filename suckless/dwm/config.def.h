@@ -143,9 +143,9 @@ static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	/* hos custom {{{ */
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
-//	{ MODKEY|ControlMask,           XK_t,      spawn,          {.v = tabbdcmd } },
+//	{ MODKEY|ShiftMask,             XK_t,      spawn,          {.v = tabbdcmd } },
 	{ MODKEY,                       XK_x,      spawn,          {.v = floatcmd } },
-	{ MODKEY|ShiftMask,             XK_t,      spawn,          {.v = bidicmd } },
+	{ MODKEY|ControlMask,           XK_t,      spawn,          {.v = bidicmd } },
 	{ 0,                            XK_Print,  spawn,          {.v = dmshot } },
 	{ MODKEY|ShiftMask,             XK_k,      spawn,          {.v = dmkill } },
 	{ MODKEY,                       XK_r,      spawn,          {.v = dmsrun } },
