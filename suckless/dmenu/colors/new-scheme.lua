@@ -3,9 +3,9 @@
 -- help function
 local function help()
 	io.stderr:write("Create new colorscheme", "\n\n",
-	"Usage: ", arg[0], " <color-name> <hex-color>", "\n\n",
+	"Usage: ", arg[0], " <color-name> '<hex-color>'", "\n\n",
 	"\t", "exmaple: \n\n",
-	"\t", "$ ", arg[0], " cyan 00ffff \n\n",
+	"\t", "$ ", arg[0], " cyan '#00ffff' \n\n",
 	"Run without argument for help page.", "\n")
 end
 
@@ -33,7 +33,7 @@ end
 
 -- variable set
 --local color  = "ff7700"
-local color  = arg[2]
+local scolor = arg[2]
 local dcolor = "#000000"
 local lcolor = "#ffffff"
 
@@ -41,31 +41,31 @@ local bg_scheme = {
 	'static const char normal_fg[]      = "'..lcolor..'";',
 	'static const char normal_bg[]      = "'..dcolor..'";',
 	'static const char focus_fg[]       = "'..dcolor..'";',
-	'static const char focus_bg[]       = "#'..color..'";',
-	'static const char sel_fg[]         = "#'..color..'";',
+	'static const char focus_bg[]       = "'..scolor..'";',
+	'static const char sel_fg[]         = "'..scolor..'";',
 	'static const char sel_bg[]         = "'..dcolor..'";',
 	'static const char high_sel_fg[]    = "'..dcolor..'";',
-	'static const char high_sel_bg[]    = "#'..color..'";',
-	'static const char high_normal_fg[] = "#'..color..'";',
+	'static const char high_sel_bg[]    = "'..scolor..'";',
+	'static const char high_normal_fg[] = "'..scolor..'";',
 	'static const char high_normal_bg[] = "'..dcolor..'";',
 }
 
 local fg_scheme = {
 	'static const char normal_fg[]      = "'..lcolor..'";',
 	'static const char normal_bg[]      = "'..dcolor..'";',
-	'static const char focus_fg[]       = "#'..color..'";',
+	'static const char focus_fg[]       = "'..scolor..'";',
 	'static const char focus_bg[]       = "'..dcolor..'";',
 	'static const char sel_fg[]         = "'..dcolor..'";',
-	'static const char sel_bg[]         = "#'..color..'";',
-	'static const char high_sel_fg[]    = "#'..color..'";',
+	'static const char sel_bg[]         = "'..scolor..'";',
+	'static const char high_sel_fg[]    = "'..scolor..'";',
 	'static const char high_sel_bg[]    = "'..dcolor..'";',
 	'static const char high_normal_fg[] = "'..dcolor..'";',
-	'static const char high_normal_bg[] = "#'..color..'";',
+	'static const char high_normal_bg[] = "'..scolor..'";',
 }
 
 -- main
-local fg = 'fg/' .. arg[1] .. '.h'
-local bg = 'bg/' .. arg[1] .. '.h'
+local fg = 'fg/'..arg[1]..'.h'
+local bg = 'bg/'..arg[1]..'.h'
 
 if file_exists(fg) then
 	io.write("Colors exists:",
@@ -92,5 +92,5 @@ else
 	end
 	bg_file:close()
 
-	print(arg[1] .. ": colorscheme created")
+	print(arg[1]..": colorscheme created")
 end
