@@ -4,3 +4,7 @@ static const char normal_fg[]  = "#f8f8fe";
 static const char normal_bg[]  = "#010101";
 static const char sel_fg[]   = "#010101";
 static const char sel_bg[]   = "#f59554";
+static const char high_sel_fg[] = "#010101";
+static const char high_sel_bg[] = "#0097ff";
+static const char high_normal_fg[]   = "#010101";
+static const char high_normal_bg[]   = "#f59554";

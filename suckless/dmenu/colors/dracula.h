@@ -14,3 +14,7 @@ static const char focus_fg[]  = "#000000";
 static const char focus_bg[]  = ACCENTCOLOR;
 static const char sel_fg[]    = ACCENTCOLOR;
 static const char sel_bg[]    = "#44475A";
+static const char high_sel_fg[]  = "#000000";
+static const char high_sel_bg[]  = ACCENTCOLOR;
+static const char high_normal_fg[]    = ACCENTCOLOR;
+static const char high_normal_bg[]    = "#44475A";

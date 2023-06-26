@@ -5,9 +5,13 @@
 //#define ACCENTCOLOR "#d33682"
 //#define ACCENTCOLOR "#eee8d5"
 
-static const char normal_fg[] = "#fdf6e3";
-static const char normal_bg[] = "#002b36";
-static const char focus_fg[]  = "#002b36";
-static const char focus_bg[]  = ACCENTCOLOR;
-static const char sel_fg[]    = "#073642";
-static const char sel_bg[]    = "#93a1a1";
+static const char normal_fg[]       = "#fdf6e3";
+static const char normal_bg[]       = "#002b36";
+static const char focus_fg[]        = "#002b36";
+static const char focus_bg[]        = ACCENTCOLOR;
+static const char sel_fg[]          = "#073642";
+static const char sel_bg[]          = "#93a1a1";
+static const char high_normal_fg[]  = ACCENTCOLOR;
+static const char high_normal_bg[]  = "#002b36";
+static const char high_sel_fg[]     = "#073642";
+static const char high_sel_bg[]     = ACCENTCOLOR;

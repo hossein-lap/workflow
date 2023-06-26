@@ -1,6 +1,10 @@
-static const char normal_fg[] = "#bbbbbb";
-static const char normal_bg[] = "#222222";
-static const char focus_fg[]  = "#eeeeee";
-static const char focus_bg[]  = "#005577";
-static const char sel_fg[]    = "#eeeeee";
-static const char sel_bg[]    = "#770000";
+static const char normal_fg[]      = "#bbbbbb";
+static const char normal_bg[]      = "#222222";
+static const char focus_fg[]       = "#eeeeee";
+static const char focus_bg[]       = "#005577";
+static const char sel_fg[]         = "#eeeeee";
+static const char sel_bg[]         = "#770000";
+static const char high_sel_fg[]    = "#eeeeee";
+static const char high_sel_bg[]    = "#005577";
+static const char high_normal_fg[] = "#eeeeee";
+static const char high_normal_bg[] = "#770000";
